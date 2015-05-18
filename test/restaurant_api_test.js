@@ -31,11 +31,9 @@ describe('restaurant REST API', function () {
       if (err) throw err;
 
       this.testRest = data;
-      done();
     }.bind(this));
-
+    done();
   });
-
 
   after(function (done) {
     mongoose.connection.db.dropDatabase(function() {
@@ -48,8 +46,8 @@ describe('restaurant REST API', function () {
     .get('/api/restaurant/all')
     .end(function (err, res) {
       expect(err).to.eql(null);
-      // expect(typeof res.body).to.eql('object');
-      // expect(Array.isArray(res.body)).to.eql(true);
+      expect(typeof res.body).to.eql('object');
+      expect(Array.isArray(res.body)).to.eql(true);
       done();
     });
   });

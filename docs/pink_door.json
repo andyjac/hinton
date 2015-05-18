@@ -9,7 +9,7 @@
     "marker": "",
     "caption": "The Pink Door"
   },
-  {
+  "restaurant": {
     "r_id": 1,
     "name": "The Pink Door",
     "address": {
@@ -29,7 +29,7 @@
       "sat": "4:00pm-10:00pm"
     },
     "phone": "2064433241",
-    "genre": "Italian-American"
+    "genre": "Italian-American",
     "price": 3,
     "blog_link": "",
     "r_site": "http://thepinkdoor.net/index.html",

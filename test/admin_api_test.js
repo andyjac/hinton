@@ -25,7 +25,7 @@ describe('admin user creation and authentication', function() {
       .send({username: 'test', email: 'test@example.com', password: 'tester'})
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body.token).to.exist;
+        expect(res.body.token).to.exist();
         done();
       });
   });

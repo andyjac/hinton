@@ -1,7 +1,7 @@
 {
-  "token": "",
+  "token": 2,
   "map": {
-    "r_id": "2",
+    "r_id": 2,
     "loc": {
       "lat": "47.622152",
       "long": "-122.312965"
@@ -10,7 +10,7 @@
     "caption": ""
   },
   "restaurant": {
-    "r_id": "2",
+    "r_id": 2,
     "name": "The Wandering Goose",
     "address": {
       "number": "403",
@@ -20,17 +20,17 @@
       "zip": "98112"
     },
     "hours": {
-      "sun": "7:00 AM-4:00 PM",
-      "mon": "7:00 AM-4:00 PM",
-      "tues": "7:00 AM-4:00 PM",
-      "wed": "7:00 AM-4:00 PM",
-      "thus": "7:00 AM-4:00 PM",
-      "fri": "5:00 PM-9:00 PM",
-      "sat": "7:00 AM-4:00 PM"
+      "sun": "7:00am-4:00pm",
+      "mon": "7:00am-4:00pm",
+      "tues": "7:00am-4:00pm",
+      "wed": "7:00am-4:00pm",
+      "thus": "7:00am-4:00pm",
+      "fri": "5:00pm-9:00pm",
+      "sat": "7:00am-4:00pm"
     },
     "phone": "2063239938",
     "genre": "Southern-American",
-    "price": "2",
+    "price": 2,
     "blog_link": "",
     "r_site": "http://www.thewanderinggoose.com/",
     "menu_link": "http://www.thewanderinggoose.com/Menu.html",

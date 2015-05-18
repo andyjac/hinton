@@ -17,9 +17,9 @@ var restaurantSchema = mongoose.Schema({
   hours: {
     sun: String,
     mon: String,
-    tues: String,
+    tue: String,
     wed: String,
-    thus: String,
+    thu: String,
     fri: String,
     sat: String,
   },

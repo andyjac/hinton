@@ -1,6 +1,6 @@
 Hinton
 ===============
-###### Companion iPhone app for [Gina Hinton's curated restaurant blog](http://www.ginahinton.com)
+###### Companion iPhone app for [ginahinton.com](http://www.ginahinton.com)
 
 ### Contributors:
 

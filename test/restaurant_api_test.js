@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/rests_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/food_critic_dev_test';
 require('../server');
 
 var mongoose = require('mongoose');
@@ -15,6 +15,25 @@ var Rest = require('../models/Restaurant');
 var Admin = require('../models/Admin');
 
 describe('restaurant REST API', function () {
+
+  before(function (done) {
+    var testRest = new Rest({
+      name: 'Whole Foods Market',
+      address: {
+        number: '2210',
+        street: 'Westlake Avenue',
+        city: 'Seattle',
+        state: 'WA',
+        zip: '98121',
+      }
+    });
+    testRest.save(function (err, data) {
+      if (err) throw err;
+
+      this.testRest = data;
+    }.bind(this));
+    done();
+  });
 
   after(function (done) {
     mongoose.connection.db.dropDatabase(function() {

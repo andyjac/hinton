@@ -12,7 +12,11 @@ var restaurantRoutes = express.Router();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/food_critic_dev');
 
-require('./routes/admin_routes.js')(adminRoutes);
+app.use(passport.initialize());
+
+require('./lib/passport_strat')(passport);
+
+require('./routes/admin_routes.js')(adminRoutes, passport);
 require('./routes/restaurant_routes.js')(restaurantRoutes);
 
 app.use('/api', adminRoutes);

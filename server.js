@@ -5,7 +5,7 @@ var express = require('express');
 var passport = require('passport');
 var app = express();
 
-process.env.APP_SECRET = process.env.APP_SECRET || 'ginahintonsfoodapp' // change
+process.env.APP_SECRET = process.env.APP_SECRET || 'ginahintonsfoodapp'; // change
 
 var adminRoutes = express.Router();
 var restaurantRoutes = express.Router();

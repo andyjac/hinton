@@ -20,13 +20,13 @@
       "zip": "98112"
     },
     "hours": {
-      "sun": "7:00 AM-4:00 PM",
-      "mon": "7:00 AM-4:00 PM",
-      "tues": "7:00 AM-4:00 PM",
-      "wed": "7:00 AM-4:00 PM",
-      "thus": "7:00 AM-4:00 PM",
-      "fri": "5:00 PM-9:00 PM",
-      "sat": "7:00 AM-4:00 PM"
+      "sun": "7:00am-4:00pm",
+      "mon": "7:00am-4:00pm",
+      "tues": "7:00am-4:00pm",
+      "wed": "7:00am-4:00pm",
+      "thus": "7:00am-4:00pm",
+      "fri": "5:00pm-9:00pm",
+      "sat": "7:00am-4:00pm"
     },
     "phone": "2063239938",
     "genre": "Southern-American",

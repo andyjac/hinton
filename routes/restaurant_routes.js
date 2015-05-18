@@ -1,6 +1,6 @@
 'use strict';
 
-var Rest = require('../models/??');
+var Rest = require('../models/Restaurant');
 var bodyparser = require('body-parser');
 
 module.exports = function (router) {
@@ -17,7 +17,7 @@ module.exports = function (router) {
   });
 
   router.get('/restaurant/:id', function (req, res) {
-    Rest.findOne({'_id': req.params.id}, function (err, data) {
+    Rest.findOne({'r_id': req.params.id}, function (err, data) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});

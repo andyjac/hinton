@@ -1,0 +1,45 @@
+{
+  "token": "",
+  "map": {
+    "r_id": "2",
+    "loc": {
+      "lat": "47.622152",
+      "long": "-122.312965"
+    },
+    "marker": "",
+    "caption": ""
+  },
+  "restaurant": {
+    "r_id": "2",
+    "name": "The Wandering Goose",
+    "address": {
+      "number": "403",
+      "street": "15th Ave E",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98112"
+    },
+    "hours": {
+      "sun": "7:00 AM-4:00 PM",
+      "mon": "7:00 AM-4:00 PM",
+      "tues": "7:00 AM-4:00 PM",
+      "wed": "7:00 AM-4:00 PM",
+      "thus": "7:00 AM-4:00 PM",
+      "fri": "5:00 PM-9:00 PM",
+      "sat": "7:00 AM-4:00 PM"
+    },
+    "phone": "2063239938",
+    "genre": "Southern-American",
+    "price": "2",
+    "blog_link": "",
+    "r_site": "http://www.thewanderinggoose.com/",
+    "menu_link": "http://www.thewanderinggoose.com/Menu.html",
+    "menu_item": ["Fried Chicken Plate", "Pimento Mac & Cheese"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

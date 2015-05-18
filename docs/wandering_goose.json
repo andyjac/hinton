@@ -1,7 +1,7 @@
 {
-  "token": "",
+  "token": 2,
   "map": {
-    "r_id": "2",
+    "r_id": 2,
     "loc": {
       "lat": "47.622152",
       "long": "-122.312965"
@@ -10,7 +10,7 @@
     "caption": ""
   },
   "restaurant": {
-    "r_id": "2",
+    "r_id": 2,
     "name": "The Wandering Goose",
     "address": {
       "number": "403",
@@ -30,7 +30,7 @@
     },
     "phone": "2063239938",
     "genre": "Southern-American",
-    "price": "2",
+    "price": 2,
     "blog_link": "",
     "r_site": "http://www.thewanderinggoose.com/",
     "menu_link": "http://www.thewanderinggoose.com/Menu.html",

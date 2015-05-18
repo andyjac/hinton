@@ -1,3 +1,6 @@
+[![Stories in Ready](https://badge.waffle.io/andyjac/hinton.svg?label=ready&title=Ready)](http://waffle.io/andyjac/hinton)
+[![Throughput Graph](https://graphs.waffle.io/andyjac/hinton/throughput.svg)](https://waffle.io/andyjac/hinton/metrics)
+
 Hinton
 ===============
 ###### Companion iPhone app for [ginahinton.com](http://www.ginahinton.com)

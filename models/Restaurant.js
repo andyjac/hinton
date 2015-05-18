@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 
 var restaurantSchema = mongoose.Schema({
-  r_id: Schema.Types.ObjectId,
+  r_id: mongoose.Schema.Types.ObjectId,
   name: { type: String, required: true, unique: true },
 
   address: {
@@ -15,13 +15,13 @@ var restaurantSchema = mongoose.Schema({
   },
 
   hours: {
-    sun: String,
     mon: String,
     tue: String,
     wed: String,
     thu: String,
     fri: String,
     sat: String,
+    sun: String,
   },
 
   phone: String,
@@ -33,7 +33,7 @@ var restaurantSchema = mongoose.Schema({
   menu_item: [String],
 
   photos: [{
-    id: Schema.Types.ObjectId,
+    id: mongoose.Schema.Types.ObjectId,
     data: Buffer,
     caption: String
   }],

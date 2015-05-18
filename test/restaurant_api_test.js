@@ -11,10 +11,16 @@ chai.use(chaiHttp);
 
 var expect = chai.expect;
 
-var Rest = require('../models/??');
-var Admin = require('../models/??');
+var Rest = require('../models/Restaurant');
+var Admin = require('../models/Admin');
 
 describe('restaurant REST API', function () {
+
+  after(function (done) {
+    mongoose.connection.db.dropDatabase(function() {
+      done();
+    });
+  });
 
   it('should get array of all restaurants', function (done) {
     chai.request('localhost:3000')

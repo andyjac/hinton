@@ -1,6 +1,6 @@
 Food Critic App
 ===============
-## Companion iPhone app for Gina Hinton's curated restaurant blog
+##### Companion iPhone app for [Gina Hinton's curated restaurant blog](http://www.ginahinton.com)
 
 ### Contributors:
 

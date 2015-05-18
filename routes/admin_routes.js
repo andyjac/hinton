@@ -16,23 +16,22 @@ module.exports = function(router, passport) {
     newAdmin.generateHash(req.body.password, function(err, hash) {
       if (err) {
         console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
+        return res.status(500).json({msg: 'could not process password'});
       }
       newAdmin.basic.password = hash;
-    });
 
-    newAdmin.save(function(err, admin) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'user creation failed'});
-      }
-
-      admin.generateToken(process.env.APP_SECRET, function(err, token) {
+      newAdmin.save(function(err, admin) {
         if (err) {
           console.log(err);
-          return res.status(500).json({msg: 'token generation failed'});
+          return res.status(500).json({msg: 'user creation failed'});
         }
-        res.json({token: token});
+        admin.generateToken(process.env.APP_SECRET, function(err, token) {
+          if (err) {
+            console.log(err);
+            return res.status(500).json({msg: 'token generation failed'});
+          }
+          res.json({token: token});
+        });
       });
     });
   });

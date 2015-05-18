@@ -1,0 +1,45 @@
+{
+  "token": "",
+  "map": {
+    "r_id": "",
+    "loc": {
+      "lat": "",
+      "long": ""
+    },
+    "marker": "",
+    "caption": ""
+  },
+  "restaurant": {
+    "r_id": "",
+    "name": "",
+    "address": {
+      "number": "",
+      "street": "",
+      "city": "",
+      "state": "",
+      "zip": ""
+    },
+    "hours": {
+      "sun": "",
+      "mon": "",
+      "tues": "",
+      "wed": "",
+      "thus": "",
+      "fri": "",
+      "sat": ""
+    },
+    "phone": "",
+    "genre": "",
+    "price": "",
+    "blog_link": "",
+    "r_site": "",
+    "menu_link": "",
+    "menu_item": [],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

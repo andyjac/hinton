@@ -3,7 +3,7 @@
 **/*.log
 .DS_Store
 .env
-./admin/admin_for_Tues.js
-./admin/admin_index_debug.js
-./admin/states.js
-./admin/admin_form.js
+admin/admin_for_Tues.js
+admin/admin_index_debug.js
+admin/states.js
+admin/admin_form.js

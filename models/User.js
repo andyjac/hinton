@@ -34,7 +34,7 @@ userSchema.methods.checkPassword = function(password, callback) {
 };
 
 userSchema.methods.generateToken = function(secret, callback) {
-  eat.encode({id: this._id}, secret, callback); // this._id may be replaced
+  eat.encode({id: this._id, timeStamp: Date.now()}, secret, callback); // this._id may be replaced
 };
 
 module.exports = mongoose.model('User', userSchema);

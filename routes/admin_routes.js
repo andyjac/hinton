@@ -37,7 +37,8 @@ module.exports = function(router, passport) {
   });
 
   router.get('/admin/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
-    req.admin.generateToken(process.env.APP_SECRET, function(err, token) {
+    console.log(req);
+    req.user.generateToken(process.env.APP_SECRET, function(err, token) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg : 'problem generating token'});

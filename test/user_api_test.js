@@ -9,6 +9,7 @@ var chaihttp = require('chai-http');
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/User');
 var expect = chai.expect;
+var uuid = require('uuid');
 
 chai.use(chaihttp);
 
@@ -17,19 +18,11 @@ describe('user creation and authentication', function() {
   var testToken;
 
   before(function(done) {
-    var testUser = new User({
-      username: 'test',
-      basic: { password: password, email: 'test2@example.com' }
-    });
-
-    testUser.save(function(err, user) {
-      if (err) console.log(err);
-    });
-
     var testAdmin = new User({
       username: 'admin',
       basic: { password: password, email: 'admin@example.com'},
-      isAdmin: true
+      isAdmin: true,
+      tokenId: uuid.v4()
     });
 
     testAdmin.save(function(err, admin) {
@@ -63,7 +56,7 @@ describe('user creation and authentication', function() {
   it('should be able to sign in a user', function(done) {
     chai.request('localhost:3000')
       .get('/api/user/sign_in')
-      .auth('test2@example.com', 'foobaz')
+      .auth('test@example.com', 'tester')
       .end(function(err, res) {
         expect(err).to.eql(null);
         expect(res.body).to.have.property('token');

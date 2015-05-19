@@ -3,6 +3,7 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var eat = require('eat');
+var uuid = require('uuid');
 
 var userSchema = mongoose.Schema({
   username: {type: String, required: true},
@@ -10,7 +11,8 @@ var userSchema = mongoose.Schema({
     email: {type: String, required: true, unique: true},
     password: {type: String, required: true}
   },
-  isAdmin: Boolean
+  isAdmin: Boolean,
+  tokenId: String
 });
 
 userSchema.methods.generateHash = function(password, callback) {
@@ -34,7 +36,7 @@ userSchema.methods.checkPassword = function(password, callback) {
 };
 
 userSchema.methods.generateToken = function(secret, callback) {
-  eat.encode({id: this._id, timeStamp: Date.now()}, secret, callback); // this._id may be replaced
+  eat.encode({id: this.tokenId, timeStamp: Date.now()}, secret, callback);
 };
 
 module.exports = mongoose.model('User', userSchema);

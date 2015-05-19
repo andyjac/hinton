@@ -5,12 +5,11 @@ var express = require('express');
 var passport = require('passport');
 var app = express();
 
+mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/hinton_dev');
 process.env.APP_SECRET = process.env.APP_SECRET || 'ginahintonsfoodapp'; // change
 
 var userRoutes = express.Router();
 var restaurantRoutes = express.Router();
-
-mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/food_critic_dev');
 
 app.use(passport.initialize());
 

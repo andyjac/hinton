@@ -28,7 +28,8 @@ $(function() {
 
     function postData(data) {
         $.ajax({
-            url: 'http://httpbin.org/post',      //'http://localhost:3000/api/restaurant',
+            //url: 'http://httpbin.org/post',
+            url: 'http://localhost:3000/api/restaurant',
             dataType:'json',
             data: JSON.stringify(data),
             type: 'POST',

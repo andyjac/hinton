@@ -2,11 +2,12 @@
 
 var User = require('../models/User');
 var bodyparser = require('body-parser');
+var adminAuth = require('../lib/admin_auth')(process.env.APP_SECRET);
 
 module.exports = function(router, passport) {
   router.use(bodyparser.json());
 
-  router.post('/user/create_user', function(req, res) {
+  router.post('/user/create_user', adminAuth, function(req, res) {
     var newUserData = JSON.parse(JSON.stringify(req.body));
     delete newUserData.email;
     delete newUserData.password;

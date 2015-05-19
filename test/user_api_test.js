@@ -8,12 +8,13 @@ var chai = require('chai');
 var chaihttp = require('chai-http');
 var bcrypt = require('bcrypt-nodejs');
 var User = require('../models/User');
-chai.use(chaihttp);
-
 var expect = chai.expect;
+
+chai.use(chaihttp);
 
 describe('user creation and authentication', function() {
   var password = bcrypt.hashSync('foobaz', bcrypt.genSaltSync(8), null);
+  var testToken;
 
   before(function(done) {
     var testUser = new User({
@@ -23,7 +24,21 @@ describe('user creation and authentication', function() {
 
     testUser.save(function(err, user) {
       if (err) console.log(err);
-      done();
+    });
+
+    var testAdmin = new User({
+      username: 'admin',
+      basic: { password: password, email: 'admin@example.com'},
+      isAdmin: true
+    });
+
+    testAdmin.save(function(err, admin) {
+      if (err) console.log(err);
+
+      admin.generateToken(process.env.APP_SECRET, function(err, token) {
+        testToken = token;
+        done();
+      });
     });
   });
 
@@ -33,11 +48,12 @@ describe('user creation and authentication', function() {
     });
   });
 
-  it('should be able to create a new user', function(done) {
+  it('should allow an admin to create a new user', function(done) {
     chai.request('localhost:3000')
       .post('/api/user/create_user')
-      .send({username: 'test', email: 'test@example.com', password: 'tester'})
+      .send({username: 'test', email: 'test@example.com', password: 'tester', eat: testToken})
       .end(function(err, res) {
+        expect(res.status).to.eql(200);
         expect(err).to.eql(null);
         expect(res.body).to.have.property('token');
         done();

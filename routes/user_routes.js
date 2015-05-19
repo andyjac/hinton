@@ -1,31 +1,31 @@
 'use strict';
 
-var Admin = require('../models/Admin');
+var User = require('../models/User');
 var bodyparser = require('body-parser');
 
 module.exports = function(router, passport) {
   router.use(bodyparser.json());
 
-  router.post('/admin', function(req, res) {
-    var newAdminData = JSON.parse(JSON.stringify(req.body));
-    delete newAdminData.email;
-    delete newAdminData.password;
+  router.post('/user/create_user', function(req, res) {
+    var newUserData = JSON.parse(JSON.stringify(req.body));
+    delete newUserData.email;
+    delete newUserData.password;
 
-    var newAdmin = new Admin(newAdminData);
-    newAdmin.basic.email = req.body.email;
-    newAdmin.generateHash(req.body.password, function(err, hash) {
+    var newUser = new User(newUserData);
+    newUser.basic.email = req.body.email;
+    newUser.generateHash(req.body.password, function(err, hash) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'could not process password'});
       }
-      newAdmin.basic.password = hash;
+      newUser.basic.password = hash;
 
-      newAdmin.save(function(err, admin) {
+      newUser.save(function(err, user) {
         if (err) {
           console.log(err);
           return res.status(500).json({msg: 'user creation failed'});
         }
-        admin.generateToken(process.env.APP_SECRET, function(err, token) {
+        user.generateToken(process.env.APP_SECRET, function(err, token) {
           if (err) {
             console.log(err);
             return res.status(500).json({msg: 'token generation failed'});
@@ -36,7 +36,7 @@ module.exports = function(router, passport) {
     });
   });
 
-  router.get('/admin/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
+  router.get('/user/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
     req.user.generateToken(process.env.APP_SECRET, function(err, token) {
       if (err) {
         console.log(err);

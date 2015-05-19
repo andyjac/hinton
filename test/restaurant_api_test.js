@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 var expect = chai.expect;
 
 var Rest = require('../models/Restaurant');
-var Admin = require('../models/Admin');
+var User = require('../models/User');
 
 describe('restaurant REST API', function () {
 

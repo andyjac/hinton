@@ -12,7 +12,7 @@ var userSchema = mongoose.Schema({
     password: {type: String, required: true}
   },
   isAdmin: Boolean,
-  tokenId: { type: String, default: uuid.v4() }
+  tokenId: String
 });
 
 userSchema.methods.generateHash = function(password, callback) {

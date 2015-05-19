@@ -3,6 +3,7 @@
 var User = require('../models/User');
 var bodyparser = require('body-parser');
 var adminAuth = require('../lib/admin_auth')(process.env.APP_SECRET);
+var uuid = require('uuid');
 
 module.exports = function(router, passport) {
   router.use(bodyparser.json());
@@ -12,10 +13,14 @@ module.exports = function(router, passport) {
     delete newUserData.email;
     delete newUserData.password;
     delete newUserData.isAdmin;
+    delete newUserData.tokenId;
 
     var newUser = new User(newUserData);
+
     newUser.isAdmin = false;
     newUser.basic.email = req.body.email;
+    newUser.tokenId = uuid.v4();
+
     newUser.generateHash(req.body.password, function(err, hash) {
       if (err) {
         console.log(err);

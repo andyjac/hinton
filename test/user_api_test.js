@@ -15,6 +15,7 @@ chai.use(chaihttp);
 describe('user creation and authentication', function() {
   var password = bcrypt.hashSync('foobaz', bcrypt.genSaltSync(8), null);
   var testToken;
+  var notAdminToken;
 
   before(function(done) {
     var testUser = new User({
@@ -56,6 +57,7 @@ describe('user creation and authentication', function() {
         expect(res.status).to.eql(200);
         expect(err).to.eql(null);
         expect(res.body).to.have.property('token');
+        notAdminToken = res.body.token;
         done();
       });
   });

@@ -11,8 +11,10 @@ module.exports = function(router, passport) {
     var newUserData = JSON.parse(JSON.stringify(req.body));
     delete newUserData.email;
     delete newUserData.password;
+    delete newUserData.isAdmin;
 
     var newUser = new User(newUserData);
+    newUser.isAdmin = false;
     newUser.basic.email = req.body.email;
     newUser.generateHash(req.body.password, function(err, hash) {
       if (err) {

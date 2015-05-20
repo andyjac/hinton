@@ -21,6 +21,7 @@ $(function() {
 
       },
       error: function(xhr, status, error) {
+        console.log(error);
         $('#lblResponse').html('Error connecting to the server.');
       }
     });

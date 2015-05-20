@@ -8,7 +8,7 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       dev: {
-        src: ['*.js', 'routes/**/*.js', 'test/**/*.js', 'lib/**/*.js', 'models/**/*.js']
+        src: ['*.js', 'routes/**/*.js', 'test/**/*.js', 'lib/**/*.js', 'models/**/*.js', 'admin/**/*.js']
       },
 
       options: {

@@ -56,7 +56,7 @@ $(function() {
       menu_item: $('#r_item').val(),
       photos: [],
       other: {}
-    }
+    };
 
     return request;
   }

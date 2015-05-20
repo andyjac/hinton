@@ -34,7 +34,7 @@ describe('restaurant REST API', function () {
           state: 'WA',
           zip: '98121',
         },
-        genre: 'All'
+        genre: 'Various'
       }
     });
     testRest.save(function (err, data) {
@@ -60,7 +60,7 @@ describe('restaurant REST API', function () {
           state: 'WA',
           zip: '98109',
         },
-        genre: 'All'
+        genre: 'Various'
       }
     });
     testRest2.save(function (err, data) {
@@ -90,10 +90,10 @@ describe('restaurant REST API', function () {
 
   it('should get a list of available genres', function(done) {
     chai.request('localhost:3000')
-    .get('/api/restaurant/genre')
+    .get('/api/restaurant/genre/all')
     .end(function(err, res) {
       expect(err).to.eql(null);
-      expect(res.body[0]).to.eql('All');
+      expect(res.body[0]).to.eql('Various');
       done();
     });
   });
@@ -112,7 +112,7 @@ describe('restaurant REST API', function () {
 
   it('should get a list of restaurants from a genre', function(done) {
     chai.request('localhost:3000')
-    .get('/api/restaurant/genre/' + 'All')
+    .get('/api/restaurant/genre/' + 'Various')
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(typeof res.body).to.eql('object');

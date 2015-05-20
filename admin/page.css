@@ -1,0 +1,94 @@
+body {
+  background-color: #444;
+}
+
+.container {
+  background-color:#555;
+  margin-top:25px;
+}
+
+.inner {
+  margin: 1px auto;
+  width: 95%;
+  background-color:#fefeef;
+  padding-bottom: 30px;
+
+}
+
+.main-left {
+
+  margin-left: 10px;
+  display: inline;
+  float:left;
+}
+
+.main-right {
+  float: right;
+  width: 40% ;
+  margin-right: 100px;
+}
+
+.form-control {
+  background-color: #eaead6;
+  margin-top:;
+  font-size: 12px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.hours {
+  margin-bottom: 10px;
+}
+
+.btn {
+  margin: 10px;
+  width: 100px;
+}
+
+.btn-rt {
+  float: right;
+}
+
+.btn-bottom {
+  clear: both;
+  width: 80%;
+}
+
+.btn-md {
+  width:100px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.form-control {
+  height: 28px;
+}
+
+label {
+  margin-bottom: 0px;
+  color: #555;
+}
+
+.hours label {
+  padding-left: 0px;
+}
+
+.hours .col-md-2, .hours .col-md-3 {
+  padding-right: 0;
+}
+
+.hours .col-md-1 input {
+  padding: 0 4px;
+  width: 28px;
+  font-size: 12px;
+}
+
+#server-res {
+  margin-top: 10px;
+  color: #115;
+  font-style: italic;
+}

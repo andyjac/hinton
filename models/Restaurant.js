@@ -33,7 +33,7 @@ var restaurantSchema = mongoose.Schema({
     },
 
     phone: String,
-    genre: String,
+    genre: [String],
     price: Number,
     blog_link: String,
     r_site: String,

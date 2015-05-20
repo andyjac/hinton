@@ -36,8 +36,7 @@ module.exports = function (router) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});
       }
-
-      res.status(200).json({msg: 'successfully saved'});
+      res.status(200).json({msg: 'save successful'});
     });
   });
 

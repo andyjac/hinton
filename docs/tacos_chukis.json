@@ -1,7 +1,6 @@
 {
   "token": "",
   "map": {
-    "r_id": 3,
     "loc": {
       "lat": "47.620581",
       "long": "-122.321306"
@@ -10,7 +9,6 @@
     "caption": "Tacos Chukis"
   },
   "restaurant": {
-    "r_id": 3,
     "name": "Tacos Chukis",
     "address": {
       "number": "219",

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hinton Administration</title>
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type=
+  "text/css" />
+  <link rel="stylesheet" href=
+  "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" type=
+  "text/css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type=
+  "text/javascript">
+</script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type=
+  "text/javascript">
+</script>
+<script src="./admin_form_Tue.js" type="text/javascript">
+</script>
+  <style type="text/css">
+
+        body {
+            background-color: #444;
+        }
+        .container {
+            background-color:#555;
+            margin-top:25px;
+        }
+        .inner {
+            margin: 1px auto;
+            width: 95%;
+            background-color:#fefeef;
+            padding-bottom: 30px;
+
+        }
+        .main-left {
+
+            margin-left: 10px;
+            display: inline;
+            float:left;
+        }
+        .main-right {
+            float: right;
+            width: 40% ;
+            margin-right: 100px;
+        }
+        .form-control {
+            background-color: #eaead6;
+            margin-top:;
+            font-size: 12px;
+        }
+        .form-group {
+            margin-bottom: 5px;
+        }
+        .hours {
+            margin-bottom: 10px;
+        }
+        .btn {
+            margin: 10px;
+            width: 100px;
+        }
+        .btn-rt {
+            float: right;
+        }
+        .btn-bottom {
+            clear: both;
+            width: 80%;
+        }
+        .btn-md {
+            width:100px;
+        }
+        .clearfix {
+            clear: both;
+        }
+        .form-control {
+            height: 28px;
+        }
+        label {
+            margin-bottom: 0px;
+            color: #555;
+        }
+        .hours label {
+            padding-left: 0px;
+        }
+        .hours .col-md-2, .hours .col-md-3 {
+            padding-right: 0;
+        }
+        .hours .col-md-1 input {
+            padding: 0 4px;
+            width: 28px;
+            font-size: 12px;
+        }
+        #server-res {
+            margin-top: 10px;
+            color: #115;
+            font-style: italic;
+        }
+
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form id="admin_main" class="form-horizontal" action=
+    "" method="">
+      <div class="inner clearfix">
+        <div class="main-left">
+          <div class="form-group">
+            <div class="col-md-8">
+                <label for="r_name">Venue</label>
+                <input type="text" class="form-control" id=
+                "r_name" placeholder="restaurant name as shown" />
+                <!-- <select class="form-control">
+                    <option value="one">populated on load</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                    <option value="four">Four</option>
+                    <option value="five">Five</option>
+                </select> -->
+            </div>
+          </div>
+
+
+          <div class="form-group">
+            <div class="col-md-6">
+                <label for="r_genre">Genre</label>
+                <input type="text" class="form-control" id="r_genre" placeholder="" />
+                <!-- <select class="form-control">
+                    <option value="one">populated on load</option>
+                    <option value="two">Two</option>
+                    <option value="three">Three</option>
+                    <option value="four">Four</option>
+                    <option value="five">Five</option>
+                </select>     -->
+                </div>
+            <div class="col-md-2">
+              <label for="r_price">Price</label> <input type="text" class="form-control"
+              id="r_price" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+            <label for="r_item">Recommended Menu Item</label> <input type="text" class=
+            "form-control" id="r_item" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-2">
+              <label for="r_addr">Address</label> <input type="text" class=
+              "form-control col-md-2" id="r_addr" placeholder="addr" />
+            </div>
+
+            <div class="col-md-6">
+              <label for="r_street">Street</label> <input type="text" class=
+              "form-control col-md-2" id="r_street" placeholder="street" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-4">
+              <label for="r_city">City</label> <input type="text" class="form-control"
+              id="r_city" placeholder="city" />
+            </div>
+
+            <div class="col-md-2">
+              <label for="r_state">State</label> <input type="text" class="form-control"
+              id="r_state" placeholder="state" />
+            </div>
+
+
+                <!-- <label for="state" class="col-sm-2 control-label">State</label>
+                <div class="col-md-1">
+                <select class="form-control" id="state" name="state">
+                </select>
+            </div>  -->
+
+            <div class="col-md-2">
+              <label for="r_zip">Zip</label> <input type="text" class="form-control" id=
+              "r_zip" placeholder="zip code" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-4">
+            <label for="r-tel">Phone</label> <input type="tel" class="form-control" id=
+            "r_tel" placeholder="use 'tel' verification" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+            <label for="r_site">Website</label> <input type="url" class="form-control"
+            id="r_site" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+            <label for="r_menu">Menu</label> <input type="url" class="form-control" id=
+            "r_menu" placeholder="" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="col-md-8">
+            <label for="r_blog">Blog Link</label> <input type="url" class="form-control"
+            id="r_blog" placeholder="" />
+            </div>
+          </div>
+
+          <!-- server responses -->
+          <h5><span id="lblResponse" class="col-md-8">...label for server responses</span></h5>
+
+        </div>
+
+        <div class="main-right">
+          <h4>Hours</h4>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="mon_open">Monday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="mon_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="mon_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="mon_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="mon_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="tue_open">Tuesday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="tue_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="tue_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="tue_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="tue_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="wed_open">Wednesday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="wed_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="wed_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="wed_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="wed_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="the_open">Thursday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="the_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="the_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="the_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="the_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="fri_open">Friday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="fri_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="fri_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="fri_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="fri_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="sat_open">Saturday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="sat_open" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="sat_am" placeholder="AM" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="sat_close" placeholder="" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="sat_pm" placeholder="PM" />
+            </div>
+          </div>
+
+          <div class="form-group hours">
+            <label class="col-md-2" for="sun_open">Sunday</label>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="sun_open" placeholder="closed" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="sun_am" placeholder="" />
+            </div>
+
+            <div class="col-md-2">
+              <input type="text" class="form-control" id="sun_close" placeholder=
+              "closed" />
+            </div>
+
+            <div class="col-md-1">
+              <input type="text" class="form-control" id="sun_pm" placeholder="" />
+            </div>
+          </div>
+        </div>
+      <div class="btn-bottom">
+        <br />
+        <br />
+        <button type="button" id="buttonNew" class="btn btn-success">New</button>
+        <button type="button" id="buttonEdit" class="btn btn-success">Edit</button>
+        <button type="button" id="buttonDelete" class="btn btn-danger">Delete</button>
+        <button type="button" id="buttonSave" class="btn-rt btn btn-primary">Save</button>
+        <button type="button" id="buttonClear" class="btn-rt btn btn-default">Clear</button>
+
+      </div>
+      </div><!-- main -->
+
+
+    </form>
+  </div><!-- container -->
+</body>
+</html>

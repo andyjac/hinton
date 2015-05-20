@@ -38,7 +38,7 @@ module.exports = function(router, passport) {
             console.log(err);
             return res.status(500).json({msg: 'token generation failed'});
           }
-          res.json({token: token});
+          res.status(200).json({token: token});
         });
       });
     });
@@ -51,7 +51,7 @@ module.exports = function(router, passport) {
         return res.status(500).json({msg : 'problem generating token'});
       }
 
-      res.json({token: token});
+      res.status(200).json({token: token});
     });
   });
 };

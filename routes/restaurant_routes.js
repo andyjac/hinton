@@ -9,7 +9,17 @@ module.exports = function (router) {
   router.use(bodyparser.json());
 
   router.get('/restaurant/all', function (req, res) {
-    Rest.find({}, 'map', function (err, data) {
+    Rest.find({}, '-_id map', function (err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+      res.status(200).json(data);
+    });
+  });
+
+  router.get('/restaurant/genre', function(req, res) {
+    Rest.find().distinct('restaurant.genre', function(err, data) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});
@@ -19,7 +29,17 @@ module.exports = function (router) {
   });
 
   router.get('/restaurant/:id', function (req, res) {
-    Rest.findOne({'_id': req.params.id}, function (err, data) {
+    Rest.findOne({'_id': req.params.id}, 'restaurant', function (err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+      res.status(200).json(data);
+    });
+  });
+
+  router.get('/restaurant/genre/:genre', function(req, res) {
+    Rest.find({'restaurant.genre': req.params.genre}, '-_id map', function(err, data) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});

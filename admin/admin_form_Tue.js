@@ -7,7 +7,7 @@ $(function() {
   });
 
   $('#buttonClear').click(function() {
-    $('#form1')[0].reset();
+    $('#admin_main')[0].reset();
   });
 
   function postData(data) {

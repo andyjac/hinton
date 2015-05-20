@@ -20,6 +20,7 @@ require('./routes/restaurant_routes.js')(restaurantRoutes);
 
 app.use('/api', userRoutes);
 app.use('/api', restaurantRoutes);
+app.use(express.static('admin'));
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('server running on port ' + (process.env.PORT || 3000));

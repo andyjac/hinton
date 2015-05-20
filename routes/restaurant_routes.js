@@ -9,7 +9,7 @@ module.exports = function (router) {
   router.use(bodyparser.json());
 
   router.get('/restaurant/all', function (req, res) {
-    Rest.find({}, function (err, data) {
+    Rest.find({}, 'map', function (err, data) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg: 'internal server error'});

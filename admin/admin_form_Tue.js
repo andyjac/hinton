@@ -1,5 +1,3 @@
-// admin_form.js
-
 $(function() {
   $('#buttonSave').click(function() {
     var requestBody = buildRequest();
@@ -47,8 +45,8 @@ $(function() {
         sat: $('#sat_open').val() + $('#sat_am').val() + '-' + $('#sat_close').val() + $('#sat_pm').val(),
         sun: $('#sun_open').val() + $('#sun_am').val() + '-' + $('#sun_close').val() + $('#sun_pm').val()
       },
-      phone: $('#r_tel').val(), //do regex match here
-      genre: $('#r_genre').val(), //verified in dropdown
+      phone: $('#r_tel').val(),
+      genre: $('#r_genre').val(),
       price: $('#r_price').val(),
       blog_link: $('#r_blog').val(),
       r_site: $('#r_site').val(),

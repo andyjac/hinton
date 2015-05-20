@@ -4,10 +4,8 @@ $(function() {
 
     // POST SUBMIT
     $('#buttonSave').click(function() {
-
         var requestBody = buildRequest();
         postData(requestBody); // return handled in ajax request
-        alert( "Handler for .click() called." );
     });
 
      // CLEAR FORM
@@ -22,14 +20,15 @@ $(function() {
             dataType:'json',
             data: JSON.stringify(data),
             type: 'POST',
-            context: document.body.form1,
-            success: function (data) {
-                var res = jQuery.parseJSON(data);
+            //context: document.body.form1,
+            success: function (response) {
+                var res = jQuery.parseJSON(response);
+                alert(response);
                 $('#lblResponse').html(res.msg);
                 console.log('Success: ');
+
             },
             error: function (xhr, status, error) {
-                console.log('Error: ' + error.message);
                 $('#lblResponse').html('Error connecting to the server.');
             }
         });

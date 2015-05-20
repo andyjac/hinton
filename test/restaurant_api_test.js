@@ -77,7 +77,7 @@ describe('restaurant REST API', function () {
     });
   });
 
-  it('should get array of all restaurants', function (done) {
+  it('should get array of all restaurant map data', function (done) {
     chai.request('localhost:3000')
     .get('/api/restaurant/all')
     .end(function (err, res) {

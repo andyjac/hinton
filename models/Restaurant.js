@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 
 var restaurantSchema = mongoose.Schema({
   map: {
-    r_id: mongoose.Schema.Types.ObjectId,
     loc: {
       lat: String,
       long: String
@@ -13,7 +12,6 @@ var restaurantSchema = mongoose.Schema({
     caption: String
   },
   restaurant: {
-    r_id: mongoose.Schema.Types.ObjectId,
     name: { type: String, required: true, unique: true },
 
     address: {
@@ -43,7 +41,6 @@ var restaurantSchema = mongoose.Schema({
     menu_item: [String],
 
     photos: [{
-      id: mongoose.Schema.Types.ObjectId,
       data: Buffer,
       caption: String
     }],

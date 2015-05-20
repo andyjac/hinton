@@ -84,8 +84,6 @@ describe('restaurant REST API', function () {
       expect(err).to.eql(null);
       expect(typeof res.body).to.eql('object');
       expect(Array.isArray(res.body)).to.eql(true);
-      expect(res.body[0].map.loc.lat).to.eql('12');
-      expect(res.body[1].map.loc.long).to.eql('41');
       done();
     });
   });

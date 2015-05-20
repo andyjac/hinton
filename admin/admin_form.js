@@ -36,10 +36,8 @@ $(function() {
         document.getElementById(addressType).value = val;
       }
     }
-    var lat = place.geometry.location.lat();
-    var lng = place.geometry.location.lng();
-    console.log(lat);
-    console.log(lng);
+    document.getElementById('lat').value = place.geometry.location.lat();
+    document.getElementById('lng').value = place.geometry.location.lng();
   }
 
   function postData(data) {

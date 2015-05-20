@@ -1,5 +1,5 @@
 {
-  "token": 2,
+  "token": "",
   "map": {
     "r_id": 2,
     "loc": {
@@ -7,7 +7,7 @@
       "long": "-122.312965"
     },
     "marker": "",
-    "caption": ""
+    "caption": "The Wandering Goose"
   },
   "restaurant": {
     "r_id": 2,

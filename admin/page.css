@@ -17,15 +17,16 @@ body {
 
 .main-left {
 
-  margin-left: 10px;
   display: inline;
   float:left;
+  margin-left: 20px;
+
 }
 
 .main-right {
   float: right;
-  width: 40% ;
-  margin-right: 100px;
+  margin-right: 0px;
+  padding-left: 20px;
 }
 
 .form-control {
@@ -40,6 +41,7 @@ body {
 
 .hours {
   margin-bottom: 10px;
+  padding-left:20px;
 }
 
 .btn {
@@ -53,7 +55,7 @@ body {
 
 .btn-bottom {
   clear: both;
-  width: 80%;
+  margin-left: 20px;
 }
 
 .btn-md {

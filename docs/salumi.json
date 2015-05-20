@@ -1,7 +1,6 @@
 {
   "token": "",
   "map": {
-    "r_id": 4,
     "loc": {
       "lat": "47.599758",
       "long": "-122.330422"
@@ -10,7 +9,6 @@
     "caption": "Salumi"
   },
   "restaurant": {
-    "r_id": 4,
     "name": "Salumi",
     "address": {
       "number": "309",

@@ -1,7 +1,6 @@
 {
   "token": "",
   "map": {
-    "r_id": 1,
     "loc": {
       "lat": "47.610499",
       "long": "-122.342638"
@@ -10,7 +9,6 @@
     "caption": "The Pink Door"
   },
   "restaurant": {
-    "r_id": 1,
     "name": "The Pink Door",
     "address": {
       "number": "1919",

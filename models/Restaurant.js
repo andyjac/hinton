@@ -41,6 +41,7 @@ var restaurantSchema = mongoose.Schema({
     menu_item: [String],
 
     photos: [{
+      id: Number,
       data: Buffer,
       caption: String
     }],

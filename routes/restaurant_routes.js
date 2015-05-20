@@ -18,7 +18,7 @@ module.exports = function (router) {
     });
   });
 
-  router.get('/restaurant/genre', function(req, res) {
+  router.get('/restaurant/genre/all', function(req, res) {
     Rest.find().distinct('restaurant.genre', function(err, data) {
       if (err) {
         console.log(err);

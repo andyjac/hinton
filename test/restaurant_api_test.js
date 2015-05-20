@@ -25,10 +25,6 @@ describe('restaurant REST API', function () {
         city: 'Seattle',
         state: 'WA',
         zip: '98121',
-      },
-      map: {
-        lat: 2,
-        long: 2
       }
     });
     testRest.save(function (err, data) {

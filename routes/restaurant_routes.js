@@ -5,6 +5,7 @@ var bodyparser = require('body-parser');
 var eatAuth = require('../lib/eat_auth')(process.env.APP_SECRET);
 
 module.exports = function (router) {
+  router.use(bodyparser.urlencoded({extended: true}));
   router.use(bodyparser.json());
 
   router.get('/restaurant/all', function (req, res) {
@@ -28,7 +29,16 @@ module.exports = function (router) {
   });
 
   router.post('/restaurant', eatAuth, function(req, res) {
+    var newRest = new Rest(req.body);
 
+    newRest.save(function(err, rest) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+
+      res.status(200).json({msg: 'successfully saved'});
+    });
   });
 
   router.put('/restaurant/:id', eatAuth, function(req, res) {

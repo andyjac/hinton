@@ -44,14 +44,15 @@ module.exports = function(router, passport) {
     });
   });
 
-  router.get('/user/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
+  router.get('/user/sign_in', passport.authenticate('basic'), function(req, res) {
     req.user.generateToken(process.env.APP_SECRET, function(err, token) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg : 'problem generating token'});
       }
 
-      res.status(200).json({token: token});
+      var token = encodeURIComponent(token);
+      res.redirect('/?valid=' + token);
     });
   });
 };

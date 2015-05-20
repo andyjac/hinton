@@ -61,6 +61,7 @@ $(function() {
 
   function buildRequest() {
     var request = {
+      token: window.location.search.split('=')[1];
       name: $('#r_name').val(),
       address: {
         number: $('#street_number').val(),

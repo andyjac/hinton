@@ -8,6 +8,40 @@ $(function() {
     $('#admin_main')[0].reset();
   });
 
+  $('#search-box').blur(function() {
+    fillInAddress();
+  });
+
+  var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),
+      { types: ['geocode'] });
+
+  var componentForm = {
+    street_number: 'short_name',
+    route: 'long_name',
+    locality: 'long_name',
+    administrative_area_level_1: 'short_name',
+    postal_code: 'short_name'
+  };
+
+  function fillInAddress() {
+    var place = searchBox.getPlace();
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
+    }
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    }
+    var lat = place.geometry.location.lat();
+    var lng = place.geometry.location.lng();
+    console.log(lat);
+    console.log(lng);
+  }
+
   function postData(data) {
     $.ajax({
       url: '/api/restaurant',
@@ -31,11 +65,11 @@ $(function() {
     var request = {
       name: $('#r_name').val(),
       address: {
-        number: $('#r_addr').val(),
-        street: $('#r_street').val(),
-        city: $('#r_city').val(),
-        state: $('#r_state').val(),
-        zip: $('#r_zip').val()
+        number: $('#street_number').val(),
+        street: $('#route').val(),
+        city: $('#locality').val(),
+        state: $('#administrative_area_level_1').val(),
+        zip: $('#postal_code').val()
       },
       hours: {
         mon: $('#mon_open').val() + $('#mon_am').val() + '-' + $('#mon_close').val() + $('#mon_pm').val(),

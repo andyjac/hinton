@@ -10,7 +10,7 @@ $(function() {
 
   function postData(data) {
     $.ajax({
-      url: 'hinton.herokuapp.com/api/restaurant',
+      url: '/api/restaurant',
       type: 'POST',
       dataType: 'json',
       data: data,

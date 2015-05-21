@@ -8,10 +8,6 @@ $(function() {
     $('#admin_main')[0].reset();
   });
 
-  $('#search-box').blur(function() {
-    fillInAddress();
-  });
-
   var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),
       { types: ['geocode'] });
 
@@ -39,6 +35,10 @@ $(function() {
     document.getElementById('lat').value = place.geometry.location.lat();
     document.getElementById('lng').value = place.geometry.location.lng();
   }
+
+  google.maps.event.addListener(searchBox, 'place_changed', function() {
+    fillInAddress();
+  });
 
   function postData(data) {
     $.ajax({

@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.612083",
+      "long": "-122.317086"
+    },
+    "marker": "",
+    "caption": "Cafe Presse"
+  },
+  "restaurant": {
+    "name": "Cafe Presse",
+    "address": {
+      "number": "1117",
+      "street": "12th Ave",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98122"
+    },
+    "hours": {
+      "sun": "7:00am - 2:00am",
+      "mon": "7:00am - 2:00am",
+      "tues": "7:00am - 2:00am",
+      "wed": "7:00am - 2:00am",
+      "thus": "7:00am - 2:00am",
+      "fri": "7:00am - 2:00am",
+      "sat": "7:00am - 2:00am"
+    },
+    "phone": "206-709-7674",
+    "genre": "French",
+    "price": 2,
+    "blog_link": "",
+    "r_site": "http://cafepresseseattle.com/home/",
+    "menu_link": "http://cafepresseseattle.com/wp-content/themes/cafepresse/pdf/Le_Menu.pdf",
+    "menu_item": ["Croque-madame"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

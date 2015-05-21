@@ -13,100 +13,102 @@
   </head>
   <body>
     <div class="container">
-      <form id="admin_main" class="form-horizontal" action="" method="">
+      <form id="admin_main" class="" action="" method="">
         <div class="inner clearfix">
-          <div class="main-left">
+          <div class="row">
+          <div class="main-left col-md-6">
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="r_name">Venue</label>
                 <input type="text" class="form-control" id="r_name" placeholder="restaurant name as shown" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-6">
+              <div class="col-md-9">
                 <label for="r_genre">Genre</label>
                 <input type="text" class="form-control" id="r_genre" placeholder="" />
               </div>
-              <div class="col-md-2">
+
+              <div class="col-md-3">
                 <label for="r_price">Price</label>
                 <input type="text" class="form-control"id="r_price" placeholder="" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="r_item">Menu Item</label>
                 <input type="text" class="form-control" id="r_item" placeholder="" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="search-box">Google Address Search</label>
                 <input type="text" class="form-control col-md-2" id="search-box" placeholder="Enter the address" ></input>
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="street_number">Address</label>
                 <input type="text" class="form-control col-md-2" id="street_number" placeholder="addr" />
               </div>
 
-              <div class="col-md-6">
+              <div class="col-md-9">
                 <label for="route">Street</label>
                 <input type="text" class="form-control col-md-2" id="route" placeholder="street" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label for="locality">City</label>
                 <input type="text" class="form-control"id="locality" placeholder="city" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="administrative_area_level_1">State</label>
                 <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="postal_code">Zip</label>
                 <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <label for="r-tel">Phone</label>
                 <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="lat">Latitude</label>
                 <input type="text" class="form-control"id="lat" placeholder="lat" />
               </div>
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <label for="lng">Longitude</label>
                 <input type="text" class="form-control" id="lng" placeholder="lng" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="r_site">Website</label>
                 <input type="url" class="form-control"id="r_site" placeholder="" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="r_menu">Menu</label>
                 <input type="url" class="form-control" id="r_menu" placeholder="" />
               </div>
             </div>
 
             <div class="form-group">
-              <div class="col-md-8">
+              <div class="col-md-12">
                 <label for="r_blog">Blog Link</label>
                 <input type="url" class="form-control"id="r_blog" placeholder="" />
               </div>
@@ -116,13 +118,14 @@
 
           </div>
 
-          <div class="main-right">
+
+          <div class="main-right col-md-6">
             <h4>Hours</h4>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="mon_open">Monday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="mon_open" placeholder="" />
               </div>
 
@@ -130,7 +133,7 @@
                 <input type="text" class="form-control" id="mon_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="mon_close" placeholder="" />
               </div>
 
@@ -139,10 +142,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="tue_open">Tuesday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="tue_open" placeholder="" />
               </div>
 
@@ -150,7 +153,7 @@
                 <input type="text" class="form-control" id="tue_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="tue_close" placeholder="" />
               </div>
 
@@ -159,10 +162,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="wed_open">Wednesday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="wed_open" placeholder="" />
               </div>
 
@@ -170,7 +173,7 @@
                 <input type="text" class="form-control" id="wed_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="wed_close" placeholder="" />
               </div>
 
@@ -179,10 +182,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="thu_open">Thursday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="thu_open" placeholder="" />
               </div>
 
@@ -190,7 +193,7 @@
                 <input type="text" class="form-control" id="thu_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="thu_close" placeholder="" />
               </div>
 
@@ -199,10 +202,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="fri_open">Friday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="fri_open" placeholder="" />
               </div>
 
@@ -210,7 +213,7 @@
                 <input type="text" class="form-control" id="fri_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="fri_close" placeholder="" />
               </div>
 
@@ -219,10 +222,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="sat_open">Saturday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="sat_open" placeholder="" />
               </div>
 
@@ -230,7 +233,7 @@
                 <input type="text" class="form-control" id="sat_am" placeholder="AM" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="sat_close" placeholder="" />
               </div>
 
@@ -239,10 +242,10 @@
               </div>
             </div>
 
-            <div class="form-group hours">
+            <div class="row hours">
               <label class="col-md-2" for="sun_open">Sunday</label>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="sun_open" placeholder="closed" />
               </div>
 
@@ -250,7 +253,7 @@
                 <input type="text" class="form-control" id="sun_am" placeholder="" />
               </div>
 
-              <div class="col-md-2">
+              <div class="col-md-3">
                 <input type="text" class="form-control" id="sun_close" placeholder=
                        "closed" />
               </div>
@@ -260,7 +263,9 @@
               </div>
             </div>
           </div>
-          <div class="btn-bottom">
+          </div>
+          <div class="row">
+          <div class="btn-bottom col-md-12">
             <br />
             <br />
             <button type="button" id="buttonNew" class="btn btn-success">New</button>
@@ -268,6 +273,7 @@
             <button type="button" id="buttonDelete" class="btn btn-danger">Delete</button>
             <button type="button" id="buttonSave" class="btn-rt btn btn-primary">Save</button>
             <button type="button" id="buttonClear" class="btn-rt btn btn-default">Clear</button>
+          </div>
           </div>
         </div>
       </form>

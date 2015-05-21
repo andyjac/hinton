@@ -18,9 +18,9 @@ require('./lib/passport_strat')(passport);
 require('./routes/user_routes.js')(userRoutes, passport);
 require('./routes/restaurant_routes.js')(restaurantRoutes);
 
-app.use('/api', userRoutes);
+app.use('/hinton', userRoutes);
 app.use('/api', restaurantRoutes);
-app.use(express.static('admin'));
+app.use('/hinton/user', express.static('admin'));
 
 app.listen(process.env.PORT || 3000, function() {
   console.log('server running on port ' + (process.env.PORT || 3000));

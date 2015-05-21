@@ -1,11 +1,14 @@
 'use strict';
 
 var User = require('../models/User');
+var Rest = require('../models/Restaurant');
 var bodyparser = require('body-parser');
-var adminAuth = require('../lib/admin_auth')(process.env.APP_SECRET);
 var uuid = require('uuid');
+var adminAuth = require('../lib/admin_auth')(process.env.APP_SECRET);
+var eatAuth = require('../lib/eat_auth')(process.env.APP_SECRET);
 
 module.exports = function(router, passport) {
+  router.use(bodyparser.urlencoded({extended: true}));
   router.use(bodyparser.json());
 
   router.post('/user/create_user', adminAuth, function(req, res) {
@@ -44,14 +47,50 @@ module.exports = function(router, passport) {
     });
   });
 
-  router.get('/user/sign_in', passport.authenticate('basic', {session: false}), function(req, res) {
+  router.get('/', passport.authenticate('basic', {session: false}), function(req, res) {
     req.user.generateToken(process.env.APP_SECRET, function(err, token) {
       if (err) {
         console.log(err);
         return res.status(500).json({msg : 'problem generating token'});
       }
 
-      res.status(200).json({token: token});
+      var uriToken = encodeURIComponent(token);
+      res.redirect('/hinton/user?valid=' + uriToken);
+    });
+  });
+
+  router.post('/user/restaurant', eatAuth, function(req, res) {
+    var newRest = new Rest(req.body);
+
+    newRest.save(function(err, rest) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+      res.status(200).json({msg: 'save successful'});
+    });
+  });
+
+  router.put('/user/restaurant/:id', eatAuth, function(req, res) {
+    var update = req.body;
+    delete update._id;
+
+    Rest.update({'_id': req.params.id}, update, function(err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+      res.status(200).json({msg: 'update successful'});
+    });
+  });
+
+  router.delete('/user/restaurant/:id', eatAuth, function(req, res) {
+    Rest.remove({'_id': req.params.id}, function(err, data) {
+      if (err) {
+        console.log(err);
+        return res.status(500).json({msg: 'internal server error'});
+      }
+      res.status(200).json({msg: 'delete successful'});
     });
   });
 };

@@ -42,7 +42,7 @@ $(function() {
 
   function postData(data) {
     $.ajax({
-      url: '/api/restaurant',
+      url: 'hinton.herokuapp.com/hinton/user/restaurant',
       type: 'POST',
       dataType: 'json',
       data: data,
@@ -60,35 +60,44 @@ $(function() {
   }
 
   function buildRequest() {
-    var request = {
-      name: $('#r_name').val(),
-      address: {
-        number: $('#street_number').val(),
-        street: $('#route').val(),
-        city: $('#locality').val(),
-        state: $('#administrative_area_level_1').val(),
-        zip: $('#postal_code').val()
+    return {
+      eat: window.location.search.split('=')[1],
+      map: {
+        loc: {
+          lat: $('#lat').val(),
+          long: $('#lng').val()
+        },
+        caption: $('#r_name').val(),
+        marker: ''
       },
-      hours: {
-        mon: $('#mon_open').val() + $('#mon_am').val() + '-' + $('#mon_close').val() + $('#mon_pm').val(),
-        tue: $('#tue_open').val() + $('#tue_am').val() + '-' + $('#tue_close').val() + $('#tue_pm').val(),
-        wed: $('#wed_open').val() + $('#wed_am').val() + '-' + $('#wed_close').val() + $('#wed_pm').val(),
-        thu: $('#thu_open').val() + $('#thu_am').val() + '-' + $('#thu_close').val() + $('#thu_pm').val(),
-        fri: $('#fri_open').val() + $('#fri_am').val() + '-' + $('#fri_close').val() + $('#fri_pm').val(),
-        sat: $('#sat_open').val() + $('#sat_am').val() + '-' + $('#sat_close').val() + $('#sat_pm').val(),
-        sun: $('#sun_open').val() + $('#sun_am').val() + '-' + $('#sun_close').val() + $('#sun_pm').val()
-      },
-      phone: $('#r_tel').val(),
-      genre: $('#r_genre').val(),
-      price: $('#r_price').val(),
-      blog_link: $('#r_blog').val(),
-      r_site: $('#r_site').val(),
-      menu_link: $('#r_menu').val(),
-      menu_item: $('#r_item').val(),
-      photos: [],
-      other: {}
+      restaurant: {
+        name: $('#r_name').val(),
+        address: {
+          number: $('#street_number').val(),
+          street: $('#route').val(),
+          city: $('#locality').val(),
+          state: $('#administrative_area_level_1').val(),
+          zip: $('#postal_code').val()
+        },
+        hours: {
+          mon: $('#mon_open').val() + $('#mon_am').val() + '-' + $('#mon_close').val() + $('#mon_pm').val(),
+          tue: $('#tue_open').val() + $('#tue_am').val() + '-' + $('#tue_close').val() + $('#tue_pm').val(),
+          wed: $('#wed_open').val() + $('#wed_am').val() + '-' + $('#wed_close').val() + $('#wed_pm').val(),
+          thu: $('#thu_open').val() + $('#thu_am').val() + '-' + $('#thu_close').val() + $('#thu_pm').val(),
+          fri: $('#fri_open').val() + $('#fri_am').val() + '-' + $('#fri_close').val() + $('#fri_pm').val(),
+          sat: $('#sat_open').val() + $('#sat_am').val() + '-' + $('#sat_close').val() + $('#sat_pm').val(),
+          sun: $('#sun_open').val() + $('#sun_am').val() + '-' + $('#sun_close').val() + $('#sun_pm').val()
+        },
+        phone: $('#r_tel').val(),
+        genre: $('#r_genre').val(),
+        price: $('#r_price').val(),
+        blog_link: $('#r_blog').val(),
+        r_site: $('#r_site').val(),
+        menu_link: $('#r_menu').val(),
+        menu_item: $('#r_item').val(),
+        photos: [],
+        other: {}
+      }
     };
-
-    return request;
   }
 });

@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.614790",
+      "long": "-122.316441"
+    },
+    "marker": "",
+    "caption": "Momiji"
+  },
+  "restaurant": {
+    "name": "Momiji",
+    "address": {
+      "number": "1522",
+      "street": "12th Ave",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98122"
+    },
+    "hours": {
+      "sun": "4:00pm-2:00am",
+      "mon": "4:00pm-2:00am",
+      "tues": "4:00pm-2:00am",
+      "wed": "4:00pm-2:00am",
+      "thus": "4:00pm-2:00am",
+      "fri": "4:00pm-2:00am",
+      "sat": "4:00pm-2:00am"
+    },
+    "phone": "206-457-4068",
+    "genre": ["Japanese"],
+    "price": 3,
+    "blog_link": "",
+    "r_site": "http://momijiseattle.com/#home_",
+    "menu_link": "http://momijiseattle.com/#menu_",
+    "menu_item": ["Bird of Paradise (Specialty Rolls)"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

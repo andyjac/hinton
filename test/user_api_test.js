@@ -43,7 +43,7 @@ describe('user creation and authentication', function() {
 
   it('should allow an admin to create a new user', function(done) {
     chai.request('localhost:3000')
-      .post('/api/user/create_user')
+      .post('/hinton/user/create_user')
       .send({username: 'test', email: 'test@example.com', password: 'tester', eat: testToken})
       .end(function(err, res) {
         expect(res.status).to.eql(200);
@@ -53,13 +53,14 @@ describe('user creation and authentication', function() {
       });
   });
 
-  it('should be able to sign in a user', function(done) {
+  it('should redirect valid user from login to form', function(done) {
     chai.request('localhost:3000')
-      .get('/api/user/sign_in')
+      .get('/hinton')
       .auth('test@example.com', 'tester')
       .end(function(err, res) {
         expect(err).to.eql(null);
-        expect(res.body).to.have.property('token');
+        expect(res.status).to.eql(200);
+        expect(res).to.have.property('redirects');
         done();
       });
   });

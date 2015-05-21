@@ -93,7 +93,7 @@ describe('restaurant REST API', function () {
     .get('/api/restaurant/genre/all')
     .end(function(err, res) {
       expect(err).to.eql(null);
-      expect(res.body[0]).to.eql('Italian');
+      expect(Array.isArray(res.body)).to.eql(true);
       done();
     });
   });

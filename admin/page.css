@@ -39,7 +39,9 @@ body {
 .form-control {
   background-color: #eaead6;
   margin-top:;
-  font-size: 12px;
+  font-size: 16px;
+
+
 }
 
 .form-group {
@@ -91,6 +93,7 @@ label {
 
 .hours .col-md-2, .hours .col-md-3 {
   padding-right: 0;
+  padding-top 0px;
 }
 
 .hours .col-md-1 input {
@@ -98,6 +101,11 @@ label {
   width: 28px;
   font-size: 12px;
 }
+.hours select {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .col-md-1, .col-md-10,
 .col-md-11, .col-md-12,
 .col-md-2, .col-md-3,

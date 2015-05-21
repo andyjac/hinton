@@ -126,12 +126,21 @@
               <label class="col-md-2" for="mon_open">Monday</label>
 
               <div class="col-md-3">
-                <input type="text" class="form-control" id="mon_open" placeholder="" />
+                <select class="form-control" id="mon_open">
+                  <option value="12:00">12:00</option>
+                  <option value="12:15">12:15</option>
+                  <option value="12:30">12:30</option>
+                  <option value="12:45">12:45</option>
+                  <option value="1:00">1:00"</option>
+               </select>
               </div>
 
               <div class="col-md-1">
-                <input type="text" class="form-control" id="mon_am" placeholder="AM" />
-              </div>
+                <button type="button" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+<!--                 <input type="text" class="form-control" id="mon_am" placeholder="AM" />
+ -->              </div>
 
               <div class="col-md-3">
                 <input type="text" class="form-control" id="mon_close" placeholder="" />

@@ -56,7 +56,7 @@ $(function() {
 
   function postData(data) {
     $.ajax({
-      url: 'hinton/user/restaurant',
+      url: '/hinton/user/restaurant',
       type: 'POST',
       dataType: 'json',
       data: data,

@@ -41,7 +41,7 @@ h3 {
 .form-control {
   background-color: #eaead6;
   margin-top:;
-  font-size: 16px;
+  font-size: 15px;
   height: 28px;
 }
 .main-left .form-control {
@@ -114,7 +114,10 @@ label {
 .col-md-8, .col-md-9 {
   padding-left: 15px;
   padding-right: 10px;
-
+}
+.alt_hour {
+  margin-right: 20px;
+}
 
 #server-res {
   margin-top: 10px;

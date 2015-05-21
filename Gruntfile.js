@@ -12,7 +12,10 @@ module.exports = function(grunt) {
       },
 
       options: {
-        jshintrc: true
+        jshintrc: true,
+        ignores: [
+          'admin/bootstrap-combobox.js'
+        ]
       }
     },
 

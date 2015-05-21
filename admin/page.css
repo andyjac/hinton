@@ -1,37 +1,51 @@
 body {
   background-color: #444;
+  margin: 0 auto;
 }
 
 .container {
   background-color:#555;
+  width: 900px !important;
+  margin: 0 auto;
   margin-top:25px;
 }
 
 .inner {
-  margin: 1px auto;
+  margin: 0px auto;
   width: 95%;
   background-color:#fefeef;
-  padding-bottom: 30px;
+  padding: 30px 0;
 
 }
-
+h3 {
+  margin: 10px 10px;
+}
 .main-left {
 
-  margin-left: 10px;
+  margin: 0;
   display: inline;
   float:left;
+  margin: 0;
+  padding: 0 20px;
 }
 
 .main-right {
   float: right;
-  width: 40% ;
-  margin-right: 100px;
+  margin: 0;
+  padding: 0 20px;
+}
+.col-md-6, col-md-5 {
+
 }
 
 .form-control {
   background-color: #eaead6;
   margin-top:;
-  font-size: 12px;
+  font-size: 15px;
+  height: 28px;
+}
+.main-left .form-control {
+  margin-bottom: 8px;
 }
 
 .form-group {
@@ -40,6 +54,10 @@ body {
 
 .hours {
   margin-bottom: 10px;
+}
+.hours .col-md-2 {
+  margin-right: 15px;
+  padding-left: 10px;
 }
 
 .btn {
@@ -52,8 +70,9 @@ body {
 }
 
 .btn-bottom {
+  margin-left: 10px;
   clear: both;
-  width: 80%;
+  width: 95%;
 }
 
 .btn-md {
@@ -64,9 +83,6 @@ body {
   clear: both;
 }
 
-.form-control {
-  height: 28px;
-}
 
 label {
   margin-bottom: 0px;
@@ -79,12 +95,28 @@ label {
 
 .hours .col-md-2, .hours .col-md-3 {
   padding-right: 0;
+  padding-top 0px;
+  padding-left: 25px;
 }
 
-.hours .col-md-1 input {
-  padding: 0 4px;
-  width: 28px;
-  font-size: 12px;
+.hours input {
+  padding: 0 10px;
+}
+.hours select, .combobox {
+  padding: 0 7px;
+}
+
+.col-md-1, .col-md-10,
+.col-md-11, .col-md-12,
+.col-md-2, .col-md-3,
+.col-md-4, .col-md-5,
+.col-md-6, .col-md-7,
+.col-md-8, .col-md-9 {
+  padding-left: 15px;
+  padding-right: 10px;
+}
+.alt_hour {
+  margin-right: 20px;
 }
 
 #server-res {

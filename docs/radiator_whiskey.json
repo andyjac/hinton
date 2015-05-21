@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.6088847",
+      "long": "-122.3403957"
+    },
+    "marker": "",
+    "caption": "Radiator Whiskey"
+  },
+  "restaurant": {
+    "name": "Radiator Whiskey",
+    "address": {
+      "number": "94",
+      "street": "Pike St",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98101"
+    },
+    "hours": {
+      "sun": "Closed",
+      "mon": "4:00pm-12:00am",
+      "tues": "4:00pm-12:00am",
+      "wed": "4:00pm-12:00am",
+      "thus": "4:00pm-12:00am",
+      "fri": "4:00pm-12:00am",
+      "sat": "4:00pm-12:00am"
+    },
+    "phone": "206-467-4268",
+    "genre": ["Bar"],
+    "price": 2,
+    "blog_link": "",
+    "r_site": "http://www.radiatorwhiskey.com/",
+    "menu_link": "http://www.radiatorwhiskey.com/food.html",
+    "menu_item": ["Tots"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

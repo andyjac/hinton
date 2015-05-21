@@ -1,5 +1,4 @@
 $(function() {
-
   $('#buttonSave').click(function() {
     var requestBody = buildRequest();
     postData(requestBody);
@@ -7,28 +6,21 @@ $(function() {
 
   $('#buttonClear').click(function() {
     if (confirm('this will delete all data on this form')) {
-      resetForm($('#form1'));
-      //location.reload(true);
+      //resetForm($('#admin_main'));
+      location.reload(true);
     }
   });
 
   $('#buttonNew').click(function() {
     var requestBody = buildRequest();
     postData(requestBody);
-    resetForm($('#form1'));
-    //location.reload(true);
+    //resetForm($('#form1'));
+    location.reload(true);
   });
 
-  $('#buttonEdit').click(function() {
-    $('form1').
-    loadVenues();
-  });
+  $('#buttonEdit').click(function()  {
 
-  function resetForm($form) {
-    $form.find('input:text, select, textarea').val('');
-    $form.find('input:radio, input:checkbox')
-         .removeAttr('checked').removeAttr('selected');
-  }
+  });
 
   var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),
       { types: ['geocode'] });

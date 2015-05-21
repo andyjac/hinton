@@ -26,8 +26,8 @@
       "fri": "11:30am-9:00pm",
       "sat": "11:30am-9:00pm"
     },
-    "phone": "2063284447",
-    "genre": "Mexican",
+    "phone": "206-328-4447",
+    "genre": ["Mexican"],
     "price": 1,
     "blog_link": "",
     "r_site": "",

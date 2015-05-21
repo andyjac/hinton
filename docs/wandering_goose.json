@@ -26,8 +26,8 @@
       "fri": "5:00pm-9:00pm",
       "sat": "7:00am-4:00pm"
     },
-    "phone": "2063239938",
-    "genre": "Southern-American",
+    "phone": "206-323-9938",
+    "genre": ["Southern-American"],
     "price": 2,
     "blog_link": "",
     "r_site": "http://www.thewanderinggoose.com/",

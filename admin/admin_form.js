@@ -5,11 +5,21 @@ $(function() {
   });
 
   $('#buttonClear').click(function() {
-    $('#admin_main')[0].reset();
+    if (confirm('this will delete all data on this form')) {
+      //resetForm($('#admin_main'));
+      location.reload(true);
+    }
   });
 
-  $('#search-box').blur(function() {
-    fillInAddress();
+  $('#buttonNew').click(function() {
+    var requestBody = buildRequest();
+    postData(requestBody);
+    //resetForm($('#form1'));
+    location.reload(true);
+  });
+
+  $('#buttonEdit').click(function()  {
+
   });
 
   var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),
@@ -39,6 +49,10 @@ $(function() {
     document.getElementById('lat').value = place.geometry.location.lat();
     document.getElementById('lng').value = place.geometry.location.lng();
   }
+
+  google.maps.event.addListener(searchBox, 'place_changed', function() {
+    fillInAddress();
+  });
 
   function postData(data) {
     $.ajax({

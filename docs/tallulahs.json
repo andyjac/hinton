@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.624196",
+      "long": "-122.306919"
+    },
+    "marker": "",
+    "caption": "TALLULAH'S"
+  },
+  "restaurant": {
+    "name": "TALLULAH'S",
+    "address": {
+      "number": "550",
+      "street": "19th Ave E",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98112"
+    },
+    "hours": {
+      "sun": "9:00am - 3:00pm 4:00pm-11:00pm",
+      "mon": "4:00pm-11:00pm",
+      "tues": "4:00pm-11:00pm",
+      "wed": "4:00pm-11:00pm",
+      "thus": "4:00pm-11:00pm",
+      "fri": "4:00pm-12:00pm",
+      "sat": "9:00am - 3:00pm 4:00pm-12:00pm"
+    },
+    "phone": "206-860-0077",
+    "genre": ["American"],
+    "price": 2,
+    "blog_link": "",
+    "r_site": "http://www.aneighborhoodcafe.com/#about",
+    "menu_link": "http://www.aneighborhoodcafe.com/menu-3",
+    "menu_item": ["Herb + Goat Cheese Omlette"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.659110",
+      "long": "-122.354208"
+    },
+    "marker": "",
+    "caption": "Lighthouse Roasters"
+  },
+  "restaurant": {
+    "name": "Lighthouse Roasters",
+    "address": {
+      "number": "400",
+      "street": "N 43rd St",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98103"
+    },
+    "hours": {
+      "sun": "6:30am-7:00pm",
+      "mon": "6:00am-7:00pm",
+      "tues": "6:00am-7:00pm",
+      "wed": "6:00am-7:00pm",
+      "thus": "6:00am-7:00pm",
+      "fri": "6:00am-7:00pm",
+      "sat": "6:30am-7:00pm"
+    },
+    "phone": "206-633-4775",
+    "genre": ["Coffee + Tea"],
+    "price": 1,
+    "blog_link": "",
+    "r_site": "http://lighthouseroasters.com/",
+    "menu_link": "",
+    "menu_item": ["French press"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

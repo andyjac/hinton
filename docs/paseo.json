@@ -1,0 +1,43 @@
+{
+  "token": "",
+  "map": {
+    "loc": {
+      "lat": "47.658494",
+      "long": "-122.350312"
+    },
+    "marker": "",
+    "caption": "Paseo Caribbean Restaurant"
+  },
+  "restaurant": {
+    "name": "Paseo Caribbean Restaurant",
+    "address": {
+      "number": "4225",
+      "street": "Fremont Ave N",
+      "city": "Seattle",
+      "state": "WA",
+      "zip": "98103"
+    },
+    "hours": {
+      "sun": "Closed",
+      "mon": "Closed ",
+      "tues": "11:00am-8:00pm",
+      "wed": "11:00am-8:00pm",
+      "thus": "11:00am-8:00pm",
+      "fri": "11:00am-8:00pm",
+      "sat": "11:00am-6:00pm"
+    },
+    "phone": "206-545-7440",
+    "genre": ["Caribbean"],
+    "price": 1,
+    "blog_link": "",
+    "r_site": "http://www.paseoseattle.com/",
+    "menu_link": "http://www.paseoseattle.com/index.php/menu.html",
+    "menu_item": ["Tofu Delight (Caribbean Sandwich)"],
+    "photos": [{
+      "id": "",
+      "data": "",
+      "caption": ""
+    }],
+    "other": {}
+  }
+}

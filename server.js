@@ -6,7 +6,7 @@ var passport = require('passport');
 var app = express();
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/hinton_dev');
-process.env.APP_SECRET = process.env.APP_SECRET || 'ginahintonsfoodapp'; // change
+process.env.APP_SECRET = process.env.APP_SECRET || 'hinton_dev';
 
 var userRoutes = express.Router();
 var restaurantRoutes = express.Router();

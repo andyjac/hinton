@@ -1,379 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>Hinton Administration</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="bootstrap-combobox.js" type="text/javascript"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
-    <script src="admin_form.js" type="text/javascript"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" type="text/css" />
-    <link rel="stylesheet" href="bootstrap-combobox.css" type="text/css"/>
-    <link rel="stylesheet" href="page.css" type="text/css"/>
-  </head>
-  <body>
-    <div class="container">
-      <form id="admin_main" class="" action="" method="">
-        <div class="inner clearfix">
-          <div class="row">
-            <div class="main-left col-md-6">
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="r_name">Venue</label>
-                  <input type="text" class="form-control" id="r_name" placeholder="combobox in edit mode" />
-                </div>
-              </div>
+<head>
+  <meta charset="UTF-8">
+  <title>Hinton Administration</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="bootstrap-combobox.js" type="text/javascript"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
+  <script src="admin_form.js" type="text/javascript"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" type="text/css" />
+  <link rel="stylesheet"href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" type="text/css" />
+  <link rel="stylesheet" href="bootstrap-combobox.css" type="text/css"/>
+  <link rel="stylesheet" href="page.css" type="text/css"/>
+</head>
+<body>
+  <div class="container">
+    <form id="admin_main" class="" action="" method="">
+      <div class="inner clearfix">
+        <div class="row">
+          <div class="main-left col-md-6">
 
-              <div class="form-group">
-                <div class="col-md-9">
-                  <label for="r_genre">Genre</label>
-                  <select class="form-control combobox" id="r_genre">
-                    <option></option>
-                    <option value="PA">BBQ</option>
-                    <option value="CT">Brazilian</option>
-                    <option value="NY">Burgers</option>
-                    <option value="MD">Cajun</option>
-                    <option value="VA">Coffee & Tea</option>
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_name">Venue</label>
+                  <select class="form-control combobox" id="r_name">
+                    <option value="" selected="selected">Choose a Venue or add new</option>
                   </select>
-                </div>
-                <div class="col-md-3">
-                  <label for="r_price">Price</label>
-                  <input type="text" class="form-control"id="r_price" placeholder="" />
-                </div>
               </div>
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="r_item">Menu Item</label>
-                  <input type="text" class="form-control" id="r_item" placeholder="" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="search-box">Google Address Search</label>
-                  <input type="text" class="form-control col-md-2" id="search-box" placeholder="Enter the address" ></input>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-3">
-                  <label for="street_number">Address</label>
-                  <input type="text" class="form-control col-md-2" id="street_number" placeholder="addr" />
-                </div>
-
-                <div class="col-md-9">
-                  <label for="route">Street</label>
-                  <input type="text" class="form-control col-md-2" id="route" placeholder="street" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6">
-                  <label for="locality">City</label>
-                  <input type="text" class="form-control"id="locality" placeholder="city" />
-                </div>
-
-                <div class="col-md-3">
-                  <label for="administrative_area_level_1">State</label>
-                  <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
-                </div>
-                <div class="col-md-3">
-                  <label for="postal_code">Zip</label>
-                  <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-6">
-                  <label for="r-tel">Phone</label>
-                  <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
-                </div>
-                <div class="col-md-3">
-                  <label for="lat">Latitude</label>
-                  <input type="text" class="form-control"id="lat" placeholder="lat" />
-                </div>
-                <div class="col-md-3">
-                  <label for="lng">Longitude</label>
-                  <input type="text" class="form-control" id="lng" placeholder="lng" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="r_site">Website</label>
-                  <input type="url" class="form-control"id="r_site" placeholder="" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="r_menu">Menu</label>
-                  <input type="url" class="form-control" id="r_menu" placeholder="" />
-                </div>
-              </div>
-
-              <div class="form-group">
-                <div class="col-md-12">
-                  <label for="r_blog">Blog Link</label>
-                  <input type="url" class="form-control"id="r_blog" placeholder="" />
-                </div>
-              </div>
-
-              <h5><span id="lblResponse" class="col-md-8"></span></h5>
-
             </div>
 
-
-            <div class="main-right col-md-6">
-              <h4>Hours</h4>
-
-              <div class="row hours">
-                <label class="col-md-2" for="mon_open">Monday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="mon_open">
-                    <option value="closed">closed</option>  <!-- these are temporary -->
-                    <option value="12:00">12:15</option>
-                    <option value="12:15">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="mon_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                  </button>
-                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="mon_close">
-                    <option value="closed">closed</option>  <!-- these are temporary -->
-                    <option value="12:00">12:00</option>
-                    <option value="12:15">12:15</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="mon_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                  </button>
-                </div>
+            <div class="form-group">
+              <div class="col-md-9">
+                <label for="r_genre">Genre</label>
+                <select class="form-control combobox" id="r_genre">
+                  <option value="" selected="selected">Pick a Genre or add new</option>
+                </select>
               </div>
 
-              <div class="row hours">
-                <label class="col-md-2" for="tue_open">Tuesday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="tue_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="tue_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                </button>                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="tue_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="tue_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
+              <div class="col-md-3">
+                <label for="r_price">Price</label>
+                <input type="text" class="form-control"id="r_price" placeholder="" />
               </div>
-
-              <div class="row hours">
-                <label class="col-md-2" for="wed_open">Wednesday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="wed_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="wed_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                </button>                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="wed_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="wed_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
-              </div>
-
-              <div class="row hours">
-                <label class="col-md-2" for="thu_open">Thursday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="thu_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="thu_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                </button>                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="thu_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="thu_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
-              </div>
-
-              <div class="row hours">
-                <label class="col-md-2" for="fri_open">Friday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="fri_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="fri_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                </button>                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="fri_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="fri_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
-              </div>
-
-              <div class="row hours">
-                <label class="col-md-2" for="sat_open">Saturday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="sat_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="sat_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                </button>                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="sat_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="sat_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
-              </div>
-
-              <div class="row hours">
-                <label class="col-md-2" for="sun_open">Sunday</label>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="sun_open">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="sun_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    AM
-                  </button>
-                </div>
-
-                <div class="col-md-3">
-                  <select class="form-control" id="sun_close">
-                    <option value="12:00">12:00</option>  <!-- these are temporary -->
-                    <option value="12:15">12:15</option>
-                    <option value="12:30">12:30</option>
-                  </select>
-                </div>
-
-                <div class="col-md-1">
-                  <button type="button" id="sun_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
-                    PM
-                </button>                </div>
-              </div>
-
-              <div class="form-group alt_hour">
-                <div class="col-md-12">
-                  <label for="hour_text">Hours Display</label>
-                  <textarea rows="1" class="form-control"id="hour_text" placeholder="optional">
-                  </textarea>
-                </div>
-              </div>
-
-              <div class="form-group">
-
-                <div class="comment col-md-12">
-                  <label><i><br />
-                      <br />pix thumbs here...</i></label>
-                </div>
-              </div>
-
             </div>
-          </div>
-          <div class="row">
-            <div class="btn-bottom col-md-12">
-              <br />
-              <br />
-              <button type="button" id="buttonNew" class="btn btn-success">Save & New</button>
-              <button type="button" id="buttonEdit" class="btn btn-success">Edit</button>
-              <button type="button" id="buttonDelete" class="btn btn-danger">Delete</button>
-              <button type="button" id="buttonSave" class="btn-rt btn btn-primary">Save</button>
-              <button type="button" id="buttonClear" class="btn-rt btn btn-default">Clear</button>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_item">Menu Item</label>
+                <input type="text" class="form-control" id="r_item" placeholder="" />
+              </div>
             </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="search-box">Google Address Search</label>
+                <input type="text" class="form-control col-md-2" id="search-box" placeholder="Enter the address" ></input>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <label for="street_number">Address</label>
+                <input type="text" class="form-control col-md-2" id="street_number" placeholder="addr" />
+              </div>
+
+              <div class="col-md-9">
+                <label for="route">Street</label>
+                <input type="text" class="form-control col-md-2" id="route" placeholder="street" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="locality">City</label>
+                <input type="text" class="form-control"id="locality" placeholder="city" />
+              </div>
+
+              <div class="col-md-3">
+                <label for="administrative_area_level_1">State</label>
+                <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
+              </div>
+              <div class="col-md-3">
+                <label for="postal_code">Zip</label>
+                <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="r-tel">Phone</label>
+                <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
+              </div>
+              <div class="col-md-3">
+                <label for="lat">Latitude</label>
+                <input type="text" class="form-control"id="lat" placeholder="lat" />
+              </div>
+              <div class="col-md-3">
+                <label for="lng">Longitude</label>
+                <input type="text" class="form-control" id="lng" placeholder="lng" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_site">Website</label>
+                <input type="url" class="form-control"id="r_site" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_menu">Menu</label>
+                <input type="url" class="form-control" id="r_menu" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_blog">Blog Link</label>
+                <input type="url" class="form-control"id="r_blog" placeholder="" />
+              </div>
+            </div>
+            <br />
+            <h5><span id="lblResponse" class="col-md-8"></span></h5>
+          </div>  <!-- main-left -->
+
+          <div class="main-right col-md-6">
+            <h4>Hours</h4>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="mon_open">Monday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="mon_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="mon_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="mon_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="mon_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="tue_open">Tuesday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="tue_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="tue_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="tue_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="tue_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="wed_open">Wednesday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="wed_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="wed_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="wed_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="wed_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="thu_open">Thursday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="thu_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="thu_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="thu_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="thu_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="fri_open">Friday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="fri_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="fri_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="fri_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="fri_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="sat_open">Saturday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="sat_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="sat_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="sat_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="sat_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="row hours">
+
+              <label class="col-md-2" for="sun_open">Sunday</label>
+
+              <div class="col-md-3">
+                <select class="form-control" id="sun_open"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="sun_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  AM
+                </button>
+              </div>
+
+              <div class="col-md-3">
+                <select class="form-control" id="sun_close"></select>
+              </div>
+
+              <div class="col-md-1">
+                <button type="button" id="sun_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">
+                  PM
+                </button>
+              </div>
+            </div>
+
+            <div class="form-group alt_hour">
+              <div class="col-md-12">
+                <label for="hour_text">Hours Display</label>
+                <textarea rows="1" class="form-control"id="hour_text" placeholder="optional">
+                </textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+
+              <div class="comment col-md-12">
+                <label><i><br />
+                    <br />pix thumbs here...</i></label>
+              </div>
+            </div>
+
+            <!-- /// -->
+          </div> <!-- main-right -->
+        </div> <!-- row -->
+        <div class="row">
+          <div class="btn-bottom col-md-12">
+            <br />
+            <br />
+            <button type="button" id="buttonNew" class="btn btn-success">Save & New</button>
+            <button type="button" id="buttonEdit" class="btn btn-success">Edit</button>
+            <button type="button" id="buttonDelete" class="btn btn-danger">Delete</button>
+            <button type="button" id="buttonSave" class="btn-rt btn btn-primary">Save</button>
+            <button type="button" id="buttonClear" class="btn-rt btn btn-default">Clear</button>
           </div>
         </div>
-      </form>
-    </div>
-  </body>
+      </div>
+    </form>
+  </div>
+</body>
 </html>

@@ -4,7 +4,7 @@
 Hinton
 ===============
 ###### Companion iPhone app for [ginahinton.com](http://www.ginahinton.com)
-===============
+
 API Reference
 ---------------
 #### GET api/restaurant/all 

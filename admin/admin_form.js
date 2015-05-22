@@ -56,19 +56,16 @@ $(function() {
 
   function postData(data) {
     $.ajax({
-      url: '/hinton/user/restaurant',
+      url: 'http://localhost:3000/hinton/user/restaurant',
       type: 'POST',
       dataType: 'json',
       data: data,
       success: function(response) {
-        var res = jQuery.parseJSON(response);
-        alert(response);
-        $('#lblResponse').html(res.msg);
-
+        alert('Save Successful');
       },
       error: function(xhr, status, error) {
         console.log(error);
-        $('#lblResponse').html('Error connecting to the server.');
+        alert('Could not save to database');
       }
     });
   }

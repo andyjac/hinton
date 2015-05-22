@@ -12,6 +12,8 @@ Returns an array of map data for all restaurants in the database.
 
 Response data takes the following format:
 ```
+
+_id: uniqueId,
 map: {
   loc: {
     lat: String,

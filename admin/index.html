@@ -22,7 +22,12 @@
             <div class="form-group">
               <div class="col-md-12">
                 <label for="r_name">Venue</label>
-                <input type="text" class="form-control" id="r_name" placeholder="combobox in edit mode" />
+                  <select class="form-control combobox" id="r_name">
+                  <option value="" selected="selected">Choose a Venue or add new</option>
+                </select>
+
+
+                <!-- <input type="text" class="form-control" id="r_name" placeholder="combobox in edit mode" /> -->
               </div>
             </div>
 
@@ -30,12 +35,7 @@
               <div class="col-md-9">
                 <label for="r_genre">Genre</label>
                 <select class="form-control combobox" id="r_genre">
-                  <option></option>
-                  <option value="PA">BBQ</option>
-                  <option value="CT">Brazilian</option>
-                  <option value="NY">Burgers</option>
-                  <option value="MD">Cajun</option>
-                  <option value="VA">Coffee & Tea</option>
+                  <option value="" selected="selected">Pick a Genre or add new</option>
                 </select>
               </div>
 

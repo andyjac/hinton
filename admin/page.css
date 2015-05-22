@@ -45,7 +45,7 @@ h3 {
   height: 28px;
 }
 .main-left .form-control {
-  margin-bottom: 8px;
+  margin-bottom: 0px;
 }
 
 .form-group {
@@ -112,8 +112,7 @@ label {
 .col-md-4, .col-md-5,
 .col-md-6, .col-md-7,
 .col-md-8, .col-md-9 {
-  padding-left: 15px;
-  padding-right: 10px;
+  padding: 0 10px 5px 15px;
 }
 .alt_hour {
   margin-right: 20px;
@@ -123,4 +122,7 @@ label {
   margin-top: 10px;
   color: #115;
   font-style: italic;
+}
+.combobox {
+  display: inline-block;
 }

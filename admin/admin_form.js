@@ -1,4 +1,8 @@
 $(function() {
+
+  getGenres();
+  getVenues();
+
   $('#buttonSave').click(function() {
     var requestBody = buildRequest();
     postData(requestBody);
@@ -19,7 +23,13 @@ $(function() {
   });
 
   $('#buttonEdit').click(function()  {
+    // clear form;
+    getVenues(makeVenueList); // constructs and builds venues combo
+  });
 
+  $('#buttonDelete').click(function()  {
+    // clear form;
+    location.reload(true);
   });
 
   var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),
@@ -54,9 +64,78 @@ $(function() {
     fillInAddress();
   });
 
+  function getGenres() {
+    $.ajax({
+      url: '/api/restaurant/genre/all',
+      type: 'GET',
+      dataType: 'text',
+        success: function(response) {
+        var res = jQuery.parseJSON(response);
+        console.log(res);
+        $('#lblResponse').html(res);
+        fillComboG(res);
+
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr);
+        $('#lblResponse').html('Error connecting to the server.');
+      }
+    });
+  }
+
+  function getVenues() {
+    $.ajax({
+      url: '/api/restaurant/all',
+      type: 'GET',
+      dataType: 'text',
+      success: function(response) {
+        var res = jQuery.parseJSON(response);
+
+        // response.forEach(function() {
+
+        // }
+        //console.log(response);
+        $('#lblResponse').html(res);
+        //console.log(response);
+        fillComboV(res);
+
+      },
+      error: function(xhr, status, error) {
+        console.log(error);
+        $('#lblResponse').html('Error connecting to the server.');
+      }
+    });
+  }
+
+  function fillComboV(data) {
+    data.forEach(function(el) {
+      var sel = document.getElementById('r_name');
+      var option = document.createElement('option');
+      console.log(el.map.caption);
+      option.innerHTML = el.map.caption;
+      option.value = el._id;
+      console.log(option);
+      sel.appendChild(option);
+    });
+    $('#r_name').combobox();
+  }
+
+  function fillComboG(data) {
+    data.forEach(function(value, index) {
+      var sel = document.getElementById('r_genre');
+      var option = document.createElement('option');
+      option.innerHTML = value;
+      option.value = value;
+      console.log(option);
+      sel.appendChild(option);
+    });
+    $('#r_genre').combobox();
+  }
+
+
   function postData(data) {
     $.ajax({
-      url: '/api/restaurant',
+      url: '/hinton/user/restaurant',
       type: 'POST',
       dataType: 'json',
       data: data,
@@ -105,4 +184,5 @@ $(function() {
 
     return request;
   }
+
 });

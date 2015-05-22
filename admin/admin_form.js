@@ -1,5 +1,8 @@
 $(function() {
 
+  $( "button[data-toggle~='button']" ).on('click', function () {
+      $(this).button('PM') // button text will be "finished!"
+  })
   getGenres();
   getVenues();
 

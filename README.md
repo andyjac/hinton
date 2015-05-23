@@ -8,7 +8,7 @@ Hinton
 API Reference
 ---------------
 #### GET api/restaurant/all 
-Returns an array of map data for all restaurants in the database.
+Returns an array of map data for all restaurants in the database
 
 Response data takes the following format:
 ```
@@ -27,7 +27,7 @@ map: {
 ---------------
 
 #### GET api/restaurant/:id
-Returns data for a specific restaurant based on its unique Id.
+Returns data for a specific restaurant based on its unique Id
 
 `api/restaurant/555be35472e4ac971324f9d9` -> Returns restaurant data for The Pink Door
 
@@ -45,11 +45,11 @@ Example response: `["Chinese","Mediterranean","Seafood","Food Truck"]`
 
 Returns an array of map data for restaurants which contain the given genre
 
-Example request/response:
+Request: `api/restaurant/genre/Mexican`
+
+Response:
 
 ```
-api/restaurant/genre/Mexican
-
 [{
   "_id":"555be37272e4ac971324f9db",
   "map": {

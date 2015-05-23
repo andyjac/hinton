@@ -14,6 +14,7 @@ $(function() {
 
 // ========================================
 
+  $('.search input').prop('readonly', true);
   getGenres();
   getVenues();
   fillTimes();
@@ -25,8 +26,8 @@ $(function() {
 
   $('#buttonClear').click(function() {
     if (confirm('this will delete all data on this form')) {
-      //resetForm($('#admin_main'));
-      location.reload(true);
+      resetForm($('#admin_main'));
+      //location.reload(true);
     }
   });
 
@@ -42,9 +43,13 @@ $(function() {
     getVenues(makeVenueList); // constructs and builds venues combo
   });
 
-  $('#buttonDelete').click(function()  {
+  $('#buttonDelete').click(function() {
     // clear form;
     location.reload(true);
+  });
+
+  $('#search-box').focus(function () {
+    $('.search input').prop('readonly', false);
   });
 
   var searchBox = new google.maps.places.Autocomplete((document.getElementById('search-box')),

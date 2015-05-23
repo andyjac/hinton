@@ -18,124 +18,135 @@
     <form id="admin_main" class="" action="" method="">
       <div class="inner clearfix">
         <div class="row">
+
+  <!-- ============ LEFT COLUMN ============ -->
+
           <div class="main-left col-md-6">
+            <div class="rows">
 
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="r_name">Venue</label>
-                  <select class="form-control combobox" id="r_name">
-                    <option value="" selected="selected">Choose a Venue or add new</option>
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="r_name">Venue</label>
+                    <select class="form-control combobox" id="r_name">
+                      <option value="" selected="selected">Choose a Venue or add new</option>
+                    </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-9">
+                  <label for="r_genre">Genre</label>
+                  <select class="form-control combobox" id="r_genre">
+                    <option value="" selected="selected">Pick a Genre or add new</option>
                   </select>
-              </div>
-            </div>
+                </div>
 
-            <div class="form-group">
-              <div class="col-md-9">
-                <label for="r_genre">Genre</label>
-                <select class="form-control combobox" id="r_genre">
-                  <option value="" selected="selected">Pick a Genre or add new</option>
-                </select>
+                <div class="col-md-3">
+                  <label for="r_price">Price</label>
+                  <input type="text" class="form-control"id="r_price" placeholder="" />
+                </div>
               </div>
 
-              <div class="col-md-3">
-                <label for="r_price">Price</label>
-                <input type="text" class="form-control"id="r_price" placeholder="" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="r_item">Menu Item</label>
-                <input type="text" class="form-control" id="r_item" placeholder="" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="search-box">Google Address Search</label>
-                <input type="text" class="form-control col-md-2" id="search-box" placeholder="Enter the address" ></input>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <div class="col-md-3">
-                <label for="street_number">Address</label>
-                <input type="text" class="form-control col-md-2" id="street_number" placeholder="addr" />
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="r_item">Menu Item</label>
+                  <input type="text" class="form-control" id="r_item" placeholder="" />
+                </div>
               </div>
 
-              <div class="col-md-9">
-                <label for="route">Street</label>
-                <input type="text" class="form-control col-md-2" id="route" placeholder="street" />
-              </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="locality">City</label>
-                <input type="text" class="form-control"id="locality" placeholder="city" />
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="search-box">Google Address Search</label>
+                  <input type="text" class="form-control" id="search-box" placeholder="Enter the address" ></input>
+                </div>
               </div>
 
-              <div class="col-md-3">
-                <label for="administrative_area_level_1">State</label>
-                <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
-              </div>
-              <div class="col-md-3">
-                <label for="postal_code">Zip</label>
-                <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
-              </div>
-            </div>
+              <div class="form-group">
+                <div class="col-md-3 search">
+                  <label for="street_number">Address</label>
+                  <input type="text" class="form-control" id="street_number" placeholder="addr" />
+                </div>
 
-            <div class="form-group">
-              <div class="col-md-6">
-                <label for="r-tel">Phone</label>
-                <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
+                <div class="col-md-9 search">
+                  <label for="route">Street</label>
+                  <input type="text" class="form-control" id="route" placeholder="street" />
+                </div>
               </div>
-              <div class="col-md-3">
-                <label for="lat">Latitude</label>
-                <input type="text" class="form-control"id="lat" placeholder="lat" />
-              </div>
-              <div class="col-md-3">
-                <label for="lng">Longitude</label>
-                <input type="text" class="form-control" id="lng" placeholder="lng" />
-              </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="r_site">Website</label>
-                <input type="url" class="form-control"id="r_site" placeholder="" />
-              </div>
-            </div>
+              <div class="form-group">
+                <div class="col-md-6 search">
+                  <label for="locality">City</label>
+                  <input type="text" class="form-control"id="locality" placeholder="city" />
+                </div>
 
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="r_menu">Menu</label>
-                <input type="url" class="form-control" id="r_menu" placeholder="" />
+                <div class="col-md-3 search">
+                  <label for="administrative_area_level_1">State/Prov</label>
+                  <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
+                </div>
+                <div class="col-md-3 search">
+                  <label for="postal_code">Post Code</label>
+                  <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
+                </div>
               </div>
-            </div>
 
-            <div class="form-group">
-              <div class="col-md-12">
-                <label for="r_blog">Blog Link</label>
-                <input type="url" class="form-control"id="r_blog" placeholder="" />
+              <div class="form-group">
+                <div class="col-md-6">
+                  <label for="r-tel">Phone</label>
+                  <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
+                </div>
+                <div class="col-md-3">
+                  <label for="lat">Latitude</label>
+                  <input type="text" class="form-control"id="lat" placeholder="lat" />
+                </div>
+                <div class="col-md-3">
+                  <label for="lng">Longitude</label>
+                  <input type="text" class="form-control" id="lng" placeholder="lng" />
+                </div>
               </div>
-            </div>
-            <br>
-            <h5><span id="lblResponse" class="col-md-8"></span></h5>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="r_site">Website</label>
+                  <input type="url" class="form-control"id="r_site" placeholder="" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="r_menu">Menu</label>
+                  <input type="url" class="form-control" id="r_menu" placeholder="" />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="col-md-12">
+                  <label for="r_blog">Blog Link</label>
+                  <input type="url" class="form-control"id="r_blog" placeholder="" />
+                </div>
+              </div>
+              <br>
+              <h5><span id="lblResponse" class="col-md-8"></span></h5>
+            </div>  <!-- row -->
           </div>  <!-- main-left -->
 
+  <!-- ============ RIGHT COLUMN ============ -->
+
           <div class="main-right col-md-6">
+          <div class="row">
             <h4>Hours</h4>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="mon_open">Monday</label>
+              <div class="hour-label">
+                <label for="mon_open">Monday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="mon_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="mon_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -143,20 +154,22 @@
                 <select class="form-control timebox" id="mon_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="mon_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="tue_open">Tuesday</label>
+              <div class="hour-label">
+                <label for="tue_open">Tuesday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="tue_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="tue_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -164,20 +177,22 @@
                 <select class="form-control timebox" id="tue_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="tue_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="wed_open">Wednesday</label>
+              <div class="hour-label">
+                <label for="wed_open">Wednesday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="wed_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="wed_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -185,20 +200,22 @@
                 <select class="form-control timebox" id="wed_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="wed_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="thu_open">Thursday</label>
+              <div class="hour-label">
+                <label for="thu_open">Thursday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="thu_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="thu_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -206,20 +223,22 @@
                 <select class="form-control timebox" id="thu_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="thu_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="fri_open">Friday</label>
+              <div class="hour-label">
+                <label for="fri_open">Friday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="fri_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="fri_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -227,20 +246,22 @@
                 <select class="form-control timebox" id="fri_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="fri_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="sat_open">Saturday</label>
+              <div class="hour-label">
+                <label for="sat_open">Saturday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="sat_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="sat_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -248,20 +269,22 @@
                 <select class="form-control timebox" id="sat_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="sat_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
 
             <div class="row hours">
 
-              <label class="col-md-2" for="sun_open">Sunday</label>
+              <div class="hour-label">
+                <label for="sun_open">Sunday</label>
+              </div>
 
               <div class="col-md-3">
                 <select class="form-control timebox" id="sun_open"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="sun_am" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">AM</button>
               </div>
 
@@ -269,7 +292,7 @@
                 <select class="form-control timebox" id="sun_close"></select>
               </div>
 
-              <div class="col-md-1">
+              <div class="col-md-2">
                 <button type="button" id="sun_pm" class="btn-xs btn-default" data-toggle="button" aria-pressed="false" autocomplete="off">PM</button>
               </div>
             </div>
@@ -288,11 +311,12 @@
                     <br>pix thumbs here...</i></label>
               </div>
             </div>
-
-            <!-- /// -->
+            </div>
           </div> <!-- main-right -->
         </div> <!-- row -->
-        <div class="row">
+
+  <!-- ============ BUTTON ROW ============ -->
+
           <div class="btn-bottom col-md-12">
             <br>
             <br>

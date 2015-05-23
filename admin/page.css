@@ -1,3 +1,8 @@
+
+.clearfix {
+  clear: both;
+}
+
 body {
   background-color: #444;
   margin: 0 auto;
@@ -13,13 +18,31 @@ body {
 .inner {
   margin: 0px auto;
   width: 95%;
-  background-color:#fefeef;
+  background-color:#f4f4f4;
   padding: 30px 0;
 
 }
 h3 {
   margin: 10px 10px;
 }
+
+h4 {
+  padding: 5px 0 5px 20px;
+}
+
+.col-md-1, .col-md-10,
+.col-md-11, .col-md-12,
+.col-md-2, .col-md-3,
+.col-md-4, .col-md-5,
+.col-md-6, .col-md-7,
+.col-md-8, .col-md-9 {
+  padding: 2px 5px 0px 15px;
+}
+
+.visible {
+  overflow:visible;
+}
+
 .main-left {
 
   margin: 0;
@@ -34,30 +57,65 @@ h3 {
   margin: 0;
   padding: 0 20px;
 }
-.col-md-6, col-md-5 {
 
-}
-
-.form-control {
-  background-color: #eaead6;
-  font-size: 15px;
-  height: 28px;
-}
-.main-left .form-control {
-  margin-bottom: 8px;
+.row {
+  margin-right: 0px;
+  margin-left: 0px;
 }
 
 .form-group {
   margin-bottom: 5px;
 }
 
+.form-control {
+  background-color: #fbfcfa;
+  font-size: 15px;
+  height: 24px;
+  padding: 1px 8px 2px 8px;
+  border-radius: 2px;
+}
+.main-left .form-control {
+  margin-bottom: 0px;
+}
+
+.combobox {
+  display: inline-block;
+}
+
+input .combobox {
+  border-right:none;
+}
+
+.input-group-addon {
+  padding:0 8px;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
 .hours {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   padding-left:20px;
 }
+
 .hours .col-md-2 {
-  margin-right: 15px;
-  padding-left: 10px;
+  margin-right: -15px;
+  padding-left: 0px;
+  padding-top 0px;
+}
+
+.hours .col-md-3 {
+  padding-right: 10px;
+  padding-top 0px;
+  padding-left: 5px;
+}
+
+.hour-label {
+  padding-left: 0px;
+  margin-right: 0px;
+  float:left;
+  width:85px;
 }
 
 .btn {
@@ -79,48 +137,16 @@ h3 {
   width:100px;
 }
 
-.clearfix {
-  clear: both;
-}
-
-
 label {
-  margin-bottom: 0px;
+  margin-bottom: 1px;
   color: #555;
-}
+  font-size:13.5px;
+  }
 
-.hours label {
-  padding-left: 0px;
-}
-
-.hours .col-md-2, .hours .col-md-3 {
-  padding-right: 0;
-  padding-top 0px;
-  padding-left: 25px;
-}
-
-.hours input {
-  padding: 0 10px;
-}
 .hours select, .combobox {
-  padding: 0 7px;
+  padding: 0 0 0 5px;
 }
 
-.col-md-1, .col-md-10,
-.col-md-11, .col-md-12,
-.col-md-2, .col-md-3,
-.col-md-4, .col-md-5,
-.col-md-6, .col-md-7,
-.col-md-8, .col-md-9 {
-  padding-left: 15px;
-  padding-right: 10px;
-}
 .alt_hour {
-  margin-right: 20px;
-}
-
-#server-res {
-  margin-top: 10px;
-  color: #115;
-  font-style: italic;
+  margin: 15px 10px 5px 5px;
 }

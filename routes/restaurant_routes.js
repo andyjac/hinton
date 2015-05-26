@@ -1,48 +1,16 @@
 'use strict';
 
-var Rest = require('../models/Restaurant');
 var bodyparser = require('body-parser');
+var allRestController = require('../controllers/all_rest_controller');
+var allGenreController = require('../controllers/all_genre_controller');
+var restByIdController = require('../controllers/rest_byid_controller');
+var restByGenreController = require('../controllers/rest_bygenre_controller');
 
 module.exports = function (router) {
   router.use(bodyparser.json());
 
-  router.get('/restaurant/all', function (req, res) {
-    Rest.find({}, 'map', function (err, data) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
-      }
-      res.status(200).json(data);
-    });
-  });
-
-  router.get('/restaurant/genre/all', function(req, res) {
-    Rest.find().distinct('restaurant.genre', function(err, data) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
-      }
-      res.status(200).json(data);
-    });
-  });
-
-  router.get('/restaurant/:id', function (req, res) {
-    Rest.findOne({'_id': req.params.id}, 'restaurant', function (err, data) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
-      }
-      res.status(200).json(data);
-    });
-  });
-
-  router.get('/restaurant/genre/:genre', function(req, res) {
-    Rest.find({'restaurant.genre': req.params.genre}, 'map', function(err, data) {
-      if (err) {
-        console.log(err);
-        return res.status(500).json({msg: 'internal server error'});
-      }
-      res.status(200).json(data);
-    });
-  });
+  router.get('/restaurant/all', allRestController);
+  router.get('/restaurant/genre/all', allGenreController);
+  router.get('/restaurant/:id', restByIdController);
+  router.get('/restaurant/genre/:genre', restByGenreController);
 };

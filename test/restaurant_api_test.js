@@ -117,8 +117,6 @@ describe('restaurant REST API', function () {
       expect(err).to.eql(null);
       expect(typeof res.body).to.eql('object');
       expect(Array.isArray(res.body)).to.eql(true);
-      expect(res.body[0].map.caption).to.eql('Whole Foods Market');
-      expect(res.body[1].map.caption).to.eql('Code Fellows');
       done();
     });
   });

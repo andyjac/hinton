@@ -37,11 +37,6 @@ describe('restaurant REST API', function () {
         genre: ['Mexican', 'Italian', 'Japanese']
       }
     });
-    testRest.save(function (err, data) {
-      if (err) throw err;
-
-      this.testRest = data;
-    }.bind(this));
 
     var testRest2 = new Rest({
       map: {
@@ -63,11 +58,17 @@ describe('restaurant REST API', function () {
         genre: ['French', 'Mexican', 'Chinese', 'Japanese']
       }
     });
-    testRest2.save(function (err, data) {
-      if (err) throw err;
 
-      this.testRest2 = data;
+    testRest.save(function (err, data) {
+      if (err) throw err;
+      this.testRest = data;
+
+      testRest2.save(function (err, data) {
+        if (err) throw err;
+        this.testRest2 = data;
+      }.bind(this));
     }.bind(this));
+
     done();
   });
 
@@ -117,8 +118,9 @@ describe('restaurant REST API', function () {
       expect(err).to.eql(null);
       expect(typeof res.body).to.eql('object');
       expect(Array.isArray(res.body)).to.eql(true);
+      expect(res.body[0].map.caption).to.eql('Whole Foods Market');
+      expect(res.body[1].map.caption).to.eql('Code Fellows');
       done();
     });
   });
-
 });

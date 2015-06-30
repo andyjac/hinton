@@ -115,9 +115,5 @@ describe('user creation and authentication', function() {
           done();
         });
     });
-
   });
-
 });
-
-

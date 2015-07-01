@@ -21,6 +21,7 @@ require('./routes/restaurant_routes.js')(restaurantRoutes);
 app.use('/api', restaurantRoutes);
 app.use('/hinton', userRoutes);
 app.use('/hinton/user', express.static('admin'));
+app.use('/angular', express.static(__dirname + '/build'));
 
 app.get('/', function(req, res) {
   res.redirect('/hinton');

@@ -9,15 +9,32 @@ module.exports = function(grunt) {
 
   grunt.initConfig({
     jshint: {
-      dev: {
-        src: ['*.js', 'routes/**/*.js', 'test/**/*.js', 'lib/**/*.js', 'models/**/*.js', 'admin/**/*.js', 'app/**/*.js']
-      },
-
       options: {
-        jshintrc: true,
-        ignores: [
-          'admin/bootstrap-combobox.js'
-        ]
+        node: true
+      },
+      server: {
+        src: ['*.js', 'routes/**/*.js', 'models/**/*.js', 'controllers/**/*.js', 'lib/**/*.js']
+      },
+      client: {
+        src: ['app/**/*.js'],
+        options: {
+          globals: {
+            angular: true
+          }
+        }
+      },
+      mocha: {
+        src: ['test/*test.js'],
+        options: {
+          globals: {
+            describe: true,
+            it: true,
+            before: true,
+            beforeEach: true,
+            after: true,
+            afterEach: true
+          }
+        }
       }
     },
 
@@ -37,8 +54,8 @@ module.exports = function(grunt) {
         // webpack options
         entry: __dirname + '/app/js/client.js',
         output: {
-            path: 'build/',
-            filename: 'bundle.js'
+          path: 'build/',
+          filename: 'bundle.js'
         },
         module: {
           loaders: []
@@ -59,7 +76,7 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.registerTask('lint', ['jshint:dev']);
+  grunt.registerTask('lint', ['jshint:server', 'jshint:client', 'jshint:mocha']);
   grunt.registerTask('test', ['simplemocha:dev']);
   grunt.registerTask('build', ['webpack:client', 'copy:html']);
   grunt.registerTask('default', ['lint', 'test']);

@@ -45,8 +45,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['<%= jshint.dev.src %>', '.jshintrc'],
-      tasks: ['default']
+      jshint: {
+        files: ['<%= jshint.dev.src %>', '.jshintrc'],
+        tasks: ['default']
+      },
+      client: {
+        files: ['./app/**/*.js', './app/**/*.html'],
+        tasks: ['build']
+      }
     },
 
     webpack: {
@@ -78,6 +84,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('lint', ['jshint:server', 'jshint:client', 'jshint:mocha']);
   grunt.registerTask('test', ['simplemocha:dev']);
-  grunt.registerTask('build', ['webpack:client', 'copy:html']);
+  grunt.registerTask('build', ['jshint:client', 'webpack:client', 'copy:html']);
   grunt.registerTask('default', ['lint', 'test']);
 };

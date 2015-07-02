@@ -36,6 +36,8 @@
     "uuid": "^2.0.1"
   },
   "devDependencies": {
+    "angular": "^1.4.1",
+    "angular-route": "^1.4.1",
     "chai": "^2.3.0",
     "chai-http": "^1.0.0",
     "grunt": "^0.4.5",

@@ -19,14 +19,9 @@ require('./routes/user_routes.js')(userRoutes, passport);
 require('./routes/restaurant_routes.js')(restaurantRoutes);
 
 app.use('/api', restaurantRoutes);
-app.use('/hinton', userRoutes);
-app.use('/hinton/user', express.static('admin'));
+app.use('/', express.static('build'));
 
-app.get('/', function(req, res) {
-  res.redirect('/hinton');
-});
-
-app.get('*', function(req, res) {
+app.all('*', function(req, res) {
   res.status(404).send('<h1>Page not found</h1>');
 });
 

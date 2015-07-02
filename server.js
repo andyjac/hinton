@@ -19,6 +19,7 @@ require('./routes/user_routes.js')(userRoutes, passport);
 require('./routes/restaurant_routes.js')(restaurantRoutes);
 
 app.use('/api', restaurantRoutes);
+app.use('/hinton', userRoutes);
 app.use('/', express.static('build'));
 
 app.all('*', function(req, res) {

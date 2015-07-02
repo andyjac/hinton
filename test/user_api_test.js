@@ -54,18 +54,6 @@ describe('user creation and authentication', function() {
       });
   });
 
-  it('should redirect valid user from login to form', function(done) {
-    chai.request('localhost:3000')
-      .get('/hinton')
-      .auth('test@example.com', 'tester')
-      .end(function(err, res) {
-        expect(err).to.eql(null);
-        expect(res.status).to.eql(200);
-        expect(res).to.have.property('redirects');
-        done();
-      });
-  });
-
   describe('authenticated user REST routes', function() {
 
     it('should be able to post to the database', function(done) {

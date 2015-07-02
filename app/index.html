@@ -2,9 +2,23 @@
 <html>
 <head>
   <title>Hinton Administration</title>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 </head>
 <body data-ng-app="hintonApp">
-  <div ng-controller="adminController"></div>
+  <form ng-controller="adminController">
+    Venue:<input  id="r_name" class="form-control" data-ng-model="venue">
+    </br>
+    Genre:<input id="r_genre" class="form-control" data-ng-model="genre">
+    </br>
+    Price:<input id="r_price" class="form-control" data-ng-model="price">
+    </br>
+    Menu Item:<input id="r_item" class="form-control" data-ng-model="item">
+    </br>
+    Google Address Search
+    <input type="text" class="form-control"  ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="Enter the Adress" />
+
+  </form>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
 </html>

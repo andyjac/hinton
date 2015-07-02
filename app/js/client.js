@@ -1,8 +1,9 @@
 'use strict';
 
 require('angular/angular');
+require('ng-autocomplete');
 
-var hintonApp = angular.module('hintonApp', []);
+var hintonApp = angular.module('hintonApp', ['ngAutocomplete']);
 
 //Services
 

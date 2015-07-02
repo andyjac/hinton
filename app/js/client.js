@@ -2,14 +2,19 @@
 
 require('angular/angular');
 require('angular-route');
+require('ng-autocomplete');
 
-// application
-var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute']);
+// Application
+var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'ngAutocomplete']);
 
-// controllers
+//Services
+
+// Controllers
 require('./controllers/restaurant_form_controller')(hintonAdminApp);
 
-// routes
+//Directives
+
+// View Routes
 hintonAdminApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
     .when('/', {

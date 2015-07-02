@@ -20,7 +20,7 @@ require('./routes/restaurant_routes.js')(restaurantRoutes);
 
 app.use('/api', restaurantRoutes);
 app.use('/hinton', userRoutes);
-app.use('/', express.static('build'));
+app.use('/angular', express.static(__dirname + '/build'));
 
 app.all('*', function(req, res) {
   res.status(404).send('<h1>Page not found</h1>');

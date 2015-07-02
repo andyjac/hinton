@@ -45,8 +45,14 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      files: ['<%= jshint.dev.src %>', '.jshintrc'],
-      tasks: ['default']
+      jshint: {
+        files: ['<%= jshint.dev.src %>', '.jshintrc'],
+        tasks: ['default']
+      },
+      client: {
+        files: ['./app/**/*.js', './app/**/*.html'],
+        tasks: ['build']
+      }
     },
 
     webpack: {

@@ -2,16 +2,15 @@
 
 module.exports = function(app) {
   app.controller("dropdownController", function($scope) {
-    $scope.genres = [{
-      name: "Red",
-      hex: "#F21B1B"
-    }, {
-      name: "Blue",
-      hex: "#1B66F2"
-    }, {
-      name: "Green",
-      hex: "#07BA16"
-    }];
+    $scope.genres = [
+    {name: "Mexican"},
+    {name: "Chinese"},
+    {name: "Thai"},
+    {name: "Pizza"},
+    {name: "Greek"},
+    {name: "Cuban"}
+    ];
+
     $scope.genre = "";
   });
 

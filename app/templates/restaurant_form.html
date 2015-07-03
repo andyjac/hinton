@@ -2,15 +2,162 @@
   <h1>{{greeting}}</h1>
 
   <form>
-      Venue:<input  id="r_name" class="form-control" data-ng-model="venue">
+      Venue:
+      <input  id="r_name" class="form-control" data-ng-model="venue">
       </br>
-      Genre:<input id="r_genre" class="form-control" data-ng-model="genre">
+      Genre:
+      <input id="r_genre" class="form-control" data-ng-model="genre">
       </br>
-      Price:<input id="r_price" class="form-control" data-ng-model="price">
+      <div class="col-md-3">
+      Price:
+      <input id="r_price" class="form-control" data-ng-model="price">
+      </div>
       </br>
-      Menu Item:<input id="r_item" class="form-control" data-ng-model="item">
+      Menu Item:
+      <input id="r_item" class="form-control" data-ng-model="item">
       </br>
-      Google Address Search
+      Google Address Search:
       <input type="text" class="form-control"  ng-autocomplete ng-model="autocomplete" options="options" details="details" placeholder="Enter the Adress" />
+      </br>
+      Address:
+      <input id="street_number" class="form-control" data-ng-model="address" />
+      </br>
+      Street:
+      <input id="route" class="form-control"  data-ng-model="street" />
+
+      <div data-ng-controller="timepickerController">
+        <timepicker  data-ng-model="mytime" data-ng-change="changed()" hour-step="hstep" minute-step="mstep"></timepicker>
+        <pre class="alert alert-info">Time is: {{mytime | date:'shortTime' }}</pre>
+        <button class="btn btn-danger" ng-click="clear()">Clear</button>
+      </div>
+
   </form>
+</section>
+
+<section>
+  <div class="container">
+    <form id="admin_main" class="" action="" method="">
+      <div class="inner clearfix">
+        <div class="row">
+          <div class="main-left col-md-6">
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_name">Venue</label>
+                <input id="r_name" class="form-control" data-ng-model="venue">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-9">
+                <label for="r_genre">Genre</label>
+                <input id="r_genre" class="form-control" data-ng-model="genre">
+
+                <div data-ng-app="dropdown" class="dropdown" data-ng-controller="dropdownController">
+                  <dropdown placeholder="Cuisine" list="genres" selected="genre" property="name"></dropdown>
+                </div>
+
+              </div>
+
+              <div class="col-md-3">
+                <label for="r_price">Price</label>
+                <input type="text" class="form-control"id="r_price" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_item">Menu Item</label>
+                <input type="text" class="form-control" id="r_item" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="search-box">Google Address Search</label>
+                <input type="text" class="form-control col-md-2" id="search-box" placeholder="Enter the address" ></input>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-3">
+                <label for="street_number">Address</label>
+                <input type="text" class="form-control col-md-2" id="street_number" placeholder="addr" />
+              </div>
+
+              <div class="col-md-9">
+                <label for="route">Street</label>
+                <input type="text" class="form-control col-md-2" id="route" placeholder="street" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="locality">City</label>
+                <input type="text" class="form-control"id="locality" placeholder="city" />
+              </div>
+
+              <div class="col-md-3">
+                <label for="administrative_area_level_1">State</label>
+                <input type="text" class="form-control"id="administrative_area_level_1" placeholder="state" />
+              </div>
+              <div class="col-md-3">
+                <label for="postal_code">Zip</label>
+                <input type="text" class="form-control" id="postal_code" placeholder="zip code" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-6">
+                <label for="r-tel">Phone</label>
+                <input type="tel" class="form-control" id="r_tel" placeholder="use 'tel' verification" />
+              </div>
+              <div class="col-md-3">
+                <label for="lat">Latitude</label>
+                <input type="text" class="form-control"id="lat" placeholder="lat" />
+              </div>
+              <div class="col-md-3">
+                <label for="lng">Longitude</label>
+                <input type="text" class="form-control" id="lng" placeholder="lng" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_site">Website</label>
+                <input type="url" class="form-control"id="r_site" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_menu">Menu</label>
+                <input type="url" class="form-control" id="r_menu" placeholder="" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-12">
+                <label for="r_blog">Blog Link</label>
+                <input type="url" class="form-control"id="r_blog" placeholder="" />
+              </div>
+            </div>
+
+          </div>
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="btn-bottom col-md-12">
+            <br />
+            <br />
+            <button type="button" id="buttonNew" class="btn btn-success">Save & New</button>
+            <button type="button" id="buttonEdit" class="btn btn-success">Edit</button>
+            <button type="button" id="buttonDelete" class="btn btn-danger">Delete</button>
+            <button type="button" id="buttonSave" class="btn-rt btn btn-primary">Save</button>
+            <button type="button" id="buttonClear" class="btn-rt btn btn-default">Clear</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </section>

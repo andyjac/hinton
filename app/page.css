@@ -1,0 +1,92 @@
+/*body {
+  background-color: #444;
+  margin: 0 auto;
+}*/
+
+/*.container {
+  background-color:#555;
+  width: 900px !important;
+  margin: 0 auto;
+  margin-top:25px;
+}*/
+
+/*.inner {
+  margin: 0px auto;
+  width: 95%;
+  background-color:#fefeef;
+  padding: 30px 0;
+}
+*/
+/*h3 {
+  margin: 10px 10px;
+}
+*/
+/*.main-left {
+  margin: 0;
+  display: inline;
+  float:left;
+  margin: 0;
+  padding: 0 20px;
+}
+
+.main-right {
+  float: right;
+  margin: 0;
+  padding: 0 20px;
+}*/
+/*.form-control {
+  background-color: #eaead6;
+  font-size: 15px;
+  height: 28px;
+}*/
+.main-left .form-control {
+  margin-bottom: 8px;
+}
+
+.form-group {
+  margin-bottom: 5px;
+}
+
+.btn {
+  margin: 10px;
+  width: 100px;
+}
+
+.btn-rt {
+  float: right;
+}
+
+.btn-bottom {
+  margin-left: 10px;
+  clear: both;
+  width: 95%;
+}
+
+.btn-md {
+  width:100px;
+}
+
+.clearfix {
+  clear: both;
+}
+
+/*label {
+  margin-bottom: 0px;
+  color: #555;
+}*/
+
+.col-md-1, .col-md-10,
+.col-md-11, .col-md-12,
+.col-md-2, .col-md-3,
+.col-md-4, .col-md-5,
+.col-md-6, .col-md-7,
+.col-md-8, .col-md-9 {
+  padding-left: 15px;
+  padding-right: 10px;
+}
+
+#server-res {
+  margin-top: 10px;
+  color: #115;
+  font-style: italic;
+}

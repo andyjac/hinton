@@ -57,7 +57,7 @@ module.exports = function(grunt) {
 
     simplemocha: {
       dev: {
-        src: ['test/**/*.js']
+        src: ['test/*_test.js']
       }
     },
 
@@ -116,8 +116,9 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('lint', ['jshint:server', 'jshint:client', 'jshint:mocha']);
-  grunt.registerTask('test', ['simplemocha:dev']);
-  grunt.registerTask('build', ['jshint:client', 'webpack:client', 'copy:html']);
+  grunt.registerTask('mochatest', ['jshint:client', 'jshint:mocha', 'simplemocha:dev']);
   grunt.registerTask('karmatest', ['jshint:karma', 'webpack:karma_test', 'karma:test']);
+  grunt.registerTask('test', ['mochatest', 'karmatest']);
+  grunt.registerTask('build', ['jshint:client', 'webpack:client', 'copy:html']);
   grunt.registerTask('default', ['lint', 'test']);
 };

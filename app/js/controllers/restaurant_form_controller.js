@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', 'clearFields', '$timeout', function($scope, clearFields, $timeout) {
+  app.controller('restaurantFormController', ['$scope', 'clearFields', function($scope, clearFields) {
 
     $scope.venue = {
       name: '',

@@ -9,6 +9,7 @@ require('angular-bootstrap');
 var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'ngAutocomplete', 'ui.bootstrap']);
 
 //Services
+require('./services/clear_fields')(hintonAdminApp);
 
 // Controllers
 require('./controllers/restaurant_form_controller')(hintonAdminApp);

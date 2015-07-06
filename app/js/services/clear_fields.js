@@ -10,6 +10,7 @@ module.exports = function(app) {
           obj[key] = '';
         }
       });
+      return obj;
     };
   });
 };

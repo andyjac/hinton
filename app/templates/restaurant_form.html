@@ -86,10 +86,11 @@
       <h3>Google Address: {{venue.googleAddress}}</h3>
       <h3>Long: {{details.geometry.location.F}}</h3>
       <h3>Lat: {{details.geometry.location.A}}</h3>
-      <div ng-repeat="item in details.address_components">
-        {{item.types[0]}}: {{item.short_name}}
-      </div>
-      Formated Address: {{details.formatted_address}}
+      <h3>Address: {{details.address_components[0].short_name}}</h3>
+      <h3>Street: {{details.address_components[1].short_name}}</h3>
+      <h3>City: {{details.address_components[3].short_name}}</h3>
+      <h3>State: {{details.address_components[5].short_name}}</h3>
+      <h3>Zip: {{details.address_components[7].short_name}}</h3>
     </div>
 
   </section>

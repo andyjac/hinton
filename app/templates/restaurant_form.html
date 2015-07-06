@@ -38,7 +38,7 @@
 
       <div class="form-group col-md-12">
         <label>Google Address Search</label>
-          <input type="text" class="form-control" ng-autocomplete data-ng-model="venue.googleAddress" options="options" details="details" placeholder="Search for address" />
+          <input type="text" class="form-control" data-ng-autocomplete data-ng-model="venue.googleAddress" data-options="options" data-details="details" placeholder="Search for address" />
         </div>
       </div>
 
@@ -84,10 +84,12 @@
 
     <div class="col-md-4" data-ng-if="venue.googleAddress">
       <h3>Google Address: {{venue.googleAddress}}</h3>
+      <h3>Long: {{details.geometry.location.F}}</h3>
+      <h3>Lat: {{details.geometry.location.A}}</h3>
       <div ng-repeat="item in details.address_components">
         {{item.types[0]}}: {{item.short_name}}
       </div>
-      {{details.formatted_address}}
+      Formated Address: {{details.formatted_address}}
     </div>
 
   </section>

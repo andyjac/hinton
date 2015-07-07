@@ -90,16 +90,12 @@
   font-style: italic;
 }
 
-#add-genre-btn {
-  margin-top: 18px;
+#add-genre-btn, #add-genre-dropdown {
+  margin-bottom: 7px;
 }
 
 .list-group-item {
   padding: 0 10px;
-}
-
-.glyphicon-remove {
-  width: 0px;
 }
 
 #restaurant-info {

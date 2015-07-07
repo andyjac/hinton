@@ -17,7 +17,7 @@ module.exports = function(app) {
         $scope.genre = '';
       }
 
-      document.getElementById('r_genre').focus();
+      angular.element('#r_genre').focus();
     };
 
     $scope.removeGenre = function(index) {

@@ -151,19 +151,8 @@
 
     <div class="col-md-4" data-ng-show="isNotEmpty(venue.address)">
       <h3>Address:</h3>
-      <h4>{{venue.address.number}} {{venue.address.street}}</h4>
-      <h4>{{venue.address.city}} {{venue.address.state}} {{venue.address.zip}}</h4>
-    </div>
-
-    <div class="col-md-4" data-ng-if="venue.googleAddress">
-      <h3>Google Address: {{venue.googleAddress}}</h3>
-      <h3>Long: {{details.geometry.location.F}}</h3>
-      <h3>Lat: {{details.geometry.location.A}}</h3>
-      <h3>Address: {{details.address_components[0].short_name}}</h3>
-      <h3>Street: {{details.address_components[1].short_name}}</h3>
-      <h3>City: {{details.address_components[3].short_name}}</h3>
-      <h3>State: {{details.address_components[5].short_name}}</h3>
-      <h3>Zip: {{details.address_components[7].short_name}}</h3>
+      <h4>{{venue.address.number}}, {{venue.address.street}}</h4>
+      <h4>{{venue.address.city}}, {{venue.address.state}} {{venue.address.zip}}</h4>
     </div>
 
   </section>

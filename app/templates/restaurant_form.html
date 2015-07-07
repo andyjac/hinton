@@ -71,10 +71,9 @@
 
       <div class="form-group col-md-12">
         <label>Google Address Search</label>
-        <input type="text" class="form-control" data-ng-autocomplete
-               data-ng-model="venue.googleAddress"
-               data-options="options"
-               data-details="details" placeholder="Search for address" />
+          <input type="text" class="form-control" data-ng-autocomplete data-ng-model="venue.googleAddress" data-options="options" data-details="details" placeholder="Search for address" />
+        <button type="button" class="btn"
+                data-ng-click="populateAddress()">Poplulate</button>
       </div>
 
       <div class="form-group col-md-6">
@@ -116,6 +115,7 @@
         <button type="submit" class="btn btn-success"
                 data-ng-disabled="restaurant-form.$invalid">Save</button>
       </div>
+
     </form>
   </section>
 

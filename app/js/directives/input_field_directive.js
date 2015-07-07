@@ -9,7 +9,8 @@ module.exports = function(app) {
         id: '@',
         placeholderText: '@',
         model: '=',
-        isRequired: '='
+        isRequired: '=',
+        isDisabled: '='
       },
       transclude: true
     };

@@ -11,15 +11,38 @@
       </div>
 
       <div class="col-md-12">
+        <label>Genre</label>
         <div class="input-group">
+
+          <!-- dropdown -->
+          <div class="input-group-btn btn-group" dropdown>
+            <button type="button" class="btn btn-default dropdown-toggle"
+                    id="add-genre-dropdown" dropdown-toggle data-ng-disabled="disabled">
+              Pick <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li data-ng-repeat="genre in existingGenres">
+                <a href="javascript:void" data-ng-click="setGenre(genre)">{{genre}}</a>
+              </li>
+            </ul>
+          </div>
+          <!-- end dropdown -->
+
+          <!-- input -->
           <div data-input-field-directive
-               data-title="Genre" data-id="r_genre" data-placeholder-text="Genre"
+               data-title="" data-id="r_genre"
+               data-placeholder-text="Enter new genre"
                data-model="genre" data-is-required="false">
           </div>
-          <span class="input-group-btn">
+          <!-- end input -->
+
+          <!-- add button -->
+          <div class="input-group-btn">
             <button class="btn btn-default" id="add-genre-btn" type="button"
                     data-ng-click="addGenre(genre)">Add</button>
-          </span>
+          </div>
+          <!-- end add button -->
+
         </div>
       </div>
 

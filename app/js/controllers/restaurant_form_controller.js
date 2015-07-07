@@ -11,6 +11,12 @@ module.exports = function(app) {
       address: {}
     };
 
+    $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
+
+    $scope.setGenre = function(genre) {
+      $scope.genre = genre;
+    };
+
     $scope.addGenre = function(genre) {
       if (genre.trim() !== '') {
         $scope.venue.genres.push(genre);

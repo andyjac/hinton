@@ -33,5 +33,14 @@ module.exports = function(app) {
       console.log(restaurantInfo);
       clearFields(restaurantInfo);
     };
+
+    $scope.populateAddress = function() {
+      $scope.venue.address.number = $scope.details.address_components[0].short_name;
+      $scope.venue.address.street = $scope.details.address_components[1].short_name;
+      $scope.venue.address.city = $scope.details.address_components[3].short_name;
+      $scope.venue.address.state = $scope.details.address_components[5].short_name;
+      $scope.venue.address.zip = $scope.details.address_components[7].short_name;
+    };
+
   }]);
 };

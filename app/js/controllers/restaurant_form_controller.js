@@ -34,6 +34,14 @@ module.exports = function(app) {
 
     $scope.setPrice = function(price) {
       $scope.venue.price = price;
+      var priceNum = price;
+      var dollars = ''
+
+      while(priceNum--) {
+        dollars += '$';
+      }
+
+      $scope.priceDollars = dollars;
     };
 
     $scope.isNotEmpty = function(obj) {

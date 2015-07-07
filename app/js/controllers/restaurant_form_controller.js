@@ -35,7 +35,7 @@ module.exports = function(app) {
     $scope.setPrice = function(price) {
       $scope.venue.price = price;
       var priceNum = price;
-      var dollars = ''
+      var dollars = '';
 
       while(priceNum--) {
         dollars += '$';

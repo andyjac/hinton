@@ -46,14 +46,22 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
-        <div data-input-field-directive data-title="Price" data-id="r_price"
-             data-placeholder-text="Price (1-5)"
-             data-model="venue.price" data-is-required="true">
+      <div class="form-group col-md-2">
+        <label>Price</label><br>
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-default dropdown-toggle"
+                  id="add-price-dropdown" dropdown-toggle data-ng-disabled="disabled">
+            Pick <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li data-ng-repeat="price in [1, 2, 3, 4, 5]">
+              <a href="javascript:void" data-ng-click="setPrice(price)">{{price}}</a>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div class="form-group col-md-9">
+      <div class="form-group col-md-10">
         <div data-input-field-directive data-title="Menu Item" data-id="r_item"
              data-placeholder-text="Menu Item"
              data-model="venue.menuItem" data-is-required="true">

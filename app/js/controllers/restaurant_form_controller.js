@@ -8,7 +8,7 @@ module.exports = function(app) {
       genres: [],
       price: '',
       menuItem: '',
-      address: ''
+      address: {}
     };
 
     $scope.addGenre = function(genre) {
@@ -22,6 +22,10 @@ module.exports = function(app) {
 
     $scope.removeGenre = function(index) {
       $scope.venue.genres.splice(index, 1);
+    };
+
+    $scope.isNotEmpty = function(obj) {
+      return Object.keys(obj).length;
     };
 
     $scope.submitForm = function() {

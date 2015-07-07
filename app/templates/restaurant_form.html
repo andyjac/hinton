@@ -43,10 +43,38 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Address" data-id="r_address"
              data-placeholder-text="Address"
-             data-model="venue.address" data-is-required="true">
+             data-model="venue.address.number" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Street" data-id="r_street"
+             data-placeholder-text="Street"
+             data-model="venue.address.street" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="City" data-id="r_city"
+             data-placeholder-text="City"
+             data-model="venue.address.city" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="State" data-id="r_state"
+             data-placeholder-text="State"
+             data-model="venue.address.state" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="Zip" data-id="r_zip"
+             data-placeholder-text="Zip"
+             data-model="venue.address.zip" data-is-required="true">
         </div>
       </div>
 
@@ -80,8 +108,10 @@
       <h3>Menu Item: {{venue.menuItem}}</h3>
     </div>
 
-    <div class="col-md-4" data-ng-if="venue.address">
-      <h3>Address: {{venue.address}}</h3>
+    <div class="col-md-4" data-ng-show="isNotEmpty(venue.address)">
+      <h3>Address:</h3>
+      <h4>{{venue.address.number}} {{venue.address.street}}</h4>
+      <h4>{{venue.address.city}} {{venue.address.state}} {{venue.address.zip}}</h4>
     </div>
 
     <div class="col-md-4" data-ng-if="venue.googleAddress">

@@ -1,0 +1,159 @@
+<main data-ng-controller="restaurantFormController">
+
+  <!-- form -->
+  <section class="main-left col-md-6">
+    <form id="restaurant-form" data-ng-submit="submitForm()">
+      <div class="form-group col-md-12">
+        <div data-input-field-directive data-autofocus-directive
+             data-title="Name" data-id="r_name"
+             data-placeholder-text="Restaurant name"
+             data-model="venue.name" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label>Genre</label>
+        <div class="input-group">
+
+          <!-- dropdown -->
+          <div class="input-group-btn btn-group" dropdown>
+            <button type="button" class="btn btn-default dropdown-toggle"
+                    id="add-genre-dropdown" dropdown-toggle data-ng-disabled="disabled">
+              Pick <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <li data-ng-repeat="genre in existingGenres">
+                <a href="javascript:void" data-ng-click="setGenre(genre)">{{genre}}</a>
+              </li>
+            </ul>
+          </div>
+          <!-- end dropdown -->
+
+          <!-- input -->
+          <div data-input-field-directive
+               data-title="" data-id="r_genre"
+               data-placeholder-text="Enter new genre"
+               data-model="genre" data-is-required="false">
+          </div>
+          <!-- end input -->
+
+          <!-- add button -->
+          <div class="input-group-btn">
+            <button class="btn btn-default" id="add-genre-btn" type="button"
+                    data-ng-click="addGenre(genre)">Add</button>
+          </div>
+          <!-- end add button -->
+
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label>Price</label><br>
+        <div class="btn-group" dropdown>
+          <button type="button" class="btn btn-default dropdown-toggle"
+                  id="add-price-dropdown" dropdown-toggle data-ng-disabled="disabled">
+            Pick <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li data-ng-repeat="price in [1, 2, 3, 4, 5]">
+              <a href="javascript:void" data-ng-click="setPrice(price)">{{price}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="form-group col-md-10">
+        <div data-input-field-directive data-title="Menu Item" data-id="r_item"
+             data-placeholder-text="Menu Item"
+             data-model="venue.menuItem" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <label>Google Address Search</label>
+        <div class="input-group">
+          <input type="text" class="form-control" data-ng-autocomplete
+                 data-ng-model="venue.googleAddress"
+                 data-options="options"
+                 data-details="details" placeholder="Search for address" />
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    data-ng-click="populateAddress()">Use</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Address" data-id="r_address"
+             data-placeholder-text="Address"
+             data-model="venue.address.number" data-is-required="true" data-is-disabled="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Street" data-id="r_street"
+             data-placeholder-text="Street"
+             data-model="venue.address.street" data-is-required="true" data-is-disabled="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="City" data-id="r_city"
+             data-placeholder-text="City"
+             data-model="venue.address.city" data-is-required="true" data-is-disabled="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="State" data-id="r_state"
+             data-placeholder-text="State"
+             data-model="venue.address.state" data-is-required="true" data-is-disabled="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="Zip" data-id="r_zip"
+             data-placeholder-text="Zip"
+             data-model="venue.address.zip" data-is-required="true" data-is-disabled="true">
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button type="submit" class="btn btn-success"
+                data-ng-disabled="restaurant-form.$invalid">Save</button>
+      </div>
+
+    </form>
+  </section>
+
+  <!-- preview -->
+  <section id="restaurant-info" class="main-right col-md-6">
+    <h1 class="col-md-12">{{venue.name}}</h1>
+
+    <div class="col-md-12" data-ng-if="venue.genres.length">
+      <h3>Genre(s):</h3>
+      <ul class="list-group">
+        <button class="list-group-item btn col-md-4"
+                data-ng-repeat="genre in venue.genres"
+                data-ng-click="removeGenre($index)">
+          {{genre}}
+        </button>
+      </ul>
+    </div>
+
+    <div class="col-md-3" data-ng-if="venue.price">
+      <h3>Price: {{priceDollars}}</h3>
+    </div>
+
+    <div class="col-md-9" data-ng-if="venue.menuItem">
+      <h3>Menu Item: {{venue.menuItem}}</h3>
+    </div>
+
+    <div class="col-md-4" data-ng-show="isNotEmpty(venue.address)">
+      <h3>Address:</h3>
+      <h4>{{venue.address.number}}, {{venue.address.street}}</h4>
+      <h4>{{venue.address.city}}, {{venue.address.state}} {{venue.address.zip}}</h4>
+    </div>
+
+  </section>
+</main>

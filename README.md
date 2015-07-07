@@ -1,4 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/andyjac/hinton.svg?label=ready&title=Ready)](http://waffle.io/andyjac/hinton)
+[![Stories in Progress](https://badge.waffle.io/andyjac/hinton.svg?label=in%20progress&title=In%20Progress)](http://waffle.io/andyjac/hinton)
 [![Throughput Graph](https://graphs.waffle.io/andyjac/hinton/throughput.svg)](https://waffle.io/andyjac/hinton/metrics)
 [![Build Status](https://travis-ci.org/andyjac/hinton.svg)](https://travis-ci.org/andyjac/hinton)
 Hinton
@@ -7,7 +7,7 @@ Hinton
 
 API Reference
 ---------------
-#### GET api/restaurant/all 
+#### GET api/restaurant/all
 Returns an array of map data for all restaurants in the database
 
 Response data takes the following format:

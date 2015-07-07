@@ -11,7 +11,8 @@ module.exports = function(grunt) {
   grunt.initConfig({
     jshint: {
       options: {
-        node: true
+        node: true,
+        force: true
       },
       server: {
         src: ['*.js', 'routes/**/*.js', 'models/**/*.js', 'controllers/**/*.js', 'lib/**/*.js']
@@ -20,7 +21,9 @@ module.exports = function(grunt) {
         src: ['app/**/*.js'],
         options: {
           globals: {
-            angular: true
+            angular: true,
+            $: true,
+            document: true
           }
         }
       },
@@ -62,12 +65,8 @@ module.exports = function(grunt) {
     },
 
     watch: {
-      jshint: {
-        files: ['<%= jshint.dev.src %>', '.jshintrc'],
-        tasks: ['default']
-      },
       client: {
-        files: ['./app/**/*.js', './app/**/*.html'],
+        files: ['./app/**/*.js', './app/**/*.html', './app/**/*.css'],
         tasks: ['build']
       }
     },
@@ -101,7 +100,7 @@ module.exports = function(grunt) {
         cwd: 'app/',
         expand: true,
         flatten: false,
-        src: '**/*.html',
+        src: ['**/*.html', '**/*.css'],
         dest: 'build/',
         filter: 'isFile'
       }

@@ -90,8 +90,8 @@
   font-style: italic;
 }
 
-#add-genre-btn, #add-genre-dropdown {
-  margin-bottom: 7px;
+.input-group-btn {
+  padding-bottom: 7px;
 }
 
 .list-group-item {

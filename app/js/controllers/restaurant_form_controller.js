@@ -1,5 +1,7 @@
 'use strict';
 
+var _ = require('lodash');
+
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', 'clearFields', function($scope, clearFields) {
 
@@ -35,11 +37,27 @@ module.exports = function(app) {
     };
 
     $scope.populateAddress = function() {
-      $scope.venue.address.number = $scope.details.address_components[0].short_name;
-      $scope.venue.address.street = $scope.details.address_components[1].short_name;
-      $scope.venue.address.city = $scope.details.address_components[3].short_name;
-      $scope.venue.address.state = $scope.details.address_components[5].short_name;
-      $scope.venue.address.zip = $scope.details.address_components[7].short_name;
+      _.forEach($scope.details.address_components, function(item) {
+            if( _.includes(item.types, 'street_number')) {
+                $scope.venue.address.number = item.short_name;
+            }
+
+            if( _.includes(item.types, 'route')) {
+                $scope.venue.address.street = item.short_name;
+            }
+
+            if( _.includes(item.types, 'locality')) {
+                $scope.venue.address.city = item.short_name;
+            }
+
+            if( _.includes(item.types, 'administrative_area_level_1')) {
+                $scope.venue.address.state = item.short_name;
+            }
+
+            if( _.includes(item.types, 'postal_code')) {
+                $scope.venue.address.zip = item.short_name;
+            }
+        });
     };
 
   }]);

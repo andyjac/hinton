@@ -17,11 +17,13 @@
 
           <!-- dropdown -->
           <div class="input-group-btn btn-group" dropdown>
-            <button type="button" class="btn btn-default dropdown-toggle"
-                    id="add-genre-dropdown" dropdown-toggle data-ng-disabled="disabled">
+            <button type="button"
+                    class="btn btn-default dropdown-toggle"
+                    id="add-genre-dropdown"
+                    data-ng-disabled="disabled" dropdown-toggle>
               Pick <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu" role="menu">
+            <ul class="dropdown-menu" id="genre-dropdown" role="menu">
               <li data-ng-repeat="genre in existingGenres">
                 <a href="javascript:void" data-ng-click="setGenre(genre)">{{genre}}</a>
               </li>
@@ -50,8 +52,10 @@
       <div class="form-group col-md-2">
         <label>Price</label><br>
         <div class="btn-group" dropdown>
-          <button type="button" class="btn btn-default dropdown-toggle"
-                  id="add-price-dropdown" dropdown-toggle data-ng-disabled="disabled">
+          <button type="button"
+                  class="btn btn-default dropdown-toggle"
+                  id="add-price-dropdown"
+                  data-ng-disabled="disabled" dropdown-toggle>
             Pick <span class="caret"></span>
           </button>
           <ul class="dropdown-menu" role="menu">

@@ -102,3 +102,7 @@
   position: fixed;
   left: 50%;
 }
+
+#genre-dropdown {
+  top: 80%;
+}

@@ -78,9 +78,6 @@ module.exports = function(grunt) {
         output: {
           path: 'build/',
           filename: 'bundle.js'
-        },
-        module: {
-          loaders: []
         }
       },
       karma_test: {
@@ -88,9 +85,6 @@ module.exports = function(grunt) {
         output: {
           path: 'test/karma_tests/',
           file: 'bundle.js'
-        },
-        module: {
-          loaders: []
         }
       }
     },

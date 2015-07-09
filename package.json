@@ -50,13 +50,16 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-karma": "^0.11.2",
     "grunt-simple-mocha": "^0.4.0",
-    "grunt-webpack": "^1.0.10",
+    "grunt-webpack": "^1.0.11",
     "jasmine-core": "^2.3.4",
     "karma": "^0.12.37",
     "karma-jasmine": "^0.3.6",
     "karma-mocha-reporter": "^1.0.2",
     "karma-phantomjs-launcher": "^0.2.0",
     "mocha": "^2.2.5",
-    "ng-autocomplete": "^1.0.0"
+    "ng-autocomplete": "^1.0.0",
+    "node-libs-browser": "^0.5.2",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.10.1"
   }
 }

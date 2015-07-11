@@ -7,9 +7,9 @@ module.exports = function(app) {
     $scope.hstep = 1;
     $scope.mstep = 15;
 
-    $scope.changed = function () {
-      $log.log('Time changed to: ' + $scope.mytime);
-    };
+    // $scope.changed = function () {
+    //   $log.log('Time changed to: ' + $scope.mytime);
+    // };
 
     $scope.clear = function() {
       $scope.mytime = null;

@@ -98,6 +98,11 @@
       </div>
 
       <div class="col-md-12" data-ng-controller="timepickerController">
+        <div data-timepicker-directive data-label-text="Hello" data-day="tuesday" data-day-id="tuesday" data-hours-step="{{hstep}}" data-minutes-step="{{mstep}}">
+        </div>
+      </div>
+
+      <div class="col-md-12" data-ng-controller="timepickerController">
         <div class="col-md-6">
           <timepicker data-ng-model="monday.open" data-ng-change="changed()" data-hour-step="hstep" data-minute-step="mstep"></timepicker>
         </div>

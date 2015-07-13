@@ -1,11 +1,10 @@
 <section>
-  <label>{{labelText}}</label>
-  <div>
-    <timepicker data-ng-model="tuesday.open" data-ng-change="changed()" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
+  <div class="col-md-6">
+    <timepicker data-ng-model="modelOpen" data-ng-change="changed()" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
   </div>
-  <div>
-    <timepicker data-ng-model="tuesday.close" data-ng-change="changed()" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
+  <div class="col-md-6">
+    <timepicker data-ng-model="modelClose" data-ng-change="changed()" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
   </div>
-  <div style="display: flex" class="alert alert-info">{{day}} {{tuesday.open | date:'shortTime'}} - {{tuesday.close | date:'shortTime'}}</div>
+  <div style="display: flex" class="alert alert-info">{{labelText}} {{modelOpen | date:'shortTime'}} - {{modelClose | date:'shortTime'}}</div>
   <button class="btn btn-danger" data-ng-click="clear()">Clear</button>
 </section>

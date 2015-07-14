@@ -5,7 +5,11 @@ module.exports = function(app) {
       replace: true,
       templateUrl: '/templates/directives/timepicker.html',
       scope: {
-
+        labelText: '@',
+        modelOpen: '=',
+        modelClose: '=',
+        hoursStep: '@',
+        minutesStep: '@'
       },
       transclude: true
     };

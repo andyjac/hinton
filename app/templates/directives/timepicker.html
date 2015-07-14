@@ -1,10 +1,9 @@
-<div class="col-md-12" data-ng-controller="timepickerController">
+<section>
   <div class="col-md-6">
-    <timepicker data-ng-model="monday.open" data-ng-change="changed()" data-hour-step="hstep" data-minute-step="mstep"></timepicker>
+    <timepicker data-ng-model="modelOpen" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
   </div>
   <div class="col-md-6">
-    <timepicker data-ng-model="monday.close" data-ng-change="changed()" data-hour-step="hstep" data-minute-step="mstep"></timepicker>
+    <timepicker data-ng-model="modelClose" data-hour-step="hoursStep" data-minute-step="minutesStep"></timepicker>
   </div>
-  <div style="display: flex" class="alert alert-info">Monday {{monday.open | date:'shortTime'}} - {{monday.close | date:'shortTime'}}</div>
-  <button class="btn btn-danger" data-ng-click="clear()">Clear</button>
-</div>
+  <div style="display: flex" class="alert alert-info">{{labelText}} {{modelOpen | date:'shortTime'}} - {{modelClose | date:'shortTime'}}</div>
+</section>

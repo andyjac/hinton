@@ -106,3 +106,8 @@
 #genre-dropdown {
   top: 80%;
 }
+
+.timepicker .btn {
+    width: 50px;
+    margin-bottom: 7px;
+}

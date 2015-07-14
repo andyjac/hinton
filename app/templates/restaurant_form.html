@@ -98,14 +98,17 @@
       </div>
 
       <div class="col-md-12" data-ng-controller="timepickerController">
-        <div class="col-md-6">
-          <timepicker data-ng-model="monday.open" data-ng-change="changed()" data-hour-step="hstep" data-minute-step="mstep"></timepicker>
+        <div class="timepicker" data-timepicker-directive data-label-text="Monday"
+             data-model-open="monday.open" data-model-close="monday.close"
+             data-hours-step="{{hstep}}" data-minutes-step="{{mstep}}">
         </div>
-        <div class="col-md-6">
-          <timepicker data-ng-model="monday.close" data-ng-change="changed()" data-hour-step="hstep" data-minute-step="mstep"></timepicker>
+      </div>
+
+      <div class="col-md-12" data-ng-controller="timepickerController">
+        <div class="timepicker" data-timepicker-directive data-label-text="Tuesday"
+             data-model-open="tuesday.open" data-model-close="tuesday.close"
+             data-hours-step="{{hstep}}" data-minutes-step="{{mstep}}">
         </div>
-        <div style="display: flex" class="alert alert-info">Monday {{monday.open | date:'shortTime'}} - {{monday.close | date:'shortTime'}}</div>
-        <button class="btn btn-danger" data-ng-click="clear()">Clear</button>
       </div>
 
       <div class="col-md-12">

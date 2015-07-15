@@ -8,9 +8,13 @@ module.exports = function(app) {
     $scope.restaurant = {
       name: '',
       genres: [],
+      phone: '',
       price: 0,
+      address: {},
       menuItem: '',
-      address: {}
+      blog: '',
+      site: '',
+      menu: ''
     };
 
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];

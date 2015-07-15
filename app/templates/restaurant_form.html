@@ -12,7 +12,7 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="col-md-9">
         <label>Genre</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
@@ -31,6 +31,13 @@
         </div>
       </div>
 
+      <div class="form-group col-md-3">
+        <div data-input-field-directive data-title="Phone No." data-id="r_phone"
+             data-placeholder-text="123-456-7890"
+             data-model="restaurant.phone" data-is-required="true">
+        </div>
+      </div>
+
       <div class="form-group col-md-2">
         <label>Price</label><br>
         <div class="btn-group">
@@ -41,14 +48,7 @@
         </div>
       </div>
 
-      <div class="form-group col-md-10">
-        <div data-input-field-directive data-title="Menu Item" data-id="r_item"
-             data-placeholder-text="Menu Item"
-             data-model="venue.menuItem" data-is-required="true">
-        </div>
-      </div>
-
-      <div class="col-md-12">
+      <div class="col-md-10">
         <label>Google Address Search</label>
         <div class="input-group">
           <input type="text" class="form-control" data-ng-autocomplete
@@ -97,6 +97,34 @@
         </div>
       </div>
 
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Menu Item" data-id="r_item"
+             data-placeholder-text="Featured Menu Item"
+             data-model="restaurant.menuItem" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Blog Link" data-id="blog_link"
+             data-placeholder-text="Blog Post URL"
+             data-model="restaurant.blog" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Restaurant Link" data-id="r_site"
+             data-placeholder-text="Restaurant URL"
+             data-model="restaurant.site" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6">
+        <div data-input-field-directive data-title="Menu Link" data-id="menu_link"
+             data-placeholder-text="Menu URL"
+             data-model="restaurant.menu" data-is-required="true">
+        </div>
+      </div>
+
       <div class="col-md-12" data-ng-controller="timepickerController">
         <div class="timepicker" data-timepicker-directive data-label-text="Monday"
              data-model-open="monday.open" data-model-close="monday.close"
@@ -135,8 +163,9 @@
       </ul>
     </div>
 
-    <div class="col-md-3" data-ng-if="venue.price">
-      <h3>Price: {{priceDollars}}</h3>
+    <div class="col-md-6" data-ng-if="restaurant.phone">
+      <h3>Phone:</h3>
+      <h4>{{restaurant.phone}}</h4>
     </div>
 
     <div class="col-md-6" data-ng-if="restaurant.price">
@@ -144,11 +173,31 @@
       <h4>{{priceDollars}}</h4>
     </div>
 
-    <div class="col-md-4" data-ng-show="isNotEmpty(venue.address)">
+    <div class="col-md-6" data-ng-show="isNotEmpty(restaurant.address)">
       <h3>Address:</h3>
       <h4>{{restaurant.address.number}}, {{restaurant.address.street}}</h4>
       <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4>
     </div>
-  </section>
 
+    <div class="col-md-6" data-ng-if="restaurant.menuItem">
+      <h3>Featured Menu Item:</h3>
+      <h4>{{restaurant.menuItem}}</h4>
+    </div>
+
+    <div class="col-md-6" data-ng-if="restaurant.blog">
+      <h3>Blog Post:</h3>
+      <h4>{{restaurant.blog}}</h4>
+    </div>
+
+    <div class="col-md-6" data-ng-if="restaurant.site">
+      <h3>Website:</h3>
+      <h4>{{restaurant.site}}</h4>
+    </div>
+
+    <div class="col-md-6" data-ng-if="restaurant.menu">
+      <h3>Menu:</h3>
+      <h4>{{restaurant.menu}}</h4>
+    </div>
+
+  </section>
 </main>

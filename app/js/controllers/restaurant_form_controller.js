@@ -80,6 +80,12 @@ module.exports = function(app) {
           $scope.restaurant.address.zip = item.short_name;
         }
       });
+
+      if($scope.details.international_phone_number) {
+        $scope.restaurant.phone = $scope.details.international_phone_number;
+      } else if ($scope.details.formatted_phone_number) {
+        $scope.restaurant.phone = $scope.details.formatted_phone_number;
+      }
     };
 
   }]);

@@ -81,10 +81,18 @@ module.exports = function(app) {
         }
       });
 
+      if($scope.details.name) {
+        $scope.restaurant.name = $scope.details.name;
+      }
+
       if($scope.details.international_phone_number) {
         $scope.restaurant.phone = $scope.details.international_phone_number;
       } else if ($scope.details.formatted_phone_number) {
         $scope.restaurant.phone = $scope.details.formatted_phone_number;
+      }
+
+      if($scope.details.website) {
+        $scope.restaurant.site = $scope.details.website;
       }
     };
 

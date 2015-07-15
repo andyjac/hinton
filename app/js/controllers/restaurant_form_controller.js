@@ -5,7 +5,7 @@ var _ = require('lodash');
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', 'clearFields', function($scope, clearFields) {
 
-    $scope.venue = {
+    $scope.restaurant = {
       name: '',
       genres: [],
       price: 0,
@@ -21,7 +21,7 @@ module.exports = function(app) {
 
     $scope.addGenre = function(genre) {
       if (genre.trim() !== '') {
-        $scope.venue.genres.push(genre);
+        $scope.restaurant.genres.push(genre);
         $scope.genre = '';
       }
 
@@ -29,11 +29,11 @@ module.exports = function(app) {
     };
 
     $scope.removeGenre = function(index) {
-      $scope.venue.genres.splice(index, 1);
+      $scope.restaurant.genres.splice(index, 1);
     };
 
     $scope.setPrice = function(price) {
-      $scope.venue.price = price;
+      $scope.restaurant.price = price;
       var priceNum = price;
       var dollars = '';
 
@@ -49,7 +49,7 @@ module.exports = function(app) {
     };
 
     $scope.submitForm = function() {
-      var restaurantInfo = $scope.venue;
+      var restaurantInfo = $scope.restaurant;
       console.log(restaurantInfo);
       clearFields(restaurantInfo);
     };
@@ -57,23 +57,23 @@ module.exports = function(app) {
     $scope.populateAddress = function() {
       _.forEach($scope.details.address_components, function(item) {
             if( _.includes(item.types, 'street_number')) {
-                $scope.venue.address.number = item.short_name;
+                $scope.restaurant.address.number = item.short_name;
             }
 
             if( _.includes(item.types, 'route')) {
-                $scope.venue.address.street = item.short_name;
+                $scope.restaurant.address.street = item.short_name;
             }
 
             if( _.includes(item.types, 'locality')) {
-                $scope.venue.address.city = item.short_name;
+                $scope.restaurant.address.city = item.short_name;
             }
 
             if( _.includes(item.types, 'administrative_area_level_1')) {
-                $scope.venue.address.state = item.short_name;
+                $scope.restaurant.address.state = item.short_name;
             }
 
             if( _.includes(item.types, 'postal_code')) {
-                $scope.venue.address.zip = item.short_name;
+                $scope.restaurant.address.zip = item.short_name;
             }
         });
     };

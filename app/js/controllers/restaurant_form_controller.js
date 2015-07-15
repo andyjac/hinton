@@ -91,6 +91,10 @@ module.exports = function(app) {
         $scope.restaurant.phone = $scope.details.formatted_phone_number;
       }
 
+      if($scope.details.price_level) {
+        $scope.setPrice($scope.details.price_level+1); //price_level [0-4]
+      }
+
       if($scope.details.website) {
         $scope.restaurant.site = $scope.details.website;
       }

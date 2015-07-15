@@ -60,26 +60,26 @@ module.exports = function(app) {
 
     $scope.populateAddress = function() {
       _.forEach($scope.details.address_components, function(item) {
-            if( _.includes(item.types, 'street_number')) {
-                $scope.restaurant.address.number = item.short_name;
-            }
+        if (_.includes(item.types, 'street_number')) {
+          $scope.restaurant.address.number = item.short_name;
+        }
 
-            if( _.includes(item.types, 'route')) {
-                $scope.restaurant.address.street = item.short_name;
-            }
+        if (_.includes(item.types, 'route')) {
+          $scope.restaurant.address.street = item.short_name;
+        }
 
-            if( _.includes(item.types, 'locality')) {
-                $scope.restaurant.address.city = item.short_name;
-            }
+        if (_.includes(item.types, 'locality')) {
+          $scope.restaurant.address.city = item.short_name;
+        }
 
-            if( _.includes(item.types, 'administrative_area_level_1')) {
-                $scope.restaurant.address.state = item.short_name;
-            }
+        if (_.includes(item.types, 'administrative_area_level_1')) {
+          $scope.restaurant.address.state = item.short_name;
+        }
 
-            if( _.includes(item.types, 'postal_code')) {
-                $scope.restaurant.address.zip = item.short_name;
-            }
-        });
+        if (_.includes(item.types, 'postal_code')) {
+          $scope.restaurant.address.zip = item.short_name;
+        }
+      });
     };
 
   }]);

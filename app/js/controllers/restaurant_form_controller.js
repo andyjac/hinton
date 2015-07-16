@@ -90,7 +90,7 @@ module.exports = function(app) {
         }
       });
 
-      if($scope.details.name) {
+      if($scope.details.name && !($scope.restaurant.name)) {
         $scope.restaurant.name = $scope.details.name;
       }
 

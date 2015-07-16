@@ -14,7 +14,16 @@ module.exports = function(app) {
       menuItem: '',
       blog: '',
       site: '',
-      menu: ''
+      menu: '',
+      hours: {
+        mon: '',
+        tue: '',
+        wed: '',
+        thu: '',
+        fri: '',
+        sat: '',
+        sun: '',
+      }
     };
 
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
@@ -98,6 +107,38 @@ module.exports = function(app) {
       if($scope.details.website) {
         $scope.restaurant.site = $scope.details.website;
       }
+
+      if($scope.details.opening_hours)
+
+      _.forEach($scope.details.opening_hours.weekday_text, function(item) {
+        if (_.includes(item, 'Mon')) {
+          $scope.restaurant.hours.mon = item;
+        }
+
+        if (_.includes(item, 'Tue')) {
+          $scope.restaurant.hours.tue = item;
+        }
+
+        if (_.includes(item, 'Wed')) {
+          $scope.restaurant.hours.wed = item;
+        }
+
+        if (_.includes(item, 'Thur')) {
+          $scope.restaurant.hours.thu = item;
+        }
+
+        if (_.includes(item, 'Fri')) {
+          $scope.restaurant.hours.fri = item;
+        }
+
+        if (_.includes(item, 'Sat')) {
+          $scope.restaurant.hours.sat = item;
+        }
+
+        if (_.includes(item, 'Sun')) {
+          $scope.restaurant.hours.sun = item;
+        }
+      });
     };
 
   }]);

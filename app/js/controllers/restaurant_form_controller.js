@@ -108,8 +108,6 @@ module.exports = function(app) {
         $scope.restaurant.site = $scope.details.website;
       }
 
-      if($scope.details.opening_hours)
-
       _.forEach($scope.details.opening_hours.weekday_text, function(item) {
         if (_.includes(item, 'Mon')) {
           $scope.restaurant.hours.mon = item;

@@ -14,7 +14,16 @@ module.exports = function(app) {
       menuItem: '',
       blog: '',
       site: '',
-      menu: ''
+      menu: '',
+      hours: {
+        mon: '',
+        tue: '',
+        wed: '',
+        thu: '',
+        fri: '',
+        sat: '',
+        sun: '',
+      }
     };
 
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
@@ -78,6 +87,54 @@ module.exports = function(app) {
 
         if (_.includes(item.types, 'postal_code')) {
           $scope.restaurant.address.zip = item.short_name;
+        }
+      });
+
+      if($scope.details.name && !($scope.restaurant.name)) {
+        $scope.restaurant.name = $scope.details.name;
+      }
+
+      if($scope.details.international_phone_number) {
+        $scope.restaurant.phone = $scope.details.international_phone_number;
+      } else if ($scope.details.formatted_phone_number) {
+        $scope.restaurant.phone = $scope.details.formatted_phone_number;
+      }
+
+      if($scope.details.price_level) {
+        $scope.setPrice($scope.details.price_level+1); //price_level [0-4]
+      }
+
+      if($scope.details.website) {
+        $scope.restaurant.site = $scope.details.website;
+      }
+
+      _.forEach($scope.details.opening_hours.weekday_text, function(item) {
+        if (_.includes(item, 'Mon')) {
+          $scope.restaurant.hours.mon = item;
+        }
+
+        if (_.includes(item, 'Tue')) {
+          $scope.restaurant.hours.tue = item;
+        }
+
+        if (_.includes(item, 'Wed')) {
+          $scope.restaurant.hours.wed = item;
+        }
+
+        if (_.includes(item, 'Thur')) {
+          $scope.restaurant.hours.thu = item;
+        }
+
+        if (_.includes(item, 'Fri')) {
+          $scope.restaurant.hours.fri = item;
+        }
+
+        if (_.includes(item, 'Sat')) {
+          $scope.restaurant.hours.sat = item;
+        }
+
+        if (_.includes(item, 'Sun')) {
+          $scope.restaurant.hours.sun = item;
         }
       });
     };

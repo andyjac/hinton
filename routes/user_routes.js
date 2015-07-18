@@ -16,6 +16,8 @@ module.exports = function(router, passport) {
   router.post('/user/create_user', adminAuth, createUserController);
   router.get('/', passport.authenticate('basic', {session: false}), signInController);
   router.post('/user/restaurant', eatAuth, addRestController);
+  //add test post route
+  router.post('/user/restaurant/bob', addRestController);
   router.put('/user/restaurant/:id', eatAuth, editRestController);
   router.delete('/user/restaurant/:id', eatAuth, deleteRestController);
 };

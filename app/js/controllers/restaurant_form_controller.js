@@ -26,6 +26,14 @@ module.exports = function(app) {
       }
     };
 
+    $scope.map = {
+      loc: {
+        lat: '',
+        long: ''
+      },
+      caption: ''
+    },
+
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
 
     $scope.setGenre = function(genre) {
@@ -63,10 +71,12 @@ module.exports = function(app) {
 
     $scope.submitForm = function() {
       var restaurantInfo = {};
+      restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
       $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
+          clearFields($scope.map);
           clearFields($scope.restaurant);
         })
         .error(function(err) {
@@ -144,6 +154,12 @@ module.exports = function(app) {
           $scope.restaurant.hours.sun = item;
         }
       });
+
+      if($scope.details.geometry) {
+        $scope.map.loc.lat = $scope.details.geometry.location.A;
+        $scope.map.loc.long = $scope.details.geometry.location.F;
+        $scope.map.caption = $scope.restaurant.name;
+      }
     };
 
   }]);

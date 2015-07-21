@@ -11,7 +11,7 @@ module.exports = function(app) {
       phone: '',
       price: 0,
       address: {},
-      menuItem: '',
+      menu_item: '',
       blog: '',
       site: '',
       menu: '',
@@ -64,7 +64,6 @@ module.exports = function(app) {
     $scope.submitForm = function() {
       var restaurantInfo = {};
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      console.log(66,restaurantInfo);
       $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);

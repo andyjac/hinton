@@ -22,7 +22,7 @@ module.exports = function(app) {
         thu: '',
         fri: '',
         sat: '',
-        sun: '',
+        sun: ''
       }
     };
 
@@ -32,9 +32,9 @@ module.exports = function(app) {
         long: ''
       },
       caption: ''
-    },
+    };
 
-    $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
+    $scope.existingGenres = [];
 
     $scope.setGenre = function(genre) {
       $scope.genre = genre;
@@ -69,6 +69,16 @@ module.exports = function(app) {
       return Object.keys(obj).length;
     };
 
+    $scope.updateFromDB = function() {
+      $http.get('/api/restaurant/genre/all')
+        .success(function(data) {
+          $scope.existingGenres = data;
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+    };
+
     $scope.submitForm = function() {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
@@ -76,6 +86,7 @@ module.exports = function(app) {
       $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
+          $scope.updateFromDB();
           clearFields($scope.map);
           clearFields($scope.restaurant);
         })

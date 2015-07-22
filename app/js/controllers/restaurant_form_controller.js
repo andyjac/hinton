@@ -125,35 +125,38 @@ module.exports = function(app) {
         $scope.restaurant.site = $scope.details.website;
       }
 
-      _.forEach($scope.details.opening_hours.weekday_text, function(item) {
-        if (_.includes(item, 'Mon')) {
-          $scope.restaurant.hours.mon = item;
-        }
+      if($scope.details.opening_hours) {
+        _.forEach($scope.details.opening_hours.weekday_text, function(item) {
+          if (_.includes(item, 'Mon')) {
+            $scope.restaurant.hours.mon = item;
+          }
 
-        if (_.includes(item, 'Tue')) {
-          $scope.restaurant.hours.tue = item;
-        }
+          if (_.includes(item, 'Tue')) {
+            $scope.restaurant.hours.tue = item;
+          }
 
-        if (_.includes(item, 'Wed')) {
-          $scope.restaurant.hours.wed = item;
-        }
+          if (_.includes(item, 'Wed')) {
+            $scope.restaurant.hours.wed = item;
+          }
 
-        if (_.includes(item, 'Thur')) {
-          $scope.restaurant.hours.thu = item;
-        }
+          if (_.includes(item, 'Thur')) {
+            $scope.restaurant.hours.thu = item;
+          }
 
-        if (_.includes(item, 'Fri')) {
-          $scope.restaurant.hours.fri = item;
-        }
+          if (_.includes(item, 'Fri')) {
+            $scope.restaurant.hours.fri = item;
+          }
 
-        if (_.includes(item, 'Sat')) {
-          $scope.restaurant.hours.sat = item;
-        }
+          if (_.includes(item, 'Sat')) {
+            $scope.restaurant.hours.sat = item;
+          }
 
-        if (_.includes(item, 'Sun')) {
-          $scope.restaurant.hours.sun = item;
-        }
-      });
+          if (_.includes(item, 'Sun')) {
+            $scope.restaurant.hours.sun = item;
+          }
+        });
+      }
+
 
       if($scope.details.geometry) {
         $scope.map.loc.lat = $scope.details.geometry.location.A;

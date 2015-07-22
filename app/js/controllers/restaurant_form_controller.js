@@ -3,15 +3,15 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', 'clearFields', function($scope, clearFields) {
+  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
 
     $scope.restaurant = {
       name: '',
-      genres: [],
+      genre: [],
       phone: '',
       price: 0,
       address: {},
-      menuItem: '',
+      menu_item: '',
       blog: '',
       site: '',
       menu: '',
@@ -26,6 +26,14 @@ module.exports = function(app) {
       }
     };
 
+    $scope.map = {
+      loc: {
+        lat: '',
+        long: ''
+      },
+      caption: ''
+    },
+
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
 
     $scope.setGenre = function(genre) {
@@ -34,7 +42,7 @@ module.exports = function(app) {
 
     $scope.addGenre = function(genre) {
       if (genre.trim() !== '') {
-        $scope.restaurant.genres.push(genre);
+        $scope.restaurant.genre.push(genre);
         $scope.genre = '';
       }
 
@@ -42,7 +50,7 @@ module.exports = function(app) {
     };
 
     $scope.removeGenre = function(index) {
-      $scope.restaurant.genres.splice(index, 1);
+      $scope.restaurant.genre.splice(index, 1);
     };
 
     $scope.setPrice = function(price) {
@@ -62,9 +70,18 @@ module.exports = function(app) {
     };
 
     $scope.submitForm = function() {
-      var restaurantInfo = $scope.restaurant;
-      console.log(restaurantInfo);
-      clearFields(restaurantInfo);
+      var restaurantInfo = {};
+      restaurantInfo.map = _.cloneDeep($scope.map);
+      restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
+      $http.post('/hinton/user/restaurant/client', restaurantInfo)
+        .success(function(data) {
+          console.log(data);
+          clearFields($scope.map);
+          clearFields($scope.restaurant);
+        })
+        .error(function(err) {
+          console.log(err);
+        });
     };
 
     $scope.populateAddress = function() {
@@ -137,6 +154,12 @@ module.exports = function(app) {
           $scope.restaurant.hours.sun = item;
         }
       });
+
+      if($scope.details.geometry) {
+        $scope.map.loc.lat = $scope.details.geometry.location.A;
+        $scope.map.loc.long = $scope.details.geometry.location.F;
+        $scope.map.caption = $scope.restaurant.name;
+      }
     };
 
   }]);

@@ -100,7 +100,7 @@
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Menu Item" data-id="r_item"
              data-placeholder-text="Featured Menu Item"
-             data-model="restaurant.menuItem" data-is-required="true">
+             data-model="restaurant.menu_item" data-is-required="true">
         </div>
       </div>
 
@@ -201,11 +201,11 @@
   <section id="restaurant-info" class="main-right col-md-6">
     <h1 class="col-md-12">{{restaurant.name}}</h1>
 
-    <div class="col-md-6" data-ng-if="restaurant.genres.length">
+    <div class="col-md-6" data-ng-if="restaurant.genre.length">
       <h3>Genre(s):</h3>
       <ul class="list-group">
         <button class="list-group-item btn col-md-4"
-                data-ng-repeat="genre in restaurant.genres"
+                data-ng-repeat="genre in restaurant.genre"
                 data-ng-click="removeGenre($index)">
           {{genre}}
         </button>
@@ -228,9 +228,9 @@
       <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4>
     </div>
 
-    <div class="col-md-6" data-ng-if="restaurant.menuItem">
+    <div class="col-md-6" data-ng-if="restaurant.menu_item">
       <h3>Featured Menu Item:</h3>
-      <h4>{{restaurant.menuItem}}</h4>
+      <h4>{{restaurant.menu_item}}</h4>
     </div>
 
     <div class="col-md-6" data-ng-if="restaurant.blog">

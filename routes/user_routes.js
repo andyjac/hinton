@@ -18,4 +18,6 @@ module.exports = function(router, passport) {
   router.post('/user/restaurant', eatAuth, addRestController);
   router.put('/user/restaurant/:id', eatAuth, editRestController);
   router.delete('/user/restaurant/:id', eatAuth, deleteRestController);
+
+  router.post('/user/restaurant/client', addRestController);
 };

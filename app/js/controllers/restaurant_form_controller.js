@@ -22,7 +22,7 @@ module.exports = function(app) {
         thu: '',
         fri: '',
         sat: '',
-        sun: '',
+        sun: ''
       }
     };
 

@@ -32,7 +32,7 @@ module.exports = function(app) {
         long: ''
       },
       caption: ''
-    },
+    };
 
     $scope.existingGenres = ['Pizza', 'Food Truck', 'Mexican', 'Thai'];
 

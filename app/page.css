@@ -47,8 +47,12 @@
   margin-bottom: 5px;
 }
 
+.form-control {
+  padding: 6px 6px;
+}
+
 .btn {
-  width: 100px;
+  min-width: 50px;
 }
 
 .btn-rt {

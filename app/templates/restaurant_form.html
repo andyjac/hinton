@@ -1,18 +1,87 @@
 <main data-ng-controller="restaurantFormController" data-ng-init="updateFromDB()">
+
   <section class="main-left col-md-6">
 
     <!-- form -->
     <form id="restaurant-form" data-ng-submit="submitForm()">
 
-      <div class="form-group col-md-12">
-        <div data-input-field-directive data-autofocus-directive
+      <div class="col-md-12">
+        <label>Google Place Search</label>
+        <div class="input-group">
+          <input type="text" class="form-control" data-ng-autocomplete
+                 data-ng-model="restaurant.googleAddress"
+                 data-options="options"
+                 data-details="details" placeholder="Search for address" autofocus/>
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default"
+                    data-ng-click="populateAddress()">Use</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group col-md-8">
+        <div data-input-field-directive
              data-title="Name" data-id="r_name"
              data-placeholder-text="Restaurant name"
              data-model="restaurant.name" data-is-required="true">
         </div>
       </div>
 
-      <div class="col-md-9">
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="Phone No." data-id="r_phone"
+             data-placeholder-text="+1 234 567 8901"
+             data-model="restaurant.phone" data-is-required="true">
+        </div>
+      </div>
+
+
+
+      <div class="form-group col-md-3">
+        <div data-input-field-directive data-title="Address" data-id="r_address"
+             data-placeholder-text="Address" data-model="restaurant.address.number"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-9">
+        <div data-input-field-directive data-title="Street" data-id="r_street"
+             data-placeholder-text="Street" data-model="restaurant.address.street"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-5">
+        <div data-input-field-directive data-title="City" data-id="r_city"
+             data-placeholder-text="City" data-model="restaurant.address.city"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-4">
+        <div data-input-field-directive data-title="State" data-id="r_state"
+             data-placeholder-text="State" data-model="restaurant.address.state"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-3">
+        <div data-input-field-directive data-title="Zip" data-id="r_zip"
+             data-placeholder-text="Zip" data-model="restaurant.address.zip"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-2">
+        <label>Price</label><br>
+        <div class="btn-group">
+          <div data-dropdown-directive data-button-id="add-price-dropdown"
+               dropdown data-button-text="Pick" data-items="[1,2,3,4,5]"
+               data-select="setPrice(item)">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-10">
         <label>Genre</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
@@ -31,97 +100,35 @@
         </div>
       </div>
 
-      <div class="form-group col-md-3">
-        <div data-input-field-directive data-title="Phone No." data-id="r_phone"
-             data-placeholder-text="123-456-7890"
-             data-model="restaurant.phone" data-is-required="true">
-        </div>
-      </div>
 
-      <div class="form-group col-md-2">
-        <label>Price</label><br>
-        <div class="btn-group">
-          <div data-dropdown-directive data-button-id="add-price-dropdown"
-               dropdown data-button-text="Pick" data-items="[1,2,3,4,5]"
-               data-select="setPrice(item)">
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-10">
-        <label>Google Address Search</label>
-        <div class="input-group">
-          <input type="text" class="form-control" data-ng-autocomplete
-                 data-ng-model="restaurant.googleAddress"
-                 data-options="options"
-                 data-details="details" placeholder="Search for address" />
-          <div class="input-group-btn">
-            <button type="button" class="btn btn-default"
-                    data-ng-click="populateAddress()">Use</button>
-          </div>
-        </div>
-      </div>
 
-      <div class="form-group col-md-6">
-        <div data-input-field-directive data-title="Address" data-id="r_address"
-             data-placeholder-text="Address" data-model="restaurant.address.number"
-             data-is-required="true" data-is-disabled="true">
-        </div>
-      </div>
 
-      <div class="form-group col-md-6">
-        <div data-input-field-directive data-title="Street" data-id="r_street"
-             data-placeholder-text="Street" data-model="restaurant.address.street"
-             data-is-required="true" data-is-disabled="true">
-        </div>
-      </div>
-
-      <div class="form-group col-md-4">
-        <div data-input-field-directive data-title="City" data-id="r_city"
-             data-placeholder-text="City" data-model="restaurant.address.city"
-             data-is-required="true" data-is-disabled="true">
-        </div>
-      </div>
-
-      <div class="form-group col-md-4">
-        <div data-input-field-directive data-title="State" data-id="r_state"
-             data-placeholder-text="State" data-model="restaurant.address.state"
-             data-is-required="true" data-is-disabled="true">
-        </div>
-      </div>
-
-      <div class="form-group col-md-4">
-        <div data-input-field-directive data-title="Zip" data-id="r_zip"
-             data-placeholder-text="Zip" data-model="restaurant.address.zip"
-             data-is-required="true" data-is-disabled="true">
-        </div>
-      </div>
-
-      <div class="form-group col-md-6">
+      <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Menu Item" data-id="r_item"
              data-placeholder-text="Featured Menu Item"
-             data-model="restaurant.menu_item" data-is-required="true">
+             data-model="restaurant.menu_item" data-is-required="false">
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Blog Link" data-id="blog_link"
              data-placeholder-text="Blog Post URL"
-             data-model="restaurant.blog" data-is-required="true">
+             data-model="restaurant.blog" data-is-required="false">
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Restaurant Link" data-id="r_site"
              data-placeholder-text="Restaurant URL"
-             data-model="restaurant.site" data-is-required="true">
+             data-model="restaurant.site" data-is-required="false">
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Menu Link" data-id="menu_link"
              data-placeholder-text="Menu URL"
-             data-model="restaurant.menu" data-is-required="true">
+             data-model="restaurant.menu" data-is-required="false">
         </div>
       </div>
 

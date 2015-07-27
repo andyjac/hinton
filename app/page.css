@@ -20,16 +20,28 @@
 /*h3 {
   margin: 10px 10px;
 }
+
+
 */
-/*.main-left {
+
+.col-md-1, .col-md-10,
+.col-md-11, .col-md-12,
+.col-md-2, .col-md-3,
+.col-md-4, .col-md-5,
+.col-md-6, .col-md-7,
+.col-md-8, .col-md-9 {
+   padding-left: 6px;
+   padding-right: 6px;
+}
+.main-left {
   margin: 0;
   display: inline;
   float:left;
   margin: 0;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
-.main-right {
+/*.main-right {
   float: right;
   margin: 0;
   padding: 0 20px;
@@ -48,7 +60,7 @@
 }
 
 .form-control {
-  padding: 6px 6px;
+  padding: 6px 6px 6px 9px;
 }
 
 .btn {
@@ -77,16 +89,6 @@
   margin-bottom: 0px;
   color: #555;
 }*/
-
-.col-md-1, .col-md-10,
-.col-md-11, .col-md-12,
-.col-md-2, .col-md-3,
-.col-md-4, .col-md-5,
-.col-md-6, .col-md-7,
-.col-md-8, .col-md-9 {
-  /* padding-left: 15px; */
-  /* padding-right: 10px; */
-}
 
 #server-res {
   margin-top: 10px;

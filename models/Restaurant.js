@@ -12,7 +12,9 @@ var restaurantSchema = mongoose.Schema({
     caption: String
   },
   restaurant: {
-    name: { type: String, required: true, unique: true },
+    p_id: { type: String }, //google place_id
+    name: { type: String, required: true },
+    fullAddr: { type: String },
 
     address: {
       number: { type: String, required: true },

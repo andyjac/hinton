@@ -7,14 +7,16 @@ module.exports = function(app) {
 
     $scope.restaurant = {
       name: '',
+      p_id: '',
+      fullAddr: '',
       genre: [],
       phone: '',
       price: 0,
       address: {},
       menu_item: '',
-      blog: '',
-      site: '',
-      menu: '',
+      blog_link: '',
+      r_site: '',
+      menu_link: '',
       hours: {
         mon: '',
         tue: '',
@@ -96,7 +98,11 @@ module.exports = function(app) {
     };
 
     $scope.populateAddress = function() {
+      console.log($scope.details);
+      console.log($scope.details.address_components);
       _.forEach($scope.details.address_components, function(item) {
+        console.log(item);
+
         if (_.includes(item.types, 'street_number')) {
           $scope.restaurant.address.number = item.short_name;
         }
@@ -106,17 +112,31 @@ module.exports = function(app) {
         }
 
         if (_.includes(item.types, 'locality')) {
-          $scope.restaurant.address.city = item.short_name;
+          $scope.restaurant.address.city = item.long_name;
         }
 
         if (_.includes(item.types, 'administrative_area_level_1')) {
-          $scope.restaurant.address.state = item.short_name;
+          $scope.restaurant.address.state = item.long_name;
+        } else if (_.includes(item.types, 'administrative_area_level_2')) {
+            $scope.restaurant.address.state = item.long_name;
+        }
+
+        if (_.includes(item.types, 'country')) {
+          $scope.restaurant.address.country = item.long_name;
         }
 
         if (_.includes(item.types, 'postal_code')) {
           $scope.restaurant.address.zip = item.short_name;
         }
       });
+
+      if($scope.details.formatted_address) {
+        $scope.restaurant.fullAddr = $scope.details.formatted_address;
+      }
+
+      if($scope.details.place_id) {
+        $scope.restaurant.p_id = $scope.details.place_id;
+      }
 
       if($scope.details.name && !($scope.restaurant.name)) {
         $scope.restaurant.name = $scope.details.name;
@@ -133,7 +153,7 @@ module.exports = function(app) {
       }
 
       if($scope.details.website) {
-        $scope.restaurant.site = $scope.details.website;
+        $scope.restaurant.r_site = $scope.details.website;
       }
 
       if($scope.details.opening_hours) {
@@ -168,13 +188,11 @@ module.exports = function(app) {
         });
       }
 
-
       if($scope.details.geometry) {
         $scope.map.loc.lat = $scope.details.geometry.location.A;
         $scope.map.loc.long = $scope.details.geometry.location.F;
         $scope.map.caption = $scope.restaurant.name;
       }
     };
-
   }]);
 };

@@ -34,16 +34,21 @@
         </div>
       </div>
 
+      <div class="form-group col-md-12">
+        <div data-input-field-directive data-title="Formatted Address" data-id="r_full"
+             data-placeholder-text=""
+             data-model="restaurant.fullAddr" data-is-required="true">
+        </div>
+      </div>
 
-
-      <div class="form-group col-md-3">
+      <div class="form-group col-md-2">
         <div data-input-field-directive data-title="Address" data-id="r_address"
              data-placeholder-text="Address" data-model="restaurant.address.number"
              data-is-required="true" data-is-disabled="false">
         </div>
       </div>
 
-      <div class="form-group col-md-9">
+      <div class="form-group col-md-5">
         <div data-input-field-directive data-title="Street" data-id="r_street"
              data-placeholder-text="Street" data-model="restaurant.address.street"
              data-is-required="true" data-is-disabled="false">
@@ -57,9 +62,24 @@
         </div>
       </div>
 
+      <!-- <div class="form-group col-md-5">
+        <div data-input-field-directive data-title="County" data-id="r_county"
+             data-placeholder-text="-" data-model="restaurant.address.county"
+             data-is-required="false" data-is-disabled="false">
+        </div>
+      </div> -->
+
+
       <div class="form-group col-md-4">
         <div data-input-field-directive data-title="State" data-id="r_state"
              data-placeholder-text="State" data-model="restaurant.address.state"
+             data-is-required="true" data-is-disabled="false">
+        </div>
+      </div>
+
+      <div class="form-group col-md-5">
+        <div data-input-field-directive data-title="Country" data-id="r_ctry"
+             data-placeholder-text="-" data-model="restaurant.address.country"
              data-is-required="true" data-is-disabled="false">
         </div>
       </div>
@@ -100,10 +120,6 @@
         </div>
       </div>
 
-
-
-
-
       <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Menu Item" data-id="r_item"
              data-placeholder-text="Featured Menu Item"
@@ -114,21 +130,21 @@
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Blog Link" data-id="blog_link"
              data-placeholder-text="Blog Post URL"
-             data-model="restaurant.blog" data-is-required="false">
+             data-model="restaurant.blog_link" data-is-required="false">
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Restaurant Link" data-id="r_site"
              data-placeholder-text="Restaurant URL"
-             data-model="restaurant.site" data-is-required="false">
+             data-model="restaurant.r_site" data-is-required="false">
         </div>
       </div>
 
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Menu Link" data-id="menu_link"
              data-placeholder-text="Menu URL"
-             data-model="restaurant.menu" data-is-required="false">
+             data-model="restaurant.menu_link" data-is-required="false">
         </div>
       </div>
 
@@ -205,6 +221,7 @@
   </section>
 
   <!-- preview -->
+
   <section id="restaurant-info" class="main-right col-md-6">
     <h1 class="col-md-12">{{restaurant.name}}</h1>
 
@@ -231,8 +248,9 @@
 
     <div class="col-md-6" data-ng-show="isNotEmpty(restaurant.address)">
       <h3>Address:</h3>
-      <h4>{{restaurant.address.number}}, {{restaurant.address.street}}</h4>
-      <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4>
+      <!-- <h4>{{restaurant.address.number}}, {{restaurant.address.street}}</h4>
+      <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4> -->
+      <h4>{{restaurant.fullAddr}}</h4>
     </div>
 
     <div class="col-md-6" data-ng-if="restaurant.menu_item">
@@ -257,7 +275,7 @@
 
     <div class="col-md-6" data-ng-if="restaurant.hours.mon">
       <h3>Opening Hours:</h3>
-      <h4>{{restaurant.hours.mon}}</h4>
+      <h4>Monday: {{restaurant.hours.mon}}</h4>
       <h4>{{restaurant.hours.tue}}</h4>
       <h4>{{restaurant.hours.wed}}</h4>
       <h4>{{restaurant.hours.thu}}</h4>

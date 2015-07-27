@@ -222,7 +222,7 @@
       <h4>{{priceDollars}}</h4>
     </div>
 
-    <div class="col-md-6" data-ng-show="isNotEmpty(restaurant.address)">
+    <div class="col-md-6" data-ng-if="restaurant.address.number">
       <h3>Address:</h3>
       <h4>{{restaurant.address.number}}, {{restaurant.address.street}}</h4>
       <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4>

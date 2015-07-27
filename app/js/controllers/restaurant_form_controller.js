@@ -10,7 +10,13 @@ module.exports = function(app) {
       genre: [],
       phone: '',
       price: 0,
-      address: {},
+      address: {
+        number: '',
+        street: '',
+        city: '',
+        state: '',
+        zip: ''
+      },
       menu_item: '',
       blog: '',
       site: '',
@@ -87,8 +93,8 @@ module.exports = function(app) {
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
-          clearFields($scope.map);
-          clearFields($scope.restaurant);
+          $scope.map = clearFields($scope.map);
+          $scope.restaurant = clearFields($scope.restaurant);
         })
         .error(function(err) {
           console.log(err);

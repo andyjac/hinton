@@ -10,9 +10,9 @@ module.exports = function(app) {
 
         while(i--) {
           if (Array.isArray(collection[i])) {
-            current = clearFields(collection[i]);
+            collection[i] = clearFields(collection[i]);
           } else if (typeof current === 'object') {
-            current = clearFields(collection[i]);
+            collection[i] = clearFields(collection[i]);
           } else {
             collection.splice(i, 1);
           }

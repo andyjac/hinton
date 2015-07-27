@@ -98,31 +98,34 @@ module.exports = function(app) {
     };
 
     $scope.populateAddress = function() {
-      console.log($scope.details);
-      console.log($scope.details.address_components);
       _.forEach($scope.details.address_components, function(item) {
-        console.log(item);
 
         if (_.includes(item.types, 'street_number')) {
           $scope.restaurant.address.number = item.short_name;
+          return;
         }
 
         if (_.includes(item.types, 'route')) {
           $scope.restaurant.address.street = item.short_name;
+          return;
         }
 
         if (_.includes(item.types, 'locality')) {
           $scope.restaurant.address.city = item.long_name;
+          return;
         }
 
         if (_.includes(item.types, 'administrative_area_level_1')) {
-          $scope.restaurant.address.state = item.long_name;
+          $scope.restaurant.address.state = item.short_name;
         } else if (_.includes(item.types, 'administrative_area_level_2')) {
-            $scope.restaurant.address.state = item.long_name;
+            $scope.restaurant.address.state = item.short_name;
         }
 
         if (_.includes(item.types, 'country')) {
-          $scope.restaurant.address.country = item.long_name;
+          if (item.short_name !== 'US') {
+            $scope.restaurant.address.country = item.long_name;
+          }
+          return;
         }
 
         if (_.includes(item.types, 'postal_code')) {
@@ -138,7 +141,7 @@ module.exports = function(app) {
         $scope.restaurant.p_id = $scope.details.place_id;
       }
 
-      if($scope.details.name && !($scope.restaurant.name)) {
+      if($scope.details.name) { // && !($scope.restaurant.name)) {
         $scope.restaurant.name = $scope.details.name;
       }
 
@@ -154,37 +157,18 @@ module.exports = function(app) {
 
       if($scope.details.website) {
         $scope.restaurant.r_site = $scope.details.website;
+        $scope.restaurant.menu_link = $scope.details.website; //make same, can edit
       }
 
+      // refactor opening_hours
       if($scope.details.opening_hours) {
         _.forEach($scope.details.opening_hours.weekday_text, function(item) {
-          if (_.includes(item, 'Mon')) {
-            $scope.restaurant.hours.mon = item;
-          }
-
-          if (_.includes(item, 'Tue')) {
-            $scope.restaurant.hours.tue = item;
-          }
-
-          if (_.includes(item, 'Wed')) {
-            $scope.restaurant.hours.wed = item;
-          }
-
-          if (_.includes(item, 'Thur')) {
-            $scope.restaurant.hours.thu = item;
-          }
-
-          if (_.includes(item, 'Fri')) {
-            $scope.restaurant.hours.fri = item;
-          }
-
-          if (_.includes(item, 'Sat')) {
-            $scope.restaurant.hours.sat = item;
-          }
-
-          if (_.includes(item, 'Sun')) {
-            $scope.restaurant.hours.sun = item;
-          }
+          _.forEach(_.keys($scope.restaurant.hours), function(day) {
+            if (_.includes(item, _.startCase(day))) {
+              // strip day header ('Monday: ') in weekday_text
+              $scope.restaurant.hours[day] = item.substring(item.indexOf(':') + 2);
+            }
+          });
         });
       }
 

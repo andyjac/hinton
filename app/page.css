@@ -1,28 +1,48 @@
-/*body {
+body {
   background-color: #444;
   margin: 0 auto;
-}*/
+}
 
-/*.container {
+.container {
   background-color:#555;
-  width: 900px !important;
+  width: 1100px !important;
   margin: 0 auto;
   margin-top:25px;
-}*/
+}
 
-/*.inner {
+.inner {
   margin: 0px auto;
   width: 95%;
-  background-color:#fefeef;
+  background-color:#fdfdfd;
   padding: 30px 0;
 }
-*/
+
 /*h3 {
   margin: 10px 10px;
 }
 
 
 */
+
+input::-webkit-input-placeholder {
+color: #d8d8d8 !important;
+font-style: italic;
+}
+
+input:-moz-placeholder { /* Firefox 18- */
+color: #d8d8d8 !important;
+font-style: italic;
+}
+
+input::-moz-placeholder {  /* Firefox 19+ */
+color: #d8d8d8 !important;
+font-style: italic;
+}
+
+input:-ms-input-placeholder {
+color: #d8d8d8 !important;
+font-style: italic;
+}
 
 .col-md-1, .col-md-10,
 .col-md-11, .col-md-12,
@@ -39,20 +59,21 @@
   float:left;
   margin: 0;
   padding: 0 15px;
+  margin-bottom: 8px;
 }
 
-/*.main-right {
+.main-right {
   float: right;
   margin: 0;
   padding: 0 20px;
-}*/
+}
 /*.form-control {
   background-color: #eaead6;
   font-size: 15px;
   height: 28px;
 }*/
-.main-left .form-control {
-  margin-bottom: 8px;
+.form-control {
+  margin-bottom: 3px;
 }
 
 .form-group {
@@ -85,10 +106,10 @@
   clear: both;
 }
 
-/*label {
+label {
   margin-bottom: 0px;
   color: #555;
-}*/
+}
 
 #server-res {
   margin-top: 10px;
@@ -105,8 +126,8 @@
 }
 
 #restaurant-info {
-  position: fixed;
-  left: 50%;
+/*  position: fixed;
+  left: 50%;*/
 }
 
 #genre-dropdown {
@@ -117,3 +138,15 @@
     width: 50px;
     margin-bottom: 7px;
 }
+
+.tooltip {
+  font-size: 1em;
+}
+
+.tooltip-inner {
+  background-color: yellow;
+  color: blue;
+  padding: 3px 6px;
+  border: 1px solid blue;
+}
+

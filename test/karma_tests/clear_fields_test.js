@@ -29,7 +29,8 @@ describe('clear fields service', function() {
     expect(typeof emptyobj.fun).toBe('string');
     expect(emptyobj.fun).toBe('');
     expect(typeof emptyobj.obj).toBe('object');
-    expect(Object.keys(emptyobj.obj).length).toBe(0);
+    expect(Object.keys(emptyobj.obj).length).toBe(1);
+    expect(emptyobj.obj.test).toBe('');
     expect(typeof emptyobj.str).toBe('string');
     expect(emptyobj.str).toBe('');
   });

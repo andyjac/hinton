@@ -75,6 +75,7 @@ module.exports = function(app) {
     $scope.clearForm = function() {
       $scope.map = clearFields($scope.map);
       $scope.restaurant = clearFields($scope.restaurant);
+      $scope.display_preview = false;
     };
 
     $scope.isNotEmpty = function(obj) {
@@ -191,11 +192,6 @@ module.exports = function(app) {
 
       $scope.display_preview = true;
     }; // $scope.populateAddress()
-
-    // preview messages
-    $scope.renderHtml = function (html) {
-      return $sce.trustAsHtml(html);
-    };
 
   }]); // app.controller
 }; // module.exports

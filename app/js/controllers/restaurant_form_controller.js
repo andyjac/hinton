@@ -1,8 +1,9 @@
-'use strict';
+  'use strict';
 
 var _ = require('lodash');
 
 module.exports = function(app) {
+
   app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
 
     $scope.restaurant = {
@@ -10,17 +11,19 @@ module.exports = function(app) {
       genre: [],
       phone: '',
       price: 0,
+      p_id: '',
       address: {
         number: '',
         street: '',
         city: '',
         state: '',
-        zip: ''
+        zip: '',
+        country: ''
       },
       menu_item: '',
-      blog: '',
-      site: '',
-      menu: '',
+      blog_link: '',
+      r_site: '',
+      menu_link: '',
       hours: {
         mon: '',
         tue: '',
@@ -47,8 +50,8 @@ module.exports = function(app) {
     };
 
     $scope.addGenre = function(genre) {
-      if (genre.trim() !== '') {
-        $scope.restaurant.genre.push(genre);
+      if (genre !== '') {
+        $scope.restaurant.genre.push(genre.trim());
         $scope.genre = '';
       }
 
@@ -69,6 +72,12 @@ module.exports = function(app) {
       }
 
       $scope.priceDollars = dollars;
+    };
+
+    $scope.clearForm = function() {
+      $scope.map = clearFields($scope.map);
+      $scope.restaurant = clearFields($scope.restaurant);
+      $scope.display_preview = false;
     };
 
     $scope.isNotEmpty = function(obj) {
@@ -93,30 +102,41 @@ module.exports = function(app) {
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
-          $scope.map = clearFields($scope.map);
-          $scope.restaurant = clearFields($scope.restaurant);
+          $scope.clearForm();
         })
         .error(function(err) {
           console.log(err);
+          $scope.err_save = err.msg;
         });
     };
 
     $scope.populateAddress = function() {
       _.forEach($scope.details.address_components, function(item) {
+
         if (_.includes(item.types, 'street_number')) {
           $scope.restaurant.address.number = item.short_name;
+          return;
         }
 
         if (_.includes(item.types, 'route')) {
           $scope.restaurant.address.street = item.short_name;
+          return;
         }
 
         if (_.includes(item.types, 'locality')) {
-          $scope.restaurant.address.city = item.short_name;
+          $scope.restaurant.address.city = item.long_name;
+          return;
         }
 
         if (_.includes(item.types, 'administrative_area_level_1')) {
           $scope.restaurant.address.state = item.short_name;
+        } else if (_.includes(item.types, 'administrative_area_level_2')) {
+            $scope.restaurant.address.state = item.short_name;
+        }
+
+        if (_.includes(item.types, 'country')) {
+          $scope.restaurant.address.country = item.long_name;
+          return;
         }
 
         if (_.includes(item.types, 'postal_code')) {
@@ -124,7 +144,15 @@ module.exports = function(app) {
         }
       });
 
-      if($scope.details.name && !($scope.restaurant.name)) {
+      if($scope.details.formatted_address) {
+        $scope.restaurant.fullAddr = $scope.details.formatted_address;
+      }
+
+      if($scope.details.place_id) {
+        $scope.restaurant.p_id = $scope.details.place_id;
+      }
+
+      if($scope.details.name) {
         $scope.restaurant.name = $scope.details.name;
       }
 
@@ -139,47 +167,26 @@ module.exports = function(app) {
       }
 
       if($scope.details.website) {
-        $scope.restaurant.site = $scope.details.website;
+        $scope.restaurant.r_site = $scope.details.website;
       }
 
       if($scope.details.opening_hours) {
         _.forEach($scope.details.opening_hours.weekday_text, function(item) {
-          if (_.includes(item, 'Mon')) {
-            $scope.restaurant.hours.mon = item;
-          }
-
-          if (_.includes(item, 'Tue')) {
-            $scope.restaurant.hours.tue = item;
-          }
-
-          if (_.includes(item, 'Wed')) {
-            $scope.restaurant.hours.wed = item;
-          }
-
-          if (_.includes(item, 'Thur')) {
-            $scope.restaurant.hours.thu = item;
-          }
-
-          if (_.includes(item, 'Fri')) {
-            $scope.restaurant.hours.fri = item;
-          }
-
-          if (_.includes(item, 'Sat')) {
-            $scope.restaurant.hours.sat = item;
-          }
-
-          if (_.includes(item, 'Sun')) {
-            $scope.restaurant.hours.sun = item;
-          }
+          _.forEach(_.keys($scope.restaurant.hours), function(day) {
+            if (_.includes(item, _.startCase(day))) {
+              $scope.restaurant.hours[day] = item.substring(item.indexOf(':') + 2);
+            }
+          });
         });
       }
-
 
       if($scope.details.geometry) {
         $scope.map.loc.lat = $scope.details.geometry.location.A;
         $scope.map.loc.long = $scope.details.geometry.location.F;
         $scope.map.caption = $scope.restaurant.name;
       }
+
+      $scope.display_preview = true;
     };
 
   }]);

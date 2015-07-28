@@ -59,9 +59,9 @@ describe('user creation and authentication', function() {
     it('should be able to post to the database', function(done) {
       chai.request('localhost:3000')
         .post('/hinton/user/restaurant')
-        .send({eat: testToken, map: {caption: 'rest'}, restaurant: {name: 'rest',
+        .send({eat: testToken, map: {caption: 'rest'}, restaurant: {p_id: 'qwerty1', name: 'rest',
           address: {number: '111', street: '1st Ave', city: 'Seattle', state: 'WA',
-          zip: '98103'}}})
+          zip: '98103', country: 'USA'}, phone: '1234567890', price: 2}})
         .end(function(err, res) {
           expect(err).to.eql(null);
           expect(res.body).to.eql({msg:'save successful'});

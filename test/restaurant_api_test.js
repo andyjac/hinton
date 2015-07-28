@@ -26,6 +26,7 @@ describe('restaurant REST API', function () {
         caption: 'Whole Foods Market'
       },
       restaurant: {
+        p_id: 'qwerty1',
         name: 'Whole Foods Market',
         address: {
           number: '2210',
@@ -33,8 +34,11 @@ describe('restaurant REST API', function () {
           city: 'Seattle',
           state: 'WA',
           zip: '98121',
+          country: 'USA'
         },
-        genre: ['Mexican', 'Italian', 'Japanese']
+        phone: '0987654321',
+        genre: ['Mexican', 'Italian', 'Japanese'],
+        price: 1
       }
     });
 
@@ -47,6 +51,7 @@ describe('restaurant REST API', function () {
         caption: 'Code Fellows'
       },
       restaurant: {
+        p_id: 'qwerty2',
         name: 'Code Fellows',
         address: {
           number: '511',
@@ -54,8 +59,11 @@ describe('restaurant REST API', function () {
           city: 'Seattle',
           state: 'WA',
           zip: '98109',
+          country: 'USA'
         },
-        genre: ['French', 'Mexican', 'Chinese', 'Japanese']
+        phone: '1234567890',
+        genre: ['French', 'Mexican', 'Chinese', 'Japanese'],
+        price: 2
       }
     });
 

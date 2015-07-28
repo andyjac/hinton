@@ -1,0 +1,28 @@
+move search box
+fix button size
+widen telephone
+move around form
+move focus to search (use html5 'autofocus')
+remove disabled from address fields
+more descriptive UI
+
+#2
+remove unique from restaurant.name
+add google place id (p_id)
+add formatted address (google formatted_address)
+add country and 1st/2nd admin location logic,
+change locality to long_name
+wrap populateAddress interior with clearFields
+change view/directive models to agree with restaurant model
+
+#3
+various UX 'enhancements' & css
+clean up default text / hints - normalize labels
+refactor populateAddress()
+fix hours reference to remove Day reference;
+remove country if = US
+add html autofocus to search box - autofocus directive had async issues...
+
+#4
+add country to model, fix requires and uniques
+

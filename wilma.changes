@@ -22,3 +22,7 @@ refactor populateAddress()
 fix hours reference to remove Day reference;
 remove country if = US
 add html autofocus to search box - autofocus directive had async issues...
+
+#4
+add country to model, fix requires and uniques
+

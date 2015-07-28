@@ -130,6 +130,10 @@ label {
   left: 50%;*/
 }
 
+#restaurant-photos {
+
+}
+
 #genre-dropdown {
   top: 80%;
 }
@@ -148,5 +152,51 @@ label {
   color: blue;
   padding: 3px 6px;
   border: 1px solid blue;
+}
+
+/* preview */
+
+/* preview */
+
+
+
+.header-type, .dollars, .genre {
+  font-size: 1.2em;
+  font-weight: normal;
+}
+
+h4, h5 {
+  display: block;
+}
+
+.h-rule {
+  border-bottom: 1px solid #ccc;
+  height: 15px;
+}
+
+.preview {
+  border: 1px solid #ddd;
+  background-color: #fff;
+  padding: 0px 9px 9px 9px;
+  border-radius: 5px;
+}
+
+.preview-genre {
+  padding:9px 0;
+}
+
+.preview-hours {
+  padding: 15px 0 0 6px;
+}
+
+.preview-urls {
+  padding: 15px 0;
+}
+
+.carousel {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  height:260px;
+  margin-top: 20px;
 }
 

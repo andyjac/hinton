@@ -38,7 +38,7 @@
       <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Google Formatted Address" data-id="r_full"
              data-placeholder-text=""
-             data-model="restaurant.fullAddr" data-is-required="true">
+             data-model="restaurant.fullAddr" data-is-required="false">
         </div>
       </div>
 
@@ -227,66 +227,71 @@
   <!-- preview -->
 
   <section id="restaurant-info" class="main-right col-md-6">
-    <h1 class="col-md-12">{{restaurant.name}}</h1>
+    <h2 class="col-md-12">{{restaurant.name}}</h2>
 
-    <div class="col-md-6" data-ng-if="restaurant.genre.length">
-      <h3>Genre(s):</h3>
+    <div class="col-md-6 header-type pull-left">
+      <div>{{restaurant.address.number}} {{restaurant.address.street}}<br>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+      </div>
+      <div ng-if='restaurant.address.country !== "United States"'>{{restaurant.address.country}}
+      </div>
+      <div>{{restaurant.phone}}</div>
+    </div>
+
+    <div class="dollars col-md-6 pull-right">
+      <h4>Price:&nbsp;&nbsp; {{priceDollars}}</h4>
+    </div>
+    <div class="preview-genre col-md-6 pull-right">
       <ul class="list-group">
-        <button class="list-group-item btn col-md-4"
-                data-ng-repeat="genre in restaurant.genre"
-                data-ng-click="removeGenre($index)">
+        <button type="button" class="list-group-item pull-left"
+          data-ng-repeat="genre in restaurant.genre"
+          data-ng-click="removeGenre($index)">
           {{genre}}
         </button>
       </ul>
     </div>
 
-    <div class="col-md-6" data-ng-if="restaurant.phone">
-      <h3>Phone:</h3>
-      <h4>{{restaurant.phone}}</h4>
+    <div class="h-rule col-md-11"></div>
+
+    <div class="col-md-5 pull-left preview-hours">
+      <h4>Hours</h4>
+      <h5>Mon: {{restaurant.hours.mon}}</h5>
+      <h5>Tue: {{restaurant.hours.tue}}</h5>
+      <h5>Wed: {{restaurant.hours.wed}}</h5>
+      <h5>Thu: {{restaurant.hours.thu}}</h5>
+      <h5>Fri: {{restaurant.hours.fri}}</h5>
+      <h5>Sat: {{restaurant.hours.sat}}</h5>
+      <h5>Sun: {{restaurant.hours.sun}}</h5>
     </div>
 
-    <div class="col-md-6" data-ng-if="restaurant.price">
-      <h3>Price:</h3>
-      <h4>{{priceDollars}}</h4>
+    <div class="preview-urls col-md-7 pull-right">
+
+      <div class="col-md-12" data-ng-if="restaurant.r_site">
+        <h4>Website</h4>
+        <h5>{{restaurant.r_site}}</h5>
+      </div>
+
+      <div class="col-md-12" data-ng-if="restaurant.menu_link">
+        <h4>Menu</h4>
+        <h5>{{restaurant.menu_link}}</h5>
+      </div>
+
+      <div class="col-md-12" data-ng-if="restaurant.blog_link">
+        <h4>Blog Post</h4>
+        <h5>{{restaurant.blog_link}}</h5>
+      </div>
+
     </div>
 
-    <div class="col-md-6" data-ng-show="isNotEmpty(restaurant.address)">
-      <h3>Address:</h3>
-      <!-- <h4>{{restaurant.address.number}}, {{restaurant.address.street}}</h4>
-      <h4>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}</h4> -->
-      <h4>{{restaurant.fullAddr}}</h4>
+    <div class="preview-urls col-md-12 pull-left preview-featured">
+      <div class="col-md-12">
+        <h4>Featured Menu Item</h4>
+        <h5>{{restaurant.menu_item}}</h5>
+      </div>
     </div>
 
-    <div class="col-md-6" data-ng-if="restaurant.menu_item">
-      <h3>Featured Menu Item:</h3>
-      <h4>{{restaurant.menu_item}}</h4>
-    </div>
+  </section>
 
-    <div class="col-md-6" data-ng-if="restaurant.blog">
-      <h3>Blog Post:</h3>
-      <h4>{{restaurant.blog}}</h4>
-    </div>
-
-    <div class="col-md-6" data-ng-if="restaurant.site">
-      <h3>Website:</h3>
-      <h4>{{restaurant.site}}</h4>
-    </div>
-
-    <div class="col-md-6" data-ng-if="restaurant.menu">
-      <h3>Menu:</h3>
-      <h4>{{restaurant.menu}}</h4>
-    </div>
-
-    <div class="col-md-6" data-ng-if="restaurant.hours.mon">
-      <h3>Opening Hours:</h3>
-      <h4>Monday: {{restaurant.hours.mon}}</h4>
-      <h4>{{restaurant.hours.tue}}</h4>
-      <h4>{{restaurant.hours.wed}}</h4>
-      <h4>{{restaurant.hours.thu}}</h4>
-      <h4>{{restaurant.hours.fri}}</h4>
-      <h4>{{restaurant.hours.sat}}</h4>
-      <h4>{{restaurant.hours.sun}}</h4>
-    </div>
-
+  <section id="restaurant-photos" class="col-md-6 main-right">
+    <div class="carousel col-md-11"></div>
   </section>
 </main>

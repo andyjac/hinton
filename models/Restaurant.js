@@ -12,7 +12,7 @@ var restaurantSchema = mongoose.Schema({
     caption: String
   },
   restaurant: {
-    p_id: { type: String }, //google place_id
+    p_id: { type: String, unique: true }, //google place_id
     name: { type: String, required: true },
     fullAddr: { type: String },
 
@@ -22,6 +22,7 @@ var restaurantSchema = mongoose.Schema({
       city: { type: String, required: true },
       state: { type: String, required: true },
       zip: { type: String, required: true },
+      country: { type: String, required: true }
     },
 
     hours: {
@@ -31,12 +32,12 @@ var restaurantSchema = mongoose.Schema({
       thu: String,
       fri: String,
       sat: String,
-      sun: String,
+      sun: String
     },
 
-    phone: String,
+    phone: { type: String, required: true },
     genre: [String],
-    price: Number,
+    price: { type: Number, required: true },
     blog_link: String,
     r_site: String,
     menu_link: String,

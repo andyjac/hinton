@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
+  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', '$sce', function($scope, $http, clearFields, $sce) {
 
     $scope.restaurant = {
       name: '',
@@ -85,6 +85,7 @@ module.exports = function(app) {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
+      console.log(restaurantInfo.restaurant);
       $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
@@ -98,6 +99,7 @@ module.exports = function(app) {
     };
 
     $scope.populateAddress = function() {
+      console.log($scope.details);
       _.forEach($scope.details.address_components, function(item) {
 
         if (_.includes(item.types, 'street_number')) {
@@ -122,9 +124,7 @@ module.exports = function(app) {
         }
 
         if (_.includes(item.types, 'country')) {
-          if (item.short_name !== 'US') {
-            $scope.restaurant.address.country = item.long_name;
-          }
+          $scope.restaurant.address.country = item.long_name;
           return;
         }
 
@@ -178,5 +178,11 @@ module.exports = function(app) {
         $scope.map.caption = $scope.restaurant.name;
       }
     };
+
+    // preview messages
+    $scope.renderHtml = function (html) {
+      return $sce.trustAsHtml(html);
+    };
+
   }]);
 };

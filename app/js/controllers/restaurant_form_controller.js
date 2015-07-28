@@ -3,48 +3,43 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', '$sce', function($scope, $http, clearFields, $sce) {
 
-    $scope.clearForm = function() {
-      $scope.restaurant = {
-        name: '',
-        p_id: '',
-        fullAddr: '',
-        genre: [],
-        phone: '',
-        price: 0,
-        address: {},
-        menu_item: '',
-        blog_link: '',
-        r_site: '',
-        menu_link: '',
-        hours: {
-          mon: '',
-          tue: '',
-          wed: '',
-          thu: '',
-          fri: '',
-          sat: '',
-          sun: ''
-        },
-        other: '',
-        photos: []
-      };
+  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
 
-      $scope.map = {
-        loc: {
-          lat: '',
-          long: ''
-        },
-        caption: ''
-      }; // $scope.restaurant
+    $scope.restaurant = {
+      name: '',
+      genre: [],
+      phone: '',
+      price: 0,
+      address: {
+        number: '',
+        street: '',
+        city: '',
+        state: '',
+        zip: ''
+      },
+      menu_item: '',
+      blog: '',
+      site: '',
+      menu: '',
+      hours: {
+        mon: '',
+        tue: '',
+        wed: '',
+        thu: '',
+        fri: '',
+        sat: '',
+        sun: ''
+      }
+    };
 
-      $scope.err_save = '';
-      $scope.display_preview = false;
-
-    }; // $scope.clearForm
-
-    $scope.clearForm();
+    $scope.map = {
+      loc: {
+        lat: '',
+        long: ''
+      },
+      caption: ''
+    };
 
     $scope.existingGenres = [];
 
@@ -100,9 +95,8 @@ module.exports = function(app) {
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
-          // clearFields($scope.map);
-          // clearFields($scope.restaurant);
-          $scope.clearForm();
+          $scope.map = clearFields($scope.map);
+          $scope.restaurant = clearFields($scope.restaurant);
         })
         .error(function(err) {
           console.log(err);

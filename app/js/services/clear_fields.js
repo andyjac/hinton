@@ -11,7 +11,7 @@ module.exports = function(app) {
         while(i--) {
           if (Array.isArray(collection[i])) {
             collection[i] = clearFields(collection[i]);
-          } else if (typeof current === 'object') {
+          } else if (typeof collection[i] === 'object') {
             collection[i] = clearFields(collection[i]);
           } else {
             collection.splice(i, 1);

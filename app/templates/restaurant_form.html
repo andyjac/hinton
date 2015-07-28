@@ -8,14 +8,16 @@
       <div class="col-md-12">
         <label>Restaurant Search</label>
         <div class="input-group">
-          <input type="text" class="form-control" data-ng-autocomplete
-                 data-ng-model="restaurant.googleAddress"
-                 data-id = "gSearch"
-                 data-options="options"
-                 data-details="details" placeholder="search for [filter] place name" autofocus/>
+          <input type="text" class="form-control" data-ng-autocomplete data-ng-focus="clearForm()"
+            data-ng-model="restaurant.googleAddress"
+            data-id = "gSearch"
+            data-options="options"
+            data-details="details" placeholder="search for [filter] place name" autofocus>
           <div class="input-group-btn">
             <button type="button" class="btn btn-default"
-                    data-ng-click="populateAddress()">Use</button>
+              data-ng-click="populateAddress()">
+              Use
+            </button>
           </div>
         </div>
       </div>
@@ -215,10 +217,15 @@
         </div>
       </div> -->
 
-      <div class="col-md-12">
+      <div class="col-md-2">
         <button type="submit" class="btn btn-success"
                 data-ng-disabled="restaurant-form.$invalid">Save
         </button>
+      </div>
+
+      <!-- temporary error message placeholder -->
+      <div class="col-md-8" style="color:red; float:left;">
+        <h5>{{err_save ? 'not saved - duplicate entry' : ''}}</h5>
       </div>
 
     </form>
@@ -226,7 +233,7 @@
 
   <!-- preview -->
 
-  <section id="restaurant-info" class="main-right col-md-6">
+  <section id="restaurant-info" class="main-right col-md-6" data-ng-show="display_preview">
     <h2 class="col-md-12">{{restaurant.name}}</h2>
 
     <div class="col-md-6 header-type pull-left">
@@ -283,15 +290,18 @@
     </div>
 
     <div class="preview-urls col-md-12 pull-left preview-featured">
-      <div class="col-md-12">
+      <div class="col-md-11">
         <h4>Featured Menu Item</h4>
-        <h5>{{restaurant.menu_item}}</h5>
+        <div style="font-style: italic;">{{restaurant.menu_item}}</div>
       </div>
     </div>
 
   </section>
 
-  <section id="restaurant-photos" class="col-md-6 main-right">
-    <div class="carousel col-md-11"></div>
+  <section id="restaurant-photos" class="col-md-6 main-right"  data-ng-show="display_preview">
+    <h4 class="col-md-12">Photos</h4>
+    <div class="col-md-11">
+      <div class="carousel">
+    </div>
   </section>
 </main>

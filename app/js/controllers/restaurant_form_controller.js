@@ -5,36 +5,46 @@ var _ = require('lodash');
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', '$sce', function($scope, $http, clearFields, $sce) {
 
-    $scope.restaurant = {
-      name: '',
-      p_id: '',
-      fullAddr: '',
-      genre: [],
-      phone: '',
-      price: 0,
-      address: {},
-      menu_item: '',
-      blog_link: '',
-      r_site: '',
-      menu_link: '',
-      hours: {
-        mon: '',
-        tue: '',
-        wed: '',
-        thu: '',
-        fri: '',
-        sat: '',
-        sun: ''
-      }
-    };
+    $scope.clearForm = function() {
+      $scope.restaurant = {
+        name: '',
+        p_id: '',
+        fullAddr: '',
+        genre: [],
+        phone: '',
+        price: 0,
+        address: {},
+        menu_item: '',
+        blog_link: '',
+        r_site: '',
+        menu_link: '',
+        hours: {
+          mon: '',
+          tue: '',
+          wed: '',
+          thu: '',
+          fri: '',
+          sat: '',
+          sun: ''
+        },
+        other: '',
+        photos: []
+      };
 
-    $scope.map = {
-      loc: {
-        lat: '',
-        long: ''
-      },
-      caption: ''
-    };
+      $scope.map = {
+        loc: {
+          lat: '',
+          long: ''
+        },
+        caption: ''
+      }; // $scope.restaurant
+
+      $scope.err_save = '';
+      $scope.display_preview = false;
+
+    }; // $scope.clearForm
+
+    $scope.clearForm();
 
     $scope.existingGenres = [];
 
@@ -43,8 +53,8 @@ module.exports = function(app) {
     };
 
     $scope.addGenre = function(genre) {
-      if (genre.trim() !== '') {
-        $scope.restaurant.genre.push(genre);
+      if (genre !== '') {
+        $scope.restaurant.genre.push(genre.trim());
         $scope.genre = '';
       }
 
@@ -90,11 +100,13 @@ module.exports = function(app) {
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
-          clearFields($scope.map);
-          clearFields($scope.restaurant);
+          // clearFields($scope.map);
+          // clearFields($scope.restaurant);
+          $scope.clearForm();
         })
         .error(function(err) {
           console.log(err);
+          $scope.err_save = err.msg;
         });
     };
 
@@ -131,7 +143,7 @@ module.exports = function(app) {
         if (_.includes(item.types, 'postal_code')) {
           $scope.restaurant.address.zip = item.short_name;
         }
-      });
+      }); // _.forEach($scope.details...
 
       if($scope.details.formatted_address) {
         $scope.restaurant.fullAddr = $scope.details.formatted_address;
@@ -177,12 +189,14 @@ module.exports = function(app) {
         $scope.map.loc.long = $scope.details.geometry.location.F;
         $scope.map.caption = $scope.restaurant.name;
       }
-    };
+
+      $scope.display_preview = true;
+    }; // $scope.populateAddress()
 
     // preview messages
     $scope.renderHtml = function (html) {
       return $sce.trustAsHtml(html);
     };
 
-  }]);
-};
+  }]); // app.controller
+}; // module.exports

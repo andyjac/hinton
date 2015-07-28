@@ -72,6 +72,11 @@ module.exports = function(app) {
       $scope.priceDollars = dollars;
     };
 
+    $scope.clearForm = function() {
+      $scope.map = clearFields($scope.map);
+      $scope.restaurant = clearFields($scope.restaurant);
+    };
+
     $scope.isNotEmpty = function(obj) {
       return Object.keys(obj).length;
     };

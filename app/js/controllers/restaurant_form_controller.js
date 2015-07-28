@@ -11,17 +11,19 @@ module.exports = function(app) {
       genre: [],
       phone: '',
       price: 0,
+      p_id: '',
       address: {
         number: '',
         street: '',
         city: '',
         state: '',
-        zip: ''
+        zip: '',
+        country: ''
       },
       menu_item: '',
-      blog: '',
-      site: '',
-      menu: '',
+      blog_link: '',
+      r_site: '',
+      menu_link: '',
       hours: {
         mon: '',
         tue: '',
@@ -96,13 +98,11 @@ module.exports = function(app) {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      console.log(restaurantInfo.restaurant);
       $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
-          $scope.map = clearFields($scope.map);
-          $scope.restaurant = clearFields($scope.restaurant);
+          $scope.clearForm();
         })
         .error(function(err) {
           console.log(err);
@@ -111,7 +111,6 @@ module.exports = function(app) {
     };
 
     $scope.populateAddress = function() {
-      console.log($scope.details);
       _.forEach($scope.details.address_components, function(item) {
 
         if (_.includes(item.types, 'street_number')) {
@@ -143,7 +142,7 @@ module.exports = function(app) {
         if (_.includes(item.types, 'postal_code')) {
           $scope.restaurant.address.zip = item.short_name;
         }
-      }); // _.forEach($scope.details...
+      });
 
       if($scope.details.formatted_address) {
         $scope.restaurant.fullAddr = $scope.details.formatted_address;
@@ -153,7 +152,7 @@ module.exports = function(app) {
         $scope.restaurant.p_id = $scope.details.place_id;
       }
 
-      if($scope.details.name) { // && !($scope.restaurant.name)) {
+      if($scope.details.name) {
         $scope.restaurant.name = $scope.details.name;
       }
 
@@ -169,15 +168,12 @@ module.exports = function(app) {
 
       if($scope.details.website) {
         $scope.restaurant.r_site = $scope.details.website;
-        $scope.restaurant.menu_link = $scope.details.website; //make same, can edit
       }
 
-      // refactor opening_hours
       if($scope.details.opening_hours) {
         _.forEach($scope.details.opening_hours.weekday_text, function(item) {
           _.forEach(_.keys($scope.restaurant.hours), function(day) {
             if (_.includes(item, _.startCase(day))) {
-              // strip day header ('Monday: ') in weekday_text
               $scope.restaurant.hours[day] = item.substring(item.indexOf(':') + 2);
             }
           });
@@ -191,7 +187,7 @@ module.exports = function(app) {
       }
 
       $scope.display_preview = true;
-    }; // $scope.populateAddress()
+    };
 
-  }]); // app.controller
-}; // module.exports
+  }]);
+};

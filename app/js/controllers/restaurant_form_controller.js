@@ -63,10 +63,10 @@ module.exports = function(app) {
     $scope.setRestaurant = function(restaurant) {
       $scope.restaurant.name = restaurant;
       var obj = _.find($scope.restaurantList, restaurant);
-      var id = obj['_id'];
-      $http.get('api/restaurant/' + id)
+      $http.get('api/restaurant/' + obj._id)
         .success(function(data) {
           $scope.restaurant = _.cloneDeep(data.restaurant);
+          $scope.display_preview = true;
         });
     };
 

@@ -1,4 +1,4 @@
-  'use strict';
+'use strict';
 
 var _ = require('lodash');
 
@@ -44,6 +44,25 @@ module.exports = function(app) {
     };
 
     $scope.existingGenres = [];
+    $scope.restaurantList = [];
+    $scope.restaurantNames = [];
+
+    $scope.getRestaurants = function() {
+      $http.get('hinton/user/restaurant/all/client')
+        .success(function(data) {
+          $scope.restaurantList = data;
+          _.forEach(data, function(item) {
+            $scope.restaurantNames.push(Object.keys(item)[0]);
+          });
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+    };
+
+    $scope.setRestaurant = function(restaurant) {
+      $scope.restaurant.name = restaurant;
+    };
 
     $scope.setGenre = function(genre) {
       $scope.genre = genre;

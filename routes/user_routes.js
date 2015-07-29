@@ -8,6 +8,7 @@ var signInController = require('../controllers/sign_in_controller');
 var addRestController = require('../controllers/add_rest_controller');
 var editRestController = require('../controllers/edit_rest_controller');
 var deleteRestController = require('../controllers/delete_rest_controller');
+var allRestFormController = require('../controllers/all_rest_form_controller');
 
 module.exports = function(router, passport) {
   router.use(bodyparser.urlencoded({extended: true}));
@@ -20,4 +21,5 @@ module.exports = function(router, passport) {
   router.delete('/user/restaurant/:id', eatAuth, deleteRestController);
 
   router.post('/user/restaurant/client', addRestController);
+  router.get('/user/restaurant/all/client', allRestFormController);
 };

@@ -1,4 +1,4 @@
-<main data-ng-controller="restaurantFormController" data-ng-init="updateFromDB()">
+<main data-ng-controller="restaurantFormController" data-ng-init="updateFromDB(); getRestaurants();">
 
   <section class="main-left col-md-6">
 
@@ -20,6 +20,12 @@
             </button>
           </div>
         </div>
+      </div>
+
+      <div data-dropdown-directive class="input-group-btn btn-group"
+               dropdown data-button-id="add-name-dropdown"
+               data-button-text="Restaurant List" data-ul-id="name-dropdown"
+               data-items="restaurantNames" data-select="setRestaurant(item)">
       </div>
 
       <div class="form-group col-md-8">

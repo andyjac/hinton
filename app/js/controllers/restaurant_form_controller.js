@@ -44,7 +44,6 @@ module.exports = function(app) {
 
     $scope.existingGenres = [];
     $scope.restaurantList = [];
-    $scope.restaurantNames = [];
 
     $scope.updateFromDB = function() {
       $http.get('/api/restaurant/genre/all')
@@ -58,6 +57,7 @@ module.exports = function(app) {
       $http.get('hinton/user/restaurant/all/client')
         .success(function(data) {
           $scope.restaurantList = data;
+          $scope.restaurantNames = [];
           _.forEach(data, function(item) {
             $scope.restaurantNames.push(Object.keys(item)[0]);
           });
@@ -124,13 +124,13 @@ module.exports = function(app) {
     $scope.clearForm = function() {
       $scope.map = clearFields($scope.map);
       $scope.restaurant = clearFields($scope.restaurant);
+      $scope.priceDollars = '';
       $scope.display_preview = false;
     };
 
     $scope.isNotEmpty = function(obj) {
       return Object.keys(obj).length;
     };
-
 
     $scope.submitForm = function() {
       var restaurantInfo = {};
@@ -219,8 +219,8 @@ module.exports = function(app) {
       }
 
       if($scope.details.geometry) {
-        $scope.map.loc.lat = $scope.details.geometry.location.A;
-        $scope.map.loc.long = $scope.details.geometry.location.F;
+        $scope.map.loc.lat = $scope.details.geometry.location.G;
+        $scope.map.loc.long = $scope.details.geometry.location.K;
         $scope.map.caption = $scope.restaurant.name;
       }
 

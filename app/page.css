@@ -15,6 +15,10 @@ body {
   width: 95%;
   background-color:#fdfdfd;
   padding: 30px 0;
+  background-image: url(https://s3.amazonaws.com/images.rialtollc/QqPuDkRA-HIN-black_72dpi.png);
+  background-repeat: no-repeat;
+  background-position: 80% 45%;
+  background-size: 250px auto;
 }
 
 /*h3 {
@@ -66,6 +70,8 @@ font-style: italic;
   float: right;
   margin: 0;
   padding: 0 20px;
+  background-color: #fdfdfd;
+  opacity: 0.96;
 }
 /*.form-control {
   background-color: #eaead6;
@@ -126,8 +132,6 @@ label {
 }
 
 #restaurant-info {
-/*  position: fixed;
-  left: 50%;*/
 }
 
 #restaurant-photos {

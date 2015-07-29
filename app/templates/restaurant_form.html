@@ -22,20 +22,21 @@
         </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <div data-dropdown-directive data-button-id="add-name-dropdown"
-             data-button-text="Restaurant List" data-ul-id="name-dropdown"
-             data-items="restaurantNames" data-select="setRestaurant(item)">
+      <div class="form-group col-md-8">
+        <label>Restaurant Name</label>
+        <div class="input-group">
+          <div data-dropdown-directive class="input-group-btn btn-group"
+               dropdown data-button-id="add-name-dropdown"
+               data-button-text="Pick" data-ul-id="name-dropdown"
+               data-items="restaurantNames" data-select="setRestaurant(item)">
+          </div>
+          <div data-input-field-directive data-id="r_name"
+               data-placeholder-text="Enter new restaurant name"
+               data-model="restaurant.name" data-is-required="true">
+          </div>
         </div>
       </div>
 
-      <div class="form-group col-md-8">
-        <div data-input-field-directive
-             data-title="Resturant Name" data-id="r_name"
-             data-placeholder-text=""
-             data-model="restaurant.name" data-is-required="true">
-        </div>
-      </div>
 
       <div class="form-group col-md-4">
         <div data-input-field-directive data-title="Phone No." data-id="r_phone"

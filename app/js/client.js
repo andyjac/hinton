@@ -2,16 +2,20 @@
 
 require('angular/angular');
 require('angular-route');
+require('angular-base64');
+require('angular-cookies');
 require('ng-autocomplete');
 require('angular-bootstrap');
 
 // Application
-var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'ngAutocomplete', 'ui.bootstrap']);
+var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'base64', 'ngCookies', 'ngAutocomplete', 'ui.bootstrap']);
 
 //Services
+require('./auth/auth')(hintonAdminApp);
 require('./services/clear_fields')(hintonAdminApp);
 
 // Controllers
+require('./auth/auth_controller')(hintonAdminApp);
 require('./controllers/restaurant_form_controller')(hintonAdminApp);
 require('./controllers/dropdown_controller')(hintonAdminApp);
 require('./controllers/timepicker_controller')(hintonAdminApp);
@@ -28,6 +32,14 @@ hintonAdminApp.config(['$routeProvider', function($routeProvider) {
     .when('/', {
       templateUrl: 'templates/restaurant_form.html',
       controller: 'restaurantFormController'
+    })
+    .when('/sign_in', {
+      templateUrl: 'templates/views/sign_in.html',
+      controller: 'authController'
+    })
+    .when('/create_user', {
+      templateUrl: 'templates/views/create_user.html',
+      controller: 'authController'
     })
     .otherwise({ redirectTo: '/' });
 }]);

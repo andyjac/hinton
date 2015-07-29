@@ -74,6 +74,7 @@ module.exports = function(app) {
       $http.get('api/restaurant/' + obj._id)
         .success(function(data) {
           $scope.restaurant = _.cloneDeep(data.restaurant);
+          $scope.setPrice($scope.restaurant.price);
           $scope.display_preview = true;
         });
     };

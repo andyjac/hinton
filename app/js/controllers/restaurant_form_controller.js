@@ -3,7 +3,6 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-
   app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
 
     $scope.restaurant = {
@@ -47,7 +46,15 @@ module.exports = function(app) {
     $scope.restaurantList = [];
     $scope.restaurantNames = [];
 
-    $scope.getRestaurants = function() {
+    $scope.updateFromDB = function() {
+      $http.get('/api/restaurant/genre/all')
+        .success(function(data) {
+          $scope.existingGenres = data;
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+
       $http.get('hinton/user/restaurant/all/client')
         .success(function(data) {
           $scope.restaurantList = data;
@@ -63,6 +70,7 @@ module.exports = function(app) {
     $scope.setRestaurant = function(restaurant) {
       $scope.restaurant.name = restaurant;
       var obj = _.find($scope.restaurantList, restaurant);
+
       $http.get('api/restaurant/' + obj._id)
         .success(function(data) {
           $scope.restaurant = _.cloneDeep(data.restaurant);
@@ -122,15 +130,6 @@ module.exports = function(app) {
       return Object.keys(obj).length;
     };
 
-    $scope.updateFromDB = function() {
-      $http.get('/api/restaurant/genre/all')
-        .success(function(data) {
-          $scope.existingGenres = data;
-        })
-        .error(function(err) {
-          console.log(err);
-        });
-    };
 
     $scope.submitForm = function() {
       var restaurantInfo = {};
@@ -169,7 +168,7 @@ module.exports = function(app) {
         if (_.includes(item.types, 'administrative_area_level_1')) {
           $scope.restaurant.address.state = item.short_name;
         } else if (_.includes(item.types, 'administrative_area_level_2')) {
-            $scope.restaurant.address.state = item.short_name;
+          $scope.restaurant.address.state = item.short_name;
         }
 
         if (_.includes(item.types, 'country')) {
@@ -226,6 +225,5 @@ module.exports = function(app) {
 
       $scope.display_preview = true;
     };
-
   }]);
 };

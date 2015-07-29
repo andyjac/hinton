@@ -1,9 +1,8 @@
-  'use strict';
+'use strict';
 
 var _ = require('lodash');
 
 module.exports = function(app) {
-
   app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
 
     $scope.restaurant = {
@@ -20,7 +19,7 @@ module.exports = function(app) {
         zip: '',
         country: ''
       },
-      menu_item: '',
+      menu_item: [],
       blog_link: '',
       r_site: '',
       menu_link: '',
@@ -44,13 +43,48 @@ module.exports = function(app) {
     };
 
     $scope.existingGenres = [];
+    $scope.restaurantList = [];
+    $scope.restaurantNames = [];
+
+    $scope.updateFromDB = function() {
+      $http.get('/api/restaurant/genre/all')
+        .success(function(data) {
+          $scope.existingGenres = data;
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+
+      $http.get('hinton/user/restaurant/all/client')
+        .success(function(data) {
+          $scope.restaurantList = data;
+          _.forEach(data, function(item) {
+            $scope.restaurantNames.push(Object.keys(item)[0]);
+          });
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+    };
+
+    $scope.setRestaurant = function(restaurant) {
+      $scope.restaurant.name = restaurant;
+      var obj = _.find($scope.restaurantList, restaurant);
+
+      $http.get('api/restaurant/' + obj._id)
+        .success(function(data) {
+          $scope.restaurant = _.cloneDeep(data.restaurant);
+          $scope.setPrice($scope.restaurant.price);
+          $scope.display_preview = true;
+        });
+    };
 
     $scope.setGenre = function(genre) {
       $scope.genre = genre;
     };
 
     $scope.addGenre = function(genre) {
-      if (genre !== '') {
+      if (genre.trim() !== '') {
         $scope.restaurant.genre.push(genre.trim());
         $scope.genre = '';
       }
@@ -60,6 +94,19 @@ module.exports = function(app) {
 
     $scope.removeGenre = function(index) {
       $scope.restaurant.genre.splice(index, 1);
+    };
+
+    $scope.addMenuItem = function(menuItem) {
+      if (menuItem.trim() !== '') {
+        $scope.restaurant.menu_item.push(menuItem.trim());
+        $scope.menuItem = '';
+      }
+
+      angular.element('#r_item').focus();
+    };
+
+    $scope.removeMenuItem = function(index) {
+      $scope.restaurant.menu_item.splice(index, 1);
     };
 
     $scope.setPrice = function(price) {
@@ -84,15 +131,6 @@ module.exports = function(app) {
       return Object.keys(obj).length;
     };
 
-    $scope.updateFromDB = function() {
-      $http.get('/api/restaurant/genre/all')
-        .success(function(data) {
-          $scope.existingGenres = data;
-        })
-        .error(function(err) {
-          console.log(err);
-        });
-    };
 
     $scope.submitForm = function() {
       var restaurantInfo = {};
@@ -131,7 +169,7 @@ module.exports = function(app) {
         if (_.includes(item.types, 'administrative_area_level_1')) {
           $scope.restaurant.address.state = item.short_name;
         } else if (_.includes(item.types, 'administrative_area_level_2')) {
-            $scope.restaurant.address.state = item.short_name;
+          $scope.restaurant.address.state = item.short_name;
         }
 
         if (_.includes(item.types, 'country')) {
@@ -188,6 +226,5 @@ module.exports = function(app) {
 
       $scope.display_preview = true;
     };
-
   }]);
 };

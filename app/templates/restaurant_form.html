@@ -9,13 +9,13 @@
         <label>Restaurant Search</label>
         <div class="input-group">
           <input type="text" class="form-control" data-ng-autocomplete data-ng-focus="clearForm()"
-            data-ng-model="restaurant.googleAddress"
-            data-id = "gSearch"
-            data-options="options"
-            data-details="details" placeholder="search for [filter] place name" autofocus>
+                 data-ng-model="restaurant.googleAddress"
+                 data-id = "gSearch"
+                 data-options="options"
+                 data-details="details" placeholder="search for [filter] place name" autofocus>
           <div class="input-group-btn">
             <button type="button" class="btn btn-default"
-              data-ng-click="populateAddress()">
+                    data-ng-click="populateAddress()">
               Use
             </button>
           </div>
@@ -23,10 +23,17 @@
       </div>
 
       <div class="form-group col-md-8">
-        <div data-input-field-directive
-             data-title="Resturant Name" data-id="r_name"
-             data-placeholder-text=""
-             data-model="restaurant.name" data-is-required="true">
+        <label>Restaurant Name</label>
+        <div class="input-group">
+          <div data-dropdown-directive class="input-group-btn btn-group"
+               dropdown data-button-id="add-name-dropdown"
+               data-button-text="Pick" data-ul-id="name-dropdown"
+               data-items="restaurantNames" data-select="setRestaurant(item)">
+          </div>
+          <div data-input-field-directive data-id="r_name"
+               data-placeholder-text="Enter new restaurant name"
+               data-model="restaurant.name" data-is-required="true">
+          </div>
         </div>
       </div>
 
@@ -113,7 +120,7 @@
                data-items="existingGenres" data-select="setGenre(item)">
           </div>
           <div data-input-field-directive data-id="r_genre"
-               data-placeholder-text="enter new genre"
+               data-placeholder-text="Enter new genre"
                data-model="genre" data-is-required="false">
           </div>
           <div class="input-group-btn">
@@ -123,10 +130,17 @@
         </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <div data-input-field-directive data-title="Featured Menu Item" data-id="r_item"
-             data-placeholder-text="separate entries with commas"
-             data-model="restaurant.menu_item" data-is-required="false">
+      <div class="col-md-12">
+        <label>Featured Menu Item</label>
+        <div class="input-group">
+          <div data-input-field-directive data-id="r_item"
+               data-placeholder-text="Add featured menu item"
+               data-model="menuItem" data-is-required="false">
+          </div>
+          <div class="input-group-btn">
+            <button class="btn btn-default" id="add-menu-item-btn"
+                    type="button" data-ng-click="addMenuItem(menuItem)">Add</button>
+          </div>
         </div>
       </div>
 
@@ -147,7 +161,7 @@
         </div>
       </div>
 
-       <div class="form-group col-md-6">
+      <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Blog Link" data-id="blog_link"
              data-placeholder-text="Blog Post URL"
              data-model="restaurant.blog_link" data-is-required="false">
@@ -220,76 +234,79 @@
   <!-- preview -->
 
   <section id="restaurant-info" class="main-right col-md-6">
-  <div data-ng-show="display_preview">
-    <h2 class="col-md-12">{{restaurant.name}}</h2>
+    <div data-ng-show="display_preview">
+      <h2 class="col-md-12">{{restaurant.name}}</h2>
 
-    <div class="col-md-6 header-type pull-left">
-      <div>{{restaurant.address.number}} {{restaurant.address.street}}<br>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      </div>
-      <div ng-if='restaurant.address.country !== "United States"'>{{restaurant.address.country}}
-      </div>
-      <div>{{restaurant.phone}}</div>
-    </div>
-
-    <div class="dollars col-md-6 pull-right">
-      <h4>Price:&nbsp;&nbsp; {{priceDollars}}</h4>
-    </div>
-    <div class="preview-genre col-md-6 pull-right">
-      <ul class="list-group">
-        <button type="button" class="list-group-item pull-left"
-          data-ng-repeat="genre in restaurant.genre"
-          data-ng-click="removeGenre($index)">
-          {{genre}}
-        </button>
-      </ul>
-    </div>
-
-    <div class="h-rule col-md-11"></div>
-
-    <div class="col-md-5 pull-left preview-hours">
-      <h4>Hours</h4>
-      <h5>Mon: {{restaurant.hours.mon}}</h5>
-      <h5>Tue: {{restaurant.hours.tue}}</h5>
-      <h5>Wed: {{restaurant.hours.wed}}</h5>
-      <h5>Thu: {{restaurant.hours.thu}}</h5>
-      <h5>Fri: {{restaurant.hours.fri}}</h5>
-      <h5>Sat: {{restaurant.hours.sat}}</h5>
-      <h5>Sun: {{restaurant.hours.sun}}</h5>
-    </div>
-
-    <div class="preview-urls col-md-7 pull-right">
-
-      <div class="col-md-12" data-ng-if="restaurant.r_site">
-        <h4>Website</h4>
-        <h5>{{restaurant.r_site}}</h5>
+      <div class="col-md-6 header-type pull-left">
+        <div>{{restaurant.address.number}} {{restaurant.address.street}}
+          <br>{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        </div>
+        <div ng-if='restaurant.address.country !== "United States"'>{{restaurant.address.country}}
+        </div>
+        <div>{{restaurant.phone}}</div>
       </div>
 
-      <div class="col-md-12" data-ng-if="restaurant.menu_link">
-        <h4>Menu</h4>
-        <h5>{{restaurant.menu_link}}</h5>
+      <div class="dollars col-md-6 pull-right">
+        <h4>Price:&nbsp;&nbsp; {{priceDollars}}</h4>
       </div>
 
-      <div class="col-md-12" data-ng-if="restaurant.blog_link">
-        <h4>Blog Post</h4>
-        <h5>{{restaurant.blog_link}}</h5>
+      <div class="preview-genre col-md-6 pull-right">
+        <ul class="list-group">
+          <button type="button" class="list-group-item pull-left"
+                  data-ng-repeat="genre in restaurant.genre"
+                  data-ng-click="removeGenre($index)">
+            {{genre}}
+          </button>
+        </ul>
       </div>
 
+      <div class="h-rule col-md-11"></div>
+
+      <div class="col-md-5 pull-left preview-hours">
+        <h4>Hours</h4>
+        <h5>Mon: {{restaurant.hours.mon}}</h5>
+        <h5>Tue: {{restaurant.hours.tue}}</h5>
+        <h5>Wed: {{restaurant.hours.wed}}</h5>
+        <h5>Thu: {{restaurant.hours.thu}}</h5>
+        <h5>Fri: {{restaurant.hours.fri}}</h5>
+        <h5>Sat: {{restaurant.hours.sat}}</h5>
+        <h5>Sun: {{restaurant.hours.sun}}</h5>
+      </div>
+
+      <div class="preview-urls col-md-7 pull-right">
+        <div class="col-md-12" data-ng-if="restaurant.r_site">
+          <h4>Website</h4>
+          <h5>{{restaurant.r_site}}</h5>
+        </div>
+
+        <div class="col-md-12" data-ng-if="restaurant.menu_link">
+          <h4>Menu</h4>
+          <h5>{{restaurant.menu_link}}</h5>
+        </div>
+
+        <div class="col-md-12" data-ng-if="restaurant.blog_link">
+          <h4>Blog Post</h4>
+          <h5>{{restaurant.blog_link}}</h5>
+        </div>
+      </div>
+
+      <div class="col-md-12 pull-left preview-featured">
+        <div class="list-group">
+          <h4>Featured Menu Item</h4>
+          <button type="button" class="list-group-item pull-left"
+                  data-ng-repeat="item in restaurant.menu_item"
+                  data-ng-click="removeMenuItem($index)">
+            {{item}}
+        </div>
+      </div>
     </div>
-
-    <div class="preview-urls col-md-12 pull-left preview-featured">
-      <div class="col-md-11">
-        <h4>Featured Menu Item</h4>
-        <div style="font-style: italic;">{{restaurant.menu_item}}</div>
-      </div>
-    </div>
-
   </section>
 
   <section id="restaurant-photos" class="col-md-6 main-right"  data-ng-show="display_preview">
     <h4 class="col-md-12">Photos</h4>
     <div class="col-md-11">
       <div class="carousel">
-    </div>
+      </div>
     </div>
   </section>
 </main>

@@ -123,10 +123,6 @@ label {
   font-style: italic;
 }
 
-.input-group-btn {
-  padding-bottom: 7px;
-}
-
 .list-group-item {
   padding: 0 10px;
 }
@@ -136,10 +132,6 @@ label {
 
 #restaurant-photos {
 
-}
-
-#genre-dropdown {
-  top: 80%;
 }
 
 .timepicker .btn {
@@ -203,4 +195,3 @@ h4, h5 {
   height:260px;
   margin-top: 20px;
 }
-

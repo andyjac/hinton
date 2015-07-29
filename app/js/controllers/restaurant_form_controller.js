@@ -20,7 +20,7 @@ module.exports = function(app) {
         zip: '',
         country: ''
       },
-      menu_item: '',
+      menu_item: [],
       blog_link: '',
       r_site: '',
       menu_link: '',
@@ -75,7 +75,7 @@ module.exports = function(app) {
     };
 
     $scope.addGenre = function(genre) {
-      if (genre !== '') {
+      if (genre.trim() !== '') {
         $scope.restaurant.genre.push(genre.trim());
         $scope.genre = '';
       }
@@ -85,6 +85,19 @@ module.exports = function(app) {
 
     $scope.removeGenre = function(index) {
       $scope.restaurant.genre.splice(index, 1);
+    };
+
+    $scope.addMenuItem = function(menuItem) {
+      if (menuItem.trim() !== '') {
+        $scope.restaurant.menu_item.push(menuItem.trim());
+        $scope.menuItem = '';
+      }
+
+      angular.element('#r_item').focus();
+    };
+
+    $scope.removeMenuItem = function(index) {
+      $scope.restaurant.menu_item.splice(index, 1);
     };
 
     $scope.setPrice = function(price) {

@@ -62,6 +62,12 @@ module.exports = function(app) {
 
     $scope.setRestaurant = function(restaurant) {
       $scope.restaurant.name = restaurant;
+      var obj = _.find($scope.restaurantList, restaurant);
+      var id = obj['_id'];
+      $http.get('api/restaurant/' + id)
+        .success(function(data) {
+          $scope.restaurant = _.cloneDeep(data.restaurant);
+        });
     };
 
     $scope.setGenre = function(genre) {

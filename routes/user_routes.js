@@ -22,4 +22,5 @@ module.exports = function(router, passport) {
 
   router.post('/user/restaurant/client', addRestController);
   router.get('/user/restaurant/all/client', allRestFormController);
+  router.post('/user/create_user/client', createUserController);
 };

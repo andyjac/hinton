@@ -219,7 +219,8 @@
 
   <!-- preview -->
 
-  <section id="restaurant-info" class="main-right col-md-6" data-ng-show="display_preview">
+  <section id="restaurant-info" class="main-right col-md-6">
+  <div data-ng-show="display_preview">
     <h2 class="col-md-12">{{restaurant.name}}</h2>
 
     <div class="col-md-6 header-type pull-left">
@@ -288,6 +289,7 @@
     <h4 class="col-md-12">Photos</h4>
     <div class="col-md-11">
       <div class="carousel">
+    </div>
     </div>
   </section>
 </main>

@@ -20,7 +20,8 @@ module.exports = function(router, passport) {
   router.put('/user/restaurant/:id', eatAuth, editRestController);
   router.delete('/user/restaurant/:id', eatAuth, deleteRestController);
 
-  router.post('/user/restaurant/client', addRestController);
-  router.get('/user/restaurant/all/client', allRestFormController);
+  router.post('/user/restaurant/client', eatAuth, addRestController);
+  router.get('/user/restaurant/all/client', eatAuth, allRestFormController);
   router.post('/user/create_user/client', createUserController);
+  router.get('/user/sign_in/client', passport.authenticate('basic', {session: false}), signInController);
 };

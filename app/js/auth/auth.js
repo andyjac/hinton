@@ -5,8 +5,19 @@ module.exports = function(app) {
     return {
 
       signIn: function(user, callback) {
-
-      }
+        var encoded = $base64.encode(user.email + ':' + user.password);
+        user.username = user.email;
+        $http.get('/hinton/user/sign_in/client', {
+          headers: {'Authorization': 'Basic ' + encoded}
+        })
+        .success(function (data) {
+          $cookies.put('eat', data.token);
+          callback(null);
+        })
+        .error(function (data) {
+          callback(data);
+        });
+      },
 
       create: function(user, callback) {
         user.username = user.email;
@@ -18,6 +29,10 @@ module.exports = function(app) {
           .error(function(data) {
             callback(data);
           });
+      },
+
+      isSignedIn: function() {
+        return !!($cookies.get('eat') && $cookies.get('eat').length);
       }
 
     };

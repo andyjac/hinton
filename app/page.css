@@ -21,13 +21,6 @@ body {
   background-size: 250px auto;
 }
 
-/*h3 {
-  margin: 10px 10px;
-}
-
-
-*/
-
 input::-webkit-input-placeholder {
 color: #d8d8d8 !important;
 font-style: italic;
@@ -73,11 +66,7 @@ font-style: italic;
   background-color: #fdfdfd;
   opacity: 0.96;
 }
-/*.form-control {
-  background-color: #eaead6;
-  font-size: 15px;
-  height: 28px;
-}*/
+
 .form-control {
   margin-bottom: 3px;
 }
@@ -205,6 +194,6 @@ h4, h5 {
 .carousel {
   border: 1px solid #ccc;
   border-radius: 5px;
-  padding-bottom: 80%;
+  padding-bottom: 72%;
   margin-top: 20px;
 }

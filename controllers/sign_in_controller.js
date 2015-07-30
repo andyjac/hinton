@@ -7,9 +7,8 @@ module.exports = function(req, res) {
       return res.status(500).json({msg : 'problem generating token'});
     }
 
-    // var uriToken = encodeURIComponent(token);
+    var uriToken = encodeURIComponent(token);
     // res.redirect('/hinton/user?valid=' + uriToken);
-    console.log('server-token:', token);
-    res.status(200).json({token: token});
+    res.status(200).json({token: uriToken});
   });
 };

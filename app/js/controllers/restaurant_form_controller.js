@@ -3,7 +3,9 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
+  app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
+                 '$location', 'clearFields',
+                 function($scope, $http, $cookies, $location, clearFields) {
 
     $scope.restaurant = {
       name: '',
@@ -44,6 +46,8 @@ module.exports = function(app) {
 
     $scope.existingGenres = [];
     $scope.restaurantList = [];
+
+    $http.defaults.headers.common['eat'] = $cookies.get('eat'); // jshint ignore:line
 
     $scope.updateFromDB = function() {
       $http.get('/api/restaurant/genre/all')

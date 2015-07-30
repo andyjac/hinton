@@ -126,6 +126,7 @@ module.exports = function(app) {
       $scope.restaurant = clearFields($scope.restaurant);
       $scope.priceDollars = '';
       $scope.display_preview = false;
+      $scope.err_save = '';
     };
 
     $scope.isNotEmpty = function(obj) {

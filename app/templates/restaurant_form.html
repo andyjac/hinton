@@ -220,8 +220,8 @@
         </button>
 
         <!-- temporary error message placeholder -->
-        <div class="col-md-8" style="color:red; float:left;">
-          <h5>{{err_save ? 'not saved - duplicate entry' : ''}}</h5>
+        <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save">
+          <h5>not saved - duplicate entry</h5>
         </div>
       </div>
 

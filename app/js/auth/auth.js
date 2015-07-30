@@ -8,15 +8,15 @@ module.exports = function(app) {
         var encoded = $base64.encode(user.email + ':' + user.password);
         user.username = user.email;
         $http.get('/hinton', {
-          headers: {'Authorization': 'Basic ' + encoded}
-        })
-        .success(function (data) {
-          $cookies.put('eat', data.token);
-          callback(null);
-        })
-        .error(function (data) {
-          callback(data);
-        });
+            headers: {'Authorization': 'Basic ' + encoded}
+          })
+          .success(function (data) {
+            $cookies.put('eat', data.token);
+            callback(null);
+          })
+          .error(function (data) {
+            callback(data);
+          });
       },
 
       create: function(user, callback) {

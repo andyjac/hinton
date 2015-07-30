@@ -4,8 +4,8 @@ var _ = require('lodash');
 
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
-                 '$location', 'clearFields',
-                 function($scope, $http, $cookies, $location, clearFields) {
+                 '$location', 'auth', 'clearFields',
+                 function($scope, $http, $cookies, $location, auth, clearFields) {
 
     $scope.restaurant = {
       name: '',
@@ -49,6 +49,10 @@ module.exports = function(app) {
 
     $http.defaults.headers.common['eat'] = $cookies.get('eat'); // jshint ignore:line
 
+    if (!auth.isSignedIn()) {
+      $location.path('/sign_in');
+    }
+
     $scope.updateFromDB = function() {
       $http.get('/api/restaurant/genre/all')
         .success(function(data) {
@@ -58,7 +62,7 @@ module.exports = function(app) {
           console.log(err);
         });
 
-      $http.get('hinton/user/restaurant/all/client')
+      $http.get('/hinton/user/restaurant/all')
         .success(function(data) {
           $scope.restaurantList = data;
           $scope.restaurantNames = [];
@@ -75,7 +79,7 @@ module.exports = function(app) {
       $scope.restaurant.name = restaurant;
       var obj = _.find($scope.restaurantList, restaurant);
 
-      $http.get('api/restaurant/' + obj._id)
+      $http.get('/api/restaurant/' + obj._id)
         .success(function(data) {
           $scope.restaurant = _.cloneDeep(data.restaurant);
           $scope.setPrice($scope.restaurant.price);
@@ -140,7 +144,7 @@ module.exports = function(app) {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      $http.post('/hinton/user/restaurant/client', restaurantInfo)
+      $http.post('/hinton/user/restaurant', restaurantInfo)
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();

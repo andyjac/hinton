@@ -7,7 +7,7 @@ module.exports = function(app) {
       signIn: function(user, callback) {
         var encoded = $base64.encode(user.email + ':' + user.password);
         user.username = user.email;
-        $http.get('/hinton/user/sign_in/client', {
+        $http.get('/hinton', {
           headers: {'Authorization': 'Basic ' + encoded}
         })
         .success(function (data) {
@@ -21,7 +21,7 @@ module.exports = function(app) {
 
       create: function(user, callback) {
         user.username = user.email;
-        $http.post('hinton/user/create_user/client', user)
+        $http.post('/hinton/user/create_user/client', user)
           .success(function(data) {
             $cookies.put('eat', data.token);
             callback(null);

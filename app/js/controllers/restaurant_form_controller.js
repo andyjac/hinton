@@ -74,7 +74,7 @@ module.exports = function(app) {
       $http.get('api/restaurant/' + obj._id)
         .success(function(data) {
           console.log(data);
-          $scope.r_id = data._id;
+          $scope.r_id = data._id; //grab _id into scope
           $scope.restaurant = _.cloneDeep(data.restaurant);
           $scope.setPrice($scope.restaurant.price);
           $scope.display_preview = true;
@@ -138,11 +138,11 @@ module.exports = function(app) {
       return Object.keys(obj).length;
     };
 
-    $scope.submitForm = function(id) {
+    $scope.submitForm = function() {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      if (!$scope.editing) {
+      if (!$scope.editing) { // regular post
         $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
@@ -154,7 +154,7 @@ module.exports = function(app) {
           $scope.err_save = err.msg;
         });
 
-      } else {
+      } else { // put function
         $http.put('/hinton/user/restaurant/client/' + $scope.r_id, restaurantInfo)
         .success(function(data) {
           console.log(data);
@@ -170,7 +170,7 @@ module.exports = function(app) {
       $scope.editing = false;
     };
 
-    $scope.deleteRestaurant = function(id) {
+    $scope.deleteRestaurant = function() {
       //add bootstrap modal confirmation...
       $http.delete('/hinton/user/restaurant/client/' + $scope.r_id)
       .success(function(data) {

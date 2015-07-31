@@ -7,13 +7,14 @@ describe('auth service', function() {
   var auth;
   var $httpBackend;
   var $cookies;
-
+  var $location;
   beforeEach(angular.mock.module('hintonAdminApp'));
 
-  beforeEach(angular.mock.inject(function(_auth_, _$httpBackend_, _$cookies_) {
+  beforeEach(angular.mock.inject(function(_auth_, _$httpBackend_, _$cookies_, _$location_) {
     auth = _auth_;
     $httpBackend = _$httpBackend_;
     $cookies = _$cookies_;
+    $location = _$location_;
   }));
 
   it('should create user', function() {
@@ -40,5 +41,13 @@ describe('auth service', function() {
   it('should verify user not signed in', function() {
     $cookies.put('eat', '');
     expect(auth.isSignedIn()).toBe(false);
+  });
+
+  it('should logout user', function() {
+    $cookies.put('eat', 'a1b2c3d4e5');
+    auth.logout();
+    expect($cookies.get('eat')).toBe('');
+    expect($cookies.get('eat').length).toBe(0);
+    expect($location.path()).toBe('/sign_in');
   });
 });

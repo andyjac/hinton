@@ -46,7 +46,7 @@
 
       <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Google Formatted Address" data-id="r_full"
-             data-placeholder-text=""
+             data-placeholder-text="" data-ng-disabled=true;
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
       </div>
@@ -299,6 +299,7 @@
                   data-ng-repeat="item in restaurant.menu_item"
                   data-ng-click="removeMenuItem($index)">
             {{item}}
+          </div>
         </div>
       </div>
     </div>

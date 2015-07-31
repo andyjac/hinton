@@ -21,13 +21,6 @@ body {
   background-size: 250px auto;
 }
 
-/*h3 {
-  margin: 10px 10px;
-}
-
-
-*/
-
 input::-webkit-input-placeholder {
 color: #d8d8d8 !important;
 font-style: italic;
@@ -73,11 +66,7 @@ font-style: italic;
   background-color: #fdfdfd;
   opacity: 0.96;
 }
-/*.form-control {
-  background-color: #eaead6;
-  font-size: 15px;
-  height: 28px;
-}*/
+
 .form-control {
   margin-bottom: 3px;
 }
@@ -94,14 +83,23 @@ font-style: italic;
   min-width: 50px;
 }
 
+.btn-default {
+  background-color: #f8f8f8;
+  color: #222;
+}
+
+.btn-default:hover {
+  background-color: #ddd;
+}
+
 .btn-rt {
   float: right;
 }
 
+
 .btn-bottom {
-  margin-left: 10px;
+  padding-top: 10px;
   clear: both;
-  width: 95%;
 }
 
 .btn-md {
@@ -144,17 +142,10 @@ label {
 }
 
 .tooltip-inner {
-  background-color: yellow;
-  color: blue;
-  padding: 3px 6px;
-  border: 1px solid blue;
+
 }
 
 /* preview */
-
-/* preview */
-
-
 
 .header-type, .dollars, .genre {
   font-size: 1.2em;
@@ -189,9 +180,20 @@ h4, h5 {
   padding: 15px 0;
 }
 
+.preview-featured {
+  cursor: pointer;
+  font-style: italic;
+  text-align:left;
+  padding: 6px 0;
+}
+
+.preview-featured-more {
+  border-bottom: 1px solid #bbb;
+}
+
 .carousel {
   border: 1px solid #ccc;
   border-radius: 5px;
-  height:260px;
+  padding-bottom: 72%;
   margin-top: 20px;
 }

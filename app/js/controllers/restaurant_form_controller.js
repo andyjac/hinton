@@ -96,10 +96,10 @@ module.exports = function(app) {
       $scope.restaurant.genre.splice(index, 1);
     };
 
-    $scope.addMenuItem = function(menuItem) {
-      if (menuItem.trim() !== '') {
-        $scope.restaurant.menu_item.push(menuItem.trim());
-        $scope.menuItem = '';
+    $scope.addMenuItem = function(menu_item) {
+      if (menu_item.trim() !== '') {
+        $scope.restaurant.menu_item.push(menu_item.trim());
+        $scope.menu_item = '';
       }
 
       angular.element('#r_item').focus();
@@ -125,7 +125,9 @@ module.exports = function(app) {
       $scope.map = clearFields($scope.map);
       $scope.restaurant = clearFields($scope.restaurant);
       $scope.priceDollars = '';
+      $scope.menu_item = '';
       $scope.display_preview = false;
+      $scope.err_save = '';
     };
 
     $scope.isNotEmpty = function(obj) {

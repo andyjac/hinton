@@ -73,9 +73,14 @@ module.exports = function(app) {
 
       $http.get('api/restaurant/' + obj._id)
         .success(function(data) {
+          console.log(data);
+          $scope.r_id = data._id; //grab _id into scope
           $scope.restaurant = _.cloneDeep(data.restaurant);
           $scope.setPrice($scope.restaurant.price);
           $scope.display_preview = true;
+          $scope.editing = true;
+          console.log($scope.restaurant.name + ': ' + $scope.r_id);
+          console.log('editing: ' + $scope.editing);
         });
     };
 
@@ -138,7 +143,8 @@ module.exports = function(app) {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      $http.post('/hinton/user/restaurant/client', restaurantInfo)
+      if (!$scope.editing) { // regular post
+        $http.post('/hinton/user/restaurant/client', restaurantInfo)
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
@@ -148,6 +154,36 @@ module.exports = function(app) {
           console.log(err);
           $scope.err_save = err.msg;
         });
+
+      } else { // put function
+        $http.put('/hinton/user/restaurant/client/' + $scope.r_id, restaurantInfo)
+        .success(function(data) {
+          console.log(data);
+          $scope.updateFromDB();
+          $scope.clearForm();
+        })
+        .error(function(err) {
+          console.log(err);
+          $scope.err_save = err.msg;
+        });
+      }
+
+      $scope.editing = false;
+    };
+
+    $scope.deleteRestaurant = function() {
+      //add bootstrap modal confirmation...
+      $http.delete('/hinton/user/restaurant/client/' + $scope.r_id)
+      .success(function(data) {
+          console.log(data);
+          $scope.updateFromDB();
+          $scope.clearForm();
+        })
+        .error(function(err) {
+          console.log(err);
+          $scope.err_save = err.msg;
+        });
+        $scope.editing = false;
     };
 
     $scope.populateAddress = function() {
@@ -227,6 +263,7 @@ module.exports = function(app) {
       }
 
       $scope.display_preview = true;
+      $scope.editing = false;
     };
   }]);
 };

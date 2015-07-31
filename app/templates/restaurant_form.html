@@ -46,7 +46,7 @@
 
       <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Google Formatted Address" data-id="r_full"
-             data-placeholder-text=""
+             data-placeholder-text="" data-ng-disabled=true;
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
       </div>
@@ -216,12 +216,16 @@
 
       <div class="btn-bottom col-md-12">
         <button type="submit" class="btn btn-success pull-left"
-        data-ng-disabled="restaurant-form.$invalid">Save
+        data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
+        </button>
+
+        <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteRestaurant()"
+        data-ng-disabled="restaurant-form.$invalid">Delete
         </button>
 
         <!-- temporary error message placeholder -->
-        <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save">
-          <h5>not saved - duplicate entry</h5>
+        <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save !== ''">
+          <h5>{{err_save}}</h5>
         </div>
       </div>
 
@@ -291,10 +295,11 @@
         <div class="list-group">
           <h4 class="col-md-6" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
           >Featured Menu Item</h4>
-          <div class="pull-left preview-featured" data-ng-class="{ restaurant.menu_item.length > 1 ? 'preview-featured-more' : '' }"
+          <div class="pull-left preview-featured"
                   data-ng-repeat="item in restaurant.menu_item"
                   data-ng-click="removeMenuItem($index)">
             {{item}}
+          </div>
         </div>
       </div>
     </div>

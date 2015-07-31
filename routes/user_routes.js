@@ -24,5 +24,5 @@ module.exports = function(router, passport) {
   router.get('/user/restaurant/all/client', allRestFormController);
 
   router.put('/user/restaurant/client/:id', editRestController);
-  router.delete('/user/restaurant/client/ :id', deleteRestController);
+  router.delete('/user/restaurant/client/:id', deleteRestController);
 };

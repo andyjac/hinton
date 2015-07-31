@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = function(app) {
-  app.factory('auth', ['$http', '$base64', '$cookies', function($http, $base64, $cookies) {
+  app.factory('auth', ['$http', '$base64', '$cookies', '$location', function($http, $base64, $cookies, $location) {
     return {
 
       signIn: function(user, callback) {
@@ -33,6 +33,11 @@ module.exports = function(app) {
 
       isSignedIn: function() {
         return !!($cookies.get('eat') && $cookies.get('eat').length);
+      },
+
+      logout: function() {
+        $cookies.put('eat', '');
+        $location.path('/sign_in');
       }
 
     };

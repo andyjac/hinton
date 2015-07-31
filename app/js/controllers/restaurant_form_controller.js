@@ -4,8 +4,8 @@ var _ = require('lodash');
 
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
-                 '$location', 'auth', 'clearFields',
-                 function($scope, $http, $cookies, $location, auth, clearFields) {
+                 'auth', 'clearFields',
+                 function($scope, $http, $cookies, auth, clearFields) {
 
     $scope.restaurant = {
       name: '',
@@ -49,9 +49,13 @@ module.exports = function(app) {
 
     $http.defaults.headers.common['eat'] = $cookies.get('eat'); // jshint ignore:line
 
-    if (!auth.isSignedIn()) {
-      $location.path('/sign_in');
-    }
+    $scope.isSignedIn = function() {
+      return auth.isSignedIn();
+    };
+
+    $scope.logout = function() {
+      auth.logout();
+    };
 
     $scope.updateFromDB = function() {
       $http.get('/api/restaurant/genre/all')

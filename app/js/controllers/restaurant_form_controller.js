@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', function($scope, $http, clearFields) {
+  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', '$window',  function($scope, $http, clearFields, $window) {
 
     $scope.restaurant = {
       name: '',
@@ -169,6 +169,14 @@ module.exports = function(app) {
       }
 
       $scope.editing = false;
+    };
+
+    $scope.deleteWarning = function() {  // functional placeholder - replace with modal
+      var warning_message = "Are you sure you want to delete " + $scope.restaurant.name + "?";
+        if ($window.confirm(warning_message)) {
+          $scope.deleteRestaurant();
+        }
+        return;
     };
 
     $scope.deleteRestaurant = function() {

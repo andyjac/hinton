@@ -92,18 +92,17 @@ font-style: italic;
   background-color: #ddd;
 }
 
-.btn-rt {
-  float: right;
+.btn-danger, .btn-success, .btn-primary {
+  min-width: 75px;
 }
-
 
 .btn-bottom {
   padding-top: 10px;
   clear: both;
 }
 
-.btn-md {
-  width:100px;
+.btn-mid {
+  margin: 0 12px;
 }
 
 .clearfix {

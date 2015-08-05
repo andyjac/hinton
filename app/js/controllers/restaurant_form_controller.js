@@ -3,9 +3,10 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
+<<<<<<< HEAD
   app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
-                 'auth', 'clearFields',
-                 function($scope, $http, $cookies, auth, clearFields) {
+                 'auth', 'clearFields', '$window',
+                 function($scope, $http, $cookies, auth, clearFields, $window) {
 
     $scope.restaurant = {
       name: '',
@@ -85,9 +86,14 @@ module.exports = function(app) {
 
       $http.get('/api/restaurant/' + obj._id)
         .success(function(data) {
+          console.log(data);
+          $scope.r_id = data._id; //grab _id into scope
           $scope.restaurant = _.cloneDeep(data.restaurant);
           $scope.setPrice($scope.restaurant.price);
           $scope.display_preview = true;
+          $scope.editing = true;
+          console.log($scope.restaurant.name + ': ' + $scope.r_id);
+          console.log('editing: ' + $scope.editing);
         });
     };
 
@@ -108,10 +114,10 @@ module.exports = function(app) {
       $scope.restaurant.genre.splice(index, 1);
     };
 
-    $scope.addMenuItem = function(menuItem) {
-      if (menuItem.trim() !== '') {
-        $scope.restaurant.menu_item.push(menuItem.trim());
-        $scope.menuItem = '';
+    $scope.addMenuItem = function(menu_item) {
+      if (menu_item.trim() !== '') {
+        $scope.restaurant.menu_item.push(menu_item.trim());
+        $scope.menu_item = '';
       }
 
       angular.element('#r_item').focus();
@@ -137,7 +143,9 @@ module.exports = function(app) {
       $scope.map = clearFields($scope.map);
       $scope.restaurant = clearFields($scope.restaurant);
       $scope.priceDollars = '';
+      $scope.menu_item = '';
       $scope.display_preview = false;
+      $scope.err_save = '';
     };
 
     $scope.isNotEmpty = function(obj) {
@@ -148,7 +156,8 @@ module.exports = function(app) {
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      $http.post('/hinton/user/restaurant', restaurantInfo)
+      if (!$scope.editing) { // regular post
+        $http.post('/hinton/user/restaurant', restaurantInfo)
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();
@@ -158,6 +167,44 @@ module.exports = function(app) {
           console.log(err);
           $scope.err_save = err.msg;
         });
+
+      } else { // put function
+        $http.put('/hinton/user/restaurant/client/' + $scope.r_id, restaurantInfo)
+        .success(function(data) {
+          console.log(data);
+          $scope.updateFromDB();
+          $scope.clearForm();
+        })
+        .error(function(err) {
+          console.log(err);
+          $scope.err_save = err.msg;
+        });
+      }
+
+      $scope.editing = false;
+    };
+
+    $scope.deleteWarning = function() {  // functional placeholder - replace with modal
+      var warning_message = "Are you sure you want to delete " + $scope.restaurant.name + "?";
+        if ($window.confirm(warning_message)) {
+          $scope.deleteRestaurant();
+        }
+        return;
+    };
+
+    $scope.deleteRestaurant = function() {
+      //add bootstrap modal confirmation...
+      $http.delete('/hinton/user/restaurant/client/' + $scope.r_id)
+      .success(function(data) {
+          console.log(data);
+          $scope.updateFromDB();
+          $scope.clearForm();
+        })
+        .error(function(err) {
+          console.log(err);
+          $scope.err_save = err.msg;
+        });
+        $scope.editing = false;
     };
 
     $scope.populateAddress = function() {
@@ -237,6 +284,7 @@ module.exports = function(app) {
       }
 
       $scope.display_preview = true;
+      $scope.editing = false;
     };
   }]);
 };

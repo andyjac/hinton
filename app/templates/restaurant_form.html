@@ -13,12 +13,12 @@
     <!-- form -->
     <form id="restaurant-form" data-ng-submit="submitForm()">
 
-      <div class="col-md-12">
+      <div class="form-group col-md-12">
         <label>Restaurant Search</label>
         <div class="input-group">
           <input type="text" class="form-control" data-ng-autocomplete data-ng-focus="clearForm()"
                  data-ng-model="restaurant.googleAddress"
-                 data-id = "gSearch"
+                 data-id="gSearch"
                  data-options="options"
                  data-details="details" placeholder="search for [filter] place name" autofocus>
           <div class="input-group-btn">
@@ -35,7 +35,7 @@
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
                dropdown data-button-id="add-name-dropdown"
-               data-button-text="Pick" data-ul-id="name-dropdown"
+               data-button-text="Edit" data-ul-id="name-dropdown"
                data-items="restaurantNames" data-select="setRestaurant(item)">
           </div>
           <div data-input-field-directive data-id="r_name"
@@ -54,7 +54,7 @@
 
       <div class="form-group col-md-12">
         <div data-input-field-directive data-title="Google Formatted Address" data-id="r_full"
-             data-placeholder-text=""
+             data-placeholder-text="" data-ng-disabled=true;
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
       </div>
@@ -113,13 +113,13 @@
         <label>Price</label><br>
         <div class="btn-group">
           <div data-dropdown-directive data-button-id="add-price-dropdown"
-               dropdown data-button-text="Pick" data-items="[1,2,3,4,5]"
+               dropdown data-button-text='$$$' data-items="[1,2,3,4,5]"
                data-select="setPrice(item)">
           </div>
         </div>
       </div>
 
-      <div class="col-md-10">
+      <div class="form-group col-md-10">
         <label>Genre</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
@@ -138,16 +138,16 @@
         </div>
       </div>
 
-      <div class="col-md-12">
+      <div class="form-group col-md-12">
         <label>Featured Menu Item</label>
         <div class="input-group">
           <div data-input-field-directive data-id="r_item"
                data-placeholder-text="Add featured menu item"
-               data-model="menuItem" data-is-required="false">
+               data-model="menu_item" data-is-required="false">
           </div>
           <div class="input-group-btn">
             <button class="btn btn-default" id="add-menu-item-btn"
-                    type="button" data-ng-click="addMenuItem(menuItem)">Add</button>
+                    type="button" data-ng-click="addMenuItem(menu_item)">Add</button>
           </div>
         </div>
       </div>
@@ -162,9 +162,6 @@
       <div class="form-group col-md-6">
         <div data-input-field-directive data-title="Menu Link" data-id="menu_link"
              data-placeholder-text="menu URL if different"
-             tooltip-placement="top"
-             tooltip="...if there's any need for these"
-             tooltip-class="tooltip tooltip-inner"
              data-model="restaurant.menu_link" data-is-required="false">
         </div>
       </div>
@@ -225,15 +222,19 @@
         </div>
       </div>
 
-      <div class="col-md-2">
-        <button type="submit" class="btn btn-success"
-                data-ng-disabled="restaurant-form.$invalid">Save
+      <div class="btn-bottom col-md-12">
+        <button type="submit" class="btn btn-success pull-left"
+        data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
         </button>
-      </div>
 
-      <!-- temporary error message placeholder -->
-      <div class="col-md-8" style="color:red; float:left;">
-        <h5>{{err_save ? 'not saved - duplicate entry' : ''}}</h5>
+        <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteWarning()"
+        data-ng-disabled="restaurant-form.$invalid">Delete
+        </button>
+
+        <!-- temporary error message placeholder -->
+        <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save !== ''">
+          <h5>{{err_save}}</h5>
+        </div>
       </div>
 
     </form>
@@ -298,13 +299,15 @@
         </div>
       </div>
 
-      <div class="col-md-12 pull-left preview-featured">
+      <div class="col-md-11 pull-left">
         <div class="list-group">
-          <h4>Featured Menu Item</h4>
-          <button type="button" class="list-group-item pull-left"
+          <h4 class="col-md-6" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
+          >Featured Menu Item</h4>
+          <div class="pull-left preview-featured"
                   data-ng-repeat="item in restaurant.menu_item"
                   data-ng-click="removeMenuItem($index)">
             {{item}}
+          </div>
         </div>
       </div>
     </div>

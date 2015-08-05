@@ -3,7 +3,6 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-<<<<<<< HEAD
   app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
                  'auth', 'clearFields', '$window',
                  function($scope, $http, $cookies, auth, clearFields, $window) {

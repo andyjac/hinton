@@ -1,0 +1,11 @@
+<section data-ng-controller="authController">
+  <form data-ng-submit="authSubmit(user)">
+    <label for="email">Email</label>
+    <input type="text" name="email" required data-ng-model="user.email">
+    <label for="password">Password</label>
+    <input type="password" name="password" required data-ng-model="user.password">
+    <label for="password_confirmation">Confirmation</label>
+    <input type="password" name="password_confirmation" required data-ng-model="user.password_confirmation">
+    <button type="submit">Create User</button>
+  </form>
+</section>

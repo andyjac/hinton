@@ -20,9 +20,11 @@ module.exports = function(router, passport) {
   router.put('/user/restaurant/:id', eatAuth, editRestController);
   router.delete('/user/restaurant/:id', eatAuth, deleteRestController);
 
+  router.get('/user/restaurant/all', eatAuth, allRestFormController);
+  router.post('/user/create_user/client', createUserController);
+
   router.post('/user/restaurant/client', addRestController);
   router.get('/user/restaurant/all/client', allRestFormController);
-
   router.put('/user/restaurant/client/:id', editRestController);
   router.delete('/user/restaurant/client/:id', deleteRestController);
 };

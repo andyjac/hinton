@@ -8,6 +8,7 @@ module.exports = function(req, res) {
     }
 
     var uriToken = encodeURIComponent(token);
-    res.redirect('/hinton/user?valid=' + uriToken);
+    // res.redirect('/hinton/user?valid=' + uriToken);
+    res.status(200).json({token: uriToken});
   });
 };

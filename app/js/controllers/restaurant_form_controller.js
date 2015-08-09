@@ -3,7 +3,9 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', 'clearFields', '$window', function($scope, $http, clearFields, $window) {
+  app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
+                 'auth', 'clearFields', '$window',
+                 function($scope, $http, $cookies, auth, clearFields, $window) {
 
     $scope.restaurant = {
       name: '',
@@ -45,6 +47,16 @@ module.exports = function(app) {
     $scope.existingGenres = [];
     $scope.restaurantList = [];
 
+    $http.defaults.headers.common['eat'] = $cookies.get('eat'); // jshint ignore:line
+
+    $scope.isSignedIn = function() {
+      return auth.isSignedIn();
+    };
+
+    $scope.logout = function() {
+      auth.logout();
+    };
+
     $scope.updateFromDB = function() {
       $http.get('/api/restaurant/genre/all')
         .success(function(data) {
@@ -54,7 +66,7 @@ module.exports = function(app) {
           console.log(err);
         });
 
-      $http.get('hinton/user/restaurant/all/client')
+      $http.get('/hinton/user/restaurant/all')
         .success(function(data) {
           $scope.restaurantList = data;
           $scope.restaurantNames = [];
@@ -71,7 +83,7 @@ module.exports = function(app) {
       $scope.restaurant.name = restaurant;
       var obj = _.find($scope.restaurantList, restaurant);
 
-      $http.get('api/restaurant/' + obj._id)
+      $http.get('/api/restaurant/' + obj._id)
         .success(function(data) {
           console.log(data);
           $scope.r_id = data._id; //grab _id into scope
@@ -144,7 +156,7 @@ module.exports = function(app) {
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
       if (!$scope.editing) { // regular post
-        $http.post('/hinton/user/restaurant/client', restaurantInfo)
+        $http.post('/hinton/user/restaurant', restaurantInfo)
         .success(function(data) {
           console.log(data);
           $scope.updateFromDB();

@@ -11,7 +11,7 @@ module.exports = function(req, res) {
     data.map(function(item) {
       var obj = {};
       obj[item.restaurant.name] = item.restaurant.p_id;
-      obj['_id'] = item._id;
+      obj._id = item._id;
       arr.push(obj);
     });
 

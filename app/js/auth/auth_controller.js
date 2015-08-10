@@ -10,6 +10,7 @@ module.exports = function(app) {
             console.log(err);
             return $scope.errors.push({msg: 'could not create user'});
           }
+
           $location.path('/sign_in');
         });
       } else {
@@ -18,10 +19,10 @@ module.exports = function(app) {
             console.log(err);
             return $scope.errors.push({msg: 'could not sign in'});
           }
+
           $location.path('/');
         });
       }
     };
-
   }]);
 };

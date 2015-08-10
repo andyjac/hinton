@@ -8,14 +8,16 @@ module.exports = function(req, res) {
     }
 
     var arr = [];
+
     data.map(function(item) {
       var obj = {};
-      obj[item.restaurant.name] = item.restaurant.p_id;
+
+      obj.name = item.restaurant.name;
+      obj.p_id = item.restaurant.p_id;
       obj._id = item._id;
       arr.push(obj);
     });
 
-    console.log(arr);
     res.status(200).json(arr);
   });
 };

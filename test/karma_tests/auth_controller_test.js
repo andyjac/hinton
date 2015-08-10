@@ -19,5 +19,4 @@ describe('auth controller', function() {
     expect(typeof authController).toBe('object');
     expect(typeof $scope.authSubmit).toBe('function');
   });
-
 });

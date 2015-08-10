@@ -90,7 +90,7 @@ module.exports = function(app) {
           }
 
           genres = data;
-          callback(null);
+          callback(null, data);
         });
       },
 

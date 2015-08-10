@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/food_critic_dev_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/hinton_dev_test';
 require('../server');
 
 var mongoose = require('mongoose');
@@ -121,7 +121,7 @@ describe('restaurant REST API', function () {
 
   it('should get a list of restaurants from a genre', function(done) {
     chai.request('localhost:3000')
-    .get('/api/restaurant/genre/' + 'Mexican')
+    .get('/api/restaurant/genre/Mexican')
     .end(function(err, res) {
       expect(err).to.eql(null);
       expect(typeof res.body).to.eql('object');

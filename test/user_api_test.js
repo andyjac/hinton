@@ -1,6 +1,6 @@
 'use strict';
 
-process.env.MONGOLAB_URI = 'mongodb://localhost/food_critic_dev_test';
+process.env.MONGOLAB_URI = 'mongodb://localhost/hinton_dev_test';
 require('../server');
 
 var mongoose = require('mongoose');
@@ -44,7 +44,7 @@ describe('user creation and authentication', function() {
 
   it('should allow an admin to create a new user', function(done) {
     chai.request('localhost:3000')
-      .post('/hinton/user/create_user')
+      .post('/admin/create_user')
       .send({username: 'test', email: 'test@example.com', password: 'tester', eat: testToken})
       .end(function(err, res) {
         expect(res.status).to.eql(200);
@@ -58,7 +58,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to post to the database', function(done) {
       chai.request('localhost:3000')
-        .post('/hinton/user/restaurant')
+        .post('/admin/restaurant')
         .send({eat: testToken, map: {caption: 'rest'}, restaurant: {p_id: 'qwerty1', name: 'rest',
           address: {number: '111', street: '1st Ave', city: 'Seattle', state: 'WA',
           zip: '98103', country: 'USA'}, phone: '1234567890', price: 2}})
@@ -83,7 +83,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to update a database entry', function(done) {
       chai.request('localhost:3000')
-        .put('/hinton/user/restaurant/' + testId)
+        .put('/admin/restaurant/' + testId)
         .send({eat: testToken, map: {loc: {lat: '42', long: '120'}},
           restaurant: {zip: '98040'}})
         .end(function(err, res) {
@@ -95,7 +95,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to delete a database entry', function(done) {
       chai.request('localhost:3000')
-        .del('/hinton/user/restaurant/' + testId)
+        .del('/admin/restaurant/' + testId)
         .send({eat: testToken})
         .end(function(err, res) {
           expect(err).to.eql(null);

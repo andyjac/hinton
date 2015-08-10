@@ -46,16 +46,41 @@ module.exports = function(app) {
       caption: ''
     };
 
-    var list = [];
-    var names = [];
+    var genres = [];
+    var restaurantList = [];
+    var restaurantNames = [];
 
     return {
-      buildRestaurant: function() {
+      restaurantData: function() {
         return restaurantData;
       },
 
-      buildMap: function() {
+      mapData: function() {
         return mapData;
+      },
+
+      genres: function() {
+        return genres;
+      },
+
+      restaurantList: function() {
+        return restaurantList;
+      },
+
+      restaurantNames: function() {
+        return restaurantNames;
+      },
+
+      addItem: function(arr, item) {
+        arr.push(item);
+      },
+
+      removeItem: function(arr, index) {
+        arr.splice(index, 1);
+      },
+
+      setPrice: function(price) {
+        restaurantData.price = price;
       },
 
       getAllGenres: function(callback) {
@@ -64,7 +89,8 @@ module.exports = function(app) {
             callback(err);
           }
 
-          callback(null, data);
+          genres = data;
+          callback(null);
         });
       },
 
@@ -74,19 +100,19 @@ module.exports = function(app) {
             callback(err);
           }
 
-          list = data;
-          names = [];
+          restaurantList = data;
+          restaurantNames = [];
 
           _.forEach(data, function(restaurant) {
-            names.push(restaurant.name);
+            restaurantNames.push(restaurant.name);
           });
 
-          callback(null, {list: list, names: names});
+          callback(null, data);
         });
       },
 
       getRestaurant: function(restaurant, callback) {
-        var restaurantObj = _.find(list, 'name', restaurant);
+        var restaurantObj = _.find(restaurantList, 'name', restaurant);
         var id = restaurantObj._id;
 
         Restaurant.getOne(id, function(err, data) {

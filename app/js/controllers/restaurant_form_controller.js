@@ -4,10 +4,11 @@ var _ = require('lodash');
 
 module.exports = function(app) {
   app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', function($scope, $window, authService, restaurantService) {
-    $scope.restaurant = restaurantService.buildRestaurant();
-    $scope.map = restaurantService.buildMap();
-    $scope.existingGenres = [];
-    $scope.restaurantList = [];
+    $scope.restaurant = restaurantService.restaurantData();
+    $scope.map = restaurantService.mapData();
+    $scope.genres = restaurantService.genres();
+    $scope.restaurantList = restaurantService.restaurantList();
+    $scope.restaurantNames = restaurantService.restaurantNames();
 
     $scope.isSignedIn = function() {
       return authService.isSignedIn();
@@ -23,7 +24,7 @@ module.exports = function(app) {
           return console.log(err);
         }
 
-        $scope.existingGenres = data;
+        $scope.genres = restaurantService.genres();
       });
 
       restaurantService.getAllRestaurants(function(err, data) {
@@ -31,8 +32,8 @@ module.exports = function(app) {
           return console.log(err);
         }
 
-        $scope.restaurantList = data.list;
-        $scope.restaurantNames = data.names;
+        $scope.restaurantList = restaurantService.restaurantList();
+        $scope.restaurantNames = restaurantService.restaurantNames();
       });
     };
 
@@ -42,7 +43,7 @@ module.exports = function(app) {
           return console.log(err);
         }
 
-        $scope.restaurant = restaurantService.buildRestaurant();
+        $scope.restaurant = restaurantService.restaurantData();
         $scope.r_id = data._id;
         $scope.setPrice($scope.restaurant.price);
         $scope.display_preview = true;
@@ -51,8 +52,11 @@ module.exports = function(app) {
     };
 
     $scope.addGenre = function(genre) {
+      var arr = $scope.restaurant.genre;
+
       if (genre.trim() !== '') {
-        $scope.restaurant.genre.push(genre.trim());
+        restaurantService.addItem(arr, genre.trim());
+        $scope.restaurant = restaurantService.restaurantData();
         $scope.genre = '';
       }
 
@@ -60,12 +64,18 @@ module.exports = function(app) {
     };
 
     $scope.removeGenre = function(index) {
-      $scope.restaurant.genre.splice(index, 1);
+      var arr = $scope.restaurant.genre;
+
+      restaurantService.removeItem(arr, index);
+      $scope.restaurant = restaurantService.restaurantData();
     };
 
     $scope.addMenuItem = function(menu_item) {
+      var arr = $scope.restaurant.menu_item;
+
       if (menu_item.trim() !== '') {
-        $scope.restaurant.menu_item.push(menu_item.trim());
+        restaurantService.addItem(arr, menu_item.trim());
+        $scope.restaurant = restaurantService.restaurantData();
         $scope.menu_item = '';
       }
 
@@ -73,11 +83,15 @@ module.exports = function(app) {
     };
 
     $scope.removeMenuItem = function(index) {
-      $scope.restaurant.menu_item.splice(index, 1);
+      var arr = $scope.restaurant.menu_item;
+
+      restaurantService.removeItem(arr, index);
+      $scope.restaurant = restaurantService.restaurantData();
     };
 
     $scope.setPrice = function(price) {
-      $scope.restaurant.price = price;
+      restaurantService.setPrice(price);
+      $scope.restaurant = restaurantService.restaurantData();
       var priceNum = price;
       var dollars = '';
 
@@ -91,8 +105,8 @@ module.exports = function(app) {
     $scope.clearForm = function() {
       restaurantService.clearForm();
 
-      $scope.restaurant = restaurantService.buildRestaurant();
-      $scope.map = restaurantService.buildMap();
+      $scope.restaurant = restaurantService.restaurantData();
+      $scope.map = restaurantService.mapData();
       $scope.priceDollars = '';
       $scope.menu_item = '';
       $scope.err_save = '';
@@ -161,8 +175,8 @@ module.exports = function(app) {
     $scope.populateAddress = function() {
       restaurantService.googlePopulate($scope.details);
 
-      $scope.restaurant = restaurantService.buildRestaurant();
-      $scope.map = restaurantService.buildMap();
+      $scope.restaurant = restaurantService.restaurantData();
+      $scope.map = restaurantService.mapData();
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;

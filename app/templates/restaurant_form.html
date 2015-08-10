@@ -81,10 +81,10 @@
       </div>
 
       <!-- <div class="form-group col-md-5">
-        <div data-input-field-directive data-title="County" data-id="r_county"
-             data-placeholder-text="-" data-model="restaurant.address.county"
-             data-is-required="false" data-is-disabled="false">
-        </div>
+           <div data-input-field-directive data-title="County" data-id="r_county"
+                data-placeholder-text="-" data-model="restaurant.address.county"
+                data-is-required="false" data-is-disabled="false">
+           </div>
       </div> -->
 
 
@@ -224,11 +224,11 @@
 
       <div class="btn-bottom col-md-12">
         <button type="submit" class="btn btn-success pull-left"
-        data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
+                data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
         </button>
 
         <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteWarning()"
-        data-ng-disabled="restaurant-form.$invalid">Delete
+                data-ng-disabled="restaurant-form.$invalid">Delete
         </button>
 
         <!-- temporary error message placeholder -->
@@ -302,10 +302,10 @@
       <div class="col-md-11 pull-left">
         <div class="list-group">
           <h4 class="col-md-6" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
-          >Featured Menu Item</h4>
+              >Featured Menu Item</h4>
           <div class="pull-left preview-featured"
-                  data-ng-repeat="item in restaurant.menu_item"
-                  data-ng-click="removeMenuItem($index)">
+               data-ng-repeat="item in restaurant.menu_item"
+               data-ng-click="removeMenuItem($index)">
             {{item}}
           </div>
         </div>

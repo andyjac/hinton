@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = function(app) {
-  app.controller('authController', ['$scope', '$location', 'auth', function($scope, $location, auth) {
+  app.controller('authController', ['$scope', '$location', 'authService', function($scope, $location, authService) {
 
     $scope.authSubmit = function(user) {
       if (user.password_confirmation) {
-        auth.create(user, function(err) {
+        authService.create(user, function(err) {
           if(err) {
             console.log(err);
             return $scope.errors.push({msg: 'could not create user'});
@@ -14,7 +14,7 @@ module.exports = function(app) {
           $location.path('/sign_in');
         });
       } else {
-        auth.signIn(user, function(err) {
+        authService.signIn(user, function(err) {
           if(err) {
             console.log(err);
             return $scope.errors.push({msg: 'could not sign in'});

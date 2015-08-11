@@ -6,8 +6,7 @@ module.exports = function(app) {
   app.factory('restaurantService', ['httpService', 'clearFieldsService', 'googlePlacesService', function(httpService, clearFieldsService, googlePlacesService) {
     var Restaurants = httpService('/admin/restaurant/all');
     var Genres = httpService('/api/restaurant/genre/all');
-    var Restaurant = httpService('api/restaurant');
-    var Admin = httpService('admin/restaurant');
+    var Admin = httpService('/admin/restaurant');
 
     var restaurantData = {
       name: '',
@@ -115,12 +114,13 @@ module.exports = function(app) {
         var restaurantObj = _.find(restaurantList, 'name', restaurant);
         var id = restaurantObj._id;
 
-        Restaurant.getOne(id, function(err, data) {
+        Admin.getOne(id, function(err, data) {
           if (err) {
             callback(err);
           }
 
           restaurantData = data.restaurant;
+          mapData = data.map;
           callback(null, data);
         });
       },

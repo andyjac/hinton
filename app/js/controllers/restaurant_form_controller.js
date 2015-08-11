@@ -44,6 +44,7 @@ module.exports = function(app) {
         }
 
         $scope.restaurant = restaurantService.restaurantData();
+        $scope.map = restaurantService.mapData();
         $scope.r_id = data._id;
         $scope.setPrice($scope.restaurant.price);
         $scope.display_preview = true;

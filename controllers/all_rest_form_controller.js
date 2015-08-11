@@ -18,6 +18,16 @@ module.exports = function(req, res) {
       arr.push(obj);
     });
 
+    arr.sort(function (a, b) {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+      return 0;
+    });
+
     res.status(200).json(arr);
   });
 };

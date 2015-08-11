@@ -3,106 +3,61 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$http', '$cookies',
-                 'auth', 'clearFields', '$window',
-                 function($scope, $http, $cookies, auth, clearFields, $window) {
-
-    $scope.restaurant = {
-      name: '',
-      genre: [],
-      phone: '',
-      price: 0,
-      p_id: '',
-      address: {
-        number: '',
-        street: '',
-        city: '',
-        state: '',
-        zip: '',
-        country: ''
-      },
-      menu_item: [],
-      blog_link: '',
-      r_site: '',
-      menu_link: '',
-      hours: {
-        mon: '',
-        tue: '',
-        wed: '',
-        thu: '',
-        fri: '',
-        sat: '',
-        sun: ''
-      }
-    };
-
-    $scope.map = {
-      loc: {
-        lat: '',
-        long: ''
-      },
-      caption: ''
-    };
-
-    $scope.existingGenres = [];
-    $scope.restaurantList = [];
-
-    $http.defaults.headers.common['eat'] = $cookies.get('eat'); // jshint ignore:line
+  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', function($scope, $window, authService, restaurantService) {
+    $scope.restaurant = restaurantService.restaurantData();
+    $scope.map = restaurantService.mapData();
+    $scope.genres = restaurantService.genres();
+    $scope.restaurantList = restaurantService.restaurantList();
+    $scope.restaurantNames = restaurantService.restaurantNames();
 
     $scope.isSignedIn = function() {
-      return auth.isSignedIn();
+      return authService.isSignedIn();
     };
 
     $scope.logout = function() {
-      auth.logout();
+      authService.logout();
     };
 
     $scope.updateFromDB = function() {
-      $http.get('/api/restaurant/genre/all')
-        .success(function(data) {
-          $scope.existingGenres = data;
-        })
-        .error(function(err) {
-          console.log(err);
-        });
+      restaurantService.getAllGenres(function(err, data) {
+        if (err) {
+          return console.log(err);
+        }
 
-      $http.get('/hinton/user/restaurant/all')
-        .success(function(data) {
-          $scope.restaurantList = data;
-          $scope.restaurantNames = [];
-          _.forEach(data, function(item) {
-            $scope.restaurantNames.push(Object.keys(item)[0]);
-          });
-        })
-        .error(function(err) {
-          console.log(err);
-        });
+        $scope.genres = restaurantService.genres();
+      });
+
+      restaurantService.getAllRestaurants(function(err, data) {
+        if (err) {
+          return console.log(err);
+        }
+
+        $scope.restaurantList = restaurantService.restaurantList();
+        $scope.restaurantNames = restaurantService.restaurantNames();
+      });
     };
 
     $scope.setRestaurant = function(restaurant) {
-      $scope.restaurant.name = restaurant;
-      var obj = _.find($scope.restaurantList, restaurant);
+      restaurantService.getRestaurant(restaurant, function(err, data) {
+        if (err) {
+          return console.log(err);
+        }
 
-      $http.get('/api/restaurant/' + obj._id)
-        .success(function(data) {
-          console.log(data);
-          $scope.r_id = data._id; //grab _id into scope
-          $scope.restaurant = _.cloneDeep(data.restaurant);
-          $scope.setPrice($scope.restaurant.price);
-          $scope.display_preview = true;
-          $scope.editing = true;
-          console.log($scope.restaurant.name + ': ' + $scope.r_id);
-          console.log('editing: ' + $scope.editing);
-        });
-    };
-
-    $scope.setGenre = function(genre) {
-      $scope.genre = genre;
+        $scope.restaurant = restaurantService.restaurantData();
+        $scope.map = restaurantService.mapData();
+        $scope.r_id = data._id;
+        $scope.setPrice($scope.restaurant.price);
+        $scope.display_preview = true;
+        $scope.editing = true;
+      });
     };
 
     $scope.addGenre = function(genre) {
+      var arr = $scope.restaurant.genre;
+
       if (genre.trim() !== '') {
-        $scope.restaurant.genre.push(genre.trim());
+        restaurantService.addItem(arr, genre.trim());
+        $scope.restaurant = restaurantService.restaurantData();
         $scope.genre = '';
       }
 
@@ -110,12 +65,18 @@ module.exports = function(app) {
     };
 
     $scope.removeGenre = function(index) {
-      $scope.restaurant.genre.splice(index, 1);
+      var arr = $scope.restaurant.genre;
+
+      restaurantService.removeItem(arr, index);
+      $scope.restaurant = restaurantService.restaurantData();
     };
 
     $scope.addMenuItem = function(menu_item) {
+      var arr = $scope.restaurant.menu_item;
+
       if (menu_item.trim() !== '') {
-        $scope.restaurant.menu_item.push(menu_item.trim());
+        restaurantService.addItem(arr, menu_item.trim());
+        $scope.restaurant = restaurantService.restaurantData();
         $scope.menu_item = '';
       }
 
@@ -123,11 +84,15 @@ module.exports = function(app) {
     };
 
     $scope.removeMenuItem = function(index) {
-      $scope.restaurant.menu_item.splice(index, 1);
+      var arr = $scope.restaurant.menu_item;
+
+      restaurantService.removeItem(arr, index);
+      $scope.restaurant = restaurantService.restaurantData();
     };
 
     $scope.setPrice = function(price) {
-      $scope.restaurant.price = price;
+      restaurantService.setPrice(price);
+      $scope.restaurant = restaurantService.restaurantData();
       var priceNum = price;
       var dollars = '';
 
@@ -139,149 +104,81 @@ module.exports = function(app) {
     };
 
     $scope.clearForm = function() {
-      $scope.map = clearFields($scope.map);
-      $scope.restaurant = clearFields($scope.restaurant);
+      restaurantService.clearForm();
+
+      $scope.restaurant = restaurantService.restaurantData();
+      $scope.map = restaurantService.mapData();
       $scope.priceDollars = '';
       $scope.menu_item = '';
-      $scope.display_preview = false;
       $scope.err_save = '';
-    };
-
-    $scope.isNotEmpty = function(obj) {
-      return Object.keys(obj).length;
+      $scope.display_preview = false;
     };
 
     $scope.submitForm = function() {
+      var id = $scope.r_id;
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
-      if (!$scope.editing) { // regular post
-        $http.post('/hinton/user/restaurant', restaurantInfo)
-        .success(function(data) {
+
+      if (!$scope.editing) {
+        restaurantService.createRestaurant(restaurantInfo, function(err, data) {
+          if (err) {
+            $scope.err_save = err.msg;
+            return;
+          }
+
           console.log(data);
           $scope.updateFromDB();
           $scope.clearForm();
-        })
-        .error(function(err) {
-          console.log(err);
-          $scope.err_save = err.msg;
+        });
+      } else {
+        restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
+          if (err) {
+            $scope.err_save = err.msg;
+            return;
+          }
+
+          console.log(data);
+          $scope.updateFromDB();
+          $scope.clearForm();
         });
 
-      } else { // put function
-        $http.put('/hinton/user/restaurant/client/' + $scope.r_id, restaurantInfo)
-        .success(function(data) {
-          console.log(data);
-          $scope.updateFromDB();
-          $scope.clearForm();
-        })
-        .error(function(err) {
-          console.log(err);
-          $scope.err_save = err.msg;
-        });
+        $scope.editing = false;
       }
-
-      $scope.editing = false;
     };
 
     $scope.deleteWarning = function() {  // functional placeholder - replace with modal
       var warning_message = "Are you sure you want to delete " + $scope.restaurant.name + "?";
-        if ($window.confirm(warning_message)) {
-          $scope.deleteRestaurant();
-        }
-        return;
+
+      if ($window.confirm(warning_message)) {
+        $scope.deleteRestaurant();
+      }
     };
 
     $scope.deleteRestaurant = function() {
       //add bootstrap modal confirmation...
-      $http.delete('/hinton/user/restaurant/client/' + $scope.r_id)
-      .success(function(data) {
-          console.log(data);
-          $scope.updateFromDB();
-          $scope.clearForm();
-        })
-        .error(function(err) {
-          console.log(err);
+      var id = $scope.r_id;
+
+      restaurantService.removeRestaurant(id, function(err, data) {
+        if (err) {
           $scope.err_save = err.msg;
-        });
-        $scope.editing = false;
+          return;
+        }
+
+        console.log(data);
+        $scope.updateFromDB();
+        $scope.clearForm();
+      });
+
+      $scope.editing = false;
     };
 
     $scope.populateAddress = function() {
-      _.forEach($scope.details.address_components, function(item) {
+      restaurantService.googlePopulate($scope.details);
 
-        if (_.includes(item.types, 'street_number')) {
-          $scope.restaurant.address.number = item.short_name;
-          return;
-        }
-
-        if (_.includes(item.types, 'route')) {
-          $scope.restaurant.address.street = item.short_name;
-          return;
-        }
-
-        if (_.includes(item.types, 'locality')) {
-          $scope.restaurant.address.city = item.long_name;
-          return;
-        }
-
-        if (_.includes(item.types, 'administrative_area_level_1')) {
-          $scope.restaurant.address.state = item.short_name;
-        } else if (_.includes(item.types, 'administrative_area_level_2')) {
-          $scope.restaurant.address.state = item.short_name;
-        }
-
-        if (_.includes(item.types, 'country')) {
-          $scope.restaurant.address.country = item.long_name;
-          return;
-        }
-
-        if (_.includes(item.types, 'postal_code')) {
-          $scope.restaurant.address.zip = item.short_name;
-        }
-      });
-
-      if($scope.details.formatted_address) {
-        $scope.restaurant.fullAddr = $scope.details.formatted_address;
-      }
-
-      if($scope.details.place_id) {
-        $scope.restaurant.p_id = $scope.details.place_id;
-      }
-
-      if($scope.details.name) {
-        $scope.restaurant.name = $scope.details.name;
-      }
-
-      if($scope.details.international_phone_number) {
-        $scope.restaurant.phone = $scope.details.international_phone_number;
-      } else if ($scope.details.formatted_phone_number) {
-        $scope.restaurant.phone = $scope.details.formatted_phone_number;
-      }
-
-      if($scope.details.price_level) {
-        $scope.setPrice($scope.details.price_level+1); //price_level [0-4]
-      }
-
-      if($scope.details.website) {
-        $scope.restaurant.r_site = $scope.details.website;
-      }
-
-      if($scope.details.opening_hours) {
-        _.forEach($scope.details.opening_hours.weekday_text, function(item) {
-          _.forEach(_.keys($scope.restaurant.hours), function(day) {
-            if (_.includes(item, _.startCase(day))) {
-              $scope.restaurant.hours[day] = item.substring(item.indexOf(':') + 2);
-            }
-          });
-        });
-      }
-
-      if($scope.details.geometry) {
-        $scope.map.loc.lat = $scope.details.geometry.location.G;
-        $scope.map.loc.long = $scope.details.geometry.location.K;
-        $scope.map.caption = $scope.restaurant.name;
-      }
-
+      $scope.restaurant = restaurantService.restaurantData();
+      $scope.map = restaurantService.mapData();
+      $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;
     };

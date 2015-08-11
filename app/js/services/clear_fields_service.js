@@ -1,7 +1,9 @@
+'use strict';
+
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.factory('clearFields', function() {
+  app.factory('clearFieldsService', function() {
     return function clearFields(obj) {
       var collection = _.cloneDeep(obj);
 

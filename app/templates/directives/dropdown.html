@@ -3,7 +3,7 @@
             id={{buttonId}} data-ng-disabled="disabled" dropdown-toggle>
       {{buttonText}} <span class="caret"></span></button>
     <ul class="dropdown-menu" id={{ulId}} role="menu">
-      <li data-ng-repeat="item in items">
+      <li data-ng-repeat="item in items track by $index">
         <!-- a tag for bootstrap styling -->
         <a data-ng-click="select({item: item})">{{item}}</a>
       </li>

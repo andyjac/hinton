@@ -9,21 +9,21 @@ mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/hinton_dev');
 process.env.APP_SECRET = process.env.APP_SECRET || 'hinton_dev';
 
 var adminRoutes = express.Router();
-var restaurantRoutes = express.Router();
+var apiRoutes = express.Router();
 
 app.use(passport.initialize());
 
 require('./lib/passport_strat')(passport);
 
 require('./routes/admin_routes.js')(adminRoutes, passport);
-require('./routes/restaurant_routes.js')(restaurantRoutes);
+require('./routes/api_routes.js')(apiRoutes);
 
-app.use('/api', restaurantRoutes);
+app.use('/api', apiRoutes);
 app.use('/admin', adminRoutes);
 app.use('/', express.static(__dirname + '/build'));
 
 app.all('*', function(req, res) {
-  res.status(404).send('<h1>Page not found</h1>');
+  res.status(404).json({msg: 'page not found'});
 });
 
 app.listen(process.env.PORT || 3000, function() {

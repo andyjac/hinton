@@ -4,9 +4,8 @@ var _ = require('lodash');
 
 module.exports = function(app) {
   app.factory('restaurantService', ['httpService', 'clearFieldsService', 'googlePlacesService', function(httpService, clearFieldsService, googlePlacesService) {
-    var Restaurants = httpService('/admin/restaurant/all');
-    var Genres = httpService('/api/restaurant/genre/all');
-    var Admin = httpService('/admin/restaurant');
+    var Restaurants = httpService('restaurants');
+    var Genres = httpService('genres');
 
     var restaurantData = {
       name: '',
@@ -114,7 +113,7 @@ module.exports = function(app) {
         var restaurantObj = _.find(restaurantList, 'name', restaurant);
         var id = restaurantObj._id;
 
-        Admin.getOne(id, function(err, data) {
+        Restaurants.getOne(id, function(err, data) {
           if (err) {
             callback(err);
           }
@@ -131,7 +130,7 @@ module.exports = function(app) {
       },
 
       createRestaurant: function(restaurant, callback) {
-        Admin.create(restaurant, function(err, data) {
+        Restaurants.create(restaurant, function(err, data) {
           if (err) {
             callback(err);
           }
@@ -141,7 +140,7 @@ module.exports = function(app) {
       },
 
       saveRestaurant: function(id, restaurant, callback) {
-        Admin.save(id, restaurant, function(err, data) {
+        Restaurants.save(id, restaurant, function(err, data) {
           if (err) {
             callback(err);
           }
@@ -151,7 +150,7 @@ module.exports = function(app) {
       },
 
       removeRestaurant: function(id, callback) {
-        Admin.remove(id, function(err, data) {
+        Restaurants.remove(id, function(err, data) {
           if (err) {
             callback(err);
           }

@@ -21,31 +21,31 @@ module.exports = function(app) {
 
       return {
         getOne: function(id, callback) {
-          $http.get(resourceName + '/' + id)
+          $http.get('/admin/' + resourceName + '/' + id)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
         getAll: function(callback) {
-          $http.get(resourceName)
+          $http.get('/admin/' + resourceName)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
         create:  function(resourceData, callback) {
-          $http.post(resourceName, resourceData)
+          $http.post('/admin/' + resourceName, resourceData)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
         save: function(id, resourceData, callback) {
-          $http.put(resourceName + '/' + id, resourceData)
+          $http.put('/admin/' + resourceName + '/' + id, resourceData)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         },
 
         remove: function(id, callback) {
-          $http.delete(resourceName + '/' + id)
+          $http.delete('/admin/' + resourceName + '/' + id)
             .success(handleSuccess(callback))
             .error(handleError(callback));
         }

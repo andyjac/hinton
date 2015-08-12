@@ -58,7 +58,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to post to the database', function(done) {
       chai.request('localhost:3000')
-        .post('/admin/restaurant')
+        .post('/admin/restaurants')
         .send({eat: testToken, map: {caption: 'rest'}, restaurant: {p_id: 'qwerty1', name: 'rest',
           address: {number: '111', street: '1st Ave', city: 'Seattle', state: 'WA',
           zip: '98103', country: 'USA'}, phone: '1234567890', price: 2}})
@@ -71,7 +71,8 @@ describe('user creation and authentication', function() {
 
     it('should be able to retrieve an _id', function(done) {
       chai.request('localhost:3000')
-        .get('/api/restaurant/all')
+        .get('/admin/restaurants')
+        .send({eat: testToken})
         .end(function(err, res) {
           expect(err).to.eql(null);
           expect(typeof res.body).to.eql('object');
@@ -83,7 +84,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to update a database entry', function(done) {
       chai.request('localhost:3000')
-        .put('/admin/restaurant/' + testId)
+        .put('/admin/restaurants/' + testId)
         .send({eat: testToken, map: {loc: {lat: '42', long: '120'}},
           restaurant: {zip: '98040'}})
         .end(function(err, res) {
@@ -95,7 +96,7 @@ describe('user creation and authentication', function() {
 
     it('should be able to delete a database entry', function(done) {
       chai.request('localhost:3000')
-        .del('/admin/restaurant/' + testId)
+        .del('/admin/restaurants/' + testId)
         .send({eat: testToken})
         .end(function(err, res) {
           expect(err).to.eql(null);

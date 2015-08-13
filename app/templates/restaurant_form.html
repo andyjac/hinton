@@ -2,11 +2,11 @@
 
   <section class="main-left col-md-6">
 
-    <div data-ng-if="isSignedIn()">
+    <div data-ng-if="isSignedIn()" class="form-group col-md-12 logout">
       <button type="button" class="btn btn-default" data-ng-click="logout()">Logout</button>
     </div>
 
-    <div data-ng-if="!(isSignedIn())">
+    <div data-ng-if="!isSignedIn()" class="form-group col-md-12 sign-in">
       <button type="button" class="btn btn-default" data-ng-click="logout()">Sign In</button>
     </div>
 

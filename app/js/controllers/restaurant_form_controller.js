@@ -53,10 +53,8 @@ module.exports = function(app) {
     };
 
     $scope.addGenre = function(genre) {
-      var arr = $scope.restaurant.genre;
-
       if (genre.trim() !== '') {
-        restaurantService.addItem(arr, genre.trim());
+        restaurantService.addGenre(genre.trim());
         $scope.restaurant = restaurantService.restaurantData();
         $scope.genre = '';
       }
@@ -65,17 +63,13 @@ module.exports = function(app) {
     };
 
     $scope.removeGenre = function(index) {
-      var arr = $scope.restaurant.genre;
-
-      restaurantService.removeItem(arr, index);
+      restaurantService.removeGenre(index);
       $scope.restaurant = restaurantService.restaurantData();
     };
 
     $scope.addMenuItem = function(menu_item) {
-      var arr = $scope.restaurant.menu_item;
-
       if (menu_item.trim() !== '') {
-        restaurantService.addItem(arr, menu_item.trim());
+        restaurantService.addMenuItem(menu_item.trim());
         $scope.restaurant = restaurantService.restaurantData();
         $scope.menu_item = '';
       }
@@ -84,9 +78,7 @@ module.exports = function(app) {
     };
 
     $scope.removeMenuItem = function(index) {
-      var arr = $scope.restaurant.menu_item;
-
-      restaurantService.removeItem(arr, index);
+      restaurantService.removeMenuItem(index);
       $scope.restaurant = restaurantService.restaurantData();
     };
 

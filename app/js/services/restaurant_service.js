@@ -6,44 +6,23 @@ module.exports = function(app) {
   app.factory('restaurantService', ['httpService', 'clearFieldsService', 'googlePlacesService', function(httpService, clearFieldsService, googlePlacesService) {
     var Restaurants = httpService('restaurants');
     var Genres = httpService('genres');
-
     var restaurantData = {
       name: '',
       genre: [],
       phone: '',
       price: 0,
       p_id: '',
-      address: {
-        number: '',
-        street: '',
-        city: '',
-        state: '',
-        zip: '',
-        country: ''
-      },
+      address: { number: '', street: '', city: '', state: '', zip: '', country: '' },
       menu_item: [],
       blog_link: '',
       r_site: '',
       menu_link: '',
-      hours: {
-        mon: '',
-        tue: '',
-        wed: '',
-        thu: '',
-        fri: '',
-        sat: '',
-        sun: ''
-      },
+      hours: { mon: '', tue: '', wed: '', thu: '', fri: '', sat: '', sun: '' },
     };
-
     var mapData = {
-      loc: {
-        lat: '',
-        long: ''
-      },
+      loc: { lat: '', long: '' },
       caption: ''
     };
-
     var genres = [];
     var restaurantList = [];
     var restaurantNames = [];

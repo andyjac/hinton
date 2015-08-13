@@ -40,7 +40,35 @@ describe('restaurant service', function() {
     expect(typeof restaurantService.genres).toBe('function');
     expect(typeof restaurantService.restaurantList).toBe('function');
     expect(typeof restaurantService.restaurantNames).toBe('function');
+  });
 
+  it('should add a genre', function() {
+    restaurantService.addGenre('Fast Food');
+    expect(restaurantService.restaurantData().genre[0]).toBe('Fast Food');
+  });
+
+  it('should remove a genre', function() {
+    restaurantService.addGenre('Thai');
+    expect(restaurantService.restaurantData().genre.length).toBe(1);
+    restaurantService.removeGenre(0);
+    expect(restaurantService.restaurantData().genre.length).toBe(0);
+  });
+
+  it('should add a menu item', function() {
+    restaurantService.addMenuItem('Burgers');
+    expect(restaurantService.restaurantData().menu_item[0]).toBe('Burgers');
+  });
+
+  it('should remove a menu item', function() {
+    restaurantService.addMenuItem('Tacos');
+    expect(restaurantService.restaurantData().menu_item.length).toBe(1);
+    restaurantService.removeMenuItem(0);
+    expect(restaurantService.restaurantData().menu_item.length).toBe(0);
+  });
+
+  it('should set price', function() {
+    restaurantService.setPrice(2);
+    expect(restaurantService.restaurantData().price).toBe(2);
   });
 
 });

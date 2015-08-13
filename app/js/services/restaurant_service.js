@@ -48,15 +48,28 @@ module.exports = function(app) {
         return restaurantNames;
       },
 
-      addItem: function(arr, item) {
-        arr.push(item);
+      addGenre: function(genre) {
+        restaurantData = _.cloneDeep(restaurantData);
+        restaurantData.genre.push(genre);
       },
 
-      removeItem: function(arr, index) {
-        arr.splice(index, 1);
+      removeGenre: function(index) {
+        restaurantData = _.cloneDeep(restaurantData);
+        restaurantData.genre.splice(index, 1);
+      },
+
+      addMenuItem: function(item) {
+        restaurantData = _.cloneDeep(restaurantData);
+        restaurantData.menu_item.push(item);
+      },
+
+      removeMenuItem: function(index) {
+        restaurantData = _.cloneDeep(restaurantData);
+        restaurantData.menu_item.splice(index, 1);
       },
 
       setPrice: function(price) {
+        restaurantData = _.cloneDeep(restaurantData);
         restaurantData.price = price;
       },
 
@@ -66,6 +79,7 @@ module.exports = function(app) {
             callback(err);
           }
 
+          genres = _.cloneDeep(genres);
           genres = data;
           callback(null, data);
         });
@@ -77,6 +91,8 @@ module.exports = function(app) {
             callback(err);
           }
 
+          restaurantList = _.cloneDeep(restaurantList);
+          restaurantNames = _.cloneDeep(restaurantNames);
           restaurantList = data;
           restaurantNames = [];
 
@@ -89,14 +105,15 @@ module.exports = function(app) {
       },
 
       getRestaurant: function(restaurant, callback) {
-        var restaurantObj = _.find(restaurantList, 'name', restaurant);
-        var id = restaurantObj._id;
+        var id = _.result(_.find(restaurantList, 'name', restaurant), '_id');
 
         Restaurants.getOne(id, function(err, data) {
           if (err) {
             callback(err);
           }
 
+          restaurantData = _.cloneDeep(restaurantData);
+          mapData = _.cloneDeep(mapData);
           restaurantData = data.restaurant;
           mapData = data.map;
           callback(null, data);
@@ -141,6 +158,8 @@ module.exports = function(app) {
       googlePopulate: function(details) {
         var googlePlacesInfo = googlePlacesService.populateInfo(details, restaurantData, mapData);
 
+        restaurantData = _.cloneDeep(restaurantData);
+        mapData = _.cloneDeep(mapData);
         restaurantData = googlePlacesInfo.restaurant;
         mapData = googlePlacesInfo.map;
       }

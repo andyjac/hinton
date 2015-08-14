@@ -26,7 +26,6 @@ describe('http service', function() {
   });
 
   it('should not send token if none is set', function() {
-    $cookies.put('eat', '');
     $httpBackend.expectGET('/admin/hinton', function(headers) {
       expect(headers['eat']).toBe(''); //jshint ignore:line
       return !headers.Authorization;

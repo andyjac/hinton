@@ -27,8 +27,8 @@ describe('http service', function() {
 
   it('should not send token if none is set', function() {
     $cookies.put('eat', '');
-    $httpBackend.whenGET('/admin/hinton', function(headers) {
-      expect(headers['eat']).toBe('');
+    $httpBackend.expectGET('/admin/hinton', function(headers) {
+      expect(headers['eat']).toBe(''); //jshint ignore:line
       return !headers.Authorization;
     }).respond(200);
     httpService('hinton').getAll(function(){});
@@ -38,7 +38,7 @@ describe('http service', function() {
   it('should send token in header', function() {
     $cookies.put('eat', 'token123');
     $httpBackend.expectGET('/admin/hinton', function(headers) {
-      expect(headers['eat']).toBe('token123');
+      expect(headers['eat']).toBe('token123'); //jshint ignore:line
       return !headers.Authorization;
     }).respond(200);
     httpService('hinton').getAll(function(){});

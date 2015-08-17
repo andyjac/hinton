@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', function($scope, $window, authService, restaurantService) {
+  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', 'modalService', function($scope, $window, authService, restaurantService, modalService) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -174,5 +174,19 @@ module.exports = function(app) {
       $scope.display_preview = true;
       $scope.editing = false;
     };
+
+    $scope.uploadImages = function() {
+
+      var modalOptions = {
+          closeButtonText: 'Cancel',
+          actionButtonText: 'Upload',
+          headerText: 'Image Upload',
+          bodyText: 'Click or drop images here to upload'
+      };
+      modalService.showModal({}, modalOptions).then(function (result) {
+        //upload directive reference here, with service reference
+      });
+    };
+
   }]);
 };

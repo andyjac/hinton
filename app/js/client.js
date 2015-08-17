@@ -16,6 +16,7 @@ require('./services/clear_fields_service')(hintonAdminApp);
 require('./services/http_service')(hintonAdminApp);
 require('./services/restaurant_service')(hintonAdminApp);
 require('./services/google_places_service')(hintonAdminApp);
+require('./services/modal_service')(hintonAdminApp);
 
 // Controllers
 require('./auth/auth_controller')(hintonAdminApp);

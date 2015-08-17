@@ -6,6 +6,8 @@ require('angular-mocks');
 describe('restaurant form controller', function() {
   var $ControllerConstructor;
   var $scope;
+  var $httpBackend;
+  var $location;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
@@ -31,6 +33,20 @@ describe('restaurant form controller', function() {
     expect(typeof $scope.deleteWarning).toBe('function');
     expect(typeof $scope.deleteRestaurant).toBe('function');
     expect(typeof $scope.populateAddress).toBe('function');
+  });
+
+  describe('controller functionality', function() {
+    beforeEach(angular.mock.inject(function(_$httpBackend_, _$location_) {
+      $httpBackend = _$httpBackend_;
+      $location = _$location_;
+      this.restaurantFormController = $ControllerConstructor('restaurantFormController', {$scope: $scope});
+    }));
+
+    it('should set price in dollar signs', function() {
+      $scope.setPrice(2);
+      expect($scope.priceDollars).toBe('$$');
+    });
+
   });
 
 });

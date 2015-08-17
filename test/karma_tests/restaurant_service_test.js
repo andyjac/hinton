@@ -40,6 +40,11 @@ describe('restaurant service', function() {
     expect(typeof restaurantService.genres).toBe('function');
     expect(typeof restaurantService.restaurantList).toBe('function');
     expect(typeof restaurantService.restaurantNames).toBe('function');
+    expect(typeof restaurantService.restaurantData()).toBe('object');
+    expect(typeof restaurantService.mapData()).toBe('object');
+    expect(Array.isArray(restaurantService.genres())).toBe(true);
+    expect(Array.isArray(restaurantService.restaurantList())).toBe(true);
+    expect(Array.isArray(restaurantService.restaurantNames())).toBe(true);
   });
 
   it('should add a genre', function() {

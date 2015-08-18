@@ -227,6 +227,7 @@ h4, h5 {
 .dummy-preview {
   height: 200px;
 }
+
 .carousel {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -246,8 +247,14 @@ h4, h5 {
 .error-item {
   list-style: none;
 }
- .sign-in {
+
+.sign-in {
   padding: 1.5em;
+}
+
+.logo-small {
+  height: 6em;
+  margin-top: 1em;
 }
 
 .sign-in .header {
@@ -266,4 +273,3 @@ h4, h5 {
 .restaurant-name {
   margin-top: 0;
 }
-

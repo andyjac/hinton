@@ -1,10 +1,8 @@
 <main data-ng-controller="restaurantFormController" data-ng-init="updateFromDB()">
 
-  <section class="main-left col-md-6">
-
-    <div data-ng-if="isSignedIn()" class="form-group col-md-12 logout">
-      <button type="button" class="btn btn-default" data-ng-click="logout()">Logout</button>
-    </div>
+  <div class="logout">
+    <a class="logout-link" href="javascript:void(0)" data-ng-click="logout()">Logout</a>
+  </div>
 
     <div data-ng-if="!isSignedIn()" class="form-group col-md-12 sign-in">
       <button type="button" class="btn btn-default" data-ng-click="logout()">Sign In</button>

@@ -23,6 +23,7 @@ require('./auth/auth_controller')(hintonAdminApp);
 require('./controllers/restaurant_form_controller')(hintonAdminApp);
 require('./controllers/dropdown_controller')(hintonAdminApp);
 require('./controllers/timepicker_controller')(hintonAdminApp);
+require('./controllers/modal_instance_controller')(hintonAdminApp);
 
 // Directives
 require('./directives/dropdown_directive')(hintonAdminApp);

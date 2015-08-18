@@ -75,5 +75,4 @@ describe('restaurant service', function() {
     restaurantService.setPrice(2);
     expect(restaurantService.restaurantData().price).toBe(2);
   });
-
 });

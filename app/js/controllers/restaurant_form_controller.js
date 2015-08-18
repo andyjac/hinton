@@ -16,9 +16,14 @@ module.exports = function(app) {
 
     $scope.logout = function() {
       authService.logout();
+      $scope.signIn();
     };
 
     $scope.updateFromDB = function() {
+      if (!$scope.isSignedIn()) {
+        return $scope.signIn();
+      }
+
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
           return console.log(err);
@@ -175,18 +180,19 @@ module.exports = function(app) {
       $scope.editing = false;
     };
 
-    $scope.uploadImages = function() {
-
-      var modalOptions = {
-          closeButtonText: 'Cancel',
-          actionButtonText: 'Upload',
-          headerText: 'Image Upload',
-          bodyText: 'Click or drop images here to upload'
+    $scope.signIn = function() {
+      var modalDefaults = {
+        backdrop: true,
+        keyboard: true,
+        modalFade: true,
+        templateUrl: '../../templates/views/sign_in.html',
+        controller: 'modalInstanceController',
+        size: 'sm',
       };
-      modalService.showModal({}, modalOptions).then(function (result) {
-        //upload directive reference here, with service reference
+
+      modalService.showModal(modalDefaults, {}).then(function(result) {
+        console.log(result.msg);
       });
     };
-
   }]);
 };

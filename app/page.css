@@ -262,3 +262,7 @@ h4, h5 {
   float: right;
   padding-right: 20px;
 }
+
+.restaurant-name {
+  margin-top: 0;
+}

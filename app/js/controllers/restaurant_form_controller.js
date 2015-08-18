@@ -180,6 +180,19 @@ module.exports = function(app) {
       $scope.editing = false;
     };
 
+    $scope.uploadImages = function() {
+
+      var modalOptions = {
+          closeButtonText: 'Cancel',
+          actionButtonText: 'Upload',
+          headerText: 'Image Upload',
+          bodyText: 'Click or drop images here to upload'
+      };
+      modalService.showModal({}, modalOptions).then(function (result) {
+        //upload directive reference here, with service reference
+      });
+    };
+
     $scope.signIn = function() {
       var modalDefaults = {
         backdrop: true,

@@ -144,12 +144,17 @@ module.exports = function(app) {
       }
     };
 
-    $scope.deleteWarning = function() {  // functional placeholder - replace with modal
-      var warning_message = "Are you sure you want to delete " + $scope.restaurant.name + "?";
+    $scope.deleteWarning = function() {
+      var modalDefaults = {
+        templateUrl: '../../templates/views/delete_warning.html',
+        size: 'sm',
+      };
 
-      if ($window.confirm(warning_message)) {
-        $scope.deleteRestaurant();
-      }
+      modalService.showModal(modalDefaults).then(function(confirm) {
+        if (confirm) {
+          $scope.deleteRestaurant();
+        }
+      });
     };
 
     $scope.deleteRestaurant = function() {

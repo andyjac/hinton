@@ -111,6 +111,17 @@ module.exports = function(app) {
       $scope.display_preview = false;
     };
 
+    $scope.successAlert = function() {
+      var modalDefaults = {
+        templateUrl: '../../templates/views/success_alert.html',
+        size: 'sm'
+      };
+
+      modalService.showModal(modalDefaults).then(function(result) {
+        console.log(result);
+      });
+    };
+
     $scope.submitForm = function() {
       var id = $scope.r_id;
       var restaurantInfo = {};
@@ -124,9 +135,9 @@ module.exports = function(app) {
             return;
           }
 
-          console.log(data);
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successAlert();
         });
       } else {
         restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
@@ -135,9 +146,9 @@ module.exports = function(app) {
             return;
           }
 
-          console.log(data);
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successAlert();
         });
 
         $scope.editing = false;

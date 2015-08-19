@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', 'modalService', function($scope, $window, authService, restaurantService, modalService) {
+  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', function($scope, authService, restaurantService, modalService) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();

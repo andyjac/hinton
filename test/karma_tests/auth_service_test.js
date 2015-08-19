@@ -48,6 +48,5 @@ describe('auth service', function() {
     authService.logout();
     expect($cookies.get('eat')).toBe('');
     expect($cookies.get('eat').length).toBe(0);
-    expect($location.path()).toBe('/sign_in');
   });
 });

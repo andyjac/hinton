@@ -10,20 +10,22 @@ require('angular-bootstrap');
 // Application
 var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'base64', 'ngCookies', 'ngAutocomplete', 'ui.bootstrap']);
 
-//Services
+// Services
 require('./auth/auth_service')(hintonAdminApp);
 require('./services/clear_fields_service')(hintonAdminApp);
 require('./services/http_service')(hintonAdminApp);
 require('./services/restaurant_service')(hintonAdminApp);
 require('./services/google_places_service')(hintonAdminApp);
+require('./services/modal_service')(hintonAdminApp);
 
 // Controllers
 require('./auth/auth_controller')(hintonAdminApp);
 require('./controllers/restaurant_form_controller')(hintonAdminApp);
 require('./controllers/dropdown_controller')(hintonAdminApp);
 require('./controllers/timepicker_controller')(hintonAdminApp);
+require('./controllers/modal_instance_controller')(hintonAdminApp);
 
-//Directives
+// Directives
 require('./directives/dropdown_directive')(hintonAdminApp);
 require('./directives/input_field_directive')(hintonAdminApp);
 require('./directives/autofocus_directive')(hintonAdminApp);

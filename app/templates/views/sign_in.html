@@ -1,9 +1,30 @@
-<section data-ng-controller="authController">
-  <form data-ng-submit="authSubmit(user)">
-    <label for="email">Email</label>
-    <input type="text" name="email" required data-ng-model="user.email">
-    <label for="password">Password</label>
-    <input type="password" name="password" required data-ng-model="user.password">
-    <button type="submit">Sign in</button>
-  </form>
+<section class="sign-in">
+  <article>
+    <div class="header">
+      <h3>Admin Sign In</h3>
+      <img class="logo-small"
+         src="https://s3.amazonaws.com/images.rialtollc/QqPuDkRA-HIN-black_72dpi.png">
+    </div>
+    <form name="signInForm" data-ng-submit="signIn(user)">
+      <div class="input form-group">
+        <label for="email">Email</label>
+        <input class="form-control" type="email"
+               name="email" data-ng-model="user.email" required>
+      </div>
+      <div class="input form-group">
+        <label for="password">Password</label>
+        <input class="form-control" type="password" name="password"
+               data-ng-model="user.password" required>
+      </div>
+      <aside class="error">
+        <ul class="error-list" data-ng-if="errors.length">
+          <li class="error-item" data-ng-repeat="error in errors">{{error.msg}}</li>
+        </ul>
+      </aside>
+      <div class="btn-bottom">
+        <button class="btn btn-primary" type="submit"
+                data-ng-disabled="signInForm.$invalid">Sign in</button>
+      </div>
+    </form>
+  </article>
 </section>

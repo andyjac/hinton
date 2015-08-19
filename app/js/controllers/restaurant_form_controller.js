@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', function($scope, $window, authService, restaurantService) {
+  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', 'modalService', function($scope, $window, authService, restaurantService, modalService) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -16,9 +16,14 @@ module.exports = function(app) {
 
     $scope.logout = function() {
       authService.logout();
+      $scope.signIn();
     };
 
     $scope.updateFromDB = function() {
+      if (!$scope.isSignedIn()) {
+        return $scope.signIn();
+      }
+
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
           return console.log(err);
@@ -173,6 +178,35 @@ module.exports = function(app) {
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;
+    };
+
+    $scope.uploadImages = function() {
+
+      var modalOptions = {
+          closeButtonText: 'Cancel',
+          actionButtonText: 'Upload',
+          headerText: 'Image Upload',
+          bodyText: 'Click or drop images here to upload'
+      };
+      modalService.showModal({}, modalOptions).then(function (result) {
+        //upload directive reference here, with service reference
+      });
+    };
+
+    $scope.signIn = function() {
+      var modalDefaults = {
+        backdrop: true,
+        keyboard: true,
+        modalFade: true,
+        templateUrl: '../../templates/views/sign_in.html',
+        controller: 'modalInstanceController',
+        size: 'sm',
+      };
+
+      modalService.showModal(modalDefaults, {}).then(function(result) {
+        console.log(result);
+        $scope.updateFromDB();
+      });
     };
   }]);
 };

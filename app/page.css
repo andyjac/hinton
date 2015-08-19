@@ -22,23 +22,23 @@ body {
 }
 
 input::-webkit-input-placeholder {
-color: #d8d8d8 !important;
-font-style: italic;
+  color: #d8d8d8 !important;
+  font-style: italic;
 }
 
 input:-moz-placeholder { /* Firefox 18- */
-color: #d8d8d8 !important;
-font-style: italic;
+  color: #d8d8d8 !important;
+  font-style: italic;
 }
 
 input::-moz-placeholder {  /* Firefox 19+ */
-color: #d8d8d8 !important;
-font-style: italic;
+  color: #d8d8d8 !important;
+  font-style: italic;
 }
 
 input:-ms-input-placeholder {
-color: #d8d8d8 !important;
-font-style: italic;
+  color: #d8d8d8 !important;
+  font-style: italic;
 }
 
 .col-md-1, .col-md-10,
@@ -47,8 +47,8 @@ font-style: italic;
 .col-md-4, .col-md-5,
 .col-md-6, .col-md-7,
 .col-md-8, .col-md-9 {
-   padding-left: 6px;
-   padding-right: 6px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .main-left {
   margin: 0;
@@ -132,8 +132,8 @@ label {
 }
 
 .timepicker .btn {
-    width: 50px;
-    margin-bottom: 7px;
+  width: 50px;
+  margin-bottom: 7px;
 }
 
 .tooltip {
@@ -190,9 +190,86 @@ h4, h5 {
   border-bottom: 1px solid #bbb;
 }
 
+.section-wrapper {
+  min-height:250px;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+
+.filedrop {
+  background-color: #fafafa;
+  color: #333;
+}
+
+.image-preview {
+  padding-top: 15px;
+}
+
+.dummy-preview {
+  height: 200px;
+}
+
 .carousel {
   border: 1px solid #ccc;
   border-radius: 5px;
   padding-bottom: 72%;
   margin-top: 20px;
+}
+
+.error {
+  color: red;
+}
+
+.error-list {
+  padding: 0;
+  margin: 1em 0;
+}
+
+.error-item {
+  list-style: none;
+}
+
+.sign-in {
+  padding: 1.5em;
+}
+
+.logo-small {
+  height: 6em;
+  margin-top: 1em;
+}
+
+.sign-in .header {
+  text-align: center;
+}
+
+.sign-in .input {
+  margin: 1.5em 0;
+}
+
+.logout {
+  float: right;
+  padding-right: 20px;
+}
+
+.restaurant-name {
+  margin-top: 0;
 }

@@ -40,7 +40,6 @@ module.exports = function(app) {
 
       logout: function() {
         $cookies.put('eat', '');
-        $location.path('/sign_in');
       }
     };
   }]);

@@ -16,9 +16,6 @@ module.exports = function(app) {
 
   app.factory('httpService', ['$http', '$cookies', function($http, $cookies) {
     return function(resourceName) {
-      var eat = $cookies.get('eat');
-      $http.defaults.headers.common['eat'] = eat; //jshint ignore: line
-
       return {
         getOne: function(id, callback) {
           $http.get('/admin/' + resourceName + '/' + id)
@@ -27,6 +24,9 @@ module.exports = function(app) {
         },
 
         getAll: function(callback) {
+          var eat = $cookies.get('eat');
+          $http.defaults.headers.common['eat'] = eat; // jshint ignore: line
+
           $http.get('/admin/' + resourceName)
             .success(handleSuccess(callback))
             .error(handleError(callback));

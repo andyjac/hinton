@@ -1,14 +1,10 @@
 <main data-ng-controller="restaurantFormController" data-ng-init="updateFromDB()">
 
+  <div class="logout">
+    <a class="logout-link" href="javascript:void(0)" data-ng-click="logout()">Logout</a>
+  </div>
+
   <section class="main-left col-md-6">
-
-    <div data-ng-if="isSignedIn()" class="form-group col-md-12 logout">
-      <button type="button" class="btn btn-default" data-ng-click="logout()">Logout</button>
-    </div>
-
-    <div data-ng-if="!isSignedIn()" class="form-group col-md-12 sign-in">
-      <button type="button" class="btn btn-default" data-ng-click="logout()">Sign In</button>
-    </div>
 
     <!-- form -->
     <form id="restaurant-form" data-ng-submit="submitForm()">
@@ -20,7 +16,7 @@
                  data-ng-model="restaurant.googleAddress"
                  data-id="gSearch"
                  data-options="options"
-                 data-details="details" placeholder="search for [filter] place name" autofocus>
+                 data-details="details" placeholder="search for place name" autofocus>
           <div class="input-group-btn">
             <button type="button" class="btn btn-default"
                     data-ng-click="populateAddress()">
@@ -222,6 +218,20 @@
         </div>
       </div>
 
+      <div class="form-group col-md-6" data-ng-if="uploading">
+        <div data-input-field-directive data-title="Image Filename" data-id="photo_name"
+             data-placeholder-text=""
+             data-model="photo.name" data-is-required="true">
+        </div>
+      </div>
+
+      <div class="form-group col-md-6" data-ng-if="uploading">
+        <div data-input-field-directive data-title="Caption" data-id="photo_caption"
+             data-placeholder-text=""
+             data-model="photo.caption" data-is-required="true">
+        </div>
+      </div>
+
       <div class="btn-bottom col-md-12">
         <button type="submit" class="btn btn-success pull-left"
                 data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
@@ -231,15 +241,15 @@
                 data-ng-disabled="restaurant-form.$invalid">Delete
         </button>
 
-        <button type="button" class="btn btn-primary pull-right" data-ng-click="showUploadForm()">Upload
-        </button>
-
         <!-- temporary error message placeholder -->
         <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save !== ''">
           <h5>{{err_save}}</h5>
         </div>
-      </div>
 
+        <button type="button" class="btn btn-primary pull-right" data-ng-click="uploadImages()">Upload
+        </button>
+
+      </div>
     </form>
   </section>
 
@@ -247,7 +257,7 @@
 
   <section id="restaurant-info" class="main-right col-md-6">
     <div data-ng-show="display_preview">
-      <h2 class="col-md-12">{{restaurant.name}}</h2>
+      <h2 class="restaurant-name col-md-12">{{restaurant.name}}</h2>
 
       <div class="col-md-6 header-type pull-left">
         <div>{{restaurant.address.number}} {{restaurant.address.street}}
@@ -316,10 +326,13 @@
     </div>
   </section>
 
-  <section id="restaurant-photos" class="col-md-6 main-right"  data-ng-show="display_preview">
-    <h4 class="col-md-12">Photos</h4>
-    <div class="col-md-11">
-      <div class="carousel">
+  <section id="restaurant-photos" class="col-md-6 main-right">
+    <div class="section-wrapper">
+      <div data-ng-if="restaurant.photos.length">
+        <h4 class="col-md-12">Photos</h4>
+        <div class="col-md-11">
+          <div class="carousel"></div>
+        </div>
       </div>
     </div>
   </section>

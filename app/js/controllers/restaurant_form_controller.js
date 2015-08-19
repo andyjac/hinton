@@ -199,10 +199,10 @@ module.exports = function(app) {
     $scope.uploadImages = function() {
 
       var modalOptions = {
-          closeButtonText: 'Cancel',
-          actionButtonText: 'Upload',
-          headerText: 'Image Upload',
-          bodyText: 'Click or drop images here to upload'
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Upload',
+        headerText: 'Image Upload',
+        bodyText: 'Click or drop images here to upload'
       };
       modalService.showModal({}, modalOptions).then(function (result) {
         //upload directive reference here, with service reference
@@ -211,15 +211,11 @@ module.exports = function(app) {
 
     $scope.signIn = function() {
       var modalDefaults = {
-        backdrop: true,
-        keyboard: true,
-        modalFade: true,
         templateUrl: '../../templates/views/sign_in.html',
-        controller: 'modalInstanceController',
         size: 'sm',
       };
 
-      modalService.showModal(modalDefaults, {}).then(function(result) {
+      modalService.showModal(modalDefaults).then(function(result) {
         console.log(result);
         $scope.updateFromDB();
       });

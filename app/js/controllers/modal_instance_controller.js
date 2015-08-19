@@ -8,7 +8,7 @@ module.exports = function(app) {
       $modalInstance.close(result);
     };
 
-    $scope.cancel = function(reason) {
+    $scope.close = function(reason) {
       $modalInstance.dismiss(reason);
     };
 

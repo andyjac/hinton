@@ -204,7 +204,8 @@ module.exports = function(app) {
       };
 
       modalService.showModal(modalDefaults, {}).then(function(result) {
-        console.log(result.msg);
+        console.log(result);
+        $scope.updateFromDB();
       });
     };
   }]);

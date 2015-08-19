@@ -16,15 +16,15 @@
         <input class="form-control" type="password" name="password"
                data-ng-model="user.password" required>
       </div>
+      <aside class="error">
+        <ul class="error-list" data-ng-if="errors.length">
+          <li class="error-item" data-ng-repeat="error in errors">{{error.msg}}</li>
+        </ul>
+      </aside>
       <div class="btn-bottom">
         <button class="btn btn-primary" type="submit"
                 data-ng-disabled="signInForm.$invalid">Sign in</button>
       </div>
     </form>
-    <aside class="error">
-      <ul class="error-list" data-ng-if="errors.length">
-        <li class="error-item" data-ng-repeat="error in errors">{{error.msg}}</li>
-      </ul>
-    </aside>
   </article>
 </section>

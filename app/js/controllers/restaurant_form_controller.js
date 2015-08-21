@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', '$window', 'authService', 'restaurantService', 'modalService', function($scope, $window, authService, restaurantService, modalService) {
+  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', function($scope, authService, restaurantService, modalService) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -111,6 +111,17 @@ module.exports = function(app) {
       $scope.display_preview = false;
     };
 
+    $scope.successAlert = function() {
+      var modalDefaults = {
+        templateUrl: '../../templates/views/success_alert.html',
+        size: 'sm'
+      };
+
+      modalService.showModal(modalDefaults).then(function(result) {
+        console.log(result);
+      });
+    };
+
     $scope.submitForm = function() {
       var id = $scope.r_id;
       var restaurantInfo = {};
@@ -124,9 +135,9 @@ module.exports = function(app) {
             return;
           }
 
-          console.log(data);
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successAlert();
         });
       } else {
         restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
@@ -135,21 +146,26 @@ module.exports = function(app) {
             return;
           }
 
-          console.log(data);
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successAlert();
         });
 
         $scope.editing = false;
       }
     };
 
-    $scope.deleteWarning = function() {  // functional placeholder - replace with modal
-      var warning_message = "Are you sure you want to delete " + $scope.restaurant.name + "?";
+    $scope.deleteWarning = function() {
+      var modalDefaults = {
+        templateUrl: '../../templates/views/delete_warning.html',
+        size: 'sm',
+      };
 
-      if ($window.confirm(warning_message)) {
-        $scope.deleteRestaurant();
-      }
+      modalService.showModal(modalDefaults).then(function(confirm) {
+        if (confirm) {
+          $scope.deleteRestaurant();
+        }
+      });
     };
 
     $scope.deleteRestaurant = function() {
@@ -183,10 +199,10 @@ module.exports = function(app) {
     $scope.uploadImages = function() {
 
       var modalOptions = {
-          closeButtonText: 'Cancel',
-          actionButtonText: 'Upload',
-          headerText: 'Image Upload',
-          bodyText: 'Click or drop images here to upload'
+        closeButtonText: 'Cancel',
+        actionButtonText: 'Upload',
+        headerText: 'Image Upload',
+        bodyText: 'Click or drop images here to upload'
       };
       modalService.showModal({}, modalOptions).then(function (result) {
         //upload directive reference here, with service reference
@@ -195,15 +211,11 @@ module.exports = function(app) {
 
     $scope.signIn = function() {
       var modalDefaults = {
-        backdrop: true,
-        keyboard: true,
-        modalFade: true,
         templateUrl: '../../templates/views/sign_in.html',
-        controller: 'modalInstanceController',
         size: 'sm',
       };
 
-      modalService.showModal(modalDefaults, {}).then(function(result) {
+      modalService.showModal(modalDefaults).then(function(result) {
         console.log(result);
         $scope.updateFromDB();
       });

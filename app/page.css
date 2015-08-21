@@ -248,7 +248,7 @@ h4, h5 {
   list-style: none;
 }
 
-.sign-in {
+.sign-in, .delete-warning, .success-alert {
   padding: 1.5em;
 }
 
@@ -257,12 +257,24 @@ h4, h5 {
   margin-top: 1em;
 }
 
-.sign-in .header {
+.sign-in .header, .delete-warning, .success-alert {
   text-align: center;
 }
 
 .sign-in .input {
   margin: 1.5em 0;
+}
+
+.delete-warning .confirm-button, .delete-warning .cancel-button {
+  padding: 0 1em;
+}
+
+.confirm-button, .cancel-button {
+  display: inline;
+}
+
+.delete-warning .header h3, .delete-warning .header p {
+  margin-bottom: 1em;
 }
 
 .logout {

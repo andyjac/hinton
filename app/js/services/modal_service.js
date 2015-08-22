@@ -7,7 +7,7 @@ module.exports = function(app) {
       backdrop: true,
       keyboard: true,
       modalFade: true,
-      templateUrl: '../../partials/modal.html'
+      templateUrl: '../../templates/views/upload_files.html'
     };
 
     var modalOptions = {

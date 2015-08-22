@@ -222,11 +222,12 @@ h4, h5 {
 
 .image-preview {
   padding-top: 15px;
+  overflow: auto;
 }
 
 .dummy-preview {
-  height: 200px;
-}
+/*  height: 200px;
+*/}
 
 .carousel {
   border: 1px solid #ccc;
@@ -272,4 +273,64 @@ h4, h5 {
 
 .restaurant-name {
   margin-top: 0;
+}
+
+/*.btn-img-cxl {
+  float: right;
+  margin: 3px 6px 0 6px;
+  background-image:url("cancel.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:18px;
+  height:18px;
+}*/
+
+.btn-img-rmv {
+  float: right;
+  margin: 4px 11px 0 0;
+  background-image: url("../css/delete.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  width:16px;
+  height:16px;
+}
+
+.image-wrapper {
+  min-height: 1px;
+  padding:0;
+}
+
+.image-info {
+  min-height: 1px;
+  padding:0;
+}
+
+.image-thumb {
+  min-height: 1px;
+  background-color: #D8D8D8;
+  padding-left: 0;
+  position-relative;
+  box-sizing: border-box;
+}
+
+.image-fill {
+  position:absolute;
+  left: 0;
+  top: 0;
+}
+
+.image-props {
+  height: 33px;
+  padding: 5px 5px 4px 9px;
+}
+
+.dummy {
+  padding-top: 80%;
+}
+
+.image-wrapper hr {
+  float: left;
+  border-color: #c8c8c8;
+  width: 99%;
+  margin: 8px 0;
 }

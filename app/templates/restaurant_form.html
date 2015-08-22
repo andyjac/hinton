@@ -312,17 +312,22 @@
         </div>
       </div>
 
-      <div class="col-md-11 pull-left">
-        <div class="list-group">
-          <h4 class="col-md-6" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
-              >Featured Menu Item</h4>
-          <div class="pull-left preview-featured"
-               data-ng-repeat="item in restaurant.menu_item"
-               data-ng-click="removeMenuItem($index)">
-            {{item}}
-          </div>
+      <div class="col-md-11 pull-left" data-ng-if="restaurant.menu_item.length">
+
+        <div class="row row-pad">
+          <h4 class="col-md-5" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
+          >Featured Menu Item</h4>
         </div>
+
+        <div class="list-group">
+          <div class="preview-featured"
+          data-ng-repeat="item in restaurant.menu_item"
+          data-ng-click="removeMenuItem($index)">
+          {{item}}
+        </div>
+
       </div>
+    </div>
     </div>
   </section>
 

@@ -79,6 +79,10 @@ input:-ms-input-placeholder {
   padding: 6px 6px 6px 9px;
 }
 
+.row-pad {
+  padding-left: 15px;
+}
+
 .btn {
   min-width: 50px;
 }
@@ -183,7 +187,7 @@ h4, h5 {
   cursor: pointer;
   font-style: italic;
   text-align:left;
-  padding: 6px 0;
+  padding: 0 0 9px 0;
 }
 
 .preview-featured-more {

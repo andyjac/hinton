@@ -7,7 +7,7 @@
   <section class="main-left col-md-6">
 
     <!-- form -->
-    <form id="restaurant-form" data-ng-submit="submitForm()">
+    <form id="restaurant-form">
 
       <div class="form-group col-md-12">
         <label>Restaurant Search</label>
@@ -233,7 +233,7 @@
       </div>
 
       <div class="btn-bottom col-md-12">
-        <button type="submit" class="btn btn-success pull-left"
+        <button type="button" class="btn btn-success pull-left" data-ng-click="submitForm()"
                 data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
         </button>
 

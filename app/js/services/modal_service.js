@@ -6,14 +6,6 @@ module.exports = function(app) {
       backdrop: true,
       keyboard: true,
       modalFade: true,
-      templateUrl: '../../templates/views/upload_files.html'
-    };
-
-    var modalOptions = {
-      closeButtonText: 'Close',
-      actionButtonText: 'OK',
-      headerText: 'Proceed?',
-      bodyText: 'Perform this action?'
       controller: 'modalInstanceController'
     };
 

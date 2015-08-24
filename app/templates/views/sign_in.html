@@ -5,15 +5,11 @@
          src="https://s3.amazonaws.com/images.rialtollc/QqPuDkRA-HIN-black_72dpi.png">
   </div>
   <form name="signInForm" data-ng-submit="signIn(user)">
-    <div class="input form-group">
-      <label for="email">Email</label>
-      <input class="form-control" type="email"
-             name="email" data-ng-model="user.email" required>
+    <div data-input-field-directive data-title="Email" type="email"
+         data-model="user.email" data-is-required="true">
     </div>
-    <div class="input form-group">
-      <label for="password">Password</label>
-      <input class="form-control" type="password" name="password"
-             data-ng-model="user.password" required>
+    <div data-input-field-directive data-title="Password" type="password"
+         data-model="user.password" data-is-required="true">
     </div>
     <aside class="error">
       <ul class="error-list" data-ng-if="errors.length">

@@ -14,10 +14,7 @@ describe('modal instance controller', function() {
     $scope = $rootScope.$new();
     $modalInstance = {
       close: jasmine.createSpy('modalInstance.close'),
-      dismiss: jasmine.createSpy('modalInstance.dismiss'),
-      result: {
-        then: jasmine.createSpy('modalInstance.result.then')
-      }
+      dismiss: jasmine.createSpy('modalInstance.dismiss')
     };
     $ControllerConstructor = $controller;
   }));

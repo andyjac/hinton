@@ -1,22 +1,26 @@
-<section class="sign-in">
-  <div class="header">
+<section class="modal-display">
+  <div class="modal-header">
     <h3>Admin Sign In</h3>
     <img class="logo-small"
          src="https://s3.amazonaws.com/images.rialtollc/QqPuDkRA-HIN-black_72dpi.png">
   </div>
   <form name="signInForm" data-ng-submit="signIn(user)">
-    <div data-input-field-directive data-title="Email" type="email"
-         data-model="user.email" data-is-required="true">
+    <div class="modal-input-container">
+      <div data-input-field-directive data-title="Email" type="email"
+           data-model="user.email" data-is-required="true">
+      </div>
     </div>
-    <div data-input-field-directive data-title="Password" type="password"
-         data-model="user.password" data-is-required="true">
+    <div class="modal-input-container">
+      <div data-input-field-directive data-title="Password" type="password"
+           data-model="user.password" data-is-required="true">
+      </div>
     </div>
     <aside class="error">
       <ul class="error-list" data-ng-if="errors.length">
         <li class="error-item" data-ng-repeat="error in errors">{{error.msg}}</li>
       </ul>
     </aside>
-    <div class="btn-bottom">
+    <div id="sign-in-button" class="modal-button">
       <button class="btn btn-primary" type="submit"
               data-ng-disabled="signInForm.$invalid">Sign in</button>
     </div>

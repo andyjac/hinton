@@ -65,6 +65,7 @@ input:-ms-input-placeholder {
   padding: 0 20px;
   background-color: #fdfdfd;
   opacity: 0.96;
+  min-height: 700px;
 }
 
 .form-control {
@@ -83,8 +84,39 @@ input:-ms-input-placeholder {
   padding-left: 15px;
 }
 
+.fa-button {
+  cursor: pointer;
+  opacity: 0.4;
+  font-size: 1.2em;
+}
+
+.fa-button:hover {
+  opacity: 1.0;
+}
+
+.fa-ban:hover {
+  color: #fcca02;
+}
+
+.fa-remove:hover {
+  color: #c9302c;
+}
+
+.fa-trash-o:hover {
+  color: #f70d09;
+}
+
+button.hide {
+
+}
+
 .btn {
   min-width: 50px;
+}
+
+.btn-danger {
+  background-color: #d86968;
+  border-color: #d86968;
 }
 
 .btn-default {
@@ -125,7 +157,7 @@ label {
 }
 
 .list-group-item {
-  padding: 0 10px;
+  padding: 2px 8px;
 }
 
 #restaurant-info {
@@ -229,10 +261,6 @@ h4, h5 {
   overflow: auto;
 }
 
-.dummy-preview {
-/*  height: 200px;
-*/}
-
 .carousel {
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -301,7 +329,7 @@ h4, h5 {
   height:18px;
 }*/
 
-.btn-img-rmv {
+/*.btn-img-rmv {
   float: right;
   margin: 4px 11px 0 0;
   background-image: url("../css/delete.png");
@@ -309,6 +337,17 @@ h4, h5 {
   background-repeat: no-repeat;
   width:16px;
   height:16px;
+  cursor: pointer;
+}*/
+
+.photo-caption {
+  font-style: italic;
+  line-height: 1.25em;
+}
+
+.photo-url {
+  position: relative;
+  top: -4px;
 }
 
 .image-wrapper {
@@ -336,17 +375,38 @@ h4, h5 {
 }
 
 .image-props {
-  height: 33px;
+  height: 29px;
   padding: 5px 5px 4px 9px;
 }
 
-.dummy {
+.image-wrapper {
   padding-top: 80%;
 }
 
-.image-wrapper hr {
+.file-wrapper hr {
   float: left;
   border-color: #c8c8c8;
   width: 99%;
   margin: 8px 0;
 }
+
+.modal-lg {
+  width: 522px;
+}
+
+/*.test {
+  background-image: url("http://images.rialtollc.s3.amazonaws.com/F27wpUT0-pienzabackground.png");
+  background-size: contain;
+  width:80px;
+  height:64px;
+  background-position:center;
+  background-color:#000;
+  background-repeat: no-repeat;
+
+*/}
+
+.none-left {
+  padding-left: 0;
+  margin-left: 0;
+}
+

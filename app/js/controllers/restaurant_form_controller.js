@@ -79,7 +79,7 @@ module.exports = function(app) {
         $scope.menu_item = '';
       }
 
-      angular.element('#r_item').focus();
+      // angular.element('#r_item').focus();
     };
 
     $scope.removeMenuItem = function(index) {
@@ -194,19 +194,30 @@ module.exports = function(app) {
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;
+      console.log($scope.restaurant.photos.length);
     };
 
-    $scope.uploadImages = function() {
+    $scope.selectFiles = function() {
 
-      var modalOptions = {
-        closeButtonText: 'Cancel',
-        actionButtonText: 'Upload',
-        headerText: 'Image Upload',
-        bodyText: 'Click or drop images here to upload'
+      var modalDefaults = {
+          templateUrl: '../../templates/views/upload_files.html',
+          size: 'lg' //this css is overridden in .modal-lg
       };
-      modalService.showModal({}, modalOptions).then(function (result) {
-        //upload directive reference here, with service reference
+
+      modalService.showModal(modalDefaults, {}).then(function (result) {
+        Array.prototype.push.apply($scope.restaurant.photos,result); //puts on scope
+        //upload to s3 handled in s3 service, progress in modal
+
       });
+    };
+
+    $scope.removePhoto = function(index) { //move to restaurant service
+      $scope.restaurant.photos.splice(index, 1);
+      //removes photo from db if photos.delete is true, and removes from s3.
+    };
+
+    $scope.hidePhoto = function(index) {
+      //sets show flag for pictures to be shown in mobile app
     };
 
     $scope.signIn = function() {

@@ -7,11 +7,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-webpack');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-clean');
 
   grunt.initConfig({
     jshint: {
       options: {
         node: true,
+        browser: true,
         force: true
       },
       server: {
@@ -105,6 +107,12 @@ module.exports = function(grunt) {
         configFile: 'karma.conf.js'
       }
     },
+
+    clean: {
+      build: {
+        src: ['build']
+      }
+    }
 
   });
 

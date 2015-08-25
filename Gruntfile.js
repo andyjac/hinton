@@ -46,6 +46,7 @@ module.exports = function(grunt) {
         options: {
           globals: {
             angular: true,
+            jasmine: true,
             describe: true,
             it: true,
             expect: true,

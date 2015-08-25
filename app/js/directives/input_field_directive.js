@@ -5,6 +5,7 @@ module.exports = function(app) {
       replace: true,
       templateUrl: '/templates/directives/input_field.html',
       scope: {
+        type: '@',
         title: '@',
         id: '@',
         placeholderText: '@',

@@ -49,8 +49,8 @@
       </div>
 
       <div class="form-group col-md-12">
-        <div data-input-field-directive data-title="Google Formatted Address" data-id="r_full"
-             data-placeholder-text="" data-ng-disabled=true;
+        <div data-input-field-directive data-title="Google Formatted Address"
+             data-id="r_full" data-is-disabled="true" data-placeholder-text=""
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
       </div>
@@ -327,7 +327,7 @@
   </section>
 
   <section id="restaurant-photos" class="col-md-6 main-right">
-    <div class="section-wrapper">
+    <div class="section-wrapper" data-ng-if="restaurant.name">
       <div data-ng-if="restaurant.photos.length">
         <h4 class="col-md-12">Photos</h4>
         <div class="col-md-11">

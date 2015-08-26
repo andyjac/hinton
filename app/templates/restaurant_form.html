@@ -48,8 +48,8 @@
         </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <div data-input-field-directive data-title="Google Formatted Address"
+      <div class="form-group col-md-12" data-ng-if="restaurant.fullAddr">
+        <div data-input-field-directive data-title="Full Address"
              data-id="r_full" data-is-disabled="true" data-placeholder-text=""
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
@@ -312,7 +312,7 @@
           data-ng-repeat="item in restaurant.menu_item track by $index">
               <div class="col-md-12 none-left" data-ng-mouseenter="showDelete=true" data-ng-mouseleave="showDelete = false" style="padding: 3px 0;">
                 <div class="col-md-11 none-left photo_caption">{{item}}</div>
-                <i class="fa fa-remove fa-button col-md-1" style="padding-left:12px;" data-ng-show="showDelete" data-ng-click="removeMenuItem($index)"></i>
+                <i class="fa fa-remove fa-button col-md-1" style="padding-left:4px;" data-ng-show="showDelete" data-ng-click="removeMenuItem($index)"></i>
               </div>
         </div>
       </div>

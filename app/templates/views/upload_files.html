@@ -4,15 +4,11 @@
 <div class="modal-body">
 
   <div class="col-md-12" style="float:none">
-    <div class="input-group">
-      <span class="input-group-btn">
-        <span class="btn btn-primary btn-file">
-          Browse… <input type="file" id="filesUpload" multiple
-          accept="image/*"
-          onchange="angular.element(this).scope().setFiles(this)">
-        </span>
-      </span>
-      <input type="text" class="form-control filedrop" readonly="" value="   ...or drop files here to upload">
+
+    <div id="file-holder">
+      <input type="file" id="file-input" multiple accept="image/*" onchange="angular.element(this).scope().setFiles(this)" placeholder="Click or drop files here">
+      <div id="file-msg">Click to Browse or Drag Files Here to Upload
+      </div>
     </div>
 
     <div class="image-preview" data-ng-if="files.length">
@@ -20,9 +16,7 @@
         <div class="file-wrapper col-md-12" data-ng-repeat="file in files track by $index">
           <div class="image-thumb col-md-2">
             <div class="image-wrapper">
-              <div class="image-fill">
-                <img data-thumb-directive file=file>
-              </div>
+              <div data-thumb-directive file=file class="image-fill"></div>
             </div>
           </div>
           <div class="col-md-10 image-info">
@@ -30,7 +24,9 @@
               <input type="text" class="form-control image-props" value={{file.name}} data-ng-model="tempImg[$index].url" data-ng-init="tempImg[$index].url=file.name">
             </div>
 
-            <i class="fa fa-button fa-remove" style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
+            <div class="col-md-1">
+              <i class="fa fa-button fa-remove" style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
+            </div>
 
             <div class="col-md-12">
               <input type="text" class="form-control image-props" data-ng-model="tempImg[$index].caption" placeholder="image caption...">

@@ -78,6 +78,7 @@ input:-ms-input-placeholder {
 
 .form-control {
   padding: 6px 6px 6px 9px;
+  margin-bottom: 3px;
 }
 
 .row-pad {
@@ -139,6 +140,13 @@ button.hide {
 
 .btn-mid {
   margin: 0 12px;
+}
+
+.btn-lg {
+  padding: 10px 16px;
+  font-size: 14px;
+  line-height: 1.3333333;
+  border-radius: 6px;
 }
 
 .clearfix {
@@ -251,21 +259,9 @@ h4, h5 {
   display: block;
 }
 
-.filedrop {
-  background-color: #fafafa;
-  color: #333;
-}
-
 .image-preview {
   padding-top: 15px;
   overflow: auto;
-}
-
-.carousel {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding-bottom: 72%;
-  margin-top: 20px;
 }
 
 .error {
@@ -326,7 +322,7 @@ h4, h5 {
 }
 
 .modal-header h3, .modal-header p, .modal-header img {
-  margin: 0.5em 0;
+  margin: 0.5em 0.5em;
 }
 
 .modal-header {
@@ -341,27 +337,6 @@ h4, h5 {
 .restaurant-name {
   margin-top: 0;
 }
-
-/*.btn-img-cxl {
-  float: right;
-  margin: 3px 6px 0 6px;
-  background-image:url("cancel.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width:18px;
-  height:18px;
-}*/
-
-/*.btn-img-rmv {
-  float: right;
-  margin: 4px 11px 0 0;
-  background-image: url("../css/delete.png");
-  background-size: contain;
-  background-repeat: no-repeat;
-  width:16px;
-  height:16px;
-  cursor: pointer;
-}*/
 
 .photo-caption {
   font-style: italic;
@@ -392,13 +367,18 @@ h4, h5 {
 }
 
 .image-fill {
-  position:absolute;
-  left: 0;
+  position: absolute;
   top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
 
 .image-props {
-  height: 29px;
+  height: 32px;
   padding: 5px 5px 4px 9px;
 }
 
@@ -414,22 +394,44 @@ h4, h5 {
 }
 
 .modal-lg {
-  width: 522px;
+  width: 600px;
 }
-
-/*.test {
-  background-image: url("http://images.rialtollc.s3.amazonaws.com/F27wpUT0-pienzabackground.png");
-  background-size: contain;
-  width:80px;
-  height:64px;
-  background-position:center;
-  background-color:#000;
-  background-repeat: no-repeat;
-
-*/}
 
 .none-left {
   padding-left: 0;
   margin-left: 0;
 }
 
+
+#file-holder {
+  position: relative;
+  cursor: pointer;
+  border: 1px solid #7ba9d0;
+  border-radius: 6px;
+  text-align: center;
+  height: 65px;
+}
+
+#file-input {
+  margin: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+#file-msg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width:100%;
+  padding-top: 20px;
+  color: #337ab7;
+  font-size: 16px;
+  font-weight: 400;
+}

@@ -1,13 +1,14 @@
 'use strict';
 
 module.exports = function(app) {
-  app.directive('thumbDirective', ['$fileReader', function($fileReader) {
+  app.directive('thumbDirective', [function() {
     console.log('got here...');
 
     return {
       restrict: 'A',
       replace: true,
-      controller: 'modalInstanceController',
+      // declaring controller here throws a 'unknown injector' error
+      // controller: 'modalInstanceController',
       scope: {
         file: '='
       },
@@ -21,8 +22,8 @@ module.exports = function(app) {
            var filesrc = reader.result;
           el.html('src="filesrc"');
         };
-        reader.readAsDataUrl(scope.file);
-        scope.$apply();
+        reader.readAsDataURL(scope.file);
+        scope.$apply(); // this throws a '$digest already in progress' error
       }
     };
   }]);

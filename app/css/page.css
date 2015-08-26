@@ -279,6 +279,7 @@ h4, h5 {
 
 .error-item {
   list-style: none;
+  text-align: left;
 }
 
 .sign-in, .delete-warning, .success-alert {
@@ -294,20 +295,42 @@ h4, h5 {
   text-align: center;
 }
 
-.sign-in .input {
+.modal-display {
+  text-align: center;
+  padding: 1.5em;
+}
+
+.modal-input-container {
+  text-align: left;
   margin: 1.5em 0;
 }
 
-.delete-warning .confirm-button, .delete-warning .cancel-button {
-  padding: 0 1em;
+#sign-in-button {
+  text-align: left;
 }
 
-.confirm-button, .cancel-button {
+.modal-button {
+  text-align: center;
+}
+
+#delete-warning .modal-button {
   display: inline;
 }
 
-.delete-warning .header h3, .delete-warning .header p {
-  margin-bottom: 1em;
+#delete-warning button {
+  margin: 1.5em 1em 0 1em;
+}
+
+#success-alert button {
+  margin-top: 1em;
+}
+
+.modal-header h3, .modal-header p, .modal-header img {
+  margin: 0.5em 0;
+}
+
+.modal-header {
+  padding: 0 0 0.5em 0;
 }
 
 .logout {

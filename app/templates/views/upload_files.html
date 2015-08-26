@@ -7,7 +7,9 @@
     <div class="input-group">
       <span class="input-group-btn">
         <span class="btn btn-primary btn-file">
-          Browse… <input type="file" id="filesUpload" multiple accept="image/*" onchange="angular.element(this).scope().setFiles(this)">
+          Browse… <input type="file" id="filesUpload" multiple
+          accept="image/*"
+          onchange="angular.element(this).scope().setFiles(this)">
         </span>
       </span>
       <input type="text" class="form-control filedrop" readonly="" value="   ...or drop files here to upload">
@@ -15,7 +17,7 @@
 
     <div class="image-preview" data-ng-if="files.length">
       <h4>Image Preview</h4>
-        <div class="file-wrapper col-md-12" data-ng-repeat="(i, file) in files track by $index">
+        <div class="file-wrapper col-md-12" data-ng-repeat="file in files track by $index">
           <div class="image-thumb col-md-2">
             <div class="image-wrapper">
               <div class="image-fill">

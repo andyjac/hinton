@@ -205,7 +205,7 @@ module.exports = function(app) {
       };
 
       modalService.showModal(modalDefaults, {}).then(function (result) {
-        Array.prototype.push.apply($scope.restaurant.photos,result); //puts on scope
+        Array.prototype.push.apply($scope.restaurant.photos.result); //puts on scope
         //upload to s3 handled in s3 service, progress in modal
 
       });

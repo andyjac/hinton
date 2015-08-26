@@ -24,6 +24,8 @@ module.exports = function(app) {
         return $scope.signIn();
       }
 
+      angular.element('#gSearch').focus();
+
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
           return console.log(err);

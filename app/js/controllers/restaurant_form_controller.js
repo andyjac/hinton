@@ -201,10 +201,9 @@ module.exports = function(app) {
           size: 'lg' //this css is overridden in .modal-lg
       };
 
-      modalService.showModal(modalDefaults, {}).then(function (result) {
+      modalService.showModal(modalDefaults).then(function (result) {
         Array.prototype.push.apply($scope.restaurant.photos, result); //puts on scope
         //upload to s3 handled in s3 service, progress in modal
-
       });
     };
 

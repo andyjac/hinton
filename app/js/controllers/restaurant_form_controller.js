@@ -81,7 +81,7 @@ module.exports = function(app) {
         $scope.menu_item = '';
       }
 
-      // angular.element('#r_item').focus();
+      angular.element('#r_item').focus();
     };
 
     $scope.removeMenuItem = function(index) {
@@ -114,13 +114,9 @@ module.exports = function(app) {
     };
 
     $scope.successAlert = function() {
-      var modalDefaults = {
+      modalService.showModal({
         templateUrl: '../../templates/views/success_alert.html',
         size: 'sm'
-      };
-
-      modalService.showModal(modalDefaults).then(function(result) {
-        console.log(result);
       });
     };
 
@@ -171,7 +167,6 @@ module.exports = function(app) {
     };
 
     $scope.deleteRestaurant = function() {
-      //add bootstrap modal confirmation...
       var id = $scope.r_id;
 
       restaurantService.removeRestaurant(id, function(err, data) {

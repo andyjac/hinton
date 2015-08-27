@@ -7,3 +7,5 @@
 **/build/
 test/**/*bundle.js
 bobnotes
+bobchanges
+/app/test.html

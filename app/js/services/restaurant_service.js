@@ -18,6 +18,7 @@ module.exports = function(app) {
       r_site: '',
       menu_link: '',
       hours: { mon: '', tue: '', wed: '', thu: '', fri: '', sat: '', sun: '' },
+      photos: []
     };
     var mapData = {
       loc: { lat: '', long: '' },

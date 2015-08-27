@@ -7,7 +7,7 @@
   <section class="main-left col-md-6">
 
     <!-- form -->
-    <form id="restaurant-form" data-ng-submit="submitForm()">
+    <form id="restaurant-form">
 
       <div class="form-group col-md-12">
         <label>Restaurant Search</label>
@@ -48,8 +48,8 @@
         </div>
       </div>
 
-      <div class="form-group col-md-12">
-        <div data-input-field-directive data-title="Google Formatted Address"
+      <div class="form-group col-md-12" data-ng-show="restaurant.fullAddr && display_preview && !(restaurant.address.number && restaurant.address.street && restaurant.address.city && restaurant.address.state && restaurant.address.country && restaurant.address.zip)">
+        <div data-input-field-directive data-title="Full Address"
              data-id="r_full" data-is-disabled="true" data-placeholder-text=""
              data-model="restaurant.fullAddr" data-is-required="false">
         </div>
@@ -75,14 +75,6 @@
              data-is-required="true" data-is-disabled="false">
         </div>
       </div>
-
-      <!-- <div class="form-group col-md-5">
-        <div data-input-field-directive data-title="County" data-id="r_county"
-             data-placeholder-text="-" data-model="restaurant.address.county"
-             data-is-required="false" data-is-disabled="false">
-        </div>
-      </div> -->
-
 
       <div class="form-group col-md-5">
         <div data-input-field-directive data-title="State / Province" data-id="r_state"
@@ -233,12 +225,10 @@
       </div>
 
       <div class="btn-bottom col-md-12">
-        <button type="submit" class="btn btn-success pull-left"
-                data-ng-disabled="restaurant-form.$invalid">{{editing ? 'Update' : 'Save'}}
+        <button type="button" class="btn btn-success pull-left" data-ng-click="submitForm()" data-ng-disabled="!restaurant.name">{{editing ? 'Update' : 'Save'}}
         </button>
 
-        <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteWarning()"
-                data-ng-disabled="restaurant-form.$invalid">Delete
+        <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteWarning()" data-ng-disabled="restaurant-form.$invalid">Delete
         </button>
 
         <!-- temporary error message placeholder -->
@@ -246,7 +236,7 @@
           <h5>{{err_save}}</h5>
         </div>
 
-        <button type="button" class="btn btn-primary pull-right" data-ng-click="uploadImages()">Upload
+        <button type="button" class="btn btn-default pull-right" data-ng-click="selectFiles()"data-ng-disabled="!restaurant.name">Photos...
         </button>
 
       </div>
@@ -255,7 +245,7 @@
 
   <!-- preview -->
 
-  <section id="restaurant-info" class="main-right col-md-6">
+  <section id="restaurant-info" class="main-right col-md-6" data-ng-show="display_preview">
     <div data-ng-show="display_preview">
       <h2 class="restaurant-name col-md-12">{{restaurant.name}}</h2>
 
@@ -274,10 +264,10 @@
 
       <div class="preview-genre col-md-6 pull-right">
         <ul class="list-group">
-          <button type="button" class="list-group-item pull-left"
+          <button type="button" class="list-group-item pull-left" style="margin-right: 3px;"
                   data-ng-repeat="genre in restaurant.genre"
                   data-ng-click="removeGenre($index)">
-            {{genre}}
+            {{genre}}&nbsp;&nbsp;&times;
           </button>
         </ul>
       </div>
@@ -298,40 +288,59 @@
       <div class="preview-urls col-md-7 pull-right">
         <div class="col-md-12" data-ng-if="restaurant.r_site">
           <h4>Website</h4>
-          <h5>{{restaurant.r_site}}</h5>
+          <h5 style="word-wrap: break-word">{{restaurant.r_site}}</h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.menu_link">
           <h4>Menu</h4>
-          <h5>{{restaurant.menu_link}}</h5>
+          <h5 style="word-wrap: break-word">{{restaurant.menu_link}}</h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.blog_link">
           <h4>Blog Post</h4>
-          <h5>{{restaurant.blog_link}}</h5>
+          <h5 style="word-wrap: break-word">{{restaurant.blog_link}}</h5>
         </div>
       </div>
 
-      <div class="col-md-11 pull-left">
-        <div class="list-group">
-          <h4 class="col-md-6" style="padding-left:0;" tooltip-placement="right" tooltip="click on entry to remove" tooltip-class="tooltip tooltip-inner"
-              >Featured Menu Item</h4>
-          <div class="pull-left preview-featured"
-               data-ng-repeat="item in restaurant.menu_item"
-               data-ng-click="removeMenuItem($index)">
-            {{item}}
+      <div class="col-md-12 pull-left" data-ng-if="restaurant.menu_item.length">
+
+        <div  class="col-md-12 none-left">
+            <h4 class="col-md-5" style="padding-left:0; padding-top:9px; display:inline;">Featured Menu Item</h4>
+        </div>
+
+        <div class="preview-featured"
+          data-ng-repeat="item in restaurant.menu_item track by $index">
+              <div class="col-md-12 none-left" data-ng-mouseenter="showDelete=true" data-ng-mouseleave="showDelete = false" style="padding: 3px 0;">
+                <div class="col-md-11 none-left photo_caption">{{item}}</div>
+                <i class="fa fa-remove fa-button col-md-1" style="padding-left:4px;" data-ng-show="showDelete" data-ng-click="removeMenuItem($index)"></i>
+              </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" data-ng-if="restaurant.photos.length">
+        <h4 class="col-md-11 none-left" style="padding-top:9px;">Photos</h4>
+        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos">
+
+          <div class="image-thumb col-md-2">
+            <div class="image-wrapper">
+              <div class="image-fill">
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
+          <div class="col-md-10 image-info">
+            <div class="col-md-11 photo-url">
+              {{photo.url}}
+            </div>
 
-  <section id="restaurant-photos" class="col-md-6 main-right">
-    <div class="section-wrapper" data-ng-if="restaurant.name">
-      <div data-ng-if="restaurant.photos.length">
-        <h4 class="col-md-12">Photos</h4>
-        <div class="col-md-11">
-          <div class="carousel"></div>
+            <i class="fa-button fa fa-ban col-md-1" data-ng-click="hidePhoto($index)"></i>
+
+            <div class="col-md-11 photo-caption">
+              {{photo.caption}}
+            </div>
+
+            <i class="fa fa-trash-o fa-button col-md-1" style="padding-top: 10px;" data-ng-click="removePhoto($index)"></i>
+          </div>
+          <hr>
         </div>
       </div>
     </div>

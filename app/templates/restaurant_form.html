@@ -48,7 +48,7 @@
         </div>
       </div>
 
-      <div class="form-group col-md-12" data-ng-if="restaurant.fullAddr">
+      <div class="form-group col-md-12" data-ng-show="restaurant.fullAddr && display_preview && !(restaurant.address.number && restaurant.address.street && restaurant.address.city && restaurant.address.state && restaurant.address.country && restaurant.address.zip)">
         <div data-input-field-directive data-title="Full Address"
              data-id="r_full" data-is-disabled="true" data-placeholder-text=""
              data-model="restaurant.fullAddr" data-is-required="false">
@@ -319,7 +319,7 @@
 
       <div class="col-md-12" data-ng-if="restaurant.photos.length">
         <h4 class="col-md-11 none-left" style="padding-top:9px;">Photos</h4>
-        <div class="file-wrapper col-md-12" ng-repeat="(i, photo) in restaurant.photos">
+        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos">
 
           <div class="image-thumb col-md-2">
             <div class="image-wrapper">

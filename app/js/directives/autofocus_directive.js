@@ -5,7 +5,7 @@ module.exports = function(app) {
       link: function($scope, $element) {
         $timeout(function() {
           $element.find('input').focus();
-        }, 0);
+        }, 500);
       }
     };
   });

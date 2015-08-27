@@ -1,9 +1,7 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = function(app) {
-  app.controller('modalInstanceController', ['$scope', '$modalInstance', '$location', 'authService', function($scope, $modalInstance, $location, authService) {
+  app.controller('modalInstanceController', ['$scope', '$modalInstance', 'authService', function($scope, $modalInstance, authService) {
     $scope.errors = [];
 
     $scope.ok = function(result) {

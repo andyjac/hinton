@@ -24,6 +24,8 @@ module.exports = function(app) {
         return $scope.signIn();
       }
 
+      angular.element('#gSearch').focus();
+
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
           return console.log(err);
@@ -63,6 +65,8 @@ module.exports = function(app) {
         $scope.restaurant = restaurantService.restaurantData();
         $scope.genre = '';
       }
+
+      angular.element('#r_genre').focus();
     };
 
     $scope.removeGenre = function(index) {
@@ -76,6 +80,8 @@ module.exports = function(app) {
         $scope.restaurant = restaurantService.restaurantData();
         $scope.menu_item = '';
       }
+
+      angular.element('#r_item').focus();
     };
 
     $scope.removeMenuItem = function(index) {
@@ -108,13 +114,9 @@ module.exports = function(app) {
     };
 
     $scope.successAlert = function() {
-      var modalDefaults = {
+      modalService.showModal({
         templateUrl: '../../templates/views/success_alert.html',
         size: 'sm'
-      };
-
-      modalService.showModal(modalDefaults).then(function(result) {
-        console.log(result);
       });
     };
 
@@ -165,7 +167,6 @@ module.exports = function(app) {
     };
 
     $scope.deleteRestaurant = function() {
-      //add bootstrap modal confirmation...
       var id = $scope.r_id;
 
       restaurantService.removeRestaurant(id, function(err, data) {

@@ -7,24 +7,24 @@ module.exports = function(app) {
     return function clearFields(obj) {
       var collection = _.cloneDeep(obj);
 
-      if (Array.isArray(collection)) {
+      if (_.isArray(collection)) {
         var i = collection.length;
 
         while(i--) {
-          if (typeof collection[i] === 'object') {
+          if (_.isObject(collection[i])) {
             collection[i] = clearFields(collection[i]);
           } else {
             collection.splice(i, 1);
           }
         }
       } else {
-        Object.keys(collection).forEach(function(value) {
+        _.forEach(_.keys(collection), function(value) {
           if (collection.hasOwnProperty(value) && collection[value] !== null) {
-            if (typeof collection[value] === 'object') {
+            if (_.isObject(collection[value])) {
               collection[value] = clearFields(collection[value]);
-            } else if (typeof collection[value] === 'number') {
+            } else if (_.isNumber(collection[value])) {
               collection[value] = 0;
-            } else {
+            } else if (_.isString(collection[value])) {
               collection[value] = '';
             }
           }

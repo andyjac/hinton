@@ -111,7 +111,7 @@ module.exports = function(grunt) {
 
     clean: {
       build: {
-        src: ['build']
+        src: ['build/']
       }
     }
 
@@ -121,6 +121,6 @@ module.exports = function(grunt) {
   grunt.registerTask('mochatest', ['jshint:client', 'jshint:mocha', 'simplemocha:dev']);
   grunt.registerTask('karmatest', ['jshint:karma', 'webpack:karma_test', 'karma:test']);
   grunt.registerTask('test', ['mochatest', 'karmatest']);
-  grunt.registerTask('build', ['jshint:client', 'webpack:client', 'copy:html']);
+  grunt.registerTask('build', ['jshint:client', 'clean:build', 'webpack:client', 'copy:html']);
   grunt.registerTask('default', ['lint', 'test']);
 };

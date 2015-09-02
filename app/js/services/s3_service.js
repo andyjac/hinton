@@ -1,10 +1,10 @@
 'use strict';
 
+var Crypto = require('crypto');
+var config = require('../../../s3_config.json');
+
 module.exports = function(app) {
   app.factory('s3Service', ['$scope', '$base64', function($scope, $base64) {
-
-    var Crypto = require('crypto');
-    var config = require('../../s3Config.json');
 
     var bucket = config.bucket;
     var folder = config.folder;

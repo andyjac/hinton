@@ -19,36 +19,31 @@ module.exports = function(app) {
     /**
      * ========= >>Upload ============
      */
-    $scope.initTempImg = function() {
-      $scope.tempImg = [{
-        url: '',
-        caption: '',
-        show: true
-      }];
-    };
+    $scope.tempImg = [];
 
     $scope.setFiles = function(element) {
       $scope.$apply(function($scope) {
-        $scope.files = [];
+        $scope.selectedFiles = [];  // change var name
 
         for (var i = 0; i < element.files.length; i++) {
-          $scope.files.push(element.files[i]);
-          console.log(element.files[i]);
+          $scope.selectedFiles.push(element.files[i]);
+          console.log($scope.selectedFiles[i].name + ' ' + $scope.selectedFiles[i].size);
         }
-        });
+      });
     };
 
     $scope.removeFile = function(index) {
-      console.log('repeat-index: ' + index);
-      $scope.files.splice(index, 1);
+      $scope.selectedFiles.splice(index, 1);
     };
 
     $scope.upload = function() {
       $scope.ok($scope.tempImg);
-      console.log('photos: ' + $scope.tempImg);
-    };
-
-    $scope.initTempImg();
+      angular.forEach($scope.tempImg, function(item, key){ // var check please leave for now
+        angular.forEach(item, function(value){
+          console.log('<scope.ok tempImg --> ' + key + ': ' +value);
+        });
+      });
+     };
 
     /**
      * ========= Upload<< ============

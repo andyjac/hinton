@@ -243,7 +243,7 @@
     </form>
   </section>
 
-  <!-- preview -->
+  <!-- ============= preview ============ -->
 
   <section id="restaurant-info" class="main-right col-md-6" data-ng-show="display_preview">
     <div data-ng-show="display_preview">
@@ -319,28 +319,33 @@
 
       <div class="col-md-12" data-ng-if="restaurant.photos.length">
         <h4 class="col-md-11 none-left" style="padding-top:9px;">Photos</h4>
-        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos">
+        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos | filter: {delete: false} track by $index">
 
-          <div class="image-thumb col-md-2">
-            <div class="image-wrapper">
-              <div class="image-fill">
+          <div class="photo-item" ng-style="{'opacity':(photo.show === true ? 1 : 0.25)}">
+
+            <div class="image-thumb col-md-2">
+              <div class="image-wrapper">
+                <div class="image-fill" ng-style="{'background-image':'url(https://hinton-images.s3.amazonaws.com/restpics/' + photo.url + ')'}">
+                </div>
               </div>
             </div>
-          </div>
-          <div class="col-md-10 image-info">
-            <div class="col-md-11 photo-url">
-              {{photo.url}}
+
+            <div class="col-md-10 image-info">
+              <div class="col-md-11 photo-url">
+                {{photo.url}}
+              </div>
+
+              <i class="fa-button fa fa-ban col-md-1" data-ng-click="photo.show = !photo.show"></i>
+
+              <div class="col-md-11 photo-caption">
+                {{photo.caption}}
+              </div>
+
+              <i class="fa fa-trash-o fa-button col-md-1" style="padding-top: 10px;" data-ng-click="removePhoto($index)"></i>
             </div>
+            <hr>
 
-            <i class="fa-button fa fa-ban col-md-1" data-ng-click="hidePhoto($index)"></i>
-
-            <div class="col-md-11 photo-caption">
-              {{photo.caption}}
-            </div>
-
-            <i class="fa fa-trash-o fa-button col-md-1" style="padding-top: 10px;" data-ng-click="removePhoto($index)"></i>
           </div>
-          <hr>
         </div>
       </div>
     </div>

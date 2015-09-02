@@ -6,6 +6,7 @@ require('angular-base64');
 require('angular-cookies');
 require('ng-autocomplete');
 require('angular-bootstrap');
+require('cryptojs');
 
 // Application
 var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'base64', 'ngCookies', 'ngAutocomplete', 'ui.bootstrap']);

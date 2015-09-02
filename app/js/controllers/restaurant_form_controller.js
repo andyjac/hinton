@@ -187,11 +187,11 @@ module.exports = function(app) {
       restaurantService.googlePopulate($scope.details);
 
       $scope.restaurant = restaurantService.restaurantData();
+      $scope.restaurant.photos = []; // reset photos array
       $scope.map = restaurantService.mapData();
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;
-      console.log($scope.restaurant.photos.length);
     };
 
     $scope.selectFiles = function() {
@@ -204,16 +204,16 @@ module.exports = function(app) {
       modalService.showModal(modalDefaults).then(function (result) {
         Array.prototype.push.apply($scope.restaurant.photos, result); //puts on scope
         //upload to s3 handled in s3 service, progress in modal
+        angular.forEach($scope.restaurant.photos, function(item, i) { // init photo props
+          item.delete = false;
+          item.show = true;
+        });
       });
     };
 
     $scope.removePhoto = function(index) { //move to restaurant service
       $scope.restaurant.photos.splice(index, 1);
       //removes photo from db if photos.delete is true, and removes from s3.
-    };
-
-    $scope.hidePhoto = function(index) {
-      //sets show flag for pictures to be shown in mobile app
     };
 
     $scope.signIn = function() {

@@ -5,15 +5,15 @@
 
   <div class="col-md-12" style="float:none">
 
-    <div id="file-holder">
+    <div id="file-holder" data-ng-hide="selectedFiles.length">
       <input type="file" id="file-input" multiple accept="image/*" onchange="angular.element(this).scope().setFiles(this)" placeholder="Click or drop files here">
       <div id="file-msg">Click to Browse or Drag Files Here to Upload
       </div>
     </div>
 
-    <div class="image-preview" data-ng-if="files.length">
+    <div class="image-preview" data-ng-if="selectedFiles.length" >
       <h4>Image Preview</h4>
-        <div class="file-wrapper col-md-12" data-ng-repeat="file in files track by $index">
+        <div class="file-wrapper col-md-12" data-ng-repeat="file in selectedFiles track by $index">
           <div class="image-thumb col-md-2">
             <div class="image-wrapper">
               <div data-thumb-directive file=file class="image-fill"></div>
@@ -43,5 +43,5 @@
   <button type="button" class="btn"
   data-ng-click="close()">Cancel</button>
   <button class="btn btn-primary"
-  data-ng-click="upload();" data-ng-disabled="!files.length">Upload</button>
+  data-ng-click="upload();" data-ng-disabled="!selectedFiles.length">Upload</button>
 </div>

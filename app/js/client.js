@@ -22,16 +22,12 @@ require('./services/modal_service')(hintonAdminApp);
 // Controllers
 require('./auth/auth_controller')(hintonAdminApp);
 require('./controllers/restaurant_form_controller')(hintonAdminApp);
-require('./controllers/dropdown_controller')(hintonAdminApp);
-require('./controllers/timepicker_controller')(hintonAdminApp);
 require('./controllers/modal_instance_controller')(hintonAdminApp);
 
 // Directives
 require('./directives/dropdown_directive')(hintonAdminApp);
 require('./directives/input_field_directive')(hintonAdminApp);
 require('./directives/autofocus_directive')(hintonAdminApp);
-require('./directives/timepicker_directive')(hintonAdminApp);
-require('./directives/thumb_directive')(hintonAdminApp);
 
 // View Routes
 hintonAdminApp.config(['$routeProvider', function($routeProvider) {

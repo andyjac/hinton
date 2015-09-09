@@ -7,7 +7,7 @@ module.exports = function(app) {
       restrict: 'A',
       replace: false,
       scope: {
-        file: '=',
+        file: '='
       },
 
       link: function(scope, el, attrs) {

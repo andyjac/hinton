@@ -2,7 +2,6 @@
   <h3>Image Upload</h3>
 </div>
 <div class="modal-body">
-
   <div class="col-md-12" style="float:none">
 
     <div id="file-holder" data-ng-hide="selectedFiles.length">
@@ -20,8 +19,12 @@
             </div>
           </div>
           <div class="col-md-10 image-info">
+
             <div class="col-md-11">
-              <input type="text" class="form-control image-props" data-ng-model="tempImages[$index].url" data-ng-init="tempImages[$index].url=urlFormat(file.name)"> <!-- ...deal with illegal space chars -->
+            <ng-form name="demo">
+              <input type="text" name="fileName" class="form-control image-props" data-ng-model="tempImages[$index].url" data-ng-init="tempImages[$index].url=urlFormat(file.name)" required="true" pattern=".+[.]{{file.name.split('.').pop()}}"> <!-- ...deal with illegal space chars -->
+              <p class="ext-error" data-ng-if="demo.fileName.$error.pattern"><em>Filename must end in <strong>".{{file.name.split('.').pop()}}"</strong></em></p>
+              </ng-form>
             </div>
 
             <div class="col-md-1">
@@ -42,7 +45,6 @@
     </div>
 
   </div>
-
 </div>
 <div class="modal-footer">
 

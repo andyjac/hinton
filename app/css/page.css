@@ -450,3 +450,11 @@ h4, h5 {
   padding-top: 11px;
   margin-left: 10px;
 }
+
+.ext-error {
+  color: #FF7A00;
+  font-size: .95em;
+  margin: 0;
+  padding: 0 0 6px 6px;
+  font-style: italic;
+}

@@ -438,3 +438,15 @@ h4, h5 {
   font-size: 16px;
   font-weight: 400;
 }
+
+/* progress */
+
+.progress { /* ui.bootstrap overload */
+  height: 12px;
+  animation-timing-function: ease-out;
+}
+
+.progress-wrapper {
+  padding-top: 11px;
+  margin-left: 10px;
+}

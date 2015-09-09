@@ -6,6 +6,6 @@
 **/docs/
 **/build/
 test/**/*bundle.js
-bobnotes
-bobchanges
+bob*
 /app/test.html
+s3_config.json

@@ -113,13 +113,6 @@ module.exports = function(app) {
       $scope.display_preview = false;
     };
 
-    $scope.successAlert = function() {
-      modalService.showModal({
-        templateUrl: '../../templates/views/success_alert.html',
-        size: 'sm'
-      });
-    };
-
     $scope.submitForm = function() {
       var id = $scope.r_id;
       var restaurantInfo = {};
@@ -153,19 +146,6 @@ module.exports = function(app) {
       }
     };
 
-    $scope.deleteWarning = function() {
-      var modalDefaults = {
-        templateUrl: '../../templates/views/delete_warning.html',
-        size: 'sm',
-      };
-
-      modalService.showModal(modalDefaults).then(function(confirm) {
-        if (confirm) {
-          $scope.deleteRestaurant();
-        }
-      });
-    };
-
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
 
@@ -187,34 +167,63 @@ module.exports = function(app) {
       restaurantService.googlePopulate($scope.details);
 
       $scope.restaurant = restaurantService.restaurantData();
-      $scope.restaurant.photos = []; // reset photos array
+      $scope.restaurant.photos = []; // reset photos array  TODO figure out why not set prior
       $scope.map = restaurantService.mapData();
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;
       $scope.editing = false;
     };
 
-    $scope.selectFiles = function() {
+    $scope.removePhoto = function(index) {
+      // $scope.restaurant.photos.splice(index, 1);
+      $scope.restaurant.photos[index].delete = true;
+      $scope.restaurant.photos[index].show = false;
+      //marks photo to be deleted from db, removes from s3 via a chron.
+    };
 
+// =========== MODALS ===========
+
+  //  >> Delete Warning modal
+
+    $scope.deleteWarning = function() {
+      var modalDefaults = {
+        templateUrl: '../../templates/views/delete_warning.html',
+        size: 'sm',
+      };
+
+      modalService.showModal(modalDefaults).then(function(confirm) {
+        if (confirm) {
+          $scope.deleteRestaurant();
+        }
+      });
+    };
+
+   //  >> Success modal
+
+    $scope.successAlert = function() {
+      modalService.showModal({
+        templateUrl: '../../templates/views/success_alert.html',
+        size: 'sm'
+      });
+    };
+
+     //  >> File upload modal
+
+    $scope.selectFiles = function() { // open upload modal with Photos button
+      var s3Files = [];
       var modalDefaults = {
           templateUrl: '../../templates/views/upload_files.html',
           size: 'lg' //this css is overridden in .modal-lg
       };
 
-      modalService.showModal(modalDefaults).then(function (result) {
-        Array.prototype.push.apply($scope.restaurant.photos, result); //puts on scope
-        //upload to s3 handled in s3 service, progress in modal
-        angular.forEach($scope.restaurant.photos, function(item, i) { // init photo props
-          item.delete = false;
-          item.show = true;
+      modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
+        _.forEach(result, function(obj, i) {
+          $scope.restaurant.photos.push({url: obj.url, caption: obj.caption, delete: false, show: true});
         });
       });
     };
 
-    $scope.removePhoto = function(index) { //move to restaurant service
-      $scope.restaurant.photos.splice(index, 1);
-      //removes photo from db if photos.delete is true, and removes from s3.
-    };
+     // >> Sign-in modal
 
     $scope.signIn = function() {
       var modalDefaults = {

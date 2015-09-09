@@ -21,16 +21,21 @@
           </div>
           <div class="col-md-10 image-info">
             <div class="col-md-11">
-              <input type="text" class="form-control image-props" value={{file.name}} data-ng-model="tempImg[$index].url" data-ng-init="tempImg[$index].url=file.name">
+              <input type="text" class="form-control image-props" data-ng-model="tempImages[$index].url" data-ng-init="tempImages[$index].url=urlFormat(file.name)"> <!-- ...deal with illegal space chars -->
             </div>
 
             <div class="col-md-1">
-              <i class="fa fa-button fa-remove" style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
+              <i class="fa fa-button fa-remove  " style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
             </div>
 
             <div class="col-md-12">
-              <input type="text" class="form-control image-props" data-ng-model="tempImg[$index].caption" placeholder="image caption...">
+              <input type="text" class="form-control image-props" data-ng-model="tempImages[$index].caption" placeholder="image caption...">
             </div>
+
+            <input type="hidden" data-ng-init="tempImages[$index].file=file">
+            <input type="hidden" data-ng-init="tempImages[$index].type=file.type">
+            <input type="hidden" data-ng-init="tempImages[$index].size=file.size">
+
           </div>
           <hr>
         </div>
@@ -40,8 +45,12 @@
 
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn"
-  data-ng-click="close()">Cancel</button>
-  <button class="btn btn-primary"
-  data-ng-click="upload();" data-ng-disabled="!selectedFiles.length">Upload</button>
+
+  <div class="col-md-7 progress-wrapper"><progressbar type="info" max="100" value="barData" data-ng-if="selectedFiles.length && !s3Errors.length"></progressbar></div>
+
+  <div id="s3-result" data-ng-show="s3Errors.length"></div> <!-- ...div to accept s3 errors toggles with progress bar -->
+
+  <button type="button" class="btn" data-ng-click="close()">Cancel</button>
+  <button class="btn btn-primary" data-ng-click="upload();" data-ng-disabled="!selectedFiles.length">Upload</button>
+
 </div>

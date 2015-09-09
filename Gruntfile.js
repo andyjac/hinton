@@ -20,12 +20,13 @@ module.exports = function(grunt) {
         src: ['*.js', 'routes/**/*.js', 'models/**/*.js', 'controllers/**/*.js', 'lib/**/*.js']
       },
       client: {
-        src: ['app/**/*.js'],
+        src: ['app/**/*.js', '!app/**/*.min.js'],
         options: {
           globals: {
             angular: true,
             $: true,
-            document: true
+            document: true,
+            AWS: true
           }
         }
       },
@@ -69,7 +70,7 @@ module.exports = function(grunt) {
 
     watch: {
       client: {
-        files: ['./app/**/*.js', './app/**/*.html', './app/**/*.css'],
+        files: ['app/**/*.js', 'app/**/*.html', 'app/**/*.css'],
         tasks: ['build']
       }
     },
@@ -81,6 +82,9 @@ module.exports = function(grunt) {
         output: {
           path: 'build/',
           filename: 'bundle.js'
+        },
+        resolve: {
+          extensions: ['', '.js', '.json']
         }
       },
       karma_test: {

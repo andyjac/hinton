@@ -28,6 +28,7 @@ require('./directives/dropdown_directive')(hintonAdminApp);
 require('./directives/input_field_directive')(hintonAdminApp);
 require('./directives/autofocus_directive')(hintonAdminApp);
 require('./directives/thumb_directive')(hintonAdminApp);
+require('./directives/on_load_directive')(hintonAdminApp);
 
 // View Routes
 hintonAdminApp.config(['$routeProvider', function($routeProvider) {

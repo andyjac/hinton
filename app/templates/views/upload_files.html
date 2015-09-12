@@ -21,14 +21,14 @@
           <div class="col-md-10 image-info">
 
             <div class="col-md-11">
-            <ng-form name="demo">
-              <input type="text" name="fileName" class="form-control image-props" data-ng-model="tempImages[$index].url" data-ng-init="tempImages[$index].url=urlFormat(file.name)" required="true" pattern=".+[.]{{file.name.split('.').pop()}}"> <!-- ...deal with illegal space chars -->
-              <p class="ext-error" data-ng-if="demo.fileName.$error.pattern"><em>Filename must end in <strong>".{{file.name.split('.').pop()}}"</strong></em></p>
+              <ng-form name="extError">
+                <input type="text" name="fileName" class="form-control image-props" data-ng-model="tempImages[$index].url" data-ng-init="tempImages[$index].url=urlFormat(file.name)" required="true" pattern=".+[.]{{file.name.split('.').pop()}}"> <!-- ...deal with illegal space chars -->
+                <p class="ext-error" data-ng-show="extError.fileName.$error.pattern"><em>Filename must end in <strong>".{{file.name.split('.').pop()}}"</strong></em></p>
               </ng-form>
             </div>
 
             <div class="col-md-1">
-              <i class="fa fa-button fa-remove  " style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
+              <i class="fa fa-button fa-remove" style="padding-top: 4px;" data-ng-click="removeFile($index)"></i>
             </div>
 
             <div class="col-md-12">

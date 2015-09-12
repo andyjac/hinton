@@ -175,9 +175,10 @@ module.exports = function(app) {
     };
 
     $scope.removePhoto = function(index) {
-      $scope.restaurant.photos.splice(index, 1);
-      // $scope.restaurant.photos[index].delete = true;
-      // $scope.restaurant.photos[index].show = false;
+      $scope.restaurant.photos[index].show = false;
+      $scope.restaurant.photos[index].delete = true;
+      // $scope.restaurant.photos.splice(index, 1);
+
       //marks photo to be deleted from db, removes from s3 via a chron.
     };
 

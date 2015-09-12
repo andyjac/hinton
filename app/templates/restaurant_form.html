@@ -317,11 +317,12 @@
         </div>
       </div>
 
-      <div class="col-md-12" data-ng-if="restaurant.photos.length">
+      <div class="col-md-12" data-ng-show="restaurant.photos.length">
         <h4 class="col-md-11 none-left" style="padding-top:9px;">Photos</h4>
-        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos | filter: {delete: false} track by $index">
 
-          <div class="photo-item" ng-style="{'opacity':(photo.show === true ? 1 : 0.25)}">
+        <div class="file-wrapper col-md-12 none-left" ng-repeat="(i, photo) in restaurant.photos track by $index">
+
+          <div class="photo-item" ng-style="{'opacity':(photo.show === true ? 1 : 0.25)}" ng-if="!photo.delete">
 
             <div class="image-thumb col-md-2">
               <div class="image-wrapper">
@@ -338,7 +339,8 @@
               <i class="fa-button fa fa-ban col-md-1" data-ng-click="photo.show = !photo.show"></i>
 
               <div class="col-md-11 photo-caption">
-                {{photo.caption}}
+              <textarea class="form-control photo-edit-caption" style="border: none;" rows="1" placeholder="photo caption"
+                data-ng-model="photo.caption"/>
               </div>
 
               <i class="fa fa-trash-o fa-button col-md-1" style="padding-top: 10px;" data-ng-click="removePhoto($index)"></i>

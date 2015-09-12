@@ -12,7 +12,10 @@
   </head>
   <body data-ng-app="hintonAdminApp">
     <div class="container">
-      <div class="inner clearfix">
+      <div id="spinner" class="waiting-to-load">
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+      </div>
+      <div class="inner clearfix" data-on-load-directive> <!-- delays view load -->
         <main data-ng-view></main>
         <script type="text/javascript" src="bundle.js"></script>
       </div>

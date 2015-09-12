@@ -19,7 +19,7 @@ module.exports = function(app) {
     };
 
 /**
- * ========= >>Upload ============  this should prob move back to service...
+ * ========= >>Upload ============
  */
     $scope.tempImages = [];
     $scope.okFiles = [];
@@ -85,7 +85,11 @@ module.exports = function(app) {
     };
 
     $scope.removeFile = function(index) {
+      $scope.tempImages.splice(index, 1);
       $scope.selectedFiles.splice(index, 1);
+      // $scope.$apply(function() {
+
+      // });
     };
 
 /**

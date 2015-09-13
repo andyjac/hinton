@@ -1,6 +1,6 @@
 'use strict';
 
-var s3config = require('json!./s3_config.json');
+var s3config = require('../../../s3_config.json');
 
 module.exports = function(app) {
   app.controller('modalInstanceController', ['$scope', '$timeout', '$modalInstance', 'authService', function($scope, $timeout, $modalInstance, authService) {

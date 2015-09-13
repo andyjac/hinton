@@ -11,7 +11,7 @@
     </div>
 
     <div class="image-preview" data-ng-if="selectedFiles.length" >
-      <h4>Image Preview</h4>
+      <h4 tooltip = 'Avoid using spaces in file names. Spaces will be converted to underscore ("_" characters.'>Image Preview</h4>
         <div class="file-wrapper col-md-12" data-ng-repeat="file in selectedFiles track by $index">
           <div class="image-thumb col-md-2">
             <div class="image-wrapper">

@@ -1,8 +1,8 @@
 {
   "bucket":"hinton-images",
   "folder":"restpics/",
-  "awsId":"AKIAJ6IB5O4RGDIQTD6Q",
-  "secret":"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",
+  "awsId":"BOGUS",
+  "secret":"BOGUS",
   "region":"us-west-2"
 }
 

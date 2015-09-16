@@ -128,6 +128,7 @@ module.exports = function(app) {
 
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successMsg = restaurantInfo.restaurant.name + ' Updated';
           $scope.successAlert();
         });
       } else {
@@ -139,6 +140,7 @@ module.exports = function(app) {
 
           $scope.updateFromDB();
           $scope.clearForm();
+          $scope.successMsg = restaurantInfo.restaurant.name + ' Saved';
           $scope.successAlert();
         });
 
@@ -205,11 +207,12 @@ module.exports = function(app) {
       var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
         size: 'sm',
+        backdrop: false
       });
       modalInstance.opened.then(function () {
         $timeout(function() {
           modalInstance.dismiss('dismiss');
-        }, 1500);
+        }, 2000);
       });
     };
 

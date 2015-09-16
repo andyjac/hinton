@@ -382,9 +382,21 @@ h4, h5 {
   text-align: center;
 }
 
+.modal-dialog { /*bootstrap override*/
+  margin-top: 100px;
+}
+
 .modal-display {
   text-align: center;
   padding: 1.5em;
+  box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+  background-color: #FAFAF9;
+  border-radius: 6px;
+}
+
+.modal-message.modal-success {
+  padding-top: 10px;
+  font-size: 1.1em;
 }
 
 .modal-input-container {

@@ -6,4 +6,5 @@
 **/docs/
 **/build/
 test/**/*bundle.js
-bobnotes
+bob*
+/app/test.html

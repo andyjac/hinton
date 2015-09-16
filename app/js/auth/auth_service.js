@@ -10,7 +10,7 @@ module.exports = function(app) {
         $http.get('/admin/sign_in', {
             headers: {'Authorization': 'Basic ' + encoded}
           })
-          .success(function (data) {
+          .success(function(data) {
             $cookies.put('eat', data.token);
             callback(null);
           })

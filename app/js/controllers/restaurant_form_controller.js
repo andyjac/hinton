@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', function($scope, authService, restaurantService, modalService) {
+  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', '$modal', '$timeout', function($scope, authService, restaurantService, modalService, $modal, $timeout) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -202,9 +202,14 @@ module.exports = function(app) {
    //  >> Success modal
 
     $scope.successAlert = function() {
-      modalService.showModal({
+      var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
-        size: 'sm'
+        size: 'sm',
+      });
+      modalInstance.opened.then(function () {
+        $timeout(function() {
+          modalInstance.dismiss('dismiss');
+        }, 1500);
       });
     };
 

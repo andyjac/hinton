@@ -6,9 +6,10 @@ require('angular-base64');
 require('angular-cookies');
 require('ng-autocomplete');
 require('angular-bootstrap');
+require('angular-sanitize');
 
 // Application
-var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'base64', 'ngCookies', 'ngAutocomplete', 'ui.bootstrap']);
+var hintonAdminApp = angular.module('hintonAdminApp', ['ngRoute', 'base64', 'ngCookies', 'ngAutocomplete', 'ui.bootstrap', 'ngSanitize']);
 
 // Services
 require('./auth/auth_service')(hintonAdminApp);

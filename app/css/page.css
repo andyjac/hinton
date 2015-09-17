@@ -388,15 +388,21 @@ h4, h5 {
 
 .modal-display {
   text-align: center;
-  padding: 1.5em;
+  padding: 1.3em;
   box-shadow: 0 5px 25px rgba(0,0,0,0.4);
   background-color: #FAFAF9;
   border-radius: 6px;
+  font-size: 1.1em;
+  color: #337ab7;
 }
 
-.modal-message.modal-success {
+#success-alert {
+  padding: .9em .5em;
+  font-size: 1.2em;
+}
+
+.modal-success {
   padding-top: 10px;
-  font-size: 1.1em;
 }
 
 .modal-input-container {

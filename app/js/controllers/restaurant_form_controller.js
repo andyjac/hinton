@@ -125,23 +125,22 @@ module.exports = function(app) {
             $scope.err_save = err.msg;
             return;
           }
-
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/>Saved';
+          $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
-          $scope.successMsg = restaurantInfo.restaurant.name + ' Updated';
-          $scope.successAlert();
         });
+
       } else {
         restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
           if (err) {
             $scope.err_save = err.msg;
             return;
           }
-
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/>Updated';
+          $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
-          $scope.successMsg = restaurantInfo.restaurant.name + ' Saved';
-          $scope.successAlert();
         });
 
         $scope.editing = false;
@@ -192,7 +191,10 @@ module.exports = function(app) {
       var modalDefaults = {
         templateUrl: '../../templates/views/delete_warning.html',
         size: 'sm',
+        scope: $scope
       };
+
+      $scope.warning_msg = 'Are you sure you want to delete<br><em>' + $scope.restaurant.name + '</em>?';
 
       modalService.showModal(modalDefaults).then(function(confirm) {
         if (confirm) {
@@ -203,9 +205,10 @@ module.exports = function(app) {
 
    //  >> Success modal
 
-    $scope.successAlert = function() {
+    $scope.successAlert = function(msg) {
       var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
+        scope: $scope,
         size: 'sm',
         backdrop: false
       });

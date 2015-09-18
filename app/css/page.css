@@ -23,6 +23,10 @@ body {
   background-size: 250px auto;
 }
 
+.default-text {
+  color: #333;
+}
+
 input::-webkit-input-placeholder {
   color: #d8d8d8 !important;
   font-style: italic;
@@ -371,6 +375,14 @@ h4, h5 {
 
 .sign-in, .delete-warning, .success-alert {
   padding: 1.5em;
+}
+
+.warning-question {
+  color: #C81717;
+}
+
+.warning-info {
+  color: #337AB7;
 }
 
 .logo-small {

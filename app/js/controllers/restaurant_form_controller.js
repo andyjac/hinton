@@ -125,7 +125,7 @@ module.exports = function(app) {
             $scope.err_save = err.msg;
             return;
           }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/>Saved';
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Saved</strong>';
           $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
@@ -137,7 +137,7 @@ module.exports = function(app) {
             $scope.err_save = err.msg;
             return;
           }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/>Updated';
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Updated</strong>';
           $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
@@ -194,7 +194,7 @@ module.exports = function(app) {
         scope: $scope
       };
 
-      $scope.warning_msg = 'Are you sure you want to delete<br><em>' + $scope.restaurant.name + '</em>?';
+      $scope.warning_msg = '<span class="warning-question">Are you sure you want to delete</span><br><em><span class="warning-info">' + $scope.restaurant.name + '</span></em>?';
 
       modalService.showModal(modalDefaults).then(function(confirm) {
         if (confirm) {
@@ -215,7 +215,7 @@ module.exports = function(app) {
       modalInstance.opened.then(function () {
         $timeout(function() {
           modalInstance.dismiss('dismiss');
-        }, 2000);
+        }, 2600);
       });
     };
 

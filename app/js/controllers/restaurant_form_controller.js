@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', function($scope, authService, restaurantService, modalService) {
+  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', '$modal', '$timeout', function($scope, authService, restaurantService, modalService, $modal, $timeout) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -125,21 +125,22 @@ module.exports = function(app) {
             $scope.err_save = err.msg;
             return;
           }
-
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Saved</strong>';
+          $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
-          $scope.successAlert();
         });
+
       } else {
         restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
           if (err) {
             $scope.err_save = err.msg;
             return;
           }
-
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Updated</strong>';
+          $scope.successAlert();
           $scope.updateFromDB();
           $scope.clearForm();
-          $scope.successAlert();
         });
 
         $scope.editing = false;
@@ -190,7 +191,10 @@ module.exports = function(app) {
       var modalDefaults = {
         templateUrl: '../../templates/views/delete_warning.html',
         size: 'sm',
+        scope: $scope
       };
+
+      $scope.warning_msg = '<span class="warning-question">Are you sure you want to delete</span><br><em><span class="warning-info">' + $scope.restaurant.name + '</span></em>?';
 
       modalService.showModal(modalDefaults).then(function(confirm) {
         if (confirm) {
@@ -201,10 +205,17 @@ module.exports = function(app) {
 
    //  >> Success modal
 
-    $scope.successAlert = function() {
-      modalService.showModal({
+    $scope.successAlert = function(msg) {
+      var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
-        size: 'sm'
+        scope: $scope,
+        size: 'sm',
+        backdrop: false
+      });
+      modalInstance.opened.then(function () {
+        $timeout(function() {
+          modalInstance.dismiss('dismiss');
+        }, 2600);
       });
     };
 
@@ -214,13 +225,27 @@ module.exports = function(app) {
       var s3Files = [];
       var modalDefaults = {
           templateUrl: '../../templates/views/upload_files.html',
-          size: 'lg' //this css is overridden in .modal-lg
       };
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
         _.forEach(result, function(obj, i) {
           $scope.restaurant.photos.push({url: obj.url, caption: obj.caption, delete: false, show: true});
         });
+      });
+    };
+
+    // >> lightbox modal
+
+    $scope.showPix = function(index) {
+      $scope.picview = {
+        url: 'https://hinton-images.s3.amazonaws.com/restpics/' + $scope.restaurant.photos[index].url,
+        caption: $scope.restaurant.photos[index].caption
+      };
+      console.log('picview', $scope.picview.url, $scope.picview.caption);
+      var modalInstance = $modal.open({
+        templateUrl: '../../templates/views/image_view.html',
+        windowTemplateUrl: '../../templates/views/lb-modal-window.html',
+        scope: $scope
       });
     };
 

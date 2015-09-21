@@ -1,10 +1,5 @@
-<section class="modal-display" id="success-alert">
-  <div class="modal-message">
-    <p>Operation successful!</p>
-  </div>
-  <div class="modal-button">
-    <button type="button" data-ng-click="ok('confirm')" class="btn btn-default">
-      OK
-    </button>
+<section class="modal-display modal-success" id="success-alert">
+  <div class="modal-message modal-success">
+    <p data-ng-bind-html="success_msg"></p>
   </div>
 </section>

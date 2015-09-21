@@ -225,13 +225,27 @@ module.exports = function(app) {
       var s3Files = [];
       var modalDefaults = {
           templateUrl: '../../templates/views/upload_files.html',
-          size: 'lg' //this css is overridden in .modal-lg
       };
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
         _.forEach(result, function(obj, i) {
           $scope.restaurant.photos.push({url: obj.url, caption: obj.caption, delete: false, show: true});
         });
+      });
+    };
+
+    // >> lightbox modal
+
+    $scope.showPix = function(index) {
+      $scope.picview = {
+        url: 'https://hinton-images.s3.amazonaws.com/restpics/' + $scope.restaurant.photos[index].url,
+        caption: $scope.restaurant.photos[index].caption
+      };
+      console.log('picview', $scope.picview.url, $scope.picview.caption);
+      var modalInstance = $modal.open({
+        templateUrl: '../../templates/views/image_view.html',
+        windowTemplateUrl: '../../templates/views/lb-modal-window.html',
+        scope: $scope
       });
     };
 

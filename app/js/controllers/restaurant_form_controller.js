@@ -28,19 +28,19 @@ module.exports = function(app) {
 
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
-          return console.log(err);
+          return $scope.handleError(err);
         }
 
         $scope.genres = restaurantService.genres();
-      });
 
-      restaurantService.getAllRestaurants(function(err, data) {
-        if (err) {
-          return console.log(err);
-        }
+        restaurantService.getAllRestaurants(function(err, data) {
+          if (err) {
+            return $scope.handleError(err);
+          }
 
-        $scope.restaurantList = restaurantService.restaurantList();
-        $scope.restaurantNames = restaurantService.restaurantNames();
+          $scope.restaurantList = restaurantService.restaurantList();
+          $scope.restaurantNames = restaurantService.restaurantNames();
+        });
       });
 
     };

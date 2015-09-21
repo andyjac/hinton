@@ -42,6 +42,18 @@ module.exports = function(app) {
         $scope.restaurantList = restaurantService.restaurantList();
         $scope.restaurantNames = restaurantService.restaurantNames();
       });
+
+    };
+
+    $scope.handleError = function(err) {
+      switch(err.msg) {
+      case 'not authorized':
+        $scope.logout();
+        break;
+      case 'internal server error':
+        $scope.err_save = err.msg;
+        break;
+      }
     };
 
     $scope.setRestaurant = function(restaurant) {

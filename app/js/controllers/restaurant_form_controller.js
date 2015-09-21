@@ -175,9 +175,9 @@ module.exports = function(app) {
       //marks photo to be deleted from db, removes from s3 via a chron.
     };
 
-// =========== MODALS ===========
+    // =========== MODALS ===========
 
-  //  >> Delete Warning modal
+    //  >> Delete Warning modal
 
     $scope.deleteWarning = function() {
       var modalDefaults = {
@@ -192,7 +192,7 @@ module.exports = function(app) {
       });
     };
 
-   //  >> Success modal
+    //  >> Success modal
 
     $scope.successAlert = function() {
       modalService.showModal({
@@ -201,13 +201,13 @@ module.exports = function(app) {
       });
     };
 
-     //  >> File upload modal
+    //  >> File upload modal
 
     $scope.selectFiles = function() { // open upload modal with Photos button
       var s3Files = [];
       var modalDefaults = {
-          templateUrl: '../../templates/views/upload_files.html',
-          size: 'lg' //this css is overridden in .modal-lg
+        templateUrl: '../../templates/views/upload_files.html',
+        size: 'lg' //this css is overridden in .modal-lg
       };
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
@@ -217,7 +217,7 @@ module.exports = function(app) {
       });
     };
 
-     // >> Sign-in modal
+    // >> Sign-in modal
 
     $scope.signIn = function() {
       var modalDefaults = {

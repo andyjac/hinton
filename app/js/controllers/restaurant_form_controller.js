@@ -125,6 +125,16 @@ module.exports = function(app) {
       $scope.display_preview = false;
     };
 
+    $scope.handleResponse = function(err, data) {
+      if (err) {
+        return $scope.handleError(err);
+      }
+
+      $scope.updateFromDB();
+      $scope.clearForm();
+      $scope.successAlert();
+    };
+
     $scope.submitForm = function() {
       var id = $scope.r_id;
       var restaurantInfo = {};
@@ -132,28 +142,9 @@ module.exports = function(app) {
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
 
       if (!$scope.editing) {
-        restaurantService.createRestaurant(restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-
-          $scope.updateFromDB();
-          $scope.clearForm();
-          $scope.successAlert();
-        });
+        restaurantService.createRestaurant(restaurantInfo, $scope.handleResponse);
       } else {
-        restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-
-          $scope.updateFromDB();
-          $scope.clearForm();
-          $scope.successAlert();
-        });
-
+        restaurantService.saveRestaurant(id, restaurantInfo, $scope.handleResponse);
         $scope.editing = false;
       }
     };
@@ -161,17 +152,7 @@ module.exports = function(app) {
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
 
-      restaurantService.removeRestaurant(id, function(err, data) {
-        if (err) {
-          $scope.err_save = err.msg;
-          return;
-        }
-
-        console.log(data);
-        $scope.updateFromDB();
-        $scope.clearForm();
-      });
-
+      restaurantService.removeRestaurant(id, $scope.handleResponse);
       $scope.editing = false;
     };
 

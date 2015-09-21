@@ -34,7 +34,8 @@ describe('restaurant REST API', function () {
           city: 'Seattle',
           state: 'WA',
           zip: '98121',
-          country: 'USA'
+          country: 'USA',
+          fullAddress: '2210 Westlake Avenue\nSeattle, WA 98121'
         },
         phone: '0987654321',
         genre: ['Mexican', 'Italian', 'Japanese'],
@@ -59,7 +60,8 @@ describe('restaurant REST API', function () {
           city: 'Seattle',
           state: 'WA',
           zip: '98109',
-          country: 'USA'
+          country: 'USA',
+          fullAddress: '511 Boren Avenue North\nSeattle, WA 98109'
         },
         phone: '1234567890',
         genre: ['French', 'Mexican', 'Chinese', 'Japanese'],

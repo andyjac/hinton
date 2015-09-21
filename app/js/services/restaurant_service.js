@@ -83,7 +83,7 @@ module.exports = function(app) {
       getAllGenres: function(callback) {
         Genres.getAll(function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           genres = _.cloneDeep(genres);
@@ -95,7 +95,7 @@ module.exports = function(app) {
       getAllRestaurants: function(callback) {
         Restaurants.getAll(function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           restaurantList = _.cloneDeep(restaurantList);
@@ -116,7 +116,7 @@ module.exports = function(app) {
 
         Restaurants.getOne(id, function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           restaurantData = _.cloneDeep(restaurantData);
@@ -135,7 +135,7 @@ module.exports = function(app) {
       createRestaurant: function(restaurant, callback) {
         Restaurants.create(restaurant, function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           callback(null, data);
@@ -145,7 +145,7 @@ module.exports = function(app) {
       saveRestaurant: function(id, restaurant, callback) {
         Restaurants.save(id, restaurant, function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           callback(null, data);
@@ -155,7 +155,7 @@ module.exports = function(app) {
       removeRestaurant: function(id, callback) {
         Restaurants.remove(id, function(err, data) {
           if (err) {
-            callback(err);
+            return callback(err);
           }
 
           callback(null, data);

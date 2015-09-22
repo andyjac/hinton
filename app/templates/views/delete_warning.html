@@ -1,16 +1,19 @@
 <section class="modal-display" id="delete-warning">
   <div class="modal-header">
     <h3 style="color:#333">Warning!</h3>
-    <p data-ng-bind-html="warning_msg"></p>
+    <p>
+      <span class="warning-question">Are you sure you want to delete</span>
+      <br><em><span class="warning-info">{{restaurant.name}}</span></em>?
+    </p>
   </div>
   <div class="modal-button">
     <button type="button" data-ng-click="ok('delete')" class="btn btn-primary">
-      Yep!
+      Yes
     </button>
   </div>
   <div class="modal-button">
     <button type="button" data-ng-click="close('cancel')" class="btn btn-default">
-      Nope!
+      No
     </button>
   </div>
 </section>

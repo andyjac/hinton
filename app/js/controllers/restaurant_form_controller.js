@@ -188,8 +188,6 @@ module.exports = function(app) {
         scope: $scope
       };
 
-      $scope.warning_msg = '<span class="warning-question">Are you sure you want to delete</span><br><em><span class="warning-info">' + $scope.restaurant.name + '</span></em>?';
-
       modalService.showModal(modalDefaults).then(function(confirm) {
         if (confirm) {
           $scope.deleteRestaurant();
@@ -205,6 +203,7 @@ module.exports = function(app) {
         size: 'sm',
         backdrop: false
       });
+
       modalInstance.opened.then(function () {
         $timeout(function() {
           modalInstance.dismiss('dismiss');

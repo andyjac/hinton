@@ -135,6 +135,7 @@ module.exports = function(app) {
     };
 
     $scope.submitForm = function() {
+      $scope.restaurantName = $scope.restaurant.name;
       var id = $scope.r_id;
       var restaurantInfo = {};
       restaurantInfo.map = _.cloneDeep($scope.map);

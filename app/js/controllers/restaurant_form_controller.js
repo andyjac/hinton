@@ -155,10 +155,14 @@ module.exports = function(app) {
 
       restaurantService.removeRestaurant(id, function(err, data) {
         if (err) {
-          $scope.err_save = err.msg;
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Delete</strong>';
+          $scope.successAlert();
+          console.log(err.msg);
           return;
         }
 
+          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>DELETED</strong>';
+          $scope.successAlert();
         console.log(data);
         $scope.updateFromDB();
         $scope.clearForm();

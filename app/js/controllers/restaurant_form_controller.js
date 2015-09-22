@@ -28,20 +28,41 @@ module.exports = function(app) {
 
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
-          return console.log(err);
+          return $scope.handleError(err);
         }
 
         $scope.genres = restaurantService.genres();
       });
 
-      restaurantService.getAllRestaurants(function(err, data) {
-        if (err) {
-          return console.log(err);
-        }
+        restaurantService.getAllRestaurants(function(err, data) {
+          if (err) {
+            return $scope.handleError(err);
+          }
 
         $scope.restaurantList = restaurantService.restaurantList();
         $scope.restaurantNames = restaurantService.restaurantNames();
       });
+    };
+
+    $scope.handleError = function(err) {
+      switch(err.msg) {
+      case 'not authorized':
+        $scope.logout();
+        break;
+      case 'internal server error':
+        $scope.err_save = err.msg;
+        break;
+      }
+    };
+
+    $scope.handleResponse = function(err, data) {
+      if (err) {
+        return $scope.handleError(err);
+      }
+
+      $scope.updateFromDB();
+      $scope.clearForm();
+      $scope.successAlert();
     };
 
     $scope.setRestaurant = function(restaurant) {
@@ -120,47 +141,19 @@ module.exports = function(app) {
       restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
 
       if (!$scope.editing) {
-        restaurantService.createRestaurant(restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Saved</strong>';
-          $scope.successAlert();
-          $scope.updateFromDB();
-          $scope.clearForm();
-        });
-
+        $scope.operation = 'Saved';
+        restaurantService.createRestaurant(restaurantInfo, $scope.handleResponse);
       } else {
-        restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Updated</strong>';
-          $scope.successAlert();
-          $scope.updateFromDB();
-          $scope.clearForm();
-        });
-
+        $scope.operation = 'Updated';
+        restaurantService.saveRestaurant(id, restaurantInfo, $scope.handleResponse);
         $scope.editing = false;
       }
     };
 
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
-
-      restaurantService.removeRestaurant(id, function(err, data) {
-        if (err) {
-          $scope.err_save = err.msg;
-          return;
-        }
-
-        console.log(data);
-        $scope.updateFromDB();
-        $scope.clearForm();
-      });
-
+      $scope.operation = 'Deleted';
+      restaurantService.removeRestaurant(id, $scope.handleResponse);
       $scope.editing = false;
     };
 

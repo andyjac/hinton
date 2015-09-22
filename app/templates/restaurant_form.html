@@ -231,11 +231,6 @@
         <button type="button" class="btn btn-danger pull-left btn-mid" data-ng-if="editing" data-ng-click="deleteWarning()" data-ng-disabled="restaurant-form.$invalid">Delete
         </button>
 
-        <!-- temporary error message placeholder -->
-        <div class="col-md-8" style="color:red; padding-left:20px;float:left;" data-ng-if="err_save !== ''">
-          <h5>{{err_save}}</h5>
-        </div>
-
         <button type="button" class="btn btn-default pull-right" data-ng-click="selectFiles()"data-ng-disabled="!restaurant.name">Photos...
         </button>
 

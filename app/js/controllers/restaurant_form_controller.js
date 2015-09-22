@@ -109,7 +109,6 @@ module.exports = function(app) {
       $scope.map = restaurantService.mapData();
       $scope.priceDollars = '';
       $scope.menu_item = '';
-      $scope.err_save = '';
       $scope.display_preview = false;
     };
 
@@ -122,7 +121,9 @@ module.exports = function(app) {
       if (!$scope.editing) {
         restaurantService.createRestaurant(restaurantInfo, function(err, data) {
           if (err) {
-            $scope.err_save = err.msg;
+            $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Save</strong>';
+            $scope.successAlert();
+            console.log(err.msg);
             return;
           }
           $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Saved</strong>';
@@ -134,7 +135,9 @@ module.exports = function(app) {
       } else {
         restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
           if (err) {
-            $scope.err_save = err.msg;
+            $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Update</strong>';
+            $scope.successAlert();
+            console.log(err.msg);
             return;
           }
           $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Updated</strong>';

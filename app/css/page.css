@@ -420,6 +420,11 @@ button.list-group-item, .form-control {
   margin-top: 1em;
 }
 
+.success-error {
+  color:red;
+  font-weight: bold;
+}
+
 /* sign-in */
 
 #sign-in-button {

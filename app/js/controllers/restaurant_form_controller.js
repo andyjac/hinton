@@ -28,20 +28,41 @@ module.exports = function(app) {
 
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
-          return console.log(err);
+          return $scope.handleError(err);
         }
 
         $scope.genres = restaurantService.genres();
-      });
 
-      restaurantService.getAllRestaurants(function(err, data) {
-        if (err) {
-          return console.log(err);
-        }
+        restaurantService.getAllRestaurants(function(err, data) {
+          if (err) {
+            return $scope.handleError(err);
+          }
 
-        $scope.restaurantList = restaurantService.restaurantList();
-        $scope.restaurantNames = restaurantService.restaurantNames();
+          $scope.restaurantList = restaurantService.restaurantList();
+          $scope.restaurantNames = restaurantService.restaurantNames();
+        });
       });
+    };
+
+    $scope.handleError = function(err) {
+      switch(err.msg) {
+      case 'not authorized':
+        $scope.logout();
+        break;
+      case 'internal server error':
+        $scope.err_save = err.msg;
+        break;
+      }
+    };
+
+    $scope.handleResponse = function(err, data) {
+      if (err) {
+        return $scope.handleError(err);
+      }
+
+      $scope.updateFromDB();
+      $scope.clearForm();
+      $scope.successAlert();
     };
 
     $scope.setRestaurant = function(restaurant) {
@@ -113,62 +134,26 @@ module.exports = function(app) {
     };
 
     $scope.submitForm = function() {
+      $scope.restaurantName = $scope.restaurant.name;
       var id = $scope.r_id;
-      var restaurantInfo = {};
-      restaurantInfo.map = _.cloneDeep($scope.map);
-      restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
+      var restaurantInfo = {
+        map: _.cloneDeep($scope.map), restaurant: _.cloneDeep($scope.restaurant)
+      };
 
       if (!$scope.editing) {
-        restaurantService.createRestaurant(restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Save</strong>';
-            $scope.successAlert();
-            console.log(err.msg);
-            return;
-          }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Saved</strong>';
-          $scope.successAlert();
-          $scope.updateFromDB();
-          $scope.clearForm();
-        });
-
+        $scope.operation = 'Saved';
+        restaurantService.createRestaurant(restaurantInfo, $scope.handleResponse);
       } else {
-        restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Update</strong>';
-            $scope.successAlert();
-            console.log(err.msg);
-            return;
-          }
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>Updated</strong>';
-          $scope.successAlert();
-          $scope.updateFromDB();
-          $scope.clearForm();
-        });
-
+        $scope.operation = 'Updated';
+        restaurantService.saveRestaurant(id, restaurantInfo, $scope.handleResponse);
         $scope.editing = false;
       }
     };
 
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
-      var name = $scope.restaurantNames[0];
-
-      restaurantService.removeRestaurant(id, function(err, data) {
-        if (err) {
-          $scope.success_msg = '<em>' + name + '</em><br/><span class="success-error">Failed to Delete</strong>';
-          $scope.successAlert();
-          console.log(err.msg);
-          return;
-        }
-
-        $scope.success_msg = '<em>' + name + '</em><br/><strong>DELETED</strong>';
-        $scope.successAlert();
-        console.log(data);
-        $scope.updateFromDB();
-        $scope.clearForm();
-      });
-
+      $scope.operation = 'Deleted';
+      restaurantService.removeRestaurant(id, $scope.handleResponse);
       $scope.editing = false;
     };
 
@@ -191,9 +176,9 @@ module.exports = function(app) {
       //marks photo to be deleted from db, removes from s3 via a chron.
     };
 
-// =========== MODALS ===========
+    // =========== MODALS ===========
 
-  //  >> Delete Warning modal
+    //  >> Delete Warning modal
 
     $scope.deleteWarning = function() {
       var modalDefaults = {
@@ -202,8 +187,6 @@ module.exports = function(app) {
         scope: $scope
       };
 
-      $scope.warning_msg = '<span class="warning-question">Are you sure you want to delete</span><br><em><span class="warning-info">' + $scope.restaurant.name + '</span></em>?';
-
       modalService.showModal(modalDefaults).then(function(confirm) {
         if (confirm) {
           $scope.deleteRestaurant();
@@ -211,8 +194,7 @@ module.exports = function(app) {
       });
     };
 
-   //  >> Success modal
-
+    //  >> Success modal
     $scope.successAlert = function(msg) {
       var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
@@ -220,6 +202,7 @@ module.exports = function(app) {
         size: 'sm',
         backdrop: false
       });
+
       modalInstance.opened.then(function () {
         $timeout(function() {
           modalInstance.dismiss('dismiss');
@@ -227,12 +210,11 @@ module.exports = function(app) {
       });
     };
 
-     //  >> File upload modal
-
+    //  >> File upload modal
     $scope.selectFiles = function() { // open upload modal with Photos button
       var s3Files = [];
       var modalDefaults = {
-          templateUrl: '../../templates/views/upload_files.html',
+        templateUrl: '../../templates/views/upload_files.html',
       };
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
@@ -257,7 +239,7 @@ module.exports = function(app) {
       });
     };
 
-     // >> Sign-in modal
+    // >> Sign-in modal
 
     $scope.signIn = function() {
       var modalDefaults = {

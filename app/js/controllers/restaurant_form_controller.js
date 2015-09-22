@@ -3,7 +3,7 @@
 var _ = require('lodash');
 
 module.exports = function(app) {
-  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', function($scope, authService, restaurantService, modalService) {
+  app.controller('restaurantFormController', ['$scope', 'authService', 'restaurantService', 'modalService', '$modal', '$timeout', function($scope, authService, restaurantService, modalService, $modal, $timeout) {
     $scope.restaurant = restaurantService.restaurantData();
     $scope.map = restaurantService.mapData();
     $scope.genres = restaurantService.genres();
@@ -28,20 +28,41 @@ module.exports = function(app) {
 
       restaurantService.getAllGenres(function(err, data) {
         if (err) {
-          return console.log(err);
+          return $scope.handleError(err);
         }
 
         $scope.genres = restaurantService.genres();
-      });
 
-      restaurantService.getAllRestaurants(function(err, data) {
-        if (err) {
-          return console.log(err);
-        }
+        restaurantService.getAllRestaurants(function(err, data) {
+          if (err) {
+            return $scope.handleError(err);
+          }
 
-        $scope.restaurantList = restaurantService.restaurantList();
-        $scope.restaurantNames = restaurantService.restaurantNames();
+          $scope.restaurantList = restaurantService.restaurantList();
+          $scope.restaurantNames = restaurantService.restaurantNames();
+        });
       });
+    };
+
+    $scope.handleError = function(err) {
+      switch(err.msg) {
+      case 'not authorized':
+        $scope.logout();
+        break;
+      case 'internal server error':
+        $scope.err_save = err.msg;
+        break;
+      }
+    };
+
+    $scope.handleResponse = function(err, data) {
+      if (err) {
+        return $scope.handleError(err);
+      }
+
+      $scope.updateFromDB();
+      $scope.clearForm();
+      $scope.successAlert();
     };
 
     $scope.setRestaurant = function(restaurant) {
@@ -109,57 +130,30 @@ module.exports = function(app) {
       $scope.map = restaurantService.mapData();
       $scope.priceDollars = '';
       $scope.menu_item = '';
-      $scope.err_save = '';
       $scope.display_preview = false;
     };
 
     $scope.submitForm = function() {
+      $scope.restaurantName = $scope.restaurant.name;
       var id = $scope.r_id;
-      var restaurantInfo = {};
-      restaurantInfo.map = _.cloneDeep($scope.map);
-      restaurantInfo.restaurant = _.cloneDeep($scope.restaurant);
+      var restaurantInfo = {
+        map: _.cloneDeep($scope.map), restaurant: _.cloneDeep($scope.restaurant)
+      };
 
       if (!$scope.editing) {
-        restaurantService.createRestaurant(restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-
-          $scope.updateFromDB();
-          $scope.clearForm();
-          $scope.successAlert();
-        });
+        $scope.operation = 'Saved';
+        restaurantService.createRestaurant(restaurantInfo, $scope.handleResponse);
       } else {
-        restaurantService.saveRestaurant(id, restaurantInfo, function(err, data) {
-          if (err) {
-            $scope.err_save = err.msg;
-            return;
-          }
-
-          $scope.updateFromDB();
-          $scope.clearForm();
-          $scope.successAlert();
-        });
-
+        $scope.operation = 'Updated';
+        restaurantService.saveRestaurant(id, restaurantInfo, $scope.handleResponse);
         $scope.editing = false;
       }
     };
 
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
-
-      restaurantService.removeRestaurant(id, function(err, data) {
-        if (err) {
-          $scope.err_save = err.msg;
-          return;
-        }
-
-        console.log(data);
-        $scope.updateFromDB();
-        $scope.clearForm();
-      });
-
+      $scope.operation = 'Deleted';
+      restaurantService.removeRestaurant(id, $scope.handleResponse);
       $scope.editing = false;
     };
 
@@ -182,14 +176,15 @@ module.exports = function(app) {
       //marks photo to be deleted from db, removes from s3 via a chron.
     };
 
-// =========== MODALS ===========
+    // =========== MODALS ===========
 
-  //  >> Delete Warning modal
+    //  >> Delete Warning modal
 
     $scope.deleteWarning = function() {
       var modalDefaults = {
         templateUrl: '../../templates/views/delete_warning.html',
         size: 'sm',
+        scope: $scope
       };
 
       modalService.showModal(modalDefaults).then(function(confirm) {
@@ -199,22 +194,27 @@ module.exports = function(app) {
       });
     };
 
-   //  >> Success modal
-
-    $scope.successAlert = function() {
-      modalService.showModal({
+    //  >> Success modal
+    $scope.successAlert = function(msg) {
+      var modalInstance = $modal.open( {
         templateUrl: '../../templates/views/success_alert.html',
-        size: 'sm'
+        scope: $scope,
+        size: 'sm',
+        backdrop: false
+      });
+
+      modalInstance.opened.then(function () {
+        $timeout(function() {
+          modalInstance.dismiss('dismiss');
+        }, 2600);
       });
     };
 
-     //  >> File upload modal
-
+    //  >> File upload modal
     $scope.selectFiles = function() { // open upload modal with Photos button
       var s3Files = [];
       var modalDefaults = {
-          templateUrl: '../../templates/views/upload_files.html',
-          size: 'lg' //this css is overridden in .modal-lg
+        templateUrl: '../../templates/views/upload_files.html',
       };
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
@@ -224,7 +224,22 @@ module.exports = function(app) {
       });
     };
 
-     // >> Sign-in modal
+    // >> lightbox modal
+
+    $scope.showPix = function(index) {
+      $scope.picview = {
+        url: 'https://hinton-images.s3.amazonaws.com/restpics/' + $scope.restaurant.photos[index].url,
+        caption: $scope.restaurant.photos[index].caption
+      };
+      console.log('picview', $scope.picview.url, $scope.picview.caption);
+      var modalInstance = $modal.open({
+        templateUrl: '../../templates/views/image_view.html',
+        windowTemplateUrl: '../../templates/views/lb-modal-window.html',
+        scope: $scope
+      });
+    };
+
+    // >> Sign-in modal
 
     $scope.signIn = function() {
       var modalDefaults = {

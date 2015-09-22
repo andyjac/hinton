@@ -1,0 +1,18 @@
+<section>
+  <div class="lb-modal-wrapper">
+    <div class="lb-modal-container">
+      <div class="lb-modal-caption" data-ng-bind-html="picview.caption"></div>
+      <div class="lb-modal-close" data-ng-click="$dismiss('cancel')">&times;</div>
+      <img class="lb-modal-image" id="lb-img" src="{{picview.url}}">
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $('#lb-img').load(function() {
+      $('.lb-modal-container').width($('#lb-img').css('width'));
+      console.log($('#lb-img').css('width'));
+    });
+  </script>
+</section>
+
+

@@ -152,17 +152,18 @@ module.exports = function(app) {
 
     $scope.deleteRestaurant = function() {
       var id = $scope.r_id;
+      var name = $scope.restaurantNames[0];
 
       restaurantService.removeRestaurant(id, function(err, data) {
         if (err) {
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><span class="success-error">Failed to Delete</strong>';
+          $scope.success_msg = '<em>' + name + '</em><br/><span class="success-error">Failed to Delete</strong>';
           $scope.successAlert();
           console.log(err.msg);
           return;
         }
 
-          $scope.success_msg = '<em>' + restaurantInfo.restaurant.name + '</em><br/><strong>DELETED</strong>';
-          $scope.successAlert();
+        $scope.success_msg = '<em>' + name + '</em><br/><strong>DELETED</strong>';
+        $scope.successAlert();
         console.log(data);
         $scope.updateFromDB();
         $scope.clearForm();

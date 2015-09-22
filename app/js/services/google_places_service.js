@@ -79,7 +79,6 @@ module.exports = function(app) {
         }
 
         if (details.geometry) {
-					console.log(details.geometry.location);
           map.loc.lat = details.geometry.location.lat();
           map.loc.long = details.geometry.location.lng();
           map.caption = restaurant.name;

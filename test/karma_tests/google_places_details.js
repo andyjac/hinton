@@ -37,8 +37,8 @@ module.exports = {
   "formatted_phone_number": "(206) 545-7440",
   "geometry": {
     "location": {
-      "H": 47.658506,
-      "L": -122.35033099999998
+      lat: function() {return 47.658506},
+      lng: function() {return -122.35033099999998}
     }
   },
   "icon": "https://maps.gstatic.com/mapfiles/place_api/icons/restaurant-71.png",

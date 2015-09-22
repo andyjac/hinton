@@ -32,15 +32,15 @@ module.exports = function(app) {
         }
 
         $scope.genres = restaurantService.genres();
-      });
 
         restaurantService.getAllRestaurants(function(err, data) {
           if (err) {
             return $scope.handleError(err);
           }
 
-        $scope.restaurantList = restaurantService.restaurantList();
-        $scope.restaurantNames = restaurantService.restaurantNames();
+          $scope.restaurantList = restaurantService.restaurantList();
+          $scope.restaurantNames = restaurantService.restaurantNames();
+        });
       });
     };
 

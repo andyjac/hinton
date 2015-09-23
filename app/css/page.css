@@ -360,10 +360,6 @@ button.list-group-item, .form-control {
 
 /* bootstrap modal overrides */
 
-.modal  {
-  text-align: center;
-}
-
 .modal-backdrop {
   opacity: 0.3 !important;
 }
@@ -469,6 +465,10 @@ button.list-group-item, .form-control {
 }
 
 /* image upload modal */
+
+.lb-modal {
+  text-align: center;
+}
 
 .image-preview {
   padding-top: 0;

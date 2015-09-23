@@ -486,7 +486,7 @@ button.list-group-item, .form-control {
   min-height: 1px;
   background-color: #686868;
   padding-left: 0;
-  position-relative;
+  position: relative;
   box-sizing: border-box;
 }
 

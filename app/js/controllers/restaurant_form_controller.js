@@ -151,6 +151,7 @@ module.exports = function(app) {
     };
 
     $scope.deleteRestaurant = function() {
+      $scope.restaurantName = $scope.restaurantNames[0];
       var id = $scope.r_id;
       $scope.operation = 'Deleted';
       restaurantService.removeRestaurant(id, $scope.handleResponse);

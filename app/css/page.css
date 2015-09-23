@@ -497,6 +497,7 @@ button.list-group-item, .form-control {
 }
 
 .image-fill {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;

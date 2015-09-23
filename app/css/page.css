@@ -360,10 +360,6 @@ button.list-group-item, .form-control {
 
 /* bootstrap modal overrides */
 
-.modal  {
-  text-align: center;
-}
-
 .modal-backdrop {
   opacity: 0.3 !important;
 }
@@ -470,6 +466,10 @@ button.list-group-item, .form-control {
 
 /* image upload modal */
 
+.lb-modal {
+  text-align: center;
+}
+
 .image-preview {
   padding-top: 0;
   overflow: auto;
@@ -486,7 +486,7 @@ button.list-group-item, .form-control {
   min-height: 1px;
   background-color: #686868;
   padding-left: 0;
-  position-relative;
+  position: relative;
   box-sizing: border-box;
 }
 
@@ -497,6 +497,7 @@ button.list-group-item, .form-control {
 }
 
 .image-fill {
+  cursor: pointer;
   position: absolute;
   top: 0;
   left: 0;

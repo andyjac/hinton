@@ -46,10 +46,9 @@ module.exports = function(app) {
       AWS.config.region = s3config.region;
 
       angular.forEach($scope.tempImages, function(theFile, key) {
-        console.log(theFile);
 
         var s3 = new AWS.S3({params: {Bucket: s3config.bucket}});
-        var params = {Key: s3config.folder + theFile.url, ACL: 'public-read', ContentType: theFile.type, Body: theFile.file};
+        var params = {Key: s3config.folder + $scope.urlFormat(theFile.url), ACL: 'public-read', ContentType: theFile.type, Body: theFile.file};
 
         $scope.s3Result = s3.putObject(params, function (error, data) {
           if (error) {

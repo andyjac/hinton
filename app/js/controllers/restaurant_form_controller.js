@@ -73,6 +73,7 @@ module.exports = function(app) {
 
         $scope.restaurant = restaurantService.restaurantData();
         $scope.map = restaurantService.mapData();
+				$scope.restaurantName = $scope.restaurant.name;
         $scope.r_id = data._id;
         $scope.setPrice($scope.restaurant.price);
         $scope.display_preview = true;
@@ -219,7 +220,8 @@ module.exports = function(app) {
 
       modalService.showModal(modalDefaults).then(function(result) { // on return from modal .ok
         _.forEach(result, function(obj, i) {
-          $scope.restaurant.photos.push({url: obj.url, caption: obj.caption, delete: false, show: true});
+          $scope.restaurant.photos.push({url: obj.url.replace(/\s/g, '_'), caption: obj.caption, delete: false, show: true});
+          console.log('dbSave', $scope.restaurant.photos[i]);
         });
       });
     };

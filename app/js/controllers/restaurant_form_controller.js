@@ -73,6 +73,7 @@ module.exports = function(app) {
 
         $scope.restaurant = restaurantService.restaurantData();
         $scope.map = restaurantService.mapData();
+				$scope.restaurantName = $scope.restaurant.name;
         $scope.r_id = data._id;
         $scope.setPrice($scope.restaurant.price);
         $scope.display_preview = true;
@@ -151,7 +152,6 @@ module.exports = function(app) {
     };
 
     $scope.deleteRestaurant = function() {
-      $scope.restaurantName = $scope.restaurantNames[0];
       var id = $scope.r_id;
       $scope.operation = 'Deleted';
       restaurantService.removeRestaurant(id, $scope.handleResponse);

@@ -8,7 +8,6 @@ module.exports = function(app) {
       populateInfo: function(details, restaurantData, mapData) {
         var restaurant = _.cloneDeep(restaurantData);
         var map = _.cloneDeep(mapData);
-        console.log('details', details);
 
         _.forEach(details.address_components, function(item) {
 
@@ -80,8 +79,8 @@ module.exports = function(app) {
         }
 
         if (details.geometry) {
-          map.loc.lat = details.geometry.location.H;
-          map.loc.long = details.geometry.location.L;
+          map.loc.lat = details.geometry.location.lat();
+          map.loc.long = details.geometry.location.lng();
           map.caption = restaurant.name;
         }
 

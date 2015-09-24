@@ -68,7 +68,7 @@ module.exports = function(app) {
     $scope.setRestaurant = function(restaurant) {
       restaurantService.getRestaurant(restaurant, function(err, data) {
         if (err) {
-          return console.log(err);
+          return $scope.handleError(err);
         }
 
         $scope.restaurant = restaurantService.restaurantData();
@@ -129,6 +129,7 @@ module.exports = function(app) {
 
       $scope.restaurant = restaurantService.restaurantData();
       $scope.map = restaurantService.mapData();
+			$scope.restaurant.photos = [];
       $scope.priceDollars = '';
       $scope.menu_item = '';
       $scope.display_preview = false;
@@ -162,7 +163,6 @@ module.exports = function(app) {
       restaurantService.googlePopulate($scope.details);
 
       $scope.restaurant = restaurantService.restaurantData();
-      $scope.restaurant.photos = []; // reset photos array  TODO figure out why not set prior
       $scope.map = restaurantService.mapData();
       $scope.setPrice($scope.restaurant.price);
       $scope.display_preview = true;

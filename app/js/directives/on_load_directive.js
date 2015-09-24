@@ -7,10 +7,10 @@ module.exports = function(app) {
       link: function($scope, elem, attrs) {
         //element hidden on init in controller
         $scope.$on('$viewContentLoaded', function() {
-          $timeout(function(){
+          $timeout(function() {
             elem.fadeIn(600, "swing", function() {
               $scope.$apply(function() {
-                $('#spinner').remove();
+								angular.element('#spinner').remove();
               });
             });
           }, 500);

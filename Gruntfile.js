@@ -56,7 +56,8 @@ module.exports = function(grunt) {
             before: true,
             after: true,
             beforeEach: true,
-            afterEach: true
+            afterEach: true,
+            spyOn: true
           }
         }
       }

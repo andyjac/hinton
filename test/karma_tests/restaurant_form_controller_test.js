@@ -20,6 +20,8 @@ describe('restaurant form controller', function() {
     expect(typeof $scope.isSignedIn).toBe('function');
     expect(typeof $scope.logout).toBe('function');
     expect(typeof $scope.updateFromDB).toBe('function');
+    expect(typeof $scope.handleError).toBe('function');
+    expect(typeof $scope.handleResponse).toBe('function');
     expect(typeof $scope.setRestaurant).toBe('function');
     expect(typeof $scope.addGenre).toBe('function');
     expect(typeof $scope.removeGenre).toBe('function');
@@ -41,6 +43,32 @@ describe('restaurant form controller', function() {
     it('should set price in dollar signs', function() {
       $scope.setPrice(2);
       expect($scope.priceDollars).toBe('$$');
+    });
+
+    it('should handle error', function() {
+      spyOn($scope, 'logout');
+      var err = {};
+      err.msg = 'not authorized';
+      $scope.handleError(err);
+      expect($scope.logout).toHaveBeenCalled();
+      $scope.err_save = '';
+      err.msg = 'internal server error';
+      $scope.handleError(err);
+      expect($scope.err_save).toBe('internal server error');
+    });
+
+    it('should handle response', function() {
+      spyOn($scope, 'updateFromDB');
+      spyOn($scope, 'clearForm');
+      spyOn($scope, 'successAlert');
+      spyOn($scope, 'handleError');
+      $scope.handleResponse({'msg': 'error'});
+      expect($scope.handleError).toHaveBeenCalled();
+      expect($scope.updateFromDB).not.toHaveBeenCalled();
+      $scope.handleResponse(null, {});
+      expect($scope.updateFromDB).toHaveBeenCalled();
+      expect($scope.clearForm).toHaveBeenCalled();
+      expect($scope.successAlert).toHaveBeenCalled();
     });
   });
 });

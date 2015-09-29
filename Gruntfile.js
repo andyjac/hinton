@@ -33,31 +33,16 @@ module.exports = function(grunt) {
       mocha: {
         src: ['test/*test.js'],
         options: {
-          globals: {
-            describe: true,
-            it: true,
-            before: true,
-            beforeEach: true,
-            after: true,
-            afterEach: true
-          }
+          mocha: true,
         }
       },
 
       karma: {
         src: ['test/karma_tests/*test.js'],
         options: {
+          jasmine: true,
           globals: {
-            angular: true,
-            jasmine: true,
-            describe: true,
-            it: true,
-            expect: true,
-            before: true,
-            after: true,
-            beforeEach: true,
-            afterEach: true,
-            spyOn: true
+            angular: true
           }
         }
       }

@@ -7,13 +7,13 @@ describe('restaurant form controller', function() {
   var $ControllerConstructor;
   var $scope;
   var $httpBackend;
+  var authService;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
-  beforeEach(angular.mock.inject(function($rootScope, $controller, _$httpBackend_) {
+  beforeEach(angular.mock.inject(function($rootScope, $controller) {
     $scope = $rootScope.$new();
     $ControllerConstructor = $controller;
-    $httpBackend = _$httpBackend_;
   }));
 
   it('should be able to create a new restaurant form controller', function() {
@@ -38,9 +38,21 @@ describe('restaurant form controller', function() {
   });
 
   describe('controller functionality', function() {
-    beforeEach(angular.mock.inject(function() {
-      this.restaurantFormController = $ControllerConstructor('restaurantFormController', {$scope: $scope});
+    beforeEach(angular.mock.inject(function(_$httpBackend_) {
+      $httpBackend = _$httpBackend_;
+      authService = {
+        signIn: jasmine.createSpy('authService.signIn'),
+        isSignedIn: jasmine.createSpy('authService.isSignedIn').and.returnValue(true),
+        logout: jasmine.createSpy('authService.logout')
+      };
+      this.restaurantFormController = $ControllerConstructor('restaurantFormController', {$scope: $scope, authService: authService});
     }));
+
+    afterEach(function() {
+      $httpBackend.verifyNoOutstandingExpectation();
+      $httpBackend.verifyNoOutstandingRequest();
+      $httpBackend.resetExpectations();
+    });
 
     it('should set price in dollar signs', function() {
       $scope.setPrice(2);
@@ -73,6 +85,13 @@ describe('restaurant form controller', function() {
       expect($scope.successAlert).toHaveBeenCalled();
     });
 
+    it('should logout', function() {
+      spyOn($scope, 'signIn').and.callFake(function() {return true;});
+      $scope.logout();
+      expect(authService.logout).toHaveBeenCalled();
+      expect($scope.signIn).toHaveBeenCalled();
+    });
+
     it('should update from DB', function() {
       $httpBackend.whenGET('/admin/genres').respond(function(data) {
         return [200, ['Mexican', 'Thai']];
@@ -87,6 +106,14 @@ describe('restaurant form controller', function() {
       expect($scope.restaurantList.length).toBe(2);
       expect($scope.restaurantNames[0]).toBe('Chipotle');
       expect($scope.restaurantNames[1]).toBe('Noodle Place');
+    });
+
+    it('should add a genre', function() {
+      $scope.addGenre('Chinese');
+      expect($scope.restaurant.genre[0]).toBe('Chinese');
+      $scope.addGenre('Pizza');
+      expect($scope.restaurant.genre[1]).toBe('Pizza');
+      expect($scope.genre).toBe('');
     });
   });
 });

@@ -54,11 +54,6 @@ describe('restaurant form controller', function() {
       $httpBackend.resetExpectations();
     });
 
-    it('should set price in dollar signs', function() {
-      $scope.setPrice(2);
-      expect($scope.priceDollars).toBe('$$');
-    });
-
     it('should handle error', function() {
       spyOn($scope, 'logout');
       var err = {};
@@ -132,6 +127,32 @@ describe('restaurant form controller', function() {
       expect($scope.restaurant.genre.length).toBe(2);
       expect($scope.restaurant.genre[0]).toBe('Sandwiches');
       expect($scope.restaurant.genre[1]).toBe('Greek');
+    });
+
+    it('should add a menu item', function() {
+      $scope.addMenuItem('Burgers');
+      expect($scope.restaurant.menu_item[0]).toBe('Burgers');
+      $scope.addMenuItem('French Fries');
+      expect($scope.restaurant.menu_item[1]).toBe('French Fries');
+      expect($scope.menu_item).toBe('');
+    });
+
+    it('should remove a menu item', function() {
+      $scope.addMenuItem('Hot Dog');
+      $scope.addMenuItem('Pretzel');
+      $scope.addMenuItem('Cotton Candy');
+      expect($scope.restaurant.menu_item.length).toBe(3);
+      expect($scope.restaurant.menu_item[0]).toBe('Hot Dog');
+      $scope.removeMenuItem(0);
+      expect($scope.restaurant.menu_item.length).toBe(2);
+      expect($scope.restaurant.menu_item[0]).toBe('Pretzel');
+      expect($scope.restaurant.menu_item[1]).toBe('Cotton Candy');
+    });
+
+    it('should set price in dollar signs', function() {
+      $scope.setPrice(2);
+      expect($scope.restaurant.price).toBe(2);
+      expect($scope.priceDollars).toBe('$$');
     });
   });
 });

@@ -6,12 +6,14 @@ require('angular-mocks');
 describe('restaurant form controller', function() {
   var $ControllerConstructor;
   var $scope;
+  var $httpBackend;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
-  beforeEach(angular.mock.inject(function($rootScope, $controller) {
+  beforeEach(angular.mock.inject(function($rootScope, $controller, _$httpBackend_) {
     $scope = $rootScope.$new();
     $ControllerConstructor = $controller;
+    $httpBackend = _$httpBackend_;
   }));
 
   it('should be able to create a new restaurant form controller', function() {
@@ -69,6 +71,22 @@ describe('restaurant form controller', function() {
       expect($scope.updateFromDB).toHaveBeenCalled();
       expect($scope.clearForm).toHaveBeenCalled();
       expect($scope.successAlert).toHaveBeenCalled();
+    });
+
+    it('should update from DB', function() {
+      $httpBackend.whenGET('/admin/genres').respond(function(data) {
+        return [200, ['Mexican', 'Thai']];
+      });
+      $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+        return [200, [{_id: '12345', name: 'Chipotle'}, {_id: '67890', name: 'Noodle Place'}]];
+      });
+      $scope.updateFromDB();
+      $httpBackend.flush();
+      expect($scope.genres[0]).toBe('Mexican');
+      expect($scope.genres[1]).toBe('Thai');
+      expect($scope.restaurantList.length).toBe(2);
+      expect($scope.restaurantNames[0]).toBe('Chipotle');
+      expect($scope.restaurantNames[1]).toBe('Noodle Place');
     });
   });
 });

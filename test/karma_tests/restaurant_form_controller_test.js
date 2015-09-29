@@ -85,6 +85,12 @@ describe('restaurant form controller', function() {
       expect($scope.successAlert).toHaveBeenCalled();
     });
 
+    it('should verify is signed in', function() {
+      $scope.isSignedIn();
+      expect(authService.isSignedIn).toHaveBeenCalled();
+      expect($scope.isSignedIn()).toBe(true);
+    });
+
     it('should logout', function() {
       spyOn($scope, 'signIn').and.callFake(function() {return true;});
       $scope.logout();
@@ -114,6 +120,18 @@ describe('restaurant form controller', function() {
       $scope.addGenre('Pizza');
       expect($scope.restaurant.genre[1]).toBe('Pizza');
       expect($scope.genre).toBe('');
+    });
+
+    it('should remove a genre', function() {
+      $scope.addGenre('Italian');
+      $scope.addGenre('Sandwiches');
+      $scope.addGenre('Greek');
+      expect($scope.restaurant.genre.length).toBe(3);
+      expect($scope.restaurant.genre[0]).toBe('Italian');
+      $scope.removeGenre(0);
+      expect($scope.restaurant.genre.length).toBe(2);
+      expect($scope.restaurant.genre[0]).toBe('Sandwiches');
+      expect($scope.restaurant.genre[1]).toBe('Greek');
     });
   });
 });

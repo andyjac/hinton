@@ -131,7 +131,6 @@ module.exports = function(app) {
       $scope.map = restaurantService.mapData();
       $scope.restaurant.photos = [];
       $scope.priceDollars = '';
-      $scope.menu_item = '';
       $scope.display_preview = false;
     };
 

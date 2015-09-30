@@ -2,6 +2,7 @@
 
 require('../../app/js/client');
 require('angular-mocks');
+var data = require('./restaurant_data');
 
 describe('restaurant form controller', function() {
   var $ControllerConstructor;
@@ -153,6 +154,30 @@ describe('restaurant form controller', function() {
       $scope.setPrice(2);
       expect($scope.restaurant.price).toBe(2);
       expect($scope.priceDollars).toBe('$$');
+    });
+
+    it('should clear form', function() {
+      $scope.display_preview = true;
+      $scope.restaurant = data.restaurantData;
+      $scope.map = data.mapData;
+      $scope.priceDollars = '$';
+      expect($scope.restaurant.name).toBe('Cuban Place');
+      expect($scope.restaurant.phone).toBe('+1 123-456-7890');
+      expect($scope.restaurant.menu_item[0]).toBe('Cuban Roast');
+      expect($scope.restaurant.hours.mon).toBe('10:00 am - 6:00 pm');
+      expect($scope.restaurant.photos[0].caption).toBe('Cuban Sandwich');
+      expect($scope.map.loc.lat).toBe('47.1234');
+      $scope.clearForm();
+      expect($scope.restaurant.name).toBe('');
+      expect($scope.restaurant.phone).toBe('');
+      expect(Array.isArray($scope.restaurant.menu_item)).toBe(true);
+      expect($scope.restaurant.menu_item.length).toBe(0);
+      expect($scope.restaurant.hours.mon).toBe('');
+      expect(Array.isArray($scope.restaurant.photos)).toBe(true);
+      expect($scope.restaurant.photos.length).toBe(0);
+      expect($scope.map.loc.lat).toBe('');
+      expect($scope.priceDollars).toBe('');
+      expect($scope.display_preview).toBe(false);
     });
   });
 });

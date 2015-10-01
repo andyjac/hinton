@@ -3,6 +3,7 @@
 require('../../app/js/client');
 require('angular-mocks');
 var data = require('./restaurant_data');
+var details = require('./google_places_details');
 
 describe('restaurant form controller', function() {
   var $ControllerConstructor;
@@ -178,6 +179,41 @@ describe('restaurant form controller', function() {
       expect($scope.map.loc.lat).toBe('');
       expect($scope.priceDollars).toBe('');
       expect($scope.display_preview).toBe(false);
+    });
+
+    it('should populate address', function() {
+      $scope.details = details;
+      $scope.populateAddress();
+      expect($scope.restaurant.name).toBe('Paseo Caribbean Restaurant');
+      expect($scope.restaurant.phone).toBe('+1 206-545-7440');
+      expect($scope.restaurant.hours.mon).toBe('Closed');
+      expect($scope.map.loc.lat).toBe(47.658506);
+      expect($scope.priceDollars).toBe('$$');
+      expect($scope.display_preview).toBe(true);
+      expect($scope.editing).toBe(false);
+    });
+
+    it('should submit form for save and edit', function() {
+      $scope.r_id = 'abc123efg';
+      spyOn($scope, 'handleResponse');
+      $httpBackend.whenPOST('/admin/restaurants').respond(function(data) {
+        return [200, {msg: 'save successful'}];
+      });
+      $httpBackend.whenPUT('/admin/restaurants/' + $scope.r_id).respond(function(data) {
+        return [200, {msg: 'update successful'}];
+      });
+      $scope.details = details;
+      $scope.populateAddress();
+      $scope.submitForm();
+      $httpBackend.flush();
+      expect($scope.handleResponse.calls.argsFor(0)[1].msg).toBe('save successful');
+      expect($scope.editing).toBe(false);
+      $scope.populateAddress();
+      $scope.editing = true;
+      $scope.submitForm();
+      $httpBackend.flush();
+      expect($scope.handleResponse.calls.argsFor(1)[1].msg).toBe('update successful');
+      expect($scope.editing).toBe(false);
     });
   });
 });

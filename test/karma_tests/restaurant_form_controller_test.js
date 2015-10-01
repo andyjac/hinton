@@ -206,13 +206,14 @@ describe('restaurant form controller', function() {
       $scope.populateAddress();
       $scope.submitForm();
       $httpBackend.flush();
+      expect($scope.handleResponse.calls.count()).toBe(1);
       expect($scope.handleResponse.calls.argsFor(0)[1].msg).toBe('save successful');
       expect($scope.editing).toBe(false);
-      $scope.populateAddress();
       $scope.editing = true;
       $scope.submitForm();
       $httpBackend.flush();
-      expect($scope.handleResponse.calls.argsFor(1)[1].msg).toBe('update successful');
+      expect($scope.handleResponse.calls.count()).toBe(2);
+      expect($scope.handleResponse.calls.mostRecent().args[1].msg).toBe('update successful');
       expect($scope.editing).toBe(false);
     });
   });

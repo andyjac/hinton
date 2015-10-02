@@ -111,6 +111,37 @@ describe('restaurant form controller', function() {
       expect($scope.restaurantNames[1]).toBe('Noodle Place');
     });
 
+    it('should set a restaurant', function() {
+      var dataobj = data;
+      $httpBackend.whenGET('/admin/genres').respond(function(data) {
+        return [200, ['Mexican', 'Thai']];
+      });
+      $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+        return [200, [{_id: '12345abcdef', name: 'Cuban Place'}, {_id: '67890', name: 'Noodle Place'}]];
+      });
+      $httpBackend.whenGET('/admin/restaurants/' + '12345abcdef').respond(function(data) {
+        return [200, dataobj];
+      });
+      $scope.updateFromDB();
+      $httpBackend.flush();
+      expect($scope.restaurantList[0]._id).toBe('12345abcdef');
+      expect($scope.restaurantNames.length).toBe(2);
+      expect($scope.restaurantNames[0]).toBe('Cuban Place');
+      expect($scope.restaurant.name).toBe('');
+      $scope.setRestaurant('Cuban Place');
+      $httpBackend.flush();
+      expect($scope.restaurantName).toBe('Cuban Place');
+      expect($scope.restaurant.phone).toBe('+1 123-456-7890');
+      expect($scope.restaurant.menu_item[0]).toBe('Cuban Roast');
+      expect($scope.restaurant.hours.mon).toBe('10:00 am - 6:00 pm');
+      expect($scope.restaurant.photos[0].caption).toBe('Cuban Sandwich');
+      expect($scope.map.loc.lat).toBe('47.1234');
+      expect($scope.r_id).toBe('12345abcdef');
+      expect($scope.priceDollars).toBe('$');
+      expect($scope.display_preview).toBe(true);
+      expect($scope.editing).toBe(true);
+    });
+
     it('should add a genre', function() {
       $scope.addGenre('Chinese');
       expect($scope.restaurant.genre[0]).toBe('Chinese');
@@ -159,8 +190,8 @@ describe('restaurant form controller', function() {
 
     it('should clear form', function() {
       $scope.display_preview = true;
-      $scope.restaurant = data.restaurantData;
-      $scope.map = data.mapData;
+      $scope.restaurant = data.restaurant;
+      $scope.map = data.map;
       $scope.priceDollars = '$';
       expect($scope.restaurant.name).toBe('Cuban Place');
       expect($scope.restaurant.phone).toBe('+1 123-456-7890');

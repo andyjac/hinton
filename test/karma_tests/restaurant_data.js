@@ -1,7 +1,8 @@
 'use strict';
 
 module.exports = {
-  'restaurantData': {
+  '_id': '12345abcdef',
+  'restaurant': {
     'name': 'Cuban Place',
     'genre': ['Cuban'],
     'phone': '+1 123-456-7890',
@@ -36,7 +37,7 @@ module.exports = {
       'delete': false
     }]
   },
-  'mapData': {
+  'map': {
     'loc': {
       'lat': '47.1234',
       'long': '-123.4567'

@@ -206,14 +206,31 @@ describe('restaurant form controller', function() {
       $scope.populateAddress();
       $scope.submitForm();
       $httpBackend.flush();
+      expect($scope.restaurantName).toBe('Paseo Caribbean Restaurant');
+      expect($scope.operation).toBe('Saved');
       expect($scope.handleResponse.calls.count()).toBe(1);
       expect($scope.handleResponse.calls.argsFor(0)[1].msg).toBe('save successful');
       expect($scope.editing).toBe(false);
       $scope.editing = true;
       $scope.submitForm();
       $httpBackend.flush();
+      expect($scope.operation).toBe('Updated');
       expect($scope.handleResponse.calls.count()).toBe(2);
       expect($scope.handleResponse.calls.mostRecent().args[1].msg).toBe('update successful');
+      expect($scope.editing).toBe(false);
+    });
+
+    it('should delete restaurant', function() {
+      $scope.r_id = 'hij456klm';
+      spyOn($scope, 'handleResponse');
+      $httpBackend.whenDELETE('/admin/restaurants/' + $scope.r_id).respond(function(data) {
+        return [200, {msg: 'delete successful'}];
+      });
+      $scope.deleteRestaurant();
+      $httpBackend.flush();
+      expect($scope.operation).toBe('Deleted');
+      expect($scope.handleResponse.calls.count()).toBe(1);
+      expect($scope.handleResponse.calls.argsFor(0)[1].msg).toBe('delete successful');
       expect($scope.editing).toBe(false);
     });
   });

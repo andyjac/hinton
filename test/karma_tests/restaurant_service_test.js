@@ -7,12 +7,20 @@ describe('restaurant service', function() {
   var restaurantService;
   var restaurantData;
   var mapData;
+  var $httpBackend;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
-  beforeEach(angular.mock.inject(function(_restaurantService_) {
+  beforeEach(angular.mock.inject(function(_restaurantService_, _$httpBackend_) {
     restaurantService = _restaurantService_;
+    $httpBackend = _$httpBackend_;
   }));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+    $httpBackend.resetExpectations();
+  });
 
   it('should be a service', function() {
     expect(typeof restaurantService.restaurantData).toBe('function');
@@ -54,5 +62,15 @@ describe('restaurant service', function() {
   it('should set price', function() {
     restaurantService.setPrice(2);
     expect(restaurantService.restaurantData().price).toBe(2);
+  });
+
+  it('should get all genres', function() {
+    $httpBackend.whenGET('/admin/genres').respond(function(data) {
+      return [200, ['Mexican', 'Thai']];
+    });
+    restaurantService.getAllGenres(function(){});
+    $httpBackend.flush();
+    expect(restaurantService.genres()[0]).toBe('Mexican');
+    expect(restaurantService.genres()[1]).toBe('Thai');
   });
 });

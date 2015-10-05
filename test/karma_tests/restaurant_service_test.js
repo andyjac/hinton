@@ -2,6 +2,7 @@
 
 require('../../app/js/client');
 require('angular-mocks');
+var data = require('./restaurant_data');
 
 describe('restaurant service', function() {
   var restaurantService;
@@ -80,11 +81,30 @@ describe('restaurant service', function() {
     });
     restaurantService.getAllRestaurants(function(){});
     $httpBackend.flush();
-    console.log(restaurantService.restaurantList());
     expect(restaurantService.restaurantList().length).toBe(2);
     expect(restaurantService.restaurantList()[0]._id).toBe('12345');
     expect(restaurantService.restaurantList()[1]._id).toBe('67890');
     expect(restaurantService.restaurantNames()[0]).toBe('Chipotle');
     expect(restaurantService.restaurantNames()[1]).toBe('Noodle Place');
+  });
+
+  it('should get a restaurant', function() {
+    var dataobj = data;
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345abcdef', name: 'Cuban Place'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    $httpBackend.whenGET('/admin/restaurants/' + '12345abcdef').respond(function(data) {
+      return [200, dataobj];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    restaurantService.getRestaurant('Cuban Place', function(){});
+    $httpBackend.flush();
+    expect(restaurantService.restaurantData().name).toBe('Cuban Place');
+    expect(restaurantService.restaurantData().phone).toBe('+1 123-456-7890');
+    expect(restaurantService.restaurantData().menu_item[0]).toBe('Cuban Roast');
+    expect(restaurantService.restaurantData().hours.mon).toBe('10:00 am - 6:00 pm');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('Cuban Sandwich');
+    expect(restaurantService.mapData().loc.lat).toBe('47.1234');
   });
 });

@@ -73,4 +73,18 @@ describe('restaurant service', function() {
     expect(restaurantService.genres()[0]).toBe('Mexican');
     expect(restaurantService.genres()[1]).toBe('Thai');
   });
+
+  it('should get all restaurants', function() {
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345', name: 'Chipotle'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    console.log(restaurantService.restaurantList());
+    expect(restaurantService.restaurantList().length).toBe(2);
+    expect(restaurantService.restaurantList()[0]._id).toBe('12345');
+    expect(restaurantService.restaurantList()[1]._id).toBe('67890');
+    expect(restaurantService.restaurantNames()[0]).toBe('Chipotle');
+    expect(restaurantService.restaurantNames()[1]).toBe('Noodle Place');
+  });
 });

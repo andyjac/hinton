@@ -9,18 +9,12 @@ describe('restaurant service', function() {
   var restaurantData;
   var mapData;
   var $httpBackend;
-  var Restaurants;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
   beforeEach(angular.mock.inject(function(_restaurantService_, _$httpBackend_) {
     restaurantService = _restaurantService_;
     $httpBackend = _$httpBackend_;
-    Restaurants = {
-      create: jasmine.createSpy('Restaurants.create'),
-      save: jasmine.createSpy('Restaurants.save'),
-      remove: jasmine.createSpy('Restaurants.remove')
-    };
   }));
 
   afterEach(function() {
@@ -139,5 +133,16 @@ describe('restaurant service', function() {
     expect(restaurantService.restaurantData().hours.mon).toBe('');
     expect(restaurantService.restaurantData().photos[0].caption).toBe('');
     expect(restaurantService.mapData().loc.lat).toBe('');
+  });
+
+  it('should create restaurant', function() {
+    var dataobj = data;
+    $httpBackend.whenPOST('/admin/restaurants').respond(function(data) {
+      return [200, {msg: 'save successful'}];
+    });
+    restaurantService.createRestaurant(data, function(err, res) {
+      expect(res.msg).toBe('save successful');
+    });
+    $httpBackend.flush();
   });
 });

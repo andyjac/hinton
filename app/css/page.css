@@ -324,6 +324,12 @@ button.list-group-item, .form-control {
   padding:9px 0;
 }
 
+.button-genre {
+  margin-right: 3px;
+  margin-top: 3px;
+  border-radius: 4px;
+}
+
 .preview-hours {
   padding: 15px 0 0 6px;
 }

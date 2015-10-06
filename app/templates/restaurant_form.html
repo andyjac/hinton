@@ -288,17 +288,17 @@
       <div class="preview-urls col-md-7 pull-right">
         <div class="col-md-12" data-ng-if="restaurant.r_site">
           <h4>Website</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.r_site}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.r_site}}" target="blank">{{restaurant.r_site}}</a></h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.menu_link">
           <h4>Menu</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.menu_link}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.menu_link}}" target="blank">{{restaurant.menu_link}}</a></h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.blog_link">
           <h4>Blog Post</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.blog_link}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.blog_link}}" target="blank">{{restaurant.blog_link}}</a></h5>
         </div>
       </div>
 

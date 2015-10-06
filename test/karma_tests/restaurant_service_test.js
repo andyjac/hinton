@@ -9,12 +9,18 @@ describe('restaurant service', function() {
   var restaurantData;
   var mapData;
   var $httpBackend;
+  var Restaurants;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
   beforeEach(angular.mock.inject(function(_restaurantService_, _$httpBackend_) {
     restaurantService = _restaurantService_;
     $httpBackend = _$httpBackend_;
+    Restaurants = {
+      create: jasmine.createSpy('Restaurants.create'),
+      save: jasmine.createSpy('Restaurants.save'),
+      remove: jasmine.createSpy('Restaurants.remove')
+    };
   }));
 
   afterEach(function() {
@@ -106,5 +112,32 @@ describe('restaurant service', function() {
     expect(restaurantService.restaurantData().hours.mon).toBe('10:00 am - 6:00 pm');
     expect(restaurantService.restaurantData().photos[0].caption).toBe('Cuban Sandwich');
     expect(restaurantService.mapData().loc.lat).toBe('47.1234');
+  });
+
+  it('should clear form', function() {
+    var dataobj = data;
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345abcdef', name: 'Cuban Place'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    $httpBackend.whenGET('/admin/restaurants/' + '12345abcdef').respond(function(data) {
+      return [200, dataobj];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    restaurantService.getRestaurant('Cuban Place', function(){});
+    $httpBackend.flush();
+    expect(restaurantService.restaurantData().name).toBe('Cuban Place');
+    expect(restaurantService.restaurantData().phone).toBe('+1 123-456-7890');
+    expect(restaurantService.restaurantData().menu_item[0]).toBe('Cuban Roast');
+    expect(restaurantService.restaurantData().hours.mon).toBe('10:00 am - 6:00 pm');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('Cuban Sandwich');
+    expect(restaurantService.mapData().loc.lat).toBe('47.1234');
+    restaurantService.clearForm();
+    expect(restaurantService.restaurantData().name).toBe('');
+    expect(restaurantService.restaurantData().phone).toBe('');
+    expect(restaurantService.restaurantData().menu_item.length).toBe(0);
+    expect(restaurantService.restaurantData().hours.mon).toBe('');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('');
+    expect(restaurantService.mapData().loc.lat).toBe('');
   });
 });

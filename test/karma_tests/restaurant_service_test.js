@@ -145,4 +145,27 @@ describe('restaurant service', function() {
     });
     $httpBackend.flush();
   });
+
+  it('should update restaurant', function() {
+    var dataobj = data;
+    var id = data._id;
+    $httpBackend.whenPUT('/admin/restaurants/' + id).respond(function(data) {
+      return [200, {msg: 'update successful'}];
+    });
+    restaurantService.saveRestaurant(id, data, function(err, res) {
+      expect(res.msg).toBe('update successful');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should delete restaurant', function() {
+    var id = 'abc123';
+    $httpBackend.whenDELETE('/admin/restaurants/' + id).respond(function(data) {
+      return [200, {msg: 'delete successful'}];
+    });
+    restaurantService.removeRestaurant(id, function(err, res) {
+      expect(res.msg).toBe('delete successful');
+    });
+    $httpBackend.flush();
+  });
 });

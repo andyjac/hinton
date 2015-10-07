@@ -6,7 +6,7 @@ module.exports = function(req, res) {
       console.log(err);
       return res.status(500).json({msg: 'internal server error'});
     }
-console.log(data);
+
     data.sort(function (a, b) {
       if (a > b) {
         return 1;
@@ -16,7 +16,7 @@ console.log(data);
       }
       return 0;
     });
-console.log(data);
+
     res.status(200).json(data);
   });
 };

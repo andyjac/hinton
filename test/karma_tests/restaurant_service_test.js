@@ -3,6 +3,7 @@
 require('../../app/js/client');
 require('angular-mocks');
 var data = require('./restaurant_data');
+var details = require('./google_places_details');
 
 describe('restaurant service', function() {
   var restaurantService;
@@ -167,5 +168,13 @@ describe('restaurant service', function() {
       expect(res.msg).toBe('delete successful');
     });
     $httpBackend.flush();
+  });
+
+  it('should google populate address', function() {
+    restaurantService.googlePopulate(details);
+    expect(restaurantService.restaurantData().name).toBe('Paseo Caribbean Restaurant');
+    expect(restaurantService.restaurantData().phone).toBe('+1 206-545-7440');
+    expect(restaurantService.restaurantData().hours.mon).toBe('Closed');
+    expect(restaurantService.mapData().loc.lat).toBe(47.658506);
   });
 });

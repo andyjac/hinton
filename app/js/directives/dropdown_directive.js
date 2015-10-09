@@ -10,8 +10,19 @@ module.exports = function(app) {
         buttonText: '@',
         ulId: '@',
         items: '=',
-        select: '&'
-      }
+        select: '&',
+        maxlen: '@'
+      },
+      controller: function($element) {
+        var vm = this;
+        var maxRows = 12;
+        var rows = (parseInt(vm.maxlen) || maxRows)
+        vm.numcols = function() {
+          return Math.ceil(vm.items.length / rows);
+        };
+      },
+      controllerAs: 'vm',
+      bindToController: true
     };
   });
 };

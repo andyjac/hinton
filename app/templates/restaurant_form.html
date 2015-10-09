@@ -30,7 +30,7 @@
         <label>Restaurant Name</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
-               dropdown data-button-id="add-name-dropdown"
+               dropdown data-button-id="add-name-dropdown" data-maxlen=""
                data-button-text="Edit" data-ul-id="name-dropdown"
                data-items="restaurantNames" data-select="setRestaurant(item)">
           </div>
@@ -101,8 +101,8 @@
         <label>Price</label><br>
         <div class="btn-group">
           <div data-dropdown-directive data-button-id="add-price-dropdown"
-               dropdown data-button-text='$$$' data-items="[1,2,3,4,5]"
-               data-select="setPrice(item)">
+               dropdown data-button-text='$$$' data-items="[1,2,3,4,5]" data-ul-id="price-dropdown"
+               data-maxlen="" data-select="setPrice(item)">
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
         <label>Genre</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
-               dropdown data-button-id="add-genre-dropdown"
+               dropdown data-button-id="add-genre-dropdown" data-maxlen=""
                data-button-text="Pick" data-ul-id="genre-dropdown"
                data-items="genres" data-select="addGenre(item)">
           </div>

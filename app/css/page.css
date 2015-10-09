@@ -294,6 +294,28 @@ button.list-group-item, .form-control {
   font-style: italic;
 }
 
+.drop-column {
+  padding: 0;
+}
+
+.dropdown-class {
+  padding: 10px 20px;
+  min-width: 60px;
+  column-gap: 2em;
+  column-rule: 1px solid #f2e2c1;
+  -webkit-column-gap: 2em;
+  -webkit-column-rule: 1px solid #f2e2c1;
+  -moz-column-gap: 2em;
+  -moz-column-rule: 1px solid #f2e2c1;;
+}
+
+.dropdown-class li>a {
+  padding: 3px 0;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* preview (main-right) */
 
 .header-type, .dollars, .genre {

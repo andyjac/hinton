@@ -16,7 +16,7 @@ module.exports = function(app) {
       controller: function($element) {
         var vm = this;
         var maxRows = 12;
-        var rows = (parseInt(vm.maxlen) || maxRows)
+        var rows = (parseInt(vm.maxlen) || maxRows);
         vm.numcols = function() {
           return Math.ceil(vm.items.length / rows);
         };

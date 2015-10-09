@@ -207,7 +207,7 @@ module.exports = function(app) {
       modalInstance.opened.then(function () {
         $timeout(function() {
           modalInstance.dismiss('dismiss');
-        }, 2600);
+        }, 1500);
       });
     };
 

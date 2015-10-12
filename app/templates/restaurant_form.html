@@ -30,7 +30,7 @@
         <label>Restaurant Name</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
-               dropdown data-button-id="add-name-dropdown"
+               dropdown data-button-id="add-name-dropdown" data-maxlen=""
                data-button-text="Edit" data-ul-id="name-dropdown"
                data-items="restaurantNames" data-select="setRestaurant(item)">
           </div>
@@ -101,8 +101,8 @@
         <label>Price</label><br>
         <div class="btn-group">
           <div data-dropdown-directive data-button-id="add-price-dropdown"
-               dropdown data-button-text='$$$' data-items="[1,2,3,4,5]"
-               data-select="setPrice(item)">
+               dropdown data-button-text='$$$' data-items="[1,2,3,4,5]" data-ul-id="price-dropdown"
+               data-maxlen="" data-select="setPrice(item)">
           </div>
         </div>
       </div>
@@ -111,7 +111,7 @@
         <label>Genre</label>
         <div class="input-group">
           <div data-dropdown-directive class="input-group-btn btn-group"
-               dropdown data-button-id="add-genre-dropdown"
+               dropdown data-button-id="add-genre-dropdown" data-maxlen=""
                data-button-text="Pick" data-ul-id="genre-dropdown"
                data-items="genres" data-select="addGenre(item)">
           </div>
@@ -264,7 +264,7 @@
 
       <div class="preview-genre col-md-6 pull-right">
         <ul class="list-group">
-          <button type="button" class="list-group-item pull-left" style="margin-right: 3px;"
+          <button type="button" class="list-group-item button-genre pull-left"
                   data-ng-repeat="genre in restaurant.genre"
                   data-ng-click="removeGenre($index)">
             {{genre}}&nbsp;&nbsp;&times;
@@ -288,17 +288,17 @@
       <div class="preview-urls col-md-7 pull-right">
         <div class="col-md-12" data-ng-if="restaurant.r_site">
           <h4>Website</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.r_site}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.r_site}}" target="blank">{{restaurant.r_site}}</a></h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.menu_link">
           <h4>Menu</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.menu_link}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.menu_link}}" target="blank">{{restaurant.menu_link}}</a></h5>
         </div>
 
         <div class="col-md-12" data-ng-if="restaurant.blog_link">
           <h4>Blog Post</h4>
-          <h5 style="word-wrap: break-word">{{restaurant.blog_link}}</h5>
+          <h5 style="word-wrap: break-word"><a href="{{restaurant.blog_link}}" target="blank">{{restaurant.blog_link}}</a></h5>
         </div>
       </div>
 

@@ -164,10 +164,12 @@ button.list-group-item, .form-control {
 
 .waiting-to-load {
   background-image: url('hinton_load.png');
-  text-align: center;
-  position: absolute;
+  position: fixed;
   top: 325px;
-  left: 47%;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
   z-index: -1;
   height: 144px;
   width: 144px;
@@ -292,6 +294,28 @@ button.list-group-item, .form-control {
   font-style: italic;
 }
 
+.drop-column {
+  padding: 0;
+}
+
+.dropdown-class {
+  padding: 10px 20px;
+  min-width: 60px;
+  column-gap: 2em;
+  column-rule: 1px solid #f2e2c1;
+  -webkit-column-gap: 2em;
+  -webkit-column-rule: 1px solid #f2e2c1;
+  -moz-column-gap: 2em;
+  -moz-column-rule: 1px solid #f2e2c1;;
+}
+
+.dropdown-class li>a {
+  padding: 3px 0;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* preview (main-right) */
 
 .header-type, .dollars, .genre {
@@ -320,6 +344,12 @@ button.list-group-item, .form-control {
 
 .preview-genre {
   padding:9px 0;
+}
+
+.button-genre {
+  margin-right: 3px;
+  margin-top: 3px;
+  border-radius: 4px;
 }
 
 .preview-hours {

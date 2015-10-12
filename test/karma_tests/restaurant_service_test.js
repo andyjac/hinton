@@ -2,17 +2,27 @@
 
 require('../../app/js/client');
 require('angular-mocks');
+var data = require('./restaurant_data');
+var details = require('./google_places_details');
 
 describe('restaurant service', function() {
   var restaurantService;
   var restaurantData;
   var mapData;
+  var $httpBackend;
 
   beforeEach(angular.mock.module('hintonAdminApp'));
 
-  beforeEach(angular.mock.inject(function(_restaurantService_) {
+  beforeEach(angular.mock.inject(function(_restaurantService_, _$httpBackend_) {
     restaurantService = _restaurantService_;
+    $httpBackend = _$httpBackend_;
   }));
+
+  afterEach(function() {
+    $httpBackend.verifyNoOutstandingExpectation();
+    $httpBackend.verifyNoOutstandingRequest();
+    $httpBackend.resetExpectations();
+  });
 
   it('should be a service', function() {
     expect(typeof restaurantService.restaurantData).toBe('function');
@@ -54,5 +64,117 @@ describe('restaurant service', function() {
   it('should set price', function() {
     restaurantService.setPrice(2);
     expect(restaurantService.restaurantData().price).toBe(2);
+  });
+
+  it('should get all genres', function() {
+    $httpBackend.whenGET('/admin/genres').respond(function(data) {
+      return [200, ['Mexican', 'Thai']];
+    });
+    restaurantService.getAllGenres(function(){});
+    $httpBackend.flush();
+    expect(restaurantService.genres()[0]).toBe('Mexican');
+    expect(restaurantService.genres()[1]).toBe('Thai');
+  });
+
+  it('should get all restaurants', function() {
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345', name: 'Chipotle'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    expect(restaurantService.restaurantList().length).toBe(2);
+    expect(restaurantService.restaurantList()[0]._id).toBe('12345');
+    expect(restaurantService.restaurantList()[1]._id).toBe('67890');
+    expect(restaurantService.restaurantNames()[0]).toBe('Chipotle');
+    expect(restaurantService.restaurantNames()[1]).toBe('Noodle Place');
+  });
+
+  it('should get a restaurant', function() {
+    var dataobj = data;
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345abcdef', name: 'Cuban Place'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    $httpBackend.whenGET('/admin/restaurants/' + '12345abcdef').respond(function(data) {
+      return [200, dataobj];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    restaurantService.getRestaurant('Cuban Place', function(){});
+    $httpBackend.flush();
+    expect(restaurantService.restaurantData().name).toBe('Cuban Place');
+    expect(restaurantService.restaurantData().phone).toBe('+1 123-456-7890');
+    expect(restaurantService.restaurantData().menu_item[0]).toBe('Cuban Roast');
+    expect(restaurantService.restaurantData().hours.mon).toBe('10:00 am - 6:00 pm');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('Cuban Sandwich');
+    expect(restaurantService.mapData().loc.lat).toBe('47.1234');
+  });
+
+  it('should clear form', function() {
+    var dataobj = data;
+    $httpBackend.whenGET('/admin/restaurants').respond(function(data) {
+      return [200, [{_id: '12345abcdef', name: 'Cuban Place'}, {_id: '67890', name: 'Noodle Place'}]];
+    });
+    $httpBackend.whenGET('/admin/restaurants/' + '12345abcdef').respond(function(data) {
+      return [200, dataobj];
+    });
+    restaurantService.getAllRestaurants(function(){});
+    $httpBackend.flush();
+    restaurantService.getRestaurant('Cuban Place', function(){});
+    $httpBackend.flush();
+    expect(restaurantService.restaurantData().name).toBe('Cuban Place');
+    expect(restaurantService.restaurantData().phone).toBe('+1 123-456-7890');
+    expect(restaurantService.restaurantData().menu_item[0]).toBe('Cuban Roast');
+    expect(restaurantService.restaurantData().hours.mon).toBe('10:00 am - 6:00 pm');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('Cuban Sandwich');
+    expect(restaurantService.mapData().loc.lat).toBe('47.1234');
+    restaurantService.clearForm();
+    expect(restaurantService.restaurantData().name).toBe('');
+    expect(restaurantService.restaurantData().phone).toBe('');
+    expect(restaurantService.restaurantData().menu_item.length).toBe(0);
+    expect(restaurantService.restaurantData().hours.mon).toBe('');
+    expect(restaurantService.restaurantData().photos[0].caption).toBe('');
+    expect(restaurantService.mapData().loc.lat).toBe('');
+  });
+
+  it('should create restaurant', function() {
+    var dataobj = data;
+    $httpBackend.whenPOST('/admin/restaurants').respond(function(data) {
+      return [200, {msg: 'save successful'}];
+    });
+    restaurantService.createRestaurant(data, function(err, res) {
+      expect(res.msg).toBe('save successful');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should update restaurant', function() {
+    var dataobj = data;
+    var id = data._id;
+    $httpBackend.whenPUT('/admin/restaurants/' + id).respond(function(data) {
+      return [200, {msg: 'update successful'}];
+    });
+    restaurantService.saveRestaurant(id, data, function(err, res) {
+      expect(res.msg).toBe('update successful');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should delete restaurant', function() {
+    var id = 'abc123';
+    $httpBackend.whenDELETE('/admin/restaurants/' + id).respond(function(data) {
+      return [200, {msg: 'delete successful'}];
+    });
+    restaurantService.removeRestaurant(id, function(err, res) {
+      expect(res.msg).toBe('delete successful');
+    });
+    $httpBackend.flush();
+  });
+
+  it('should google populate address', function() {
+    restaurantService.googlePopulate(details);
+    expect(restaurantService.restaurantData().name).toBe('Paseo Caribbean Restaurant');
+    expect(restaurantService.restaurantData().phone).toBe('+1 206-545-7440');
+    expect(restaurantService.restaurantData().hours.mon).toBe('Closed');
+    expect(restaurantService.mapData().loc.lat).toBe(47.658506);
   });
 });

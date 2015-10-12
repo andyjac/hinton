@@ -131,13 +131,11 @@ module.exports = function(app) {
       $scope.map = restaurantService.mapData();
       $scope.restaurant.photos = [];
       $scope.priceDollars = '';
-      $scope.menu_item = '';
       $scope.display_preview = false;
     };
 
     $scope.submitForm = function() {
       $scope.restaurantName = $scope.restaurant.name;
-      var id = $scope.r_id;
       var restaurantInfo = {
         map: _.cloneDeep($scope.map), restaurant: _.cloneDeep($scope.restaurant)
       };
@@ -147,15 +145,14 @@ module.exports = function(app) {
         restaurantService.createRestaurant(restaurantInfo, $scope.handleResponse);
       } else {
         $scope.operation = 'Updated';
-        restaurantService.saveRestaurant(id, restaurantInfo, $scope.handleResponse);
+        restaurantService.saveRestaurant($scope.r_id, restaurantInfo, $scope.handleResponse);
         $scope.editing = false;
       }
     };
 
     $scope.deleteRestaurant = function() {
-      var id = $scope.r_id;
       $scope.operation = 'Deleted';
-      restaurantService.removeRestaurant(id, $scope.handleResponse);
+      restaurantService.removeRestaurant($scope.r_id, $scope.handleResponse);
       $scope.editing = false;
     };
 

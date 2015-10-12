@@ -1,11 +1,11 @@
 <section>
     <button type="button" class="btn btn-default dropdown-toggle"
-            id={{buttonId}} data-ng-disabled="disabled" dropdown-toggle>
-      {{buttonText}} <span class="caret"></span></button>
-    <ul class="dropdown-menu" id={{ulId}} role="menu">
-      <li data-ng-repeat="item in items track by $index">
-        <!-- a tag for bootstrap styling -->
-        <a data-ng-click="select({item: item})">{{item}}</a>
+            id={{vm.buttonId}} data-ng-disabled="disabled" dropdown-toggle>
+      {{vm.buttonText}} <span class="caret"></span></button>
+    <ul class="dropdown-menu dropdown-class" style="-webkit-columns:{{vm.numcols()}}" id={{vm.ulId}} role="menu">
+      <li class="drop-column" data-ng-repeat="item in vm.items track by $index">
+         <!-- a tag also for bootstrap styling -->
+        <a data-ng-click="vm.select({item: item})">{{item}}</a>
       </li>
     </ul>
 </section>
